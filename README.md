@@ -6,7 +6,7 @@
 [mergify-status]: https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/UCLA-Creative-Labs/project&style=flat -->
 
 This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating, you are 
-expected to uphold this code. Please report unacceptable behavior to uclacreatives@gmail.com.
+expected to uphold this code. Please report unacceptable behavior to acm@ucla.edu.
 
 ## Getting Started
 
