@@ -28,6 +28,11 @@ module.exports = {
 
     '@typescript-eslint/no-require-imports': [ 'error' ],
 
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_' }
+    ],
+
     // 2 space indentation
     '@typescript-eslint/indent': [ 'error', 2 ],
 
