@@ -1,12 +1,12 @@
 # Playnet
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
-<!-- [![Mergify Status][mergify-status]][mergify]
+[![Mergify Status][mergify-status]][mergify]
 
 [mergify]: https://mergify.io
-[mergify-status]: https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/UCLA-Creative-Labs/project&style=flat -->
+[mergify-status]: https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/uclaacm/playnet&style=flat
 
 This project adheres to the Contributor Covenant [code of conduct](CODE_OF_CONDUCT.md). By participating, you are 
-expected to uphold this code. Please report unacceptable behavior to uclacreatives@gmail.com.
+expected to uphold this code. Please report unacceptable behavior to acm@ucla.edu.
 
 ## Getting Started
 
@@ -44,7 +44,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) and [DESIGN_GUIDELINES.md](DESIGN_GUIDELI
 If you ever need help with a feature or bug fix, no worries! Feel free to mark the issue as 
 `guidance` so that our maintainers can start thinking about a solution. If you are 
 comfortable making a [draft pull request](https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/changing-the-stage-of-a-pull-request),
-you can also tag the Creative Labs team in a comment: `@UCLA-Creative-Labs/team`!
+you can also tag the Playnet team in a comment: `@uclaacm/playnet-team`!
 
 ## License
 
