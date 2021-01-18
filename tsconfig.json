@@ -14,6 +14,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
+    "moduleResolution": "node",
     "composite": true,
     "incremental": true,
     "typeRoots": [
