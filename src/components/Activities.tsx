@@ -3,21 +3,21 @@ import {
   Switch,
   Route,
   Link,
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import './styles/App.scss';
 
-import Base from './shared/Base';
 import Activity1 from './Activities/Activity1';
 import Activity2 from './Activities/Activity2';
 import Activity3 from './Activities/Activity3';
+import Base from './shared/Base';
 import { HeaderSections } from './shared/PlaynetConstants';
 
-function Activities() {
+function Activities(): JSX.Element {
   return (
     <div>
-      <Base section = {HeaderSections.activities}>
-      {/* A <Switch> looks through its children <Route>s and
+      <Base section={HeaderSections.activities}>
+        {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
           <Route path="/activities/1">
@@ -25,20 +25,20 @@ function Activities() {
           </Route>
           <Route path="/activities/2">
             <Activity2 />
-          </Route>          
+          </Route>
           <Route path="/activities/3">
             <Activity3 />
           </Route>
           <Route path="/">
             <ActivityHome />
           </Route>
-        </Switch>      
+        </Switch>
       </Base>
     </div>
   );
 }
 
-function ActivityHome() {
+function ActivityHome(): JSX.Element {
   return (
     <div>
       <nav>

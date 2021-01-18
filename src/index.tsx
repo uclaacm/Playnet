@@ -6,9 +6,9 @@ import {
   Route,
 } from 'react-router-dom';
 
-import Home from './components/Home';
 import Activities from './components/Activities';
 import Feedback from './components/Feedback';
+import Home from './components/Home';
 
 import './global.scss';
 

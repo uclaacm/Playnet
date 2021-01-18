@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles/App.scss';
 
-function Activity2() {
+function Activity2(): JSX.Element {
   return (
     <div><h1>Activity 2</h1></div>
   );
