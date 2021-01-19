@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './styles/Feedback.scss';
-
 import Base from './shared/Base';
 import { HeaderSections } from './shared/PlaynetConstants';
 
