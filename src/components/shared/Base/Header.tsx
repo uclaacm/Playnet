@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../../styles/Base.scss';
-
 import { Link } from 'react-router-dom';
 import { HeaderSections } from '../PlaynetConstants';
 

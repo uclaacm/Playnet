@@ -1,11 +1,10 @@
 import React from 'react';
 import {
+  useRouteMatch,
   Switch,
   Route,
   Link,
 } from 'react-router-dom';
-
-import './styles/Activities.scss';
 
 import Activity1 from './Activities/Activity1';
 import Activity2 from './Activities/Activity2';
@@ -14,23 +13,24 @@ import Base from './shared/Base';
 import { HeaderSections } from './shared/PlaynetConstants';
 
 function Activities(): JSX.Element {
+  const { url, path } = useRouteMatch();
   return (
     <div>
       <Base section={HeaderSections.ACTIVITIES}>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/activities/1">
+          <Route path={`${path}/1`}>
             <Activity1 />
           </Route>
-          <Route path="/activities/2">
+          <Route path={`${path}/2`}>
             <Activity2 />
           </Route>
-          <Route path="/activities/3">
+          <Route path={`${path}/3`}>
             <Activity3 />
           </Route>
           <Route path="/">
-            <ActivityHome />
+            <ActivityHome url={url} />
           </Route>
         </Switch>
       </Base>
@@ -38,19 +38,19 @@ function Activities(): JSX.Element {
   );
 }
 
-function ActivityHome(): JSX.Element {
+function ActivityHome(props: { url: string }): JSX.Element {
   return (
     <div>
       <nav>
         <ul>
           <li>
-            <Link to="/activities/1">Activity 1</Link>
+            <Link to={`${props.url}/1`}>Activity 1</Link>
           </li>
           <li>
-            <Link to="/activities/2">Activity 2</Link>
+            <Link to={`${props.url}/2`}>Activity 2</Link>
           </li>
           <li>
-            <Link to="/activities/3">Activity 3</Link>
+            <Link to={`${props.url}/3`}>Activity 3</Link>
           </li>
         </ul>
       </nav>

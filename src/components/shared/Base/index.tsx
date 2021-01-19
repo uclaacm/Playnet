@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '../../styles/Base.scss';
-
 import { HeaderSections } from '../PlaynetConstants';
 import Footer from './Footer';
 import Header from './Header';
