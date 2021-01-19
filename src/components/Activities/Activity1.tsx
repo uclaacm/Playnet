@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/App.scss';
+import '../styles/Activity1.scss';
 
 function Activity1(): JSX.Element {
   return (

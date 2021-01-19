@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../styles/App.scss';
+import '../../styles/Base.scss';
 
 function Footer(): JSX.Element {
   return (

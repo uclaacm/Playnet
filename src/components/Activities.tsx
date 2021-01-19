@@ -5,7 +5,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-import './styles/App.scss';
+import './styles/Activities.scss';
 
 import Activity1 from './Activities/Activity1';
 import Activity2 from './Activities/Activity2';
@@ -16,7 +16,7 @@ import { HeaderSections } from './shared/PlaynetConstants';
 function Activities(): JSX.Element {
   return (
     <div>
-      <Base section={HeaderSections.activities}>
+      <Base section={HeaderSections.ACTIVITIES}>
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>

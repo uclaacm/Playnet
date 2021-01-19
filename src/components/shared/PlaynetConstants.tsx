@@ -1,7 +1,5 @@
-enum HeaderSections {
-  intro = 'intro',
-  activities = 'activities',
-  feedback = 'feedback',
+export enum HeaderSections {
+  INTRO = 'intro',
+  ACTIVITIES = 'activities',
+  FEEDBACK = 'feedback',
 }
-
-export { HeaderSections };

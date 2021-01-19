@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './styles/App.scss';
+import './styles/Home.scss';
 
 import Base from './shared/Base';
 import { HeaderSections } from './shared/PlaynetConstants';
@@ -8,7 +8,7 @@ import { HeaderSections } from './shared/PlaynetConstants';
 function Home(): JSX.Element {
   return (
     <div>
-      <Base section={HeaderSections.intro}>
+      <Base section={HeaderSections.INTRO}>
         <h1>Home</h1>
       </Base>
     </div>

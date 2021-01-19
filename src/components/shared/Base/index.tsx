@@ -1,13 +1,12 @@
 import React from 'react';
 
-import '../styles/App.scss';
+import '../../styles/Base.scss';
 
-import Footer from '../shared/Footer';
-import Header from '../shared/Header';
-import { HeaderSections } from '../shared/PlaynetConstants';
+import { HeaderSections } from '../PlaynetConstants';
+import Footer from './Footer';
+import Header from './Header';
 
-
-type BaseProps = {
+export interface BaseProps {
   section: HeaderSections,
   children?: React.ReactNode;
 }
