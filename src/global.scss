@@ -1,4 +1,9 @@
+@import './components/styles/variables';
+
 body {
   padding: 0;
   margin: 0;
+  font: $font-normal;
+  /* TODO: remove */
+  background-color: rgba(0,255,0,0.2);
 }
