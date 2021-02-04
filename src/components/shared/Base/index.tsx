@@ -4,17 +4,21 @@ import { HeaderSections } from '../PlaynetConstants';
 import Footer from './Footer';
 import Header from './Header';
 
+import '../../styles/Base.scss';
+
 export interface BaseProps {
   section: HeaderSections,
   children?: React.ReactNode;
 }
 function Base(props: BaseProps): JSX.Element {
   return (
-    <div>
+    <>
       <Header section={props.section} />
-      { props.children }
+        <div className={'body'}>
+          { props.children }
+        </div>
       <Footer />
-    </div>
+    </>
   );
 }
 
