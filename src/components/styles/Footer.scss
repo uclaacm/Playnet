@@ -1,0 +1,28 @@
+@import 'variables';
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: $font-footer;
+  background-color: $bg-footer;
+}
+
+#footer img {
+  vertical-align: -0.15em; // had to manually align to get it to look right
+}
+
+#disclaimer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  font: $font-normal;
+  font-size: 12px;
+  padding: 0;
+  margin: 5px 10px;
+}
