@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Base from './shared/Base';
 import Carousel from './Carousel';
+import Base from './shared/Base';
 import { HeaderSections } from './shared/PlaynetConstants';
 
 function Home(): JSX.Element {
@@ -12,9 +12,11 @@ function Home(): JSX.Element {
           title={'Test'}
           subtitle={'Lorem ipsum dolor sit amet'}
           onNext={() => { /* Run function along with transition on next button press */
+            // eslint-disable-next-line no-console
             console.log('next');
           }}
           onPrev={() => { /* Run function along with transition on previous button press */
+            // eslint-disable-next-line no-console
             console.log('prev');
           }}
           /* can use showNext={true|false} to manually show or hide button */

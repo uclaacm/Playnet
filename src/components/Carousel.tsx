@@ -28,7 +28,7 @@ function Carousel(props: CarouselProps): JSX.Element {
           style={{
             visibility: ((props.showPrev !== undefined && props.showPrev) || (slideIdx > 0))
               ? 'visible'
-              : 'hidden'
+              : 'hidden',
           }}
           onClick={() => {
             setSlideIdx(old => Math.max(old - 1, 0));
@@ -46,8 +46,8 @@ function Carousel(props: CarouselProps): JSX.Element {
             visibility:
               ((props.showNext !== undefined && props.showNext) ||
                (slideIdx < (props.children ? props.children.length - 1 : 0)))
-                 ? 'visible'
-                 : 'hidden'
+                ? 'visible'
+                : 'hidden',
           }}
           onClick={() => {
             setSlideIdx(old => Math.min(old + 1, props.children ? props.children.length - 1 : 0));

@@ -1,11 +1,10 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import PlaynetLogo from '../../../assets/logos/playnet.svg';
 import { HeaderSections } from '../PlaynetConstants';
 
 import '../../styles/Header.scss';
-
-import PlaynetLogo from '../../../assets/logos/playnet.svg';
 
 export interface HeaderProps {
   section: HeaderSections,

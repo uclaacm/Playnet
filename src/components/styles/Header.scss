@@ -1,5 +1,29 @@
 @import 'variables';
 
+.navlink {
+  display: inline-flex;
+  align-items: center;
+  height: $head-foot-height;
+  padding: 0 40px;
+}
+
+.navlink a {
+  text-decoration: none;
+  color: #000;
+}
+
+.navlink a:visited {
+  color: #000;
+}
+
+.navlink.current {
+  border-bottom: solid 5px $playnet-orange;
+}
+
+.navlink.current a {
+  color: $playnet-orange;
+}
+
 #header {
   position: fixed;
   top: 0;
@@ -11,7 +35,7 @@
   align-items: center;
   justify-content: space-between;
   background-color: $bg-footer;
-  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 }
 
 #logo {
@@ -43,28 +67,4 @@
 
 #nav {
   font: $font-nav;
-}
-
-.navlink {
-  display: inline-flex;
-  align-items: center;
-  height: $head-foot-height;
-  padding: 0 40px;
-}
-
-.navlink a {
-  text-decoration: none;
-  color: #000;
-}
-
-.navlink a:visited {
-  color: #000;
-}
-
-.navlink.current {
-  border-bottom: solid 5px $playnet-orange;
-}
-
-.navlink.current a {
-  color: $playnet-orange;
 }
