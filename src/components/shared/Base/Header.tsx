@@ -20,7 +20,7 @@ function Header(props: HeaderProps): JSX.Element {
         <span
           className={'navlink' + ((props.section === HeaderSections.INTRO) ? ' current' : '')}
         >
-          <Link to="/">Home</Link>
+          <Link to="/">Intro</Link>
         </span>
         <span
           className={'navlink' + ((props.section === HeaderSections.ACTIVITIES) ? ' current' : '')}

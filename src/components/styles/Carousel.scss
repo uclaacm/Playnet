@@ -1,0 +1,54 @@
+@import 'variables';
+
+#carousel-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  height: 100%;
+}
+
+#title {
+  font: $font-title;
+  color: #fff;
+  margin-top: 36px;
+  margin-bottom: 0;
+}
+
+#subtitle {
+  font: $font-title;
+  font-size: 26px;
+  color: #fff;
+  margin: 0;
+}
+
+#carousel {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin: 36px 48px;
+}
+
+#carousel-content {
+  flex: 1;
+  background-color: #fff;
+  height: 100%;
+  margin: 0 24px;
+  border-radius: 20px
+}
+
+.carousel-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: $playnet-orange;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none; // can remove if outline is preferred for a11y
+}
+
+.carousel-btn:active {
+  transform: scale(0.9, 0.9);
+}
