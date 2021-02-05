@@ -13,8 +13,13 @@
   background-color: $bg-footer;
 }
 
-#footer img {
-  vertical-align: -0.15em; // had to manually align to get it to look right
+#cl-logo {
+  vertical-align: -0.18em; // had to manually align to get it to look right
+}
+
+#tla-logo {
+  height: 1.35em;
+  vertical-align: -0.38em; // had to manually align to get it to look right
 }
 
 #disclaimer {

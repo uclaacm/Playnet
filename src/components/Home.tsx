@@ -12,12 +12,10 @@ function Home(): JSX.Element {
           title={'Test'}
           subtitle={'Lorem ipsum dolor sit amet'}
           onNext={() => { /* Run function along with transition on next button press */
-            // eslint-disable-next-line no-console
-            console.log('next');
+            // console.log('next');
           }}
           onPrev={() => { /* Run function along with transition on previous button press */
-            // eslint-disable-next-line no-console
-            console.log('prev');
+            // console.log('prev');
           }}
           /* can use showNext={true|false} to manually show or hide button */
           /*         showPrev={true|false}                                 */
