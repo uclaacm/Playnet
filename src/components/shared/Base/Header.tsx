@@ -1,33 +1,36 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
+import PlaynetLogo from '../../../assets/logos/playnet.svg';
 import { HeaderSections } from '../PlaynetConstants';
+
+import '../../styles/Header.scss';
 
 export interface HeaderProps {
   section: HeaderSections,
 }
 function Header(props: HeaderProps): JSX.Element {
   return (
-    <div>
-      <nav>
-        <div
-          id="textSpan"
-          style={(props.section === HeaderSections.INTRO) ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}
+    <div id={'header'}>
+      <div id={'logo'}>
+        <Link to="/"><h1><img src={PlaynetLogo} /> Playnet</h1></Link>
+      </div>
+      <nav id={'nav'}>
+        <span
+          className={'navlink' + ((props.section === HeaderSections.INTRO) ? ' current' : '')}
         >
-          <Link to="/">Home</Link>
-        </div>
-        <div
-          id="textSpan"
-          style={(props.section === HeaderSections.ACTIVITIES) ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}
+          <Link to="/">Intro</Link>
+        </span>
+        <span
+          className={'navlink' + ((props.section === HeaderSections.ACTIVITIES) ? ' current' : '')}
         >
           <Link to="/activities">Activities</Link>
-        </div>
-        <div
-          id="textSpan"
-          style={(props.section === HeaderSections.FEEDBACK) ? { fontWeight: 'bold' } : { fontWeight: 'normal' }}
+        </span>
+        <span
+          className={'navlink' + ((props.section === HeaderSections.FEEDBACK) ? ' current' : '')}
         >
           <Link to="/feedback">Feedback</Link>
-        </div>
+        </span>
       </nav>
     </div>
   );

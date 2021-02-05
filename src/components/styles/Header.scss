@@ -1,0 +1,70 @@
+@import 'variables';
+
+.navlink {
+  display: inline-flex;
+  align-items: center;
+  height: $head-foot-height;
+  padding: 0 40px;
+}
+
+.navlink a {
+  text-decoration: none;
+  color: #000;
+}
+
+.navlink a:visited {
+  color: #000;
+}
+
+.navlink.current {
+  border-bottom: solid 5px $playnet-orange;
+}
+
+.navlink.current a {
+  color: $playnet-orange;
+}
+
+#header {
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  width: 100%;
+  height: $head-foot-height;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $bg-footer;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+#logo {
+  display: inline;
+  padding: 0 15px;
+}
+
+#logo h1 {
+  font: $font-logo;
+  padding: 0;
+  width: auto;
+  margin: 0;
+  display: inline;
+}
+
+#logo img {
+  vertical-align: text-top; // had to manually align to get it to look right
+  padding: 0 5px;
+}
+
+#logo a {
+  text-decoration: none;
+  color: #000;
+}
+
+#logo a:visited {
+  color: #000;
+}
+
+#nav {
+  font: $font-nav;
+}

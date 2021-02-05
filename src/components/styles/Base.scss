@@ -1,0 +1,7 @@
+@import 'variables';
+
+.body {
+  height: calc(100vh - (2 * #{$head-foot-height}));
+  margin-top: $head-foot-height;
+  background: center/cover url('../../assets/background.svg');
+}

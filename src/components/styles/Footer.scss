@@ -1,0 +1,33 @@
+@import 'variables';
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  z-index: 99;
+  width: 100%;
+  height: $head-foot-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: $font-footer;
+  background-color: $bg-footer;
+}
+
+#cl-logo {
+  vertical-align: -0.18em; // had to manually align to get it to look right
+}
+
+#tla-logo {
+  height: 1.35em;
+  vertical-align: -0.38em; // had to manually align to get it to look right
+}
+
+#disclaimer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  font: $font-normal;
+  font-size: 12px;
+  padding: 0;
+  margin: 5px 10px;
+}
