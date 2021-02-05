@@ -2,24 +2,42 @@
 
 #youtube-wrapper {
     border: 1px solid black;
-    padding: 10px;
+    padding: 15px;
+    height: 97%;
+    width: auto;
+    display: grid;
+    grid-template-rows: 10%;
+
 }
 
 #youtube-searchbar {
+    justify-self: center;
+    text-align: left center;
     border: 1px solid grey;
     border-radius: 5px;
     width: auto;
-    height: 30px;
+    height: 40%;
+    width: 70%;
+    margin: 10px;
+    padding: 7px;
+    margin-bottom: 0px;
 }
 
 #youtube-content {
-    border: 1px solid black;
     display: grid;
-    grid-template-columns: auto auto;
-    grid-template-rows: 200px 200px;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
 }
 
 .youtube-video{
-    border: 1px solid black;
+    height: auto;
+    display: grid;
+    grid-template-rows: 70% 30%;
+    height: 100%;
+}
+
+.youtube-thumbnail {
+    justify-self: center;
+    width: 70%;
     height: auto;
 }

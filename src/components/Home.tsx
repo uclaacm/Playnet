@@ -22,7 +22,7 @@ function Home(): JSX.Element {
           /*         showPrev={true|false}                                 */
         >
           {/* Each child element of the Carousel is considered as one "slide", like so */}
-          <div><YouTube /></div>
+          <YouTube />
           <div><h1>Second</h1></div>
           <div><h1>Third</h1></div>
           <div><h1>Fourth</h1></div>
