@@ -1,0 +1,25 @@
+@import 'variables';
+
+#youtube-wrapper {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+#youtube-searchbar {
+    border: 1px solid grey;
+    border-radius: 5px;
+    width: auto;
+    height: 30px;
+}
+
+#youtube-content {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: 200px 200px;
+}
+
+.youtube-video{
+    border: 1px solid black;
+    height: auto;
+}
