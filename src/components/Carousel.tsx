@@ -17,7 +17,7 @@ interface CarouselProps {
 
 function Carousel(props: CarouselProps): JSX.Element {
   const [ slideIdx, setSlideIdx ] = useState(0);
-  let storage = window.sessionStorage;
+  const storage = window.sessionStorage;
 
   useEffect(() => {
     const state = storage.getItem('slideIdx');
