@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './styles/Carousel.scss';
 
@@ -17,6 +17,18 @@ interface CarouselProps {
 
 function Carousel(props: CarouselProps): JSX.Element {
   const [ slideIdx, setSlideIdx ] = useState(0);
+  const storage = window.sessionStorage;
+
+  useEffect(() => {
+    const state = storage.getItem('slideIdx');
+    if (state) {
+      setSlideIdx(+state);
+    }
+  }, []);
+
+  useEffect(() => {
+    storage.setItem('slideIdx', slideIdx.toString());
+  }, [slideIdx]);
 
   return (
     <div id={'carousel-wrapper'}>
