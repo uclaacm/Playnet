@@ -1,0 +1,30 @@
+.row-container{
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-around;
+}
+
+.col-container{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.choice-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  padding: 5px;
+
+  border-radius: 30px;
+  border: 8px solid black;
+
+  transition: 0.5s;
+}
+
+.choice-container:hover {
+  border: 8px solid green;
+}
