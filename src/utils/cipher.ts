@@ -20,9 +20,11 @@ function hashNumber(hashString: string): number {
  * @param hash a hashed string, representing the shift value
  * @param input an input string to be encoded
  */
-export function scramble(hash: string, input: string): string {
+export function scramble(hash: number | string, input: string): string {
   // Obtain a 32 bit representation of the hash
-  const shift = hashNumber(hash);
+  const shift = typeof(hash) === 'number'
+    ? hash
+    : hashNumber(hash);
 
   return input.split('').reduce((ret, char) => {
     // Obtain the ascii value of the character
