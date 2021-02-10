@@ -1,3 +1,5 @@
+/* eslint-disable no-bitwise */
+
 /**
  * Return a numerical representation of a hash string
  *
