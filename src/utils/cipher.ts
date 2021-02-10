@@ -17,7 +17,7 @@ function hashNumber(hashString: string): number {
 /**
  * Return a Caesar Cipher encoding of an input word
  *
- * @param hash a hashed string, representing the shift value
+ * @param hash a hashed string or number, representing the shift value
  * @param input an input string to be encoded
  */
 export function scramble(hash: number | string, input: string): string {
