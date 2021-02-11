@@ -21,8 +21,8 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
 
   const defaultError = 'error: missing text';
-  const correctGreen = '#1CC64B';
-  const incorrectRed = '#FF0000';
+  // const hoverGreen = '#1CC64B';
+  // const incorrectRed = '#FF0000';
 
   const img0 = props.img0;
   const img1 = props.img1;
@@ -55,7 +55,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
             <img src={Translator} />
           </div>
         </div>
-        <div>
+        <div className={'col-container'}>
           <SlideBox handleClick={()=>handleClick(0)} imgSrc={img0} />
           <SlideBox handleClick={()=>handleClick(1)} imgSrc={img1}/>
         </div>

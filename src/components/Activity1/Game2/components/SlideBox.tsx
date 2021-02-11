@@ -6,22 +6,32 @@ interface SlideBoxProps {
 }
 
 function SlideBox(props: SlideBoxProps): JSX.Element {
-  const handleHover = () => {
-    console.log('hover');
+  const [border, setBorder] = useState('black');
+
+  const HOVER_GREEN = '#1CC64B';
+  const INCORRECT_RED = '#FF0000';
+
+  const handleHover = (color : string) => {
+    let newBorder = INCORRECT_RED;
+    if (border !== INCORRECT_RED) {
+      newBorder = color;
+    }
+
+    setBorder(newBorder);
   };
 
-  const handleStopHover = () => {
-    console.log('stop hover');
+  const handleClick = () => {
+    props.handleClick && props.handleClick();
   };
 
   return (
     <div
-      onClick={()=>props.handleClick && props.handleClick()}
-      onMouseOver={handleHover}
-      onMouseLeave={handleStopHover}
+      onClick={handleClick}
+      onMouseOver={() => handleHover(HOVER_GREEN)}
+      onMouseLeave={() => handleHover('black')}
     >
       <div
-        style={{borderColor: 'black'}}
+        style={{borderColor: border}}
         className={'choice-container'}
       >
         <img src={props.imgSrc ? props.imgSrc : 'error: missing image'}/>
