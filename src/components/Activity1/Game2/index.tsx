@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 
-import './styles/Carousel.scss';
-import './styles/Game.scss';
+import '../../styles/Carousel.scss';
+import '../../styles/Game.scss';
 
-import GameSlide from './GameSlide.tsx';
-
-import AlienSvg from '../assets/alien.svg';
+import AlienSvg from '../../../assets/alien.svg';
+import GameSlide from './components/GameSlide';
 
 interface GameProps {
   children?: JSX.Element[];
