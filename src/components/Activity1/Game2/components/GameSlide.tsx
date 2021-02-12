@@ -5,12 +5,13 @@ import '../../../styles/Game.scss';
 
 import useSound from 'use-sound';
 
+import CorrectSound from '../../../../assets/activity1/game2/anime-wow-sound-effect.mp3';
+import IncorrectSound from '../../../../assets/activity1/game2/oh_no_1.mp3';
+
 import AlienSvg from '../../../../assets/alien.svg';
 import TextBox from '../../../../assets/text.svg';
 import Translator from '../../../../assets/translator.svg';
 
-import CorrectSound from '../assets/anime-wow-sound-effect.mp3';
-import IncorrectSound from '../assets/oh_no_1.mp3';
 
 import SlideBox from './SlideBox';
 

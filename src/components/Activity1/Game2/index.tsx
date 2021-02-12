@@ -3,10 +3,11 @@ import React, { useState } from 'react';
 import '../../styles/Carousel.scss';
 import '../../styles/Game.scss';
 
+import Test from '../../../assets/activity1/game2/test1.svg';
+import Test2 from '../../../assets/activity1/game2/test2.svg';
+
 import AlienSvg from '../../../assets/alien.svg';
 import GameSlide from './components/GameSlide';
-import Test from './assets/test1.svg';
-import Test2 from './assets/test2.svg';
 
 interface GameProps {
   children?: JSX.Element[];
