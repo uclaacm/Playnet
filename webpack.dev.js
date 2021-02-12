@@ -28,6 +28,12 @@ module.exports = merge(common, {
           },
         },
       },
+      {
+        test: /\.(mp3)$/i,
+        use: {
+          loader: 'file-loader',
+        },
+      },
     ],
   },
   devtool: 'inline-source-map',
