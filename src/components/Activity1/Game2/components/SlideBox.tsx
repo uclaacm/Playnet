@@ -22,6 +22,8 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
 
   const handleClick = () => {
     props.handleClick && props.handleClick();
+
+    // setBorder(INCORRECT_RED);
   };
 
   return (

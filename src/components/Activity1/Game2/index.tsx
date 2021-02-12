@@ -5,6 +5,8 @@ import '../../styles/Game.scss';
 
 import AlienSvg from '../../../assets/alien.svg';
 import GameSlide from './components/GameSlide';
+import Test from './assets/test1.svg';
+import Test2 from './assets/test2.svg';
 
 interface GameProps {
   children?: JSX.Element[];
@@ -21,20 +23,27 @@ function Game(props: GameProps): JSX.Element {
 
   const slides = [
     {
-      correctImg: 0,
+      correctImg: 1,
       textDefault: 'I saw her duck',
       textIncorrect: 'I meant I saw her crouch to avoid getting hit!',
-      img0: AlienSvg,
-      img1: AlienSvg,
+      img0: Test,
+      img1: Test2,
     },
     {
-      correctImg: 1,
+      correctImg: 0,
       textDefault: '1 + "1"',
       textIncorrect: 'I meant to do addition! (dont use this lol)',
       img0: AlienSvg,
       img1: AlienSvg,
     },
   ];
+
+  const advanceGame = () => {
+    if (slideIdx && slideIdx === slides.length-1) {
+
+    }
+    setSlideIdx(slideIdx+1);
+  };
 
   return (
     <div id={'carousel-wrapper'}>
@@ -46,7 +55,7 @@ function Game(props: GameProps): JSX.Element {
           <h2> Try to guess what the alien is talking about</h2>
           <GameSlide
             {...slides[slideIdx]}
-            advanceGame={() => setSlideIdx(slideIdx+1)}
+            advanceGame={advanceGame}
           />
         </div>
       </div>
