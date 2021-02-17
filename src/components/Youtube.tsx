@@ -9,28 +9,24 @@ function YouTube(props: YouTubeProps): JSX.Element {
     const [ chosenVideo] = useState(0);
 
     return(
+    <div id={"computer-wrapper"}>
+        <img id={"computer"} src={Computer} />
         <div id={"youtube-wrapper"}>
-            <img src={Computer} alt={"A basic image of a desktop monitor"} />
-            <div id={'youtube-searchbar'}>Search</div>
-            <div id={"youtube-content"}>
-                <div className={"youtube-video"}>
-                    <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
-                    <h1>LoFi hip hop to study to</h1>
-                </div>
-                <div className={"youtube-video"}>
-                    <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
-                    <h1>LoFi hip hop to study to</h1>
-                </div>
-                <div className={"youtube-video"}>
-                    <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
-                    <h1>LoFi hip hop to study to</h1>
-                </div>
-                <div className={"youtube-video"}>
-                    <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
-                    <h1>LoFi hip hop to study to</h1>
-                </div>
+            <div className={"youtube-video"}>
+                <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
+                <p>LoFi hip hop to study to</p>
+            </div>
+            <div className={"youtube-video"}>
+                <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
+                <p>LoFi hip hop to study to</p>
+            </div>
+            <div className={"youtube-video"}>
+                <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
+                <p>LoFi hip hop to study to</p>
             </div>
         </div>
+        
+    </div>
     )
 }
 export default YouTube;
