@@ -1,8 +1,8 @@
 /* eslint-disable */
-import img_0 from '../../assets/lottie_animation_data/intro8/img_0.svg';
-import img_1 from '../../assets/lottie_animation_data/intro8/img_1.jpg';
-import img_2 from '../../assets/lottie_animation_data/intro9/img_2.jpg';
-import img_3 from '../../assets/lottie_animation_data/intro9/img_3.svg';
+import img_0 from '../../assets/lottie_animation_data/img_0.svg';
+import img_1 from '../../assets/lottie_animation_data/img_1.jpg';
+import img_2 from '../../assets/lottie_animation_data/img_2.jpg';
+import img_3 from '../../assets/lottie_animation_data/img_3.svg';
 
 
 // Statement with images because otherwise react doesn't import
