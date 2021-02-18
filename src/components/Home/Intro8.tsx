@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles/Home.scss';
 import Intro8Data from '../LottieAnimations/Intro8Animation';
-import LottieControl from '../shared/LottieController';
+import LottieControl from '../shared/LottieControl';
 
 function Intro8(): JSX.Element {
   return (
