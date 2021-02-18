@@ -6,10 +6,10 @@ import LottieControl from '../shared/LottieController';
 
 function Intro9(): JSX.Element {
   return (
-    <>
+    <div>
       <h2 id={'body-text'}> And this is the outside of the data center. </h2>
-      <div><LottieControl animationData={Intro9Data} /></div>
-    </>
+      <LottieControl animationData={Intro9Data} />
+    </div>
   );
 }
 

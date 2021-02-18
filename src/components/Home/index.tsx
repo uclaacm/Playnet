@@ -20,15 +20,15 @@ function Home(): JSX.Element {
           onPrev={() => { /* Run function along with transition on previous button press */
             // console.log('prev');
           }}
-        /* can use showNext={true|false} to manually show or hide button */
-        /*         showPrev={true|false}                                 */
+          /* can use showNext={true|false} to manually show or hide button */
+          /*         showPrev={true|false}                                 */
         >
           {/* Each child element of the Carousel is considered as one "slide", like so */}
-          <><Intro8 /></>
-          <><Intro9 /></>
-          <><Intro10 /></>
-          <><Intro11 /></>
-          <><Intro12 /></>
+          <Intro8 />
+          <Intro9 />
+          <Intro10 />
+          <Intro11 />
+          <Intro12 />
         </Carousel>
       </Base>
     </div>

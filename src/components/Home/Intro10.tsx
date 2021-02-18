@@ -7,10 +7,10 @@ import LottieControl from '../shared/LottieController';
 
 function Intro10(): JSX.Element {
   return (
-    <>
+    <div>
       <h2 id={'body-text'}> There are data centers all over the world. </h2>
-      <div><LottieControl animationData={Intro10Data} /></div>
-    </>
+      <LottieControl animationData={Intro10Data} />
+    </div>
   );
 }
 
