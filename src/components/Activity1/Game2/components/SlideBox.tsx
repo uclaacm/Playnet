@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface SlideBoxProps {
   handleClick ?: () => void;
@@ -6,10 +6,17 @@ interface SlideBoxProps {
 }
 
 function SlideBox(props: SlideBoxProps): JSX.Element {
-  const [border, setBorder] = useState('black');
-
+  const BLACK = 'black';
   const HOVER_GREEN = '#1CC64B';
   const INCORRECT_RED = '#FF0000';
+
+  const imgSrc = props.imgSrc;
+
+  const [border, setBorder] = useState(BLACK);
+
+  useEffect (() => {
+    setBorder(BLACK);
+  }, [imgSrc]);
 
   const handleHover = (color : string) => {
     let newBorder = INCORRECT_RED;
@@ -23,20 +30,20 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   const handleClick = () => {
     props.handleClick && props.handleClick();
 
-    // setBorder(INCORRECT_RED);
+    setBorder(INCORRECT_RED);
   };
 
   return (
     <div
       onClick={handleClick}
       onMouseOver={() => handleHover(HOVER_GREEN)}
-      onMouseLeave={() => handleHover('black')}
+      onMouseLeave={() => handleHover(BLACK)}
     >
       <div
         style={{borderColor: border}}
         className={'choice-container'}
       >
-        <img src={props.imgSrc ? props.imgSrc : 'error: missing image'}/>
+        <img src={imgSrc ? imgSrc : 'error: missing image'}/>
       </div>
     </div>
   );

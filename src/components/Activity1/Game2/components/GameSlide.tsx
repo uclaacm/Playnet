@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import '../../../styles/Carousel.scss';
 import '../../../styles/Game.scss';
 
+// import Anime from 'react-anime';
 import useSound from 'use-sound';
 
 import CorrectSound from '../../../../assets/activity1/game2/anime-wow-sound-effect.mp3';
