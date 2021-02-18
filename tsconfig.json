@@ -15,7 +15,6 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true,
     "composite": true,
     "incremental": true,
     "typeRoots": [
@@ -23,5 +22,5 @@
       "./custom_typing"
     ]
   },
-  "include": ["**/*.ts", "**/*.tsx",  "./src/assets/**/*.json"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }

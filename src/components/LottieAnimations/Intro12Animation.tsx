@@ -1,3 +1,4 @@
+/* eslint-disable */
 import img_7 from '../../assets/lottie_animation_data/intro11/img_7.svg'; 
 import img_8 from '../../assets/lottie_animation_data/intro11/img_8.svg';
 import img_9 from '../../assets/lottie_animation_data/intro11/img_9.svg';
@@ -6,10 +7,10 @@ import img_11 from '../../assets/lottie_animation_data/intro12/img_11.svg';
 import img_12 from '../../assets/lottie_animation_data/intro12/img_12.svg'; 
 
 // Statement with images because otherwise react doesn't import
+img_7;
+img_8;
 img_9;
 img_10;
-img_8;
-img_7;
 img_11;
 img_12;
 

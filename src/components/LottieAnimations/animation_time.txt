@@ -1,2 +1,5 @@
-Intro8 - 3.11
+Intro8 - 3.14
 Intro9 - 8.04
+Intro10 - 13.26
+Intro11 - 4.21
+Intro12 - 6.21

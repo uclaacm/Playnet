@@ -1,3 +1,4 @@
+/* eslint-disable */
 import img_0 from '../../assets/lottie_animation_data/intro8/img_0.svg';
 import img_1 from '../../assets/lottie_animation_data/intro8/img_1.jpg';
 

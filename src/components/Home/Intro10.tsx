@@ -1,9 +1,9 @@
 import React from 'react';
 
-import LottieControl from '../shared/LottieController';
 import '../styles/Home.scss';
 import Intro10Data from '../LottieAnimations/Intro10Animation';
-import '../styles/Intro.scss';
+import LottieControl from '../shared/LottieController';
+
 
 function Intro10(): JSX.Element {
   return (

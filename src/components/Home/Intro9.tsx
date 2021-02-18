@@ -1,9 +1,8 @@
 import React from 'react';
 
-import LottieControl from '../shared/LottieController';
 import '../styles/Home.scss';
 import Intro9Data from '../LottieAnimations/Intro9Animation';
-import '../styles/Intro.scss';
+import LottieControl from '../shared/LottieController';
 
 function Intro9(): JSX.Element {
   return (
