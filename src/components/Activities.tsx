@@ -6,7 +6,7 @@ import {
   Link,
 } from 'react-router-dom';
 
-import Activity1 from './Activities/Activity1';
+import Activity1 from './Activities';
 import Activity2 from './Activities/Activity2';
 import Activity3 from './Activities/Activity3';
 import Base from './shared/Base';
