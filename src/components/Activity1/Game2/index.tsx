@@ -25,35 +25,34 @@ function Game(props: GameProps): JSX.Element {
   const slides = [
     {
       correctImg: 1,
-      textDefault: 'I saw her duck',
-      textIncorrect: 'I meant I saw her crouch to avoid getting hit!',
       img0: Test,
       img1: Test2,
+      textDefault: 'I saw her duck',
+      textIncorrect: 'I meant I saw her crouch to avoid getting hit!',
     },
     {
       correctImg: 0,
-      textDefault: '1 + "1"',
-      textIncorrect: 'I meant to do addition! (dont use this lol)',
       img0: AlienSvg,
       img1: AlienSvg,
+      textDefault: '1 + "1"',
+      textIncorrect: '(dont use this lol)',
     },
   ];
 
   const advanceGame = () => {
     if (slideIdx && slideIdx === slides.length-1) {
-
+      // TODO: Implement transition out of game
     }
     setSlideIdx(slideIdx+1);
   };
 
   return (
     <div id={'carousel-wrapper'}>
-      { props.title && <h1 id={'title'}>{props.title}</h1> }
+      { props.title && <h1 id={'title'} style={{color: 'black'}} >{props.title}</h1> }
       { props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2> }
       <div id={'carousel'}>
         <div id={'carousel-content'}>
-          {/* {props.children && props.children.length > 0 && props.children[slideIdx]} */}
-          <h2> Try to guess what the alien is talking about</h2>
+          <h2> Try to guess what the alien is talking about.</h2>
           <GameSlide
             {...slides[slideIdx]}
             advanceGame={advanceGame}

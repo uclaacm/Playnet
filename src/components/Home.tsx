@@ -22,27 +22,7 @@ function Home(): JSX.Element {
           /*         showPrev={true|false}                                 */
         >
           {/* Each child element of the Carousel is considered as one "slide", like so */}
-          <Game
-            title={'Deciphering what you search'}
-          >
-            {/* Each child element of the Carousel is considered as one "slide", like so */}
-            {/* <GameSlide
-              textDefault='I saw her duck'
-              textCorrect='Correct!'
-              textIncorrect='I meant I saw her crouch to avoid getting hit!'
-            />
-            <GameSlide
-              textDefault='I saw her duck'
-              textCorrect='Correct!'
-              textIncorrect='I meant I saw her crouch to avoid getting hit!'
-            />
-            <GameSlide
-              textDefault='I saw her duck'
-              textCorrect='Correct!'
-              textIncorrect='I meant I saw her crouch to avoid getting hit!'
-            /> */}
-            {/* <div><h1>Being a computer sure isn`&apos;`t easy...</h1> <p>More information...</p></div> */}
-          </Game>
+          <Game title={'Deciphering what you search'} />
           <div><h1>First</h1> <p>Lorem ipsum</p></div>
           <div><h1>Second</h1></div>
           <div><h1>Third</h1></div>
