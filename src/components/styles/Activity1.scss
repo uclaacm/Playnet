@@ -1,0 +1,72 @@
+.content{
+  * {
+    display: block;
+  }
+  width: fit-content;
+  margin: auto;
+  display: inline-block;
+  padding: 10px;
+  position: relative;
+}
+#binary-text-bubble {
+  padding-left:80px;
+  padding-bottom: 25px;
+}
+
+#cartoon-person-speech {
+  padding-left: 100px;
+  margin-bottom: -40px;
+}
+
+#computer-slide-3 {
+  padding-top: 50px;
+  padding-left:100px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.fade {
+  animation-name: fade-in-n-out;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  opacity: 1;
+}
+
+@keyframes fade-in-n-out {
+  0% {
+    opacity: 0;
+  }
+  50%{
+    transform: scale(1.03);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+#party-confetti {
+  animation-name: fade-in-n-out-bigger;
+  animation-duration: 3s;
+  animation-delay: 6s; //2 * timeBtwnWords
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+}
+
+@keyframes fade-in-n-out-bigger {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

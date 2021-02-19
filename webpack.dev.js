@@ -35,7 +35,7 @@ module.exports = merge(common, {
     contentBase: './dist',
     historyApiFallback: true,
     hot: true,
-    port: 8080,
+    port: 8081,
     proxy: {
     },
   },
