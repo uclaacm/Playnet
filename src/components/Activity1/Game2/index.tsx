@@ -9,17 +9,7 @@ import Test2 from '../../../assets/activity1/game2/test2.svg';
 import AlienSvg from '../../../assets/alien.svg';
 import GameSlide from './components/GameSlide';
 
-interface GameProps {
-  children?: JSX.Element[];
-  title?: string;
-  subtitle?: string;
-  onNext?: () => void;
-  onPrev?: () => void;
-  showNext?: boolean;
-  showPrev?: boolean;
-}
-
-function Game(props: GameProps): JSX.Element {
+function AmbiguousGame(): JSX.Element {
   const [ slideIdx, setSlideIdx ] = useState(0);
 
   const slides = [
@@ -48,8 +38,8 @@ function Game(props: GameProps): JSX.Element {
 
   return (
     <div id={'carousel-wrapper'}>
-      { props.title && <h1 id={'title'} style={{color: 'black'}} >{props.title}</h1> }
-      { props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2> }
+      {/* { props.title && <h1 id={'title'} style={{color: 'black'}} >{props.title}</h1> }
+      { props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2> } */}
       <div id={'carousel'}>
         <div id={'carousel-content'}>
           <h2> Try to guess what the alien is talking about.</h2>
@@ -63,4 +53,4 @@ function Game(props: GameProps): JSX.Element {
   );
 }
 
-export default Game;
+export default AmbiguousGame;

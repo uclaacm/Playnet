@@ -1,7 +1,7 @@
 import React from 'react';
 
+import AmbiguousGame from './Activity1/Game2';
 import Carousel from './Carousel';
-import Game from './Activity1/Game2';
 import Base from './shared/Base';
 import { HeaderSections } from './shared/PlaynetConstants';
 
@@ -22,7 +22,7 @@ function Home(): JSX.Element {
           /*         showPrev={true|false}                                 */
         >
           {/* Each child element of the Carousel is considered as one "slide", like so */}
-          <Game title={'Deciphering what you search'} />
+          <AmbiguousGame/>
           <div><h1>First</h1> <p>Lorem ipsum</p></div>
           <div><h1>Second</h1></div>
           <div><h1>Third</h1></div>
