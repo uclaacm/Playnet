@@ -23,7 +23,7 @@ function Convo(props: ConvoProps): JSX.Element {  //to replay convo, set i to 0
         </div>;
       }
 
-      return <div className='fade'>
+      return <div className='fade' style={{animationDuration: 2/3*props.delayTime/1000+'s'}}>
         {(props.phrases[i].indexOf('.svg') === -1) ?
           <TextBubble key={i} text={props.phrases[i]} textBubbleStyle={props.textBubbleStyle}/> :
           <TextBubble key={i} contentSvg={props.phrases[i]} textBubbleStyle={props.textBubbleStyle}/>

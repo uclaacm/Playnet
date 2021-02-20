@@ -34,6 +34,13 @@
   opacity: 1;
 }
 
+.fade {
+  animation-name: fade-in-n-out-bigger;
+  animation-duration: 3s;
+  animation-timing-function: ease;
+  opacity: 1;
+}
+
 @keyframes fade-in-n-out {
   0% {
     opacity: 0;
@@ -48,16 +55,6 @@
   }
 }
 
-#party-confetti {
-  animation-name: fade-in-n-out-bigger;
-  animation-duration: 3s;
-  animation-delay: 6s; //2 * timeBtwnWords
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  opacity: 0;
-}
-
 @keyframes fade-in-n-out-bigger {
   0% {
     opacity: 0;
@@ -69,4 +66,14 @@
   100% {
     transform: scale(1);
   }
+}
+
+#party-confetti {
+  animation-name: fade-in-n-out-bigger;
+  animation-duration: 3s;
+  // animation-delay: 6s; //2 * timeBtwnWords
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
 }

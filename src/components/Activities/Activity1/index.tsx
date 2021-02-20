@@ -13,22 +13,11 @@ import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import Convo from './Convo';
 import TextBubble from './TextBubble';
 
-// const timeBtwnWords = 3000;
-
-// function SetPartyConfettiAnimation(): JSX.Element {
-//   const image: any = <img id='party-confetti' src={PartyConfettiSvg} />
-//   document.getElementById('party-confetti').style.setProperty('animation-delay', timeBtwnWords/1000 +'s');
-//   return image;
-// }
-
 function Activity1(): JSX.Element {
   const personConvo: string[] = ['apple', 'no...', 'yes!'];
   const computerGuesses: string[] = ['',LemonSvg, AppleSvg];
   const timeBtwnWords = 3000;
 
-  // useEffect(()=> {
-  //   document.getElementById('party-confetti').style.setProperty('animation-delay', timeBtwnWords/1000 +'s');
-  // })
   return (
     <div>
       <Carousel title={'Lost in Translation'}>
@@ -56,12 +45,8 @@ function Activity1(): JSX.Element {
               <Convo phrases={personConvo} delayTime={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT}/>
             </div>
             <img src={CharacterSvg} alt='Image of Cartoon Person'/>
-            {/* <SetPartyConfettiAnimation /> */}
-            <img id='party-confetti' src={PartyConfettiSvg} />
-            {/* want to run document.getElemendtBy Id stuff */}
-            {/* <script>
-            document.getElementById('party-confetti').style.setProperty('animation-delay', timeBtwnWords/1000 +'s');
-            </script> */}
+            <img id='party-confetti' src={PartyConfettiSvg} style={{animationDelay: 2*timeBtwnWords/1000+'s',
+                animationDuration: timeBtwnWords/1000+'s'}}/>
           </div>
           <div className='right-content content'>
             <div id='computer-speech-bubble'>
