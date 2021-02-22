@@ -21,6 +21,12 @@
   margin: 0;
 }
 
+#body-text {
+  font: $font-title;
+  font-size: 26px;
+  margin: 5px;
+}
+
 #carousel {
   display: flex;
   align-items: center;
