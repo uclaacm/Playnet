@@ -2,11 +2,11 @@ import React from 'react';
 
 export interface CarouselItemComponents {
   child: JSX.Element;
-  showNext?: boolean; // shows next button if this is true/undefined AND not last
+  showNext?: boolean; // shows next button if not last, overriden by showNext (showNext will veto anything)
   showPrev?: boolean;
   topText?: string;
   bottomText?: string;
-  animationTime?: number; 
+  animationTime?: number; // in seconds
 }
 
 interface CarouselItemProps {

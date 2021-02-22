@@ -28,8 +28,6 @@ function Home(): JSX.Element {
           {/* Each child element of the Carousel is considered as one "slide", like so */}
           {{
             child: <LottieControl animationData={Intro8Data} />,
-            showNext: true,
-            showPrev: true,
             topText: 'This is a real-life data center at Google!',
           }}
           {{
