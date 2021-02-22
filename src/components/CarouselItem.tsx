@@ -6,9 +6,7 @@ export interface CarouselItemComponents {
   showPrev?: boolean;
   topText?: string;
   bottomText?: string;
-  animationTime?: number; // TODO: future
-  // soundTrack?: string;
-  // startSoundTrackTime?: number;
+  animationTime?: number; 
 }
 
 interface CarouselItemProps {
