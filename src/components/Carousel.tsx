@@ -58,8 +58,8 @@ function Carousel(props: CarouselProps): JSX.Element {
           className={'carousel-btn prev'}
           style={{
             visibility: (isCurSlideValid() &&
-              (props.children[slideIdx].showPrev === undefined &&
-                ((props.showPrev !== undefined && props.showPrev) || slideIdx > 0) ||
+              ((props.children[slideIdx].showPrev === undefined &&
+                ((props.showPrev !== undefined && props.showPrev) || slideIdx > 0)) ||
                 (props.children[slideIdx].showPrev !== undefined && props.children[slideIdx].showPrev)))
               ? 'visible'
               : 'hidden',
@@ -90,9 +90,9 @@ function Carousel(props: CarouselProps): JSX.Element {
             visibility:
               (isCurSlideValid() &&
                 (props.children[slideIdx].showNext === undefined &&
-                  (props.showNext !== undefined && props.showNext) ||
-                  (slideIdx < (props.children ? props.children.length - 1 : 0))
-                || (props.children[slideIdx].showNext !== undefined && props.children[slideIdx].showNext)))
+                  ((props.showNext !== undefined && props.showNext) ||
+                  (slideIdx < (props.children ? props.children.length - 1 : 0))))
+                || (props.children[slideIdx].showNext !== undefined && props.children[slideIdx].showNext))
                 ? 'visible'
                 : 'hidden',
           }}
