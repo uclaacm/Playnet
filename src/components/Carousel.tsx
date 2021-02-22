@@ -16,7 +16,7 @@ interface CarouselProps {
 }
 
 function Carousel(props: CarouselProps): JSX.Element {
-  const [slideIdx, setSlideIdx] = useState(0);
+  const [ slideIdx, setSlideIdx ] = useState(0);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -51,8 +51,8 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   return (
     <div id={'carousel-wrapper'}>
-      { props.title && <h1 id={'title'}>{props.title}</h1>}
-      { props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}
+      { props.title && <h1 id={'title'}>{props.title}</h1> }
+      { props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2> }
       <div id={'carousel'}>
         <button
           className={'carousel-btn prev'}
@@ -90,8 +90,9 @@ function Carousel(props: CarouselProps): JSX.Element {
             visibility:
               (isCurSlideValid() &&
                 (props.children[slideIdx].showNext === undefined &&
-                  (props.showNext !== undefined && props.showNext) || (slideIdx < (props.children ? props.children.length - 1 : 0))) 
-                  || props.children[slideIdx].showNext)
+                  (props.showNext !== undefined && props.showNext) ||
+                  (slideIdx < (props.children ? props.children.length - 1 : 0)))
+                || props.children[slideIdx].showNext)
                 ? 'visible'
                 : 'hidden',
           }}
