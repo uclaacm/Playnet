@@ -59,8 +59,8 @@ function Carousel(props: CarouselProps): JSX.Element {
           style={{
             visibility: (isCurSlideValid() &&
               (props.children[slideIdx].showPrev === undefined &&
-                ((props.showPrev !== undefined && props.showPrev) || slideIdx > 0)) ||
-              props.children[slideIdx].showPrev)
+                ((props.showPrev !== undefined && props.showPrev) || slideIdx > 0) ||
+                (props.children[slideIdx].showPrev !== undefined && props.children[slideIdx].showPrev)))
               ? 'visible'
               : 'hidden',
           }}
@@ -91,8 +91,8 @@ function Carousel(props: CarouselProps): JSX.Element {
               (isCurSlideValid() &&
                 (props.children[slideIdx].showNext === undefined &&
                   (props.showNext !== undefined && props.showNext) ||
-                  (slideIdx < (props.children ? props.children.length - 1 : 0)))
-                || props.children[slideIdx].showNext)
+                  (slideIdx < (props.children ? props.children.length - 1 : 0))
+                || (props.children[slideIdx].showNext !== undefined && props.children[slideIdx].showNext)))
                 ? 'visible'
                 : 'hidden',
           }}
