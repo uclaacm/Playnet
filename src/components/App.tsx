@@ -13,25 +13,21 @@ import Home from './Home';
 
 function App(): JSX.Element {
   return (
-    <div>
-      <Router>
-        <div>
-          {/* A <Switch> looks through its children Routes and
-          renders the first one that matches the current URL. */}
-          <Switch>
-            <Route path="/activities">
-              <Activities />
-            </Route>
-            <Route path="/feedback">
-              <Feedback />
-            </Route>
-            <Route path="/">
-              <Home />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </div>
+    <Router>
+      {/* A <Switch> looks through its children Routes and
+      renders the first one that matches the current URL. */}
+      <Switch>
+        <Route path="/activities">
+          <Activities />
+        </Route>
+        <Route path="/feedback">
+          <Feedback />
+        </Route>
+        <Route path="/">
+          <Home />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

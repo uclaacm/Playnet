@@ -16,8 +16,6 @@ export default function LottieControl(props: LottieControlProps): JSX.Element {
   };
 
   return (
-    <div>
-      <Lottie options={defaultOptions} />
-    </div>
+    <Lottie options={defaultOptions} />
   );
 }
