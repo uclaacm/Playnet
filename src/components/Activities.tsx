@@ -9,9 +9,9 @@ import {
 import Activity1 from './Activities/Activity1';
 import Activity2 from './Activities/Activity2';
 import Activity3 from './Activities/Activity3';
+import ActivityCard from './shared/ActivityCard';
 import Base from './shared/Base';
 import { HeaderSections } from './shared/PlaynetConstants';
-import ActivityCard from './shared/ActivityCard';
 
 import './styles/Activities.scss';
 
@@ -22,7 +22,7 @@ const ACTIVITES: {[key: string]: string} = {
   'lost-in-translation': 'When you use the search bar, how does YouTube know what you’re looking for?',
   'sending-videos': 'Videos hold a lot of information! How can pages load quickly?',
   'mind-reading': 'Have you ever wondered how YouTube knows what you want to watch next?',
-}
+};
 
 interface ActivityHomeProps {
   url: string;
@@ -39,7 +39,7 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
             <ActivityCard
               id={path}
               description={ACTIVITES[`${path}`]}/>
-          </Link>
+          </Link>,
         )}
       </nav>
     </div>
