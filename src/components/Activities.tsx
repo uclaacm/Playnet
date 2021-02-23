@@ -49,26 +49,24 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
 function Activities(): JSX.Element {
   const { url, path } = useRouteMatch();
   return (
-    <div>
-      <Base section={HeaderSections.ACTIVITIES}>
-        {/* A <Switch> looks through its children <Route>s and
-            renders the first one that matches the current URL. */}
-        <Switch>
-          <Route exact path={`${path}/lost-in-translation`}>
-            <Activity1 />
-          </Route>
-          <Route exact path={`${path}/sending-videos`}>
-            <Activity2 />
-          </Route>
-          <Route exact path={`${path}/mind-reading`}>
-            <Activity3 />
-          </Route>
-          <Route path="/">
-            <ActivityHome url={url} />
-          </Route>
-        </Switch>
-      </Base>
-    </div>
+    <Base section={HeaderSections.ACTIVITIES}>
+      {/* A <Switch> looks through its children <Route>s and
+          renders the first one that matches the current URL. */}
+      <Switch>
+        <Route exact path={`${path}/lost-in-translation`}>
+          <Activity1 />
+        </Route>
+        <Route exact path={`${path}/sending-videos`}>
+          <Activity2 />
+        </Route>
+        <Route exact path={`${path}/mind-reading`}>
+          <Activity3 />
+        </Route>
+        <Route path="/">
+          <ActivityHome url={url} />
+        </Route>
+      </Switch>
+    </Base>
   );
 }
 
