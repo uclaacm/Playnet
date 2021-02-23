@@ -18,7 +18,7 @@ import './styles/Activities.scss';
 /**
  * The following is a mapping between an activity and its descirption
  */
-const ACTIVITES: {[key: string]: string} = {
+const ACTIVITIES: {[key: string]: string} = {
   'lost-in-translation': 'When you use the search bar, how does YouTube know what you’re looking for?',
   'sending-videos': 'Videos hold a lot of information! How can pages load quickly?',
   'mind-reading': 'Have you ever wondered how YouTube knows what you want to watch next?',
@@ -34,11 +34,11 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
     <div id={'activity-home'}>
       <h2>Activities</h2>
       <nav id={'activity-card-container'}>
-        {Object.keys(ACTIVITES).map((path, i) =>
+        {Object.keys(ACTIVITIES).map((path, i) =>
           <Link to={`${url}/${path}`} key={`activites-card-${i}`}>
             <ActivityCard
               id={path}
-              description={ACTIVITES[`${path}`]}/>
+              description={ACTIVITIES[`${path}`]}/>
           </Link>,
         )}
       </nav>
