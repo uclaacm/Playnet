@@ -35,7 +35,7 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
       <h2>Activities</h2>
       <nav id={'activity-card-container'}>
         {Object.keys(ACTIVITES).map((path, i) =>
-          <Link to={`${url}/${path}`} key={`activites-card-${i}`}>
+          <Link to={`${url}/${path}`} key={`activities-card-${i}`}>
             <ActivityCard
               id={path}
               description={ACTIVITES[`${path}`]}/>
