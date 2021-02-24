@@ -4,8 +4,10 @@ import './styles/Carousel.scss';
 import NextSvg from '../assets/next_btn.svg';
 import PrevSvg from '../assets/prev_btn.svg';
 
-/* eslint-disable @typescript-eslint/no-empty-function */
-export const ChangeSlideContext = React.createContext({next: () => { }, prev: () => { }});
+export const CarouselContext = React.createContext({
+  next: (): void => undefined,
+  prev: (): void => undefined,
+});
 
 export interface CarouselItemComponents {
   child: JSX.Element;
@@ -25,6 +27,7 @@ interface CarouselProps {
 
 function Carousel(props: CarouselProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
+  const [child, setChild] = useState(props.children[slideIdx]);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -38,6 +41,10 @@ function Carousel(props: CarouselProps): JSX.Element {
     storage.setItem('slideIdx', slideIdx.toString());
   }, [slideIdx]);
 
+  useEffect(() => {
+    setChild(props.children[slideIdx]);
+  }, [slideIdx]);
+
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
@@ -48,14 +55,8 @@ function Carousel(props: CarouselProps): JSX.Element {
     props.onPrev && props.onPrev();
   }
 
-  const child = props.children[slideIdx];
-  if (child === undefined && props.children.length > 0) {
-    const slideInBounds = Math.min(Math.max(0, slideIdx), props.children.length - 1);
-    setSlideIdx(slideInBounds);
-  }
-
   return (
-    <ChangeSlideContext.Provider value={{next: goNext, prev: goPrev}}>
+    <CarouselContext.Provider value={{ next: goNext, prev: goPrev }}>
       <div id={'carousel-wrapper'}>
         {props.title && <h1 id={'title'}>{props.title}</h1>}
         {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}
@@ -63,35 +64,26 @@ function Carousel(props: CarouselProps): JSX.Element {
           <button
             className={'carousel-btn prev'}
             style={{
-              visibility: child &&
-                ((child.showPrev === undefined && slideIdx > 0) ||
-                  (child.showPrev === true))
-                ? 'visible'
-                : 'hidden',
+              visibility: (child?.showPrev === false || slideIdx === 0) ? 'hidden' : 'visible',
             }}
             onClick={() => goPrev()}
           >
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'}>
-            {
-              child &&
-              <div id={'carousel-items'}>
+            { child &&
+              <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
-              </div>
+              </>
             }
           </div>
           <button
             className={'carousel-btn next'}
             style={{
-              visibility:
-                (child &&
-                  (child.showNext === undefined && (slideIdx < props.children.length - 1))
-                  || (child.showNext === true))
-                  ? 'visible'
-                  : 'hidden',
+              visibility: (child?.showNext === false || slideIdx === props.children.length - 1)
+                ? 'hidden' : 'visible',
             }}
             onClick={() => goNext()}
           >
@@ -99,7 +91,7 @@ function Carousel(props: CarouselProps): JSX.Element {
           </button>
         </div>
       </div>
-    </ChangeSlideContext.Provider>
+    </CarouselContext.Provider>
   );
 }
 

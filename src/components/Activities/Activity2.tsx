@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 
-import Carousel, { ChangeSlideContext } from '../Carousel';
+import Carousel, { CarouselContext } from '../Carousel';
 
 function Activity2(): JSX.Element {
   const content = [
@@ -33,7 +33,7 @@ function Activity2(): JSX.Element {
 }
 
 function DemoMoveNextPage(props: {children: JSX.Element}) : JSX.Element {
-  const context = useContext(ChangeSlideContext);
+  const context = useContext(CarouselContext);
   useEffect(
     () => {
       const timer = setTimeout(() => context.next(), 5000);
@@ -45,7 +45,7 @@ function DemoMoveNextPage(props: {children: JSX.Element}) : JSX.Element {
 }
 
 function DemoMovePrevPage(props: {children: JSX.Element}) : JSX.Element {
-  const context = useContext(ChangeSlideContext);
+  const context = useContext(CarouselContext);
   useEffect(
     () => {
       const timer = setTimeout(() => context.prev(), 5000);
