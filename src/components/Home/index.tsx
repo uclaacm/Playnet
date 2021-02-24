@@ -12,6 +12,28 @@ import LottieControl from '../shared/LottieControl';
 import { HeaderSections } from '../shared/PlaynetConstants';
 
 function Home(): JSX.Element {
+  const content = [
+    {
+      child: <LottieControl animationData={Intro8Data} />,
+      topText: 'This is a real-life data center at Google!',
+    },
+    {
+      child: <LottieControl animationData={Intro9Data} />,
+      topText: 'And this is the outside of the data center.',
+    },
+    {
+      child: <LottieControl animationData={Intro10Data} />,
+      topText: 'There are data centers all over the world.',
+    },
+    {
+      child: <LottieControl animationData={Intro11Data} />,
+      topText: 'When you search on the web from your house,',
+    },
+    {
+      child: <LottieControl animationData={Intro12Data} />,
+      topText: 'a request gets sent all the way to your nearest data center',
+    },
+  ];
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
@@ -22,30 +44,11 @@ function Home(): JSX.Element {
           onPrev={() => { /* Run function along with transition on previous button press */
             // console.log('prev');
           }}
-          /* can use showNext={true|false} to manually show or hide button */
-          /*         showPrev={true|false}                                 */
+        /* can use showNext={true|false} to manually show or hide button */
+        /*         showPrev={true|false}                                 */
         >
           {/* Each child element of the Carousel is considered as one "slide", like so */}
-          {{ // TODO: change into array
-            child: <LottieControl animationData={Intro8Data} />,
-            topText: 'This is a real-life data center at Google!',
-          }}
-          {{
-            child: <LottieControl animationData={Intro9Data} />,
-            topText: 'And this is the outside of the data center.',
-          }}
-          {{
-            child: <LottieControl animationData={Intro10Data} />,
-            topText: 'There are data centers all over the world.',
-          }}
-          {{
-            child: <LottieControl animationData={Intro11Data} />,
-            topText: 'When you search on the web from your house,',
-          }}
-          {{
-            child: <LottieControl animationData={Intro12Data} />,
-            topText: 'a request gets sent all the way to your nearest data center',
-          }}
+          {content}
         </Carousel>
       </Base>
     </div>

@@ -4,15 +4,12 @@ import './styles/Carousel.scss';
 import NextSvg from '../assets/next_btn.svg';
 import PrevSvg from '../assets/prev_btn.svg';
 
-interface changeSlideContextProps {
-  next: () => void;
-  prev: () => void;
-}
-const changeSlideContext = React.createContext({next: () => { }, prev: () => { });
+/* eslint-disable @typescript-eslint/no-empty-function */
+export const ChangeSlideContext = React.createContext({next: () => { }, prev: () => { }});
 
 export interface CarouselItemComponents {
   child: JSX.Element;
-  showNext?: boolean; // enforce showNext button 
+  showNext?: boolean; // enforce showNext button
   showPrev?: boolean;
   topText?: string;
   bottomText?: string;
@@ -58,7 +55,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   }
 
   return (
-    <changeSlideContext.Provider value={{next: goNext, prev: goPrev}}>
+    <ChangeSlideContext.Provider value={{next: goNext, prev: goPrev}}>
       <div id={'carousel-wrapper'}>
         {props.title && <h1 id={'title'}>{props.title}</h1>}
         {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}
@@ -108,7 +105,7 @@ function Carousel(props: CarouselProps): JSX.Element {
           </button>
         </div>
       </div>
-    </goNextContext.Provider>
+    </ChangeSlideContext.Provider>
   );
 }
 
