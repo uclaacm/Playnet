@@ -49,7 +49,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   }
 
   const child = props.children[slideIdx];
-  if (!child && props.children.length > 0) {
+  if (child === undefined && props.children.length > 0) {
     const slideInBounds = Math.min(Math.max(0, slideIdx), props.children.length - 1);
     setSlideIdx(slideInBounds);
   }
@@ -69,10 +69,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                 ? 'visible'
                 : 'hidden',
             }}
-            onClick={() => {
-              setSlideIdx(old => Math.max(old - 1, 0));
-              props.onPrev && props.onPrev();
-            }}
+            onClick={() => goPrev()}
           >
             <img src={PrevSvg} />
           </button>
@@ -96,10 +93,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                   ? 'visible'
                   : 'hidden',
             }}
-            onClick={() => {
-              setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
-              props.onNext && props.onNext();
-            }}
+            onClick={() => goNext()}
           >
             <img src={NextSvg} />
           </button>

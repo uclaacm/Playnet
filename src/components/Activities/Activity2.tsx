@@ -26,36 +26,34 @@ function Activity2(): JSX.Element {
     },
   ];
   return (
-    <Carousel
-      subtitle='Activity 2 (rn quick demo carousel item)'
-    >
+    <Carousel subtitle='Activity 2 (rn quick demo carousel item)'>
       {content}
     </Carousel>
   );
 }
 
-function DemoMoveNextPage(props: {child: JSX.Element}) : JSX.Element {
+function DemoMoveNextPage(props: {children: JSX.Element}) : JSX.Element {
   const context = useContext(ChangeSlideContext);
   useEffect(
     () => {
-      const timer1 = setTimeout(() => context.next(), 5000);
+      const timer = setTimeout(() => context.next(), 5000);
       return () => {
-        clearTimeout(timer1);
+        clearTimeout(timer);
       };
     });
-  return <>{props.child}</>;
+  return <>{props.children}</>;
 }
 
-function DemoMovePrevPage(props: {child: JSX.Element}) : JSX.Element {
+function DemoMovePrevPage(props: {children: JSX.Element}) : JSX.Element {
   const context = useContext(ChangeSlideContext);
   useEffect(
     () => {
-      const timer1 = setTimeout(() => context.prev(), 5000);
+      const timer = setTimeout(() => context.prev(), 5000);
       return () => {
-        clearTimeout(timer1);
+        clearTimeout(timer);
       };
     });
-  return <>{props.child}</>;
+  return <>{props.children}</>;
 }
 
 export default Activity2;
