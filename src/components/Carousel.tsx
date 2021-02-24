@@ -3,7 +3,20 @@ import React, { useEffect, useState } from 'react';
 import './styles/Carousel.scss';
 import NextSvg from '../assets/next_btn.svg';
 import PrevSvg from '../assets/prev_btn.svg';
-import CarouselItem, { CarouselItemComponents } from './CarouselItem';
+
+interface changeSlideContextProps {
+  next: () => void;
+  prev: () => void;
+}
+const changeSlideContext = React.createContext({next: () => { }, prev: () => { });
+
+export interface CarouselItemComponents {
+  child: JSX.Element;
+  showNext?: boolean; // enforce showNext button 
+  showPrev?: boolean;
+  topText?: string;
+  bottomText?: string;
+}
 
 interface CarouselProps {
   children: CarouselItemComponents[];
@@ -11,12 +24,10 @@ interface CarouselProps {
   subtitle?: string;
   onNext?: () => void;
   onPrev?: () => void;
-  showNext?: boolean;
-  showPrev?: boolean;
 }
 
 function Carousel(props: CarouselProps): JSX.Element {
-  const [ slideIdx, setSlideIdx ] = useState(0);
+  const [slideIdx, setSlideIdx] = useState(0);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -30,80 +41,74 @@ function Carousel(props: CarouselProps): JSX.Element {
     storage.setItem('slideIdx', slideIdx.toString());
   }, [slideIdx]);
 
-  function goNextSlide(curSlide?: number): void {
-    // if curSlide is null, or curSlide is the current slide, then go to next slide
-    if (!curSlide || curSlide === slideIdx) {
-      setSlideIdx(old => Math.min(old + 1, props.children ? props.children.length - 1 : 0));
-      props.onNext && props.onNext();
-    }
+  function goNext(): void {
+    setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
+    props.onNext && props.onNext();
   }
 
-  function goPrevSlide(curSlide?: number): void {
-    if (!curSlide || curSlide === slideIdx) {
-      setSlideIdx(old => Math.max(old - 1, 0));
-      props.onPrev && props.onPrev();
-    }
+  function goPrev(): void {
+    setSlideIdx(old => Math.max(old - 1, 0));
+    props.onPrev && props.onPrev();
   }
 
-  function isCurSlideValid(): boolean {
-    return props.children.length > 0 && props.children[slideIdx] !== undefined;
+  const child = props.children[slideIdx];
+  if (!child && props.children.length > 0) {
+    const slideInBounds = Math.min(Math.max(0, slideIdx), props.children.length - 1);
+    setSlideIdx(slideInBounds);
   }
 
   return (
-    <div id={'carousel-wrapper'}>
-      { props.title && <h1 id={'title'}>{props.title}</h1> }
-      { props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2> }
-      <div id={'carousel'}>
-        <button
-          className={'carousel-btn prev'}
-          style={{
-            visibility: (isCurSlideValid() &&
-              ((props.children[slideIdx].showPrev === undefined &&
-                ((props.showPrev !== undefined && props.showPrev) || slideIdx > 0)) ||
-                (props.children[slideIdx].showPrev !== undefined && props.children[slideIdx].showPrev)))
-              ? 'visible'
-              : 'hidden',
-          }}
-          onClick={() => {
-            goPrevSlide();
-          }}
-        >
-          <img src={PrevSvg} />
-        </button>
-        <div id={'carousel-content'}>
-          {
-            isCurSlideValid() &&
-            <div>
-              {props.children[slideIdx].topText && <h2 id={'body-text'}> {props.children[slideIdx].topText} </h2>}
-              <CarouselItem goNextSlide={function () { return goNextSlide(slideIdx); }}
-                goPrevSlide={function () { return goPrevSlide(slideIdx); }}
-                timeout={props.children[slideIdx].animationTime}>
-                {props.children[slideIdx].child}
-              </CarouselItem>
-              {props.children[slideIdx].bottomText && <h2 id={'body-text'}> {props.children[slideIdx].bottomText} </h2>}
-            </div>
-          }
-        </div>
-        <button
-          className={'carousel-btn next'}
-          style={{
-            visibility:
-              (isCurSlideValid() &&
-                (props.children[slideIdx].showNext === undefined &&
-                  ((props.showNext !== undefined && props.showNext) ||
-                  (slideIdx < (props.children ? props.children.length - 1 : 0))))
-                || (props.children[slideIdx].showNext !== undefined && props.children[slideIdx].showNext))
+    <changeSlideContext.Provider value={{next: goNext, prev: goPrev}}>
+      <div id={'carousel-wrapper'}>
+        {props.title && <h1 id={'title'}>{props.title}</h1>}
+        {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}
+        <div id={'carousel'}>
+          <button
+            className={'carousel-btn prev'}
+            style={{
+              visibility: child &&
+                ((child.showPrev === undefined && slideIdx > 0) ||
+                  (child.showPrev === true))
                 ? 'visible'
                 : 'hidden',
-          }}
-          onClick={() => {
-            goNextSlide();
-          }}
-        >
-          <img src={NextSvg} />
-        </button>
+            }}
+            onClick={() => {
+              setSlideIdx(old => Math.max(old - 1, 0));
+              props.onPrev && props.onPrev();
+            }}
+          >
+            <img src={PrevSvg} />
+          </button>
+          <div id={'carousel-content'}>
+            {
+              child &&
+              <div id={'carousel-items'}>
+                {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
+                {child.child}
+                {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
+              </div>
+            }
+          </div>
+          <button
+            className={'carousel-btn next'}
+            style={{
+              visibility:
+                (child &&
+                  (child.showNext === undefined && (slideIdx < props.children.length - 1))
+                  || (child.showNext === true))
+                  ? 'visible'
+                  : 'hidden',
+            }}
+            onClick={() => {
+              setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
+              props.onNext && props.onNext();
+            }}
+          >
+            <img src={NextSvg} />
+          </button>
+        </div>
       </div>
-    </div>
+    </goNextContext.Provider>
   );
 }
 
