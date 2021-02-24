@@ -8,7 +8,7 @@ module.exports = merge(common, {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].min.js',
-    publicPath: '/',	
+    publicPath: '/',
   },
   module: {
     rules: [
