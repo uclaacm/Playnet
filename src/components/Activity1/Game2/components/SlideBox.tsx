@@ -35,16 +35,13 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
 
   return (
     <div
+      className={'choice-container'}
+      style={{borderColor: border}}
       onClick={handleClick}
       onMouseOver={() => handleHover(HOVER_GREEN)}
       onMouseLeave={() => handleHover(BLACK)}
     >
-      <div
-        style={{borderColor: border}}
-        className={'choice-container'}
-      >
-        <img src={imgSrc ? imgSrc : 'error: missing image'}/>
-      </div>
+      <img src={imgSrc ? imgSrc : 'error: missing image'}/>
     </div>
   );
 }

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 
-import '../../styles/Carousel.scss';
 import '../../styles/Game.scss';
 
+import AlienSvg from '../../../assets/activity1/game2/alien.svg';
 import Test from '../../../assets/activity1/game2/test1.svg';
 import Test2 from '../../../assets/activity1/game2/test2.svg';
-
-import AlienSvg from '../../../assets/alien.svg';
 import GameSlide from './components/GameSlide';
 
 function AmbiguousGame(): JSX.Element {
@@ -37,18 +35,13 @@ function AmbiguousGame(): JSX.Element {
   };
 
   return (
-    <div id={'carousel-wrapper'}>
-      {/* { props.title && <h1 id={'title'} style={{color: 'black'}} >{props.title}</h1> }
-      { props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2> } */}
-      <div id={'carousel'}>
-        <div id={'carousel-content'}>
-          <h2> Try to guess what the alien is talking about.</h2>
-          <GameSlide
-            {...slides[slideIdx]}
-            advanceGame={advanceGame}
-          />
-        </div>
-      </div>
+    <div id={'game-wrapper'}>
+      <h3> Try to guess what the alien is talking about.</h3>
+
+      <GameSlide
+        {...slides[slideIdx]}
+        advanceGame={advanceGame}
+      />
     </div>
   );
 }

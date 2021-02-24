@@ -1,14 +1,34 @@
-.row-container{
+#game-wrapper{
   display: flex;
-  flex-direction: row;
-  text-align: center;
-  justify-content: space-around;
+  flex-flow: column;
+  align-items: center;
+  height: 100%;
 }
 
-.col-container{
+#game-content{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gamebox {
+  width: 50%;
+  height: 100%;
+
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
+}
+
+.gamebox img {
+  max-height: 50%;
+  height: 100%;
+  width: auto;
 }
 
 .choice-container {
@@ -17,20 +37,21 @@
   justify-content: center;
   align-items: center;
   
-  width: fit-content;
-  height: 200px; // TODO: consistent box sizing
+  width: 50%;
+  height: 30%; // TODO: consistent box sizing
 
   margin: 10px;
 
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-top: 20px;
-  padding-bottom: 50px;
-
   border-style: solid;
-  border-radius: 30px;
+  border-radius: 20px;
   border-width: 8px;
   border-color: black;
 
   transition: 0.1s;
+}
+
+.choice-container img {
+  max-height: 100%;
+  height: 100%;
+  width: auto;
 }

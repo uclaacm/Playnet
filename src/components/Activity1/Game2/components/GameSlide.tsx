@@ -6,13 +6,9 @@ import '../../../styles/Game.scss';
 // import Anime from 'react-anime';
 import useSound from 'use-sound';
 
+import AlienSvg from '../../../../assets/activity1/game2/alien.svg';
 import CorrectSFX from '../../../../assets/activity1/game2/anime-wow-sound-effect.mp3';
 import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
-
-import AlienSvg from '../../../../assets/alien.svg';
-import TextBox from '../../../../assets/text.svg';
-import Translator from '../../../../assets/translator.svg';
-
 
 import SlideBox from './SlideBox';
 
@@ -56,20 +52,15 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   };
 
   return (
-    <div>
-      <h2> {displayText()} </h2>
-      <div className={'row-container'}>
-        <div className={'col-container'}>
-          <img src={TextBox} />
-          <div>
-            <img src={AlienSvg} />
-            <img src={Translator} />
-          </div>
-        </div>
-        <div className={'col-container'}>
-          <SlideBox handleClick={()=>handleClick(0)} imgSrc={img0} />
-          <SlideBox handleClick={()=>handleClick(1)} imgSrc={img1} />
-        </div>
+    <div id={'game-content'}>
+      <div className={'gamebox'}>
+        {/* <img src={TextBox} /> */}
+        <h3> {displayText()} </h3>
+        <img src={AlienSvg} />
+      </div>
+      <div className={'gamebox'}>
+        <SlideBox handleClick={()=>handleClick(0)} imgSrc={img0} />
+        <SlideBox handleClick={()=>handleClick(1)} imgSrc={img1} />
       </div>
     </div>
   );
