@@ -39,9 +39,6 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
-  }, [slideIdx]);
-
-  useEffect(() => {
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
 
