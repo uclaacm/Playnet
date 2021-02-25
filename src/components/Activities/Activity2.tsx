@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 
-import Carousel, { CarouselContext } from '../Carousel';
+import Carousel, { CarouselContext } from '../shared/Carousel';
 
 function Activity2(): JSX.Element {
   const content = [

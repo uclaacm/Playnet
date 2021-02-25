@@ -1,7 +1,7 @@
 @import 'variables';
 
 #activity-home {
-  height: calc(100vh - (2 * #{$head-foot-height}));
+  height: calc(100vh - #{$head-foot-height} - #{$foot-height});
   display: flex;
   flex-direction: column;
   justify-content: center;
