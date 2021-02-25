@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
 import '../styles/Carousel.scss';
-
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
 
