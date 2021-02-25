@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Carousel from '../Carousel';
+import Carousel from '../shared/Carousel';
 import Base from '../shared/Base';
 import { HeaderSections } from '../shared/PlaynetConstants';
 import Intro10 from './Intro10';

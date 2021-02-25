@@ -4,8 +4,6 @@ import '../../styles/Footer.scss';
 
 import CLLogo from '../../../assets/logos/creative_labs.svg';
 import TLALogo from '../../../assets/logos/teach_la.svg';
-// import favicon from '../../../assets/logos/favicon.svg';
-// favicon;
 
 function Footer(): JSX.Element {
   return (
