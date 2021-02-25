@@ -37,7 +37,7 @@ function Home(): JSX.Element {
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
-        <Carousel
+        <Carousel uniqueID='Home'
           onNext={() => { /* Run function along with transition on next button press */
             // console.log('next');
           }}
