@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import '../../../styles/Carousel.scss';
 import '../../../styles/Game.scss';
 
 // import Anime from 'react-anime';
@@ -23,7 +22,6 @@ interface GameSlideProps {
 
 function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
-
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
 
@@ -54,7 +52,6 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   return (
     <div id={'game-content'}>
       <div className={'gamebox'}>
-        {/* <img src={TextBox} /> */}
         <h3> {displayText()} </h3>
         <img src={AlienSvg} />
       </div>
