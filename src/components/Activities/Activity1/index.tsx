@@ -22,7 +22,7 @@ function Activity1(): JSX.Element {
     {
       topText: 'How does YouTube bring you the videos you want?',
       child:
-        <div>
+        <div className='slide-content'>
           {/* <p>How does YouTube bring you the videos you want?</p> */}
           <img src={ComputerSvg} alt='Image of Youtube on Computer' />
           {/* <p>{'Let\'s dive into what happens in the search bar.'}</p> */}
@@ -32,7 +32,7 @@ function Activity1(): JSX.Element {
     {
       topText: 'Computers don\'t know English...',
       child:
-        <div>
+        <div className='slide-content'>
           {/* <p>{'Computers don\'t know English...'}</p> */}
           <div className='content'>
             <div id='binary-text-bubble'>
@@ -47,7 +47,7 @@ function Activity1(): JSX.Element {
     {
       topText: 'Computers have to learn just like we do: by trial and error!',
       child:
-        <div id='slide-3'>
+        <div id='slide-3' className='slide-content'>
           {/* <p>Computers have to learn just like we do: by trial and error!</p> */}
           <div className='left-content content'>
             <div id='cartoon-person-speech'>
