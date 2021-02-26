@@ -19,7 +19,6 @@ export interface CarouselItemComponents {
 
 interface CarouselProps {
   children: CarouselItemComponents[];
-  uniqueID: string,
   title?: string;
   subtitle?: string;
   onNext?: () => void;
@@ -32,14 +31,15 @@ function Carousel(props: CarouselProps): JSX.Element {
   const storage = window.sessionStorage;
 
   useEffect(() => {
-    const state = storage.getItem('slideIdx' + props.uniqueID);
+    const state = storage.getItem('slideIdx');
     if (state) {
       setSlideIdx(+state);
     }
+    return () => storage.removeItem('slideIdx');
   }, []);
 
   useEffect(() => {
-    storage.setItem('slideIdx' + props.uniqueID, slideIdx.toString());
+    storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
 

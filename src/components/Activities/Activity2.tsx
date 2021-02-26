@@ -26,7 +26,7 @@ function Activity2(): JSX.Element {
     },
   ];
   return (
-    <Carousel subtitle='Activity 2 (rn quick demo carousel item)' uniqueID='Activity2'>
+    <Carousel subtitle='Activity 2 (rn quick demo carousel item)'>
       {content}
     </Carousel>
   );
