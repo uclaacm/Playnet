@@ -21,34 +21,24 @@ function Activity1(): JSX.Element {
   const content = [
     {
       topText: 'How does YouTube bring you the videos you want?',
-      child:
-        <div className='slide-content'>
-          {/* <p>How does YouTube bring you the videos you want?</p> */}
-          <img src={ComputerSvg} alt='Image of Youtube on Computer' />
-          {/* <p>{'Let\'s dive into what happens in the search bar.'}</p> */}
-        </div>,
-        bottomText: 'Let\'s dive into what happens in the search bar.',
+      child: <img src={ComputerSvg} alt='Image of Youtube on Computer' />,
+      bottomText: 'Let\'s dive into what happens in the search bar.',
     },
     {
       topText: 'Computers don\'t know English...',
       child:
-        <div className='slide-content'>
-          {/* <p>{'Computers don\'t know English...'}</p> */}
-          <div className='content'>
-            <div id='binary-text-bubble'>
-              <TextBubble textBubbleStyle={TextBubbleStyles.LARGE} text='1101010100' />
-            </div>
-            <img src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
+        <div className='content'>
+          <div id='binary-text-bubble'>
+            <TextBubble textBubbleStyle={TextBubbleStyles.LARGE} text='1101010100' />
           </div>
-          {/* <p>So how does it know what you are saying?</p> */}
+          <img src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
         </div>,
-        bottomText: 'So how does it know what you are saying?',
+      bottomText: 'So how does it know what you are saying?',
     },
     {
       topText: 'Computers have to learn just like we do: by trial and error!',
       child:
-        <div id='slide-3' className='slide-content'>
-          {/* <p>Computers have to learn just like we do: by trial and error!</p> */}
+        <div id='slide-3'>
           <div className='left-content content'>
             <div id='cartoon-person-speech'>
               <Convo phrases={personConvo} delayTime={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT} />
@@ -56,7 +46,7 @@ function Activity1(): JSX.Element {
             <img src={CharacterSvg} alt='Image of Cartoon Person' />
             <img id='party-confetti' src={PartyConfettiSvg} style={{
               animationDelay: 2 * timeBtwnWords / 1000 + 's',
-              animationDuration: timeBtwnWords / 1000 + 's'
+              animationDuration: timeBtwnWords / 1000 + 's',
             }} />
           </div>
           <div className='right-content content'>
@@ -69,50 +59,11 @@ function Activity1(): JSX.Element {
         </div>,
     },
   ];
+
   return (
-    <div>
-      <Carousel title={'Lost in Translation'}>
-        {content}
-        {/* <div>
-          <p>How does YouTube bring you the videos you want?</p>
-          <img src={ComputerSvg} alt='Image of Youtube on Computer'/>
-          <p>{'Let\'s dive into what happens in the search bar.'}</p>
-        </div> */}
-
-        {/* <div>
-          <p>{'Computers don\'t know English...'}</p>
-          <div className='content'>
-            <div id='binary-text-bubble'>
-              <TextBubble textBubbleStyle={TextBubbleStyles.LARGE} text='1101010100'/>
-            </div>
-            <img src={ComputerSvg} width='214px' alt='Image of Youtube on Computer'/>
-          </div>
-          <p>So how does it know what you are saying?</p>
-        </div> */}
-
-        {/* <div id='slide-3'>
-          <p>Computers have to learn just like we do: by trial and error!</p>
-          <div className='left-content content'>
-            <div id='cartoon-person-speech'>
-              <Convo phrases={personConvo} delayTime={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT} />
-            </div>
-            <img src={CharacterSvg} alt='Image of Cartoon Person' />
-            <img id='party-confetti' src={PartyConfettiSvg} style={{
-              animationDelay: 2 * timeBtwnWords / 1000 + 's',
-              animationDuration: timeBtwnWords / 1000 + 's'
-            }} />
-          </div>
-          <div className='right-content content'>
-            <div id='computer-speech-bubble'>
-              <Convo phrases={computerGuesses} delayTime={timeBtwnWords} offset={timeBtwnWords / 2}
-                textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
-            </div>
-            <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
-          </div>
-        </div> */}
-
-      </Carousel>
-    </div>
+    <Carousel title={'Lost in Translation'}>
+      {content}
+    </Carousel>
   );
 }
 

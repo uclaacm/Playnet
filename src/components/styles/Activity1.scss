@@ -1,15 +1,17 @@
-.content{
+.content {
   * {
     display: block;
   }
+
   width: fit-content;
   margin: auto;
   display: inline-block;
   padding: 10px;
   position: relative;
 }
+
 #binary-text-bubble {
-  padding-left:80px;
+  padding-left: 80px;
   padding-bottom: 25px;
 }
 
@@ -20,7 +22,7 @@
 
 #computer-slide-3 {
   padding-top: 50px;
-  padding-left:100px;
+  padding-left: 100px;
 }
 
 .hidden {
@@ -30,13 +32,6 @@
 .fade {
   animation-name: fade-in-n-out;
   animation-duration: 2s;
-  animation-timing-function: ease;
-  opacity: 1;
-}
-
-.fade {
-  animation-name: fade-in-n-out-bigger;
-  animation-duration: 3s;
   animation-timing-function: ease;
   opacity: 1;
 }
@@ -75,8 +70,4 @@
   top: 50%;
   left: 50%;
   opacity: 0;
-}
-
-.slide-content {
-  height: 100%;
 }
