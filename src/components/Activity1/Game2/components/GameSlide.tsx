@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 
-import '../../../styles/Game.scss';
-
 // import Anime from 'react-anime';
-import useSound from 'use-sound';
+// import useSound from 'use-sound';
 
 import AlienSvg from '../../../../assets/activity1/game2/alien.svg';
-import CorrectSFX from '../../../../assets/activity1/game2/anime-wow-sound-effect.mp3';
-import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
+// import CorrectSFX from '../../../../assets/activity1/game2/anime-wow-sound-effect.mp3';
+// import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
 
 import SlideBox from './SlideBox';
 
@@ -22,8 +20,8 @@ interface GameSlideProps {
 
 function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
+  // const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
+  // const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
 
   const defaultError = 'error: missing text';
 

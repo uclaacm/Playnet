@@ -27,25 +27,25 @@ function AmbiguousGame(): JSX.Element {
       textIncorrect: 'I meant I saw her crouch to avoid getting hit!',
     },
     {
-      correctImg: 0,
+      correctImg: 1,
       img0: Pair2A,
       img1: Pair2B,
-      textDefault: 'There\'s a couch potato over there!',
-      textIncorrect: '(dont use this lol)',
+      textDefault: 'Look at the couch potato',
+      textIncorrect: 'I meant the potato on the couch!',
     },
     {
       correctImg: 0,
       img0: Pair3A,
       img1: Pair3B,
-      textDefault: '1 + "1"',
-      textIncorrect: '(dont use this lol)',
+      textDefault: 'I want to buy 2000 pizza',
+      textIncorrect: 'I meant I want to buy 2000 slices of pizza!',
     },
     {
-      correctImg: 1,
+      correctImg: 0,
       img0: Pair4A,
       img1: Pair4B,
-      textDefault: '1 + "1"',
-      textIncorrect: '(dont use this lol)',
+      textDefault: 'Show me a toy hoyse',
+      textIncorrect: 'I meant show me a toy horse!',
     },
   ];
 
