@@ -39,12 +39,11 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     let newIncorrect = true;
 
     if (pos === props.correctImg) {
-      playCorrect();
+      // playCorrect();
       newIncorrect = false;
-
       props.advanceGame && props.advanceGame();
     } else if (!incorrect) {
-      playIncorrect();
+      // playIncorrect();
     }
     setIncorrect(newIncorrect);
   };

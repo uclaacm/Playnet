@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
+import React from 'react';
 
 import AmbiguousGame from './Activity1/Game2';
-import Carousel, { CarouselContext } from './shared/Carousel';
 import Base from './shared/Base';
+import Carousel from './shared/Carousel';
 import { HeaderSections } from './shared/PlaynetConstants';
 
 function Home(): JSX.Element {
@@ -14,6 +14,9 @@ function Home(): JSX.Element {
       child: <AmbiguousGame />,
       showNext: false,
       showPrev: false,
+    },
+    {
+      child: <div> hello</div>,
     },
   ];
 
@@ -39,16 +42,5 @@ function Home(): JSX.Element {
   );
 }
 
-// function ExitGame(props: {children: JSX.Element}) : JSX.Element {
-//   const context = useContext(ChangeSlideContext);
-//   useEffect(
-//     () => {
-//       const timer = setTimeout(() => context.next(), 5000);
-//       return () => {
-//         clearTimeout(timer);
-//       };
-//     });
-//   return <>{props.children}</>;
-// }
 
 export default Home;
