@@ -20,30 +20,35 @@ function Activity1(): JSX.Element {
 
   const content = [
     {
+      topText: 'How does YouTube bring you the videos you want?',
       child:
         <div>
-          <p>How does YouTube bring you the videos you want?</p>
+          {/* <p>How does YouTube bring you the videos you want?</p> */}
           <img src={ComputerSvg} alt='Image of Youtube on Computer' />
-          <p>{'Let\'s dive into what happens in the search bar.'}</p>
+          {/* <p>{'Let\'s dive into what happens in the search bar.'}</p> */}
         </div>,
+        bottomText: 'Let\'s dive into what happens in the search bar.',
     },
     {
+      topText: 'Computers don\'t know English...',
       child:
         <div>
-          <p>{'Computers don\'t know English...'}</p>
+          {/* <p>{'Computers don\'t know English...'}</p> */}
           <div className='content'>
             <div id='binary-text-bubble'>
               <TextBubble textBubbleStyle={TextBubbleStyles.LARGE} text='1101010100' />
             </div>
             <img src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
           </div>
-          <p>So how does it know what you are saying?</p>
+          {/* <p>So how does it know what you are saying?</p> */}
         </div>,
+        bottomText: 'So how does it know what you are saying?',
     },
     {
+      topText: 'Computers have to learn just like we do: by trial and error!',
       child:
         <div id='slide-3'>
-          <p>Computers have to learn just like we do: by trial and error!</p>
+          {/* <p>Computers have to learn just like we do: by trial and error!</p> */}
           <div className='left-content content'>
             <div id='cartoon-person-speech'>
               <Convo phrases={personConvo} delayTime={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT} />
