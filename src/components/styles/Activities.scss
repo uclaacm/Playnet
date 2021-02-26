@@ -1,0 +1,82 @@
+@import 'variables';
+
+#activity-home {
+  height: calc(100vh - #{$head-foot-height} - #{$foot-height});
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  h2 {
+    color: #fff;
+    margin-bottom: 0;
+  }
+}
+
+#activity-card-container {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  max-width: 100vw;
+  margin-top: 20px;
+}
+
+.activity-card {
+  height: 100%;
+  max-width: 350px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin: 0 20px;
+  overflow: hidden;
+  box-shadow: 10px 10px 10px 0 rgba(10, 10, 10, 0.5);
+}
+
+.activity-splash {
+  height: 275px;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content {
+  padding: 10px;
+
+  h3 {
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+
+  p {
+    margin-top: 10px;
+    font-size: 20px;
+  }
+}
+
+#lost-in-translation {
+  background-image: url('../../assets/lost-in-translation.svg');
+}
+
+#sending-videos {
+  background-image: url('../../assets/sending-videos.svg');
+}
+
+#mind-reading {
+  background-image: url('../../assets/mind-reading.svg');
+}
+
+.activity-card:hover .activity-splash {
+  box-shadow: inset 0 0 0 100vw rgba(0, 0, 0, 0.3);
+}
+
+.activity-card:hover .activity-splash::after {
+  content: "";
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-image: url('../../assets/play-icon.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
