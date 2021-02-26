@@ -1,15 +1,17 @@
-.content{
+.content {
   * {
     display: block;
   }
+
   width: fit-content;
   margin: auto;
   display: inline-block;
   padding: 10px;
   position: relative;
 }
+
 #binary-text-bubble {
-  padding-left:80px;
+  padding-left: 80px;
   padding-bottom: 25px;
 }
 
@@ -20,7 +22,7 @@
 
 #computer-slide-3 {
   padding-top: 50px;
-  padding-left:100px;
+  padding-left: 100px;
 }
 
 .hidden {
@@ -38,9 +40,25 @@
   0% {
     opacity: 0;
   }
-  50%{
+
+  50% {
     transform: scale(1.03);
     opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in-n-out-bigger {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
   }
 
   100% {
@@ -51,22 +69,8 @@
 #party-confetti {
   animation-name: fade-in-n-out-bigger;
   animation-duration: 3s;
-  animation-delay: 6s; //2 * timeBtwnWords
   position: absolute;
   top: 50%;
   left: 50%;
   opacity: 0;
-}
-
-@keyframes fade-in-n-out-bigger {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
