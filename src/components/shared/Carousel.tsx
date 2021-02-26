@@ -35,6 +35,7 @@ function Carousel(props: CarouselProps): JSX.Element {
     if (state) {
       setSlideIdx(+state);
     }
+    return () => storage.removeItem('slideIdx');
   }, []);
 
   useEffect(() => {
