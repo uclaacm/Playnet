@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import '../../styles/Activity1.scss';
 
@@ -24,11 +24,11 @@ function Activity1(): JSX.Element {
         <div>
           <p>How does YouTube bring you the videos you want?</p>
           <img src={ComputerSvg} alt='Image of Youtube on Computer'/>
-          <p>Let's dive into what happens in the search bar.</p>
+          <p>{'Let\'s dive into what happens in the search bar.'}</p>
         </div>
 
         <div>
-          <p>Computers don't know English...</p>
+          <p>{'Computers don\'t know English...'}</p>
           <div className='content'>
             <div id='binary-text-bubble'>
               <TextBubble textBubbleStyle={TextBubbleStyles.LARGE} text='1101010100'/>
@@ -46,7 +46,7 @@ function Activity1(): JSX.Element {
             </div>
             <img src={CharacterSvg} alt='Image of Cartoon Person'/>
             <img id='party-confetti' src={PartyConfettiSvg} style={{animationDelay: 2*timeBtwnWords/1000+'s',
-                animationDuration: timeBtwnWords/1000+'s'}}/>
+              animationDuration: timeBtwnWords/1000+'s'}}/>
           </div>
           <div className='right-content content'>
             <div id='computer-speech-bubble'>

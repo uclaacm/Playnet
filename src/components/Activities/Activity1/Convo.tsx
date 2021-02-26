@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Anime, {anime} from 'react-anime';
 
 import '../../styles/Activity1.scss';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
