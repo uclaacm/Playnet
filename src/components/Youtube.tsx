@@ -1,29 +1,35 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './styles/YouTube.scss';
 
 import Computer from '../assets/computer.svg'
 import ChillPic from '../assets/chill_girl.jpg';
 
+
+
 function YouTube(props: YouTubeProps): JSX.Element {
-    const [ chosenVideo] = useState(0);
+    {/*This component is being passed props.chooseVideo function, 
+    which it can use to tell the parent which video has been chosen */}
 
     return(
     <div id={"computer-wrapper"}>
-        <img id={"computer"} src={Computer} />
         <div id={"youtube-wrapper"}>
-            <div className={"youtube-video"}>
+            <button onClick={useEffect(() => {props.setVideo("lofi")})} className={"youtube-video"}>
                 <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
                 <p>LoFi hip hop to study to</p>
-            </div>
-            <div className={"youtube-video"}>
+            </button>
+            <button onClick={useEffect(() => {props.setVideo("babyshark")})} className={"youtube-video"}>
                 <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
                 <p>LoFi hip hop to study to</p>
-            </div>
-            <div className={"youtube-video"}>
+            </button>
+            <button onClick={useEffect(() => {props.setVideo("babymonkey")})} className={"youtube-video"}>
                 <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
                 <p>LoFi hip hop to study to</p>
-            </div>
+            </button>
+            <button onClick={useEffect(() => {props.setVideo("babymonkey")})} className={"youtube-video"}>
+                <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
+                <p>LoFi hip hop to study to</p>
+            </button>
         </div>
         
     </div>

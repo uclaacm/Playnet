@@ -1,31 +1,25 @@
 @import 'variables';
 
 #computer-wrapper {
-    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
-}
-
-#computer {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 7%);
-    width: 55%;
-    height: auto;
-    z-index: 0;
+    background-image: url("../../assets/computer.svg");
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center;
 }
 
 #youtube-wrapper {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translate(-50%, 67%);
-    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 30%;
     height: auto;
-    z-index: 1;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
     align-items: center;
 }
 
@@ -33,10 +27,11 @@
     height: auto;
     display: grid;
     z-index: 1;
+    margin: 5px;
 }
 
 .youtube-thumbnail {
     justify-self: center;
-    width: 90%;
+    width: 100%;
     height: auto;
 }
