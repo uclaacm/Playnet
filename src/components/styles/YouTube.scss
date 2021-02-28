@@ -24,13 +24,23 @@
 }
 
 .youtube-video{
+    border: solid black 5px;
+    border-radius: 10px;
     height: auto;
     display: grid;
-    z-index: 1;
     margin: 5px;
+    transition-duration: 0.4s;
+    font: $font-footer;
+    cursor: pointer;
+    outline: none;
+}
+
+.youtube-video:hover{
+    transform: scale(1.1, 1.1);
 }
 
 .youtube-thumbnail {
+    margin: 5px;
     justify-self: center;
     width: 100%;
     height: auto;

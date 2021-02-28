@@ -14,19 +14,19 @@ function YouTube(props: YouTubeProps): JSX.Element {
     return(
     <div id={"computer-wrapper"}>
         <div id={"youtube-wrapper"}>
-            <button onClick={useEffect(() => {props.setVideo("lofi")})} className={"youtube-video"}>
+            <button onClick={() => {props.setVideo("lofi")}} className={"youtube-video"}>
                 <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
                 <p>LoFi hip hop to study to</p>
             </button>
-            <button onClick={useEffect(() => {props.setVideo("babyshark")})} className={"youtube-video"}>
+            <button onClick={() => {props.setVideo("babyshark")}} className={"youtube-video"}>
                 <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
                 <p>LoFi hip hop to study to</p>
             </button>
-            <button onClick={useEffect(() => {props.setVideo("babymonkey")})} className={"youtube-video"}>
+            <button onClick={() => {props.setVideo("babymonkey")}} className={"youtube-video"}>
                 <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
                 <p>LoFi hip hop to study to</p>
             </button>
-            <button onClick={useEffect(() => {props.setVideo("babymonkey")})} className={"youtube-video"}>
+            <button onClick={() => {props.setVideo("babymonkey")}} className={"youtube-video"}>
                 <img className={"youtube-thumbnail"} src={ChillPic} alt={"Image of a girl with headphones on studying"} />
                 <p>LoFi hip hop to study to</p>
             </button>
