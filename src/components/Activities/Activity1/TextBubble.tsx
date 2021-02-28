@@ -20,11 +20,11 @@ function TextBubble(props: TextBubbleProps): JSX.Element {
   return (
     <div className='text-bubble'>
       {/* <img src = {} /> */}
-      {(props.textBubbleStyle === TextBubbleStyles.EXTRA_LARGE) ? <img src={ExtraLargeTextBubbleSvg} />: <span></span>}
-      {(props.textBubbleStyle === TextBubbleStyles.LARGE) ? <img src={LargeTextBubbleSvg} />: <span></span>}
-      {(props.textBubbleStyle === TextBubbleStyles.MEDIUM) ? <img src={MediumTextBubbleSvg} />: <span></span>}
-      {(props.textBubbleStyle === TextBubbleStyles.SMALL_LEFT) ? <img src={SmallLeftTextBubbleSvg} />: <span></span>}
-      {(props.textBubbleStyle === TextBubbleStyles.SMALL_RIGHT) ? <img src={SmallRightTextBubbleSvg} />: <span></span>}
+      {(props.textBubbleStyle === TextBubbleStyles.EXTRA_LARGE) ? <img src={ExtraLargeTextBubbleSvg} />: ''}
+      {(props.textBubbleStyle === TextBubbleStyles.LARGE) ? <img src={LargeTextBubbleSvg} />: ''}
+      {(props.textBubbleStyle === TextBubbleStyles.MEDIUM) ? <img src={MediumTextBubbleSvg} />: ''}
+      {(props.textBubbleStyle === TextBubbleStyles.SMALL_LEFT) ? <img src={SmallLeftTextBubbleSvg} />: ''}
+      {(props.textBubbleStyle === TextBubbleStyles.SMALL_RIGHT) ? <img src={SmallRightTextBubbleSvg} />: ''}
 
       {(props.contentSvg !== undefined) ? <img src={props.contentSvg} className='centered'/>: <span></span>}
       {(props.text !== undefined) ? <span className='centered'>{props.text}</span> : <span></span>}
