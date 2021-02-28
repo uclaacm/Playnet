@@ -41,7 +41,8 @@ function Activity1(): JSX.Element {
         <div id='slide-3'>
           <div className='left-content content'>
             <div id='cartoon-person-speech'>
-              <Convo phrases={personConvo} timeBtwnPhrases={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT} />
+              <Convo phrases={personConvo} timeBtwnPhrases={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT}
+              />
             </div>
             <img src={CharacterSvg} alt='Image of Cartoon Person' />
             <img id='party-confetti' src={PartyConfettiSvg} style={{

@@ -26,8 +26,8 @@ function Convo(props: ConvoProps): JSX.Element {  //to replay convo, set i to 0
   const DisplaySpeechBubbles = () => {
     if (props.waitTimeBeforeStart !== undefined && !offsetYet) {
       return <div key={'blank'} className='hidden'>
-          <TextBubble key={i} text={''} textBubbleStyle={TextBubbleStyles.NONE} />
-        </div>;
+        <TextBubble key={i} text={''} textBubbleStyle={TextBubbleStyles.NONE} />
+      </div>;
     }
     return <div className='fade' style={{ animationDuration: 2 / 3 * props.timeBtwnPhrases / 1000 + 's' }}>
       {(props.phrases[i].indexOf('.svg') === -1) ?
