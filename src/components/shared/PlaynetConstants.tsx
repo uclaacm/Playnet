@@ -10,4 +10,5 @@ export enum TextBubbleStyles {
   SMALL_LEFT = 'small-left',
   SMALL_RIGHT = 'small-right',
   MEDIUM = 'medium',
+  NONE = 'none',
 }

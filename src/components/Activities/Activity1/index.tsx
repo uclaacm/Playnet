@@ -15,7 +15,7 @@ import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
   const personConvo: string[] = ['apple', 'no...', 'yes!'];
-  const computerGuesses: string[] = ['', LemonSvg, AppleSvg];
+  const computerGuesses: string[] = [LemonSvg, AppleSvg];
   const timeBtwnWords = 3000;
 
   const content = [
@@ -41,7 +41,7 @@ function Activity1(): JSX.Element {
         <div id='slide-3'>
           <div className='left-content content'>
             <div id='cartoon-person-speech'>
-              <Convo phrases={personConvo} delayTime={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT} />
+              <Convo phrases={personConvo} timeBtwnPhrases={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT} />
             </div>
             <img src={CharacterSvg} alt='Image of Cartoon Person' />
             <img id='party-confetti' src={PartyConfettiSvg} style={{
@@ -51,7 +51,7 @@ function Activity1(): JSX.Element {
           </div>
           <div className='right-content content'>
             <div id='computer-speech-bubble'>
-              <Convo phrases={computerGuesses} delayTime={timeBtwnWords} offset={timeBtwnWords / 2}
+              <Convo phrases={computerGuesses} timeBtwnPhrases={timeBtwnWords} waitTimeBeforeStart={timeBtwnWords / 2}
                 textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
             </div>
             <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
