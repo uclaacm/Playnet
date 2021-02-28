@@ -1,11 +1,5 @@
 import React from 'react';
 
-import LargeTextBubbleSvg from '../../../assets/activity1/text_bubbles/large_text_bubble.svg';
-import MediumTextBubbleSvg from '../../../assets/activity1/text_bubbles/medium_text_bubble.svg';
-import SmallLeftTextBubbleSvg from '../../../assets/activity1/text_bubbles/small_left_text_bubble.svg';
-import SmallRightTextBubbleSvg from '../../../assets/activity1/text_bubbles/small_right_text_bubble.svg';
-import ExtraLargeTextBubbleSvg from '../../../assets/activity1/text_bubbles/xl_text_bubble.svg';
-
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 
 import '../../styles/TextBubble.scss';
@@ -18,16 +12,9 @@ interface TextBubbleProps {
 function TextBubble(props: TextBubbleProps): JSX.Element {
   // processSvg ()
   return (
-    <div className='text-bubble'>
-      {/* <img src = {} /> */}
-      {(props.textBubbleStyle === TextBubbleStyles.EXTRA_LARGE) ? <img src={ExtraLargeTextBubbleSvg} />: ''}
-      {(props.textBubbleStyle === TextBubbleStyles.LARGE) ? <img src={LargeTextBubbleSvg} />: ''}
-      {(props.textBubbleStyle === TextBubbleStyles.MEDIUM) ? <img src={MediumTextBubbleSvg} />: ''}
-      {(props.textBubbleStyle === TextBubbleStyles.SMALL_LEFT) ? <img src={SmallLeftTextBubbleSvg} />: ''}
-      {(props.textBubbleStyle === TextBubbleStyles.SMALL_RIGHT) ? <img src={SmallRightTextBubbleSvg} />: ''}
-
-      {(props.contentSvg !== undefined) ? <img src={props.contentSvg} className='centered'/>: <span></span>}
-      {(props.text !== undefined) ? <span className='centered'>{props.text}</span> : <span></span>}
+    <div id={props.textBubbleStyle} className='text-bubble'>
+      {(props.contentSvg !== undefined) ? <img src={props.contentSvg} className='centered'/>: ''}
+      {(props.text !== undefined) ? <span className='centered'>{props.text}</span> : ''}
     </div>
   );
 }

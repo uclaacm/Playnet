@@ -5,9 +5,9 @@ export enum HeaderSections {
 }
 
 export enum TextBubbleStyles {
-  EXTRA_LARGE,
-  LARGE,
-  SMALL_LEFT,
-  SMALL_RIGHT,
-  MEDIUM,
+  EXTRA_LARGE = 'x-large',
+  LARGE = 'large',
+  SMALL_LEFT = 'small-left',
+  SMALL_RIGHT = 'small-right',
+  MEDIUM = 'medium',
 }
