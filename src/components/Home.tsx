@@ -7,12 +7,12 @@ import YouTube from './Youtube';
 
 function Home(): JSX.Element {
   const [ chosenVideo, chooseVideo ] = useState("babyshark");
+  const [ showCarousel, toggleCarousel ] = useState(false);
 
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
-        <YouTube setVideo= { chooseVideo } />
-        <Carousel
+        { showCarousel ? <Carousel
           visible={true}
           title={'Test'}
           subtitle={'Lorem ipsum dolor sit amet'}
@@ -31,7 +31,7 @@ function Home(): JSX.Element {
           <div><h1>Second</h1></div>
           <div><h1>Third</h1></div>
           <div><h1>Fourth</h1></div>
-        </Carousel>
+        </Carousel> : <YouTube setVideo= { chooseVideo } showNext = { toggleCarousel } /> }
       </Base>
     </div>
   );
