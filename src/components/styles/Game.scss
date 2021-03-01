@@ -1,11 +1,11 @@
-#game-wrapper{
+#game-wrapper {
   display: flex;
   flex-flow: column;
   align-items: center;
   height: 100%;
 }
 
-#game-content{
+#game-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -17,7 +17,6 @@
 .gamebox {
   width: 50%;
   height: 100%;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,17 +35,13 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  
   height: 30%;
   width: 50%;
-
   margin: 10px;
-
   border-style: solid;
   border-radius: 20px;
   border-width: 8px;
   border-color: black;
-
   transition: 0.1s;
 }
 

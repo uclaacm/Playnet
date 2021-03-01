@@ -50,10 +50,14 @@ function AmbiguousGame(): JSX.Element {
   ];
 
   const advanceGame = () => {
+    let nextSlide = slideIdx+1;
     if (slideIdx && slideIdx === slides.length-1) {
       context.next();
+
+      // this prevents the game from briefly loading past the last slide
+      nextSlide = slideIdx;
     }
-    setSlideIdx(slideIdx+1);
+    setSlideIdx(nextSlide);
   };
 
   return (
