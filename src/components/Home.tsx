@@ -6,7 +6,7 @@ import { HeaderSections } from './shared/PlaynetConstants';
 import YouTube from './Youtube';
 
 function Home(): JSX.Element {
-  const [ chosenVideo, chooseVideo ] = useState("babyshark");
+  const [ chosenVideo, chooseVideo ] = useState(null);
   const [ showCarousel, toggleCarousel ] = useState(false);
 
   return (
@@ -30,8 +30,8 @@ function Home(): JSX.Element {
           <div><h1>{chosenVideo}</h1></div>
           <div><h1>Second</h1></div>
           <div><h1>Third</h1></div>
-          <div><h1>Fourth</h1></div>
-        </Carousel> : <YouTube setVideo= { chooseVideo } showNext = { toggleCarousel } /> }
+          <div><h1><button onClick={ () => toggleCarousel(false) } >Final Screen</button> </h1></div>
+        </Carousel> : <YouTube intro= { chosenVideo } setVideo= { chooseVideo } showNext = { toggleCarousel } /> }
       </Base>
     </div>
   );
