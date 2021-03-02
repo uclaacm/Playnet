@@ -17,7 +17,7 @@ export default function LottieControl(props: LottieControlProps): JSX.Element {
   };
 
   return (
-    <div key={String(props.time)} style={{ width: '80%', margin: 'auto' }}>
+    <div key={String(props.time)} style={{ width: '90%', margin: 'auto' }}>
       <Lottie options={defaultOptions} />
     </div>
   );
