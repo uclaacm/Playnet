@@ -30,7 +30,7 @@ interface CarouselProps {
 function Carousel(props: CarouselProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [child, setChild] = useState(props.children[slideIdx]);
-  const [reloadTime, setReloadTime] = useState(new Date());
+  const [reloadTime, setReloadTime] = useState(Date.now());
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
-    setReloadTime(new Date());
+    setReloadTime(Date.now());
   }, [slideIdx]);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                     <Tooltip text='Replay'>
-                      <button className='replay-button' onClick={()=>setReloadTime(new Date())} />
+                      <button className='replay-button' onClick={()=>setReloadTime(Date.now())} />
                     </Tooltip>
                   </span>}
               </>
