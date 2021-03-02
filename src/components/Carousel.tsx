@@ -13,13 +13,11 @@ interface CarouselProps {
   onPrev?: () => void;
   showNext?: boolean;
   showPrev?: boolean;
-  visible?: boolean;
   videoImage?: string;
 }
 
 function Carousel(props: CarouselProps): JSX.Element {
   const [ slideIdx, setSlideIdx ] = useState(0);
-  if (props.visible != false){
     return (
       <div id={'carousel-wrapper'}>
         { props.title && <h1 id={'title'}>{props.title}</h1> }
@@ -62,10 +60,6 @@ function Carousel(props: CarouselProps): JSX.Element {
         </div>
       </div>
     );
-  }
-  else {
-    return( <div></div> );
-  }
   
 }
 

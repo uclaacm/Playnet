@@ -1,14 +1,36 @@
 @import 'variables';
 
-#computer-wrapper {
+#intro-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: auto;
+}
+
+#intro-title {
+    font: $font-title;
+    margin-bottom: 0px;
+    color: #fff;
+}
+
+#intro-subtitle {
+    font: $font-title;
+    font-size: 26px;
+    margin: 0px;
+    color: #fff;
+  }
+
+#computer {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
+    height: 90%;
+    width: auto;
     background-image: url("../../assets/computer.svg");
     background-repeat: no-repeat;
-    background-size: 60%;
+    background-size: 56%;
     background-position: center;
 }
 
@@ -26,6 +48,7 @@
 .youtube-video{
     border: solid black 5px;
     border-radius: 10px;
+    width: 95%;
     height: 95%;
     display: grid;
     margin: 5px;
@@ -42,6 +65,19 @@
 .youtube-thumbnail {
     margin: 5px;
     justify-self: center;
+    width: 100%;
+    height: auto;
+}
+
+#final-video {
+    display: grid;
+    border: solid black 5px;
+    border-radius: 10px;
+    width: 30%;
+    height: auto;
+}
+
+#final-thumbnail {
     width: 100%;
     height: auto;
 }

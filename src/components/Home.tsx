@@ -6,17 +6,15 @@ import { HeaderSections } from './shared/PlaynetConstants';
 import YouTube from './Youtube';
 
 function Home(): JSX.Element {
-  const [ chosenVideo, chooseVideo ] = useState(null);
+  const [ chosenVideoPath, chooseVideo ] = useState(null);
   const [ showCarousel, toggleCarousel ] = useState(false);
 
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
         { showCarousel ? <Carousel
-          visible={true}
           title={'Test'}
           subtitle={'Lorem ipsum dolor sit amet'}
-          videoImage={chosenVideo}
           onNext={() => { /* Run function along with transition on next button press */
             // console.log('next');
           }}
@@ -27,11 +25,11 @@ function Home(): JSX.Element {
           /*         showPrev={true|false}                                 */
         >
           {/* Each child element of the Carousel is considered as one "slide", like so */}
-          <div><h1>{chosenVideo}</h1></div>
+          <div><h1>First</h1></div>
           <div><h1>Second</h1></div>
           <div><h1>Third</h1></div>
           <div><h1><button onClick={ () => toggleCarousel(false) } >Final Screen</button> </h1></div>
-        </Carousel> : <YouTube intro= { chosenVideo } setVideo= { chooseVideo } showNext = { toggleCarousel } /> }
+        </Carousel> : <YouTube chosenVideo= { chosenVideoPath } setVideo= { chooseVideo } showNext = { toggleCarousel } /> }
       </Base>
     </div>
   );
