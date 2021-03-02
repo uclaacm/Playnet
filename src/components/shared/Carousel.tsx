@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 
 import '../styles/Carousel.scss';
-import '../styles/tooltip.scss';
+
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
-import TimeBar from './TimeBar';
+import Tooltip from './Tooltip';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -57,10 +57,10 @@ function Carousel(props: CarouselProps): JSX.Element {
     setSlideIdx(old => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
   }
-  
+
   function reloadAnimation(): void {
     setReloadTime(new Date());
-    child.child = React.cloneElement(child.child, {time: reloadTime});
+    child.child = React.cloneElement(child.child, { time: reloadTime });
   }
 
   return (
@@ -79,19 +79,20 @@ function Carousel(props: CarouselProps): JSX.Element {
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'}>
-            { child &&
+            {child &&
               <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
-                {child.animationTime && 
-                <span className={"flex-container"}>
-                  <TimeBar timeInSec={child.animationTime} time={reloadTime}></TimeBar>
-                  <div className={"tooltip"}>
-                    <button className={'replay-button'} onClick={reloadAnimation}/>  
-                    <span className={"tooltiptext"}>Replay</span>
-                  </div>
-                </span>}
+                {child.animationTime &&
+                  <span className={"flex-container"}>
+                    <div key={String(reloadTime)} className="timebar">
+                      <div className="time" style={{ "--time": child.animationTime + "s" } as CSSProperties } />
+                    </div>
+                    <Tooltip text="Replay">
+                      <button className={'replay-button'} onClick={reloadAnimation} />
+                    </Tooltip>
+                  </span>}
               </>
             }
           </div>

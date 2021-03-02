@@ -1,17 +1,16 @@
 import React from 'react';
 
-import '../styles/TimeBar.scss';
-import '../styles/tooltip.scss';
+import '../styles/Tooltip.scss';
 
 export interface TooltipProps {
   text: string;
-  child: JSX.Element,
+  children: JSX.Element,
 }
 
 function Tooltip(props: TooltipProps): JSX.Element {
   return (
     <div className={"tooltip"}>
-      {props.child}
+      {props.children}
       <span className={"tooltiptext"}>{props.text}</span>
     </div>
   );
