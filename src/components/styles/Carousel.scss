@@ -37,7 +37,6 @@
 #carousel-content {
   flex: 1;
   background-color: #fff;
-  align-items: center;
   height: 100%;
   margin: 0 24px;
   border-radius: 20px;
@@ -60,7 +59,7 @@
   transform: scale(0.9, 0.9);
 }
 
-.flex-container {
+.time-bar-container {
   display: flex;
   flex-wrap: nowrap;
   width: 80%;
@@ -73,31 +72,32 @@
   background-size: contain;
   height: 30px;
   width: 25px;
-  background-color: Transparent;
-  outline:none;
+  background-color: transparent;
+  outline: none;
   border: none;
   margin-left: 8px;
 }
 
 ////////////////////////////// TIMEBAR //////////////////////////////
+// Stolen from https://itqna.net/questions/56/how-make-progress-bar-goes-0-100-css-only
 .timebar {
-  background-color: #D3D3D3;
-  border-radius: .5rem;
+  background-color: #d3d3d3;
+  border-radius: 0.5rem;
   width: 100%;
   height: 10px;
   vertical-align: bottom;
-  float:bottom;
+  float: bottom;
   margin: auto;
 }
 
 .time {
-  background-color: #DF3A1F;
+  background-color: #df3a1f;
   height: 10px;
   border-radius: 1rem;
   animation: fill-bar-animation var(--time) 1 linear;
 }
 
 @keyframes fill-bar-animation {
-  0% {width: 0%;}
-  100% {width: 100%}
+  0% { width: 0%; }
+  100% { width: 100%; }
 }

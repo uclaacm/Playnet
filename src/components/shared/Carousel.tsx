@@ -1,7 +1,6 @@
 import React, { CSSProperties, useEffect, useState } from 'react';
 
 import '../styles/Carousel.scss';
-
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
 import Tooltip from './Tooltip';
@@ -85,12 +84,12 @@ function Carousel(props: CarouselProps): JSX.Element {
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
                 {child.animationTime &&
-                  <span className={"flex-container"}>
-                    <div key={String(reloadTime)} className="timebar">
-                      <div className="time" style={{ "--time": child.animationTime + "s" } as CSSProperties } />
+                  <span className='time-bar-container'>
+                    <div key={String(reloadTime)} className='timebar'>
+                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
-                    <Tooltip text="Replay">
-                      <button className={'replay-button'} onClick={reloadAnimation} />
+                    <Tooltip text='Replay'>
+                      <button className='replay-button' onClick={reloadAnimation} />
                     </Tooltip>
                   </span>}
               </>
