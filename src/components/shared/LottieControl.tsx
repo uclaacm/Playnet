@@ -16,7 +16,7 @@ export default function LottieControl(props: LottieControlProps): JSX.Element {
       preserveAspectRatio: 'xMidYMid slice',
     },
   };
-  
+
   return (
     <div key={String(props.time)} style={{ width: '90%', margin: 'auto' }}>
       <Lottie options={defaultOptions} />
