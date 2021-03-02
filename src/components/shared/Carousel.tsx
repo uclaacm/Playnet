@@ -44,8 +44,12 @@ function Carousel(props: CarouselProps): JSX.Element {
   useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
-    reloadAnimation();
+    setReloadTime(new Date());
   }, [slideIdx]);
+
+  useEffect(() => {
+    child.child = React.cloneElement(child.child, { time: reloadTime });
+  }, [reloadTime]);
 
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
@@ -55,11 +59,6 @@ function Carousel(props: CarouselProps): JSX.Element {
   function goPrev(): void {
     setSlideIdx(old => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
-  }
-
-  function reloadAnimation(): void {
-    setReloadTime(new Date());
-    child.child = React.cloneElement(child.child, { time: reloadTime });
   }
 
   return (
@@ -89,7 +88,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                     <Tooltip text='Replay'>
-                      <button className='replay-button' onClick={reloadAnimation} />
+                      <button className='replay-button' onClick={()=>setReloadTime(new Date())} />
                     </Tooltip>
                   </span>}
               </>
