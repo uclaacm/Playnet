@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState } from 'react';
 
 import '../styles/Carousel.scss';
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
+import Tooltip from './Tooltip';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -15,6 +16,7 @@ export interface CarouselItemComponents {
   showPrev?: boolean;
   topText?: string;
   bottomText?: string;
+  animationTime?: number;
 }
 
 interface CarouselProps {
@@ -28,6 +30,7 @@ interface CarouselProps {
 function Carousel(props: CarouselProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [child, setChild] = useState(props.children[slideIdx]);
+  const [reloadTime, setReloadTime] = useState(Date.now());
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -41,7 +44,12 @@ function Carousel(props: CarouselProps): JSX.Element {
   useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
+    setReloadTime(Date.now());
   }, [slideIdx]);
+
+  useEffect(() => {
+    child.child = React.cloneElement(child.child, { time: reloadTime });
+  }, [reloadTime]);
 
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
@@ -69,11 +77,20 @@ function Carousel(props: CarouselProps): JSX.Element {
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'}>
-            { child &&
+            {child &&
               <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
+                {child.animationTime &&
+                  <span className='time-bar-container'>
+                    <div key={String(reloadTime)} className='timebar'>
+                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
+                    </div>
+                    <Tooltip text='Replay'>
+                      <button className='replay-button' onClick={()=>setReloadTime(Date.now())} />
+                    </Tooltip>
+                  </span>}
               </>
             }
           </div>
