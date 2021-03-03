@@ -10,13 +10,35 @@ import PartyConfettiSvg from '../../../assets/activity1/party_confetti.svg';
 
 import Carousel from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
-import Convo from './Convo';
+import Convo, { Phrase } from './Convo';
 import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
-  const personConvo: string[] = ['apple', 'no...', 'yes!'];
-  const computerGuesses: string[] = [LemonSvg, AppleSvg];
   const timeBtwnWords = 3000;
+  const personConvo: Phrase[] = [
+    {
+      text: 'apple',
+      isText: true,
+    },
+    {
+      text: 'no...',
+      isText: true,
+    },
+    {
+      text: 'yes!',
+      isText: true,
+    },
+  ];
+  const computerGuesses: Phrase[] = [
+    {
+      image: LemonSvg,
+      isText: false,
+    },
+    {
+      image: AppleSvg,
+      isText: false,
+    },
+  ];
 
   const content = [
     {
