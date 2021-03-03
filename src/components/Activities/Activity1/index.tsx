@@ -40,6 +40,31 @@ function Activity1(): JSX.Element {
     },
   ];
 
+  const Slide3 = () => {
+    return (
+      <div id='slide-3'>
+        <div className='left-content content'>
+          <div id='cartoon-person-speech'>
+            <Convo phrases={personConvo} timeBtwnPhrases={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT}
+            />
+          </div>
+          <img src={CharacterSvg} alt='Image of Cartoon Person' />
+          <img id='party-confetti' src={PartyConfettiSvg} style={{
+            animationDelay: 2 * timeBtwnWords / 1000 + 's',
+            animationDuration: timeBtwnWords / 1000 + 's',
+          }} />
+        </div>
+        <div className='right-content content'>
+          <div id='computer-speech-bubble'>
+            <Convo phrases={computerGuesses} timeBtwnPhrases={timeBtwnWords} waitTimeBeforeStart={timeBtwnWords / 2}
+              textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
+          </div>
+          <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
+        </div>
+      </div>
+    );
+  };
+
   const content = [
     {
       topText: 'How does YouTube bring you the videos you want?',
@@ -59,27 +84,7 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Computers have to learn just like we do: by trial and error!',
-      child:
-        <div id='slide-3'>
-          <div className='left-content content'>
-            <div id='cartoon-person-speech'>
-              <Convo phrases={personConvo} timeBtwnPhrases={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT}
-              />
-            </div>
-            <img src={CharacterSvg} alt='Image of Cartoon Person' />
-            <img id='party-confetti' src={PartyConfettiSvg} style={{
-              animationDelay: 2 * timeBtwnWords / 1000 + 's',
-              animationDuration: timeBtwnWords / 1000 + 's',
-            }} />
-          </div>
-          <div className='right-content content'>
-            <div id='computer-speech-bubble'>
-              <Convo phrases={computerGuesses} timeBtwnPhrases={timeBtwnWords} waitTimeBeforeStart={timeBtwnWords / 2}
-                textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
-            </div>
-            <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
-          </div>
-        </div>,
+      child: <Slide3 />,
     },
   ];
 
