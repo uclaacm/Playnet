@@ -7,6 +7,7 @@ import PrevSvg from '../../assets/prev_btn.svg';
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
   prev: (): void => undefined,
+  slideIdx: 0,
 });
 
 export interface CarouselItemComponents {
@@ -54,7 +55,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   }
 
   return (
-    <CarouselContext.Provider value={{ next: goNext, prev: goPrev }}>
+    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx: slideIdx }}>
       <div id={'carousel-wrapper'}>
         {props.title && <h1 id={'title'}>{props.title}</h1>}
         {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}

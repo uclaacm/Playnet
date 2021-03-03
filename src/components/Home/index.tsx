@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useRef } from 'react';
 import Intro10Data from '../LottieAnimations/Intro10Animation';
 import Intro11Data from '../LottieAnimations/Intro11Animation';
 import Intro12Data from '../LottieAnimations/Intro12Animation';
@@ -10,8 +9,32 @@ import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections } from '../shared/PlaynetConstants';
 
+import '../styles/Home.scss';
+import Intro from './Intro';
+
 function Home(): JSX.Element {
+  const IntroSlides = useRef(<Intro />);
   const content = [
+    {
+      child: IntroSlides.current,
+      topText: 'First, your request gets sent to a server.',
+    },
+    {
+      child: IntroSlides.current,
+      topText: 'Servers are like computers. They store information and do math.'
+    },
+    {
+      child: IntroSlides.current,
+      topText: 'Your request asks the server for information.',
+    },
+    {
+      child: IntroSlides.current,
+      topText: 'It’s like asking a librarian for a book!'
+    },
+    {
+      child: IntroSlides.current,
+      topText: 'Servers live in buildings called data centers.',
+    },
     {
       child: <LottieControl animationData={Intro8Data} />,
       topText: 'This is a real-life data center at Google!',
