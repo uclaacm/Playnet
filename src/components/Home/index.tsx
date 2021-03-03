@@ -38,22 +38,27 @@ function Home(): JSX.Element {
     {
       child: <LottieControl animationData={Intro8Data} />,
       topText: 'This is a real-life data center at Google!',
+      animationTime: 3.14,
     },
     {
       child: <LottieControl animationData={Intro9Data} />,
       topText: 'And this is the outside of the data center.',
+      animationTime: 8.04,
     },
     {
       child: <LottieControl animationData={Intro10Data} />,
       topText: 'There are data centers all over the world.',
+      animationTime: 13.26,
     },
     {
       child: <LottieControl animationData={Intro11Data} />,
       topText: 'When you search on the web from your house,',
+      animationTime: 4.21,
     },
     {
       child: <LottieControl animationData={Intro12Data} />,
       topText: 'a request gets sent all the way to your nearest data center',
+      animationTime: 6.21,
     },
   ];
   return (
