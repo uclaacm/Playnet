@@ -36,6 +36,7 @@ function Activity1(): JSX.Element {
       timeOnScreen: timeBtwnWords / 2,
       textBubbleStyle: TextBubbleStyles.NONE,
     },
+    {
       image: LemonSvg,
       isText: false,
     },
