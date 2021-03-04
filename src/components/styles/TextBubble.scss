@@ -1,0 +1,47 @@
+.text-bubble {
+  display: inline-block;
+  position: relative;
+  width: fit-content;
+}
+
+#large {
+  background-image: url('../../assets/activity1/text_bubbles/large_text_bubble.svg');
+  height: 126px;
+  width: 275px;
+}
+
+#medium {
+  background-image: url('../../assets/activity1/text_bubbles/medium_text_bubble.svg');
+  height: 126px;
+  width: 216px;
+}
+
+#small-left {
+  background-image: url('../../assets/activity1/text_bubbles/small_left_text_bubble.svg');
+  height: 126px;
+  width: 166px;
+}
+
+#small-right {
+  background-image: url('../../assets/activity1/text_bubbles/small_right_text_bubble.svg');
+  height: 126px;
+  width: 166px;
+}
+
+#x-large {
+  background-image: url('../../assets/activity1/text_bubbles/xl_text_bubble.svg');
+  height: 127px;
+  width: 319px;
+}
+
+#none {
+  height: 126px;
+  width: fit-content;
+}
+
+.centered {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
