@@ -5,6 +5,7 @@ import { CarouselContext } from '../shared/Carousel';
 function Intro(): JSX.Element {
   const {slideIdx, reloadTime} = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
+  const timeout = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     timeline.current = anime.timeline({
@@ -111,8 +112,12 @@ function Intro(): JSX.Element {
   }, []);
 
   useEffect(() => {
+    if (timeout.current) {
+      clearTimeout(timeout.current);
+    }
+    timeline.current?.pause();
     timeline.current?.seek(slideIdx * 2000);
-    setTimeout(() => {
+    timeout.current = setTimeout(() => {
       timeline.current?.play();
     }, 250);
   }, [slideIdx, reloadTime]);
