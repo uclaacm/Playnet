@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { forwardRef, RefObject, useRef } from 'react';
 import Intro10Data from '../LottieAnimations/Intro10Animation';
 import Intro11Data from '../LottieAnimations/Intro11Animation';
 import Intro12Data from '../LottieAnimations/Intro12Animation';
@@ -10,8 +9,42 @@ import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections } from '../shared/PlaynetConstants';
 
+import '../styles/Home.scss';
+import Intro from './Intro';
+
 function Home(): JSX.Element {
+  const IntroSlides = forwardRef((_, ref: RefObject) => (
+    <Intro ref={ref}/>
+  ));
+  IntroSlides.displayName = 'IntroSlides';
+  const ref = useRef(null);
+
   const content = [
+    {
+      child: <IntroSlides ref={ref}/>,
+      topText: 'First, your request gets sent to a server.',
+      animationTime: 2.5,
+    },
+    {
+      child: <IntroSlides ref={ref}/>,
+      topText: 'Servers are like computers. They store information and do math.',
+      animationTime: 2.5,
+    },
+    {
+      child: <IntroSlides ref={ref}/>,
+      topText: 'Your request asks the server for information.',
+      animationTime: 2.5,
+    },
+    {
+      child: <IntroSlides ref={ref}/>,
+      topText: 'It’s like asking a librarian for a book!',
+      animationTime: 2.5,
+    },
+    {
+      child: <IntroSlides ref={ref}/>,
+      topText: 'Servers live in buildings called data centers.',
+      animationTime: 5.5,
+    },
     {
       child: <LottieControl animationData={Intro8Data} />,
       topText: 'This is a real-life data center at Google!',
