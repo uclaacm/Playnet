@@ -31,6 +31,11 @@ function Activity1(): JSX.Element {
   ];
   const computerGuesses: Phrase[] = [
     {
+      text: '',
+      isText: true,
+      timeOnScreen: timeBtwnWords / 2,
+      textBubbleStyle: TextBubbleStyles.NONE,
+    },
       image: LemonSvg,
       isText: false,
     },
@@ -56,7 +61,7 @@ function Activity1(): JSX.Element {
         </div>
         <div className='right-content content'>
           <div id='computer-speech-bubble'>
-            <Convo phrases={computerGuesses} timeBtwnPhrases={timeBtwnWords} waitTimeBeforeStart={timeBtwnWords / 2}
+            <Convo phrases={computerGuesses} timeBtwnPhrases={timeBtwnWords}
               textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
           </div>
           <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />

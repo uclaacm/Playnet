@@ -16,20 +16,12 @@ interface ConvoProps {
   phrases: Phrase[],
   textBubbleStyle: TextBubbleStyles,
   timeBtwnPhrases: number,
-  waitTimeBeforeStart?: number,
 }
 
 function Convo(props: ConvoProps): JSX.Element {  //to replay convo, set i to 0 and offsetYet to false
   const [i, setI] = useState(0);
-  const [offsetYet, setOffSetYet] = useState(false);
 
   const DisplaySpeechBubbles = () => {
-    if (props.waitTimeBeforeStart !== undefined && !offsetYet) {
-      return <div key={'blank'} className='hidden'>
-        <TextBubble key={i} text={''} textBubbleStyle={TextBubbleStyles.NONE} />
-      </div>;
-    }
-
     const bubbleStyle = (props.phrases[i].textBubbleStyle !== undefined) ?
       props.phrases[i].textBubbleStyle : props.textBubbleStyle;
 
@@ -42,9 +34,7 @@ function Convo(props: ConvoProps): JSX.Element {  //to replay convo, set i to 0 
   };
 
   useEffect(() => {
-    if (props.waitTimeBeforeStart !== undefined && !offsetYet) {
-      setTimeout(() => setOffSetYet(true), props.waitTimeBeforeStart);
-    } else if (i < props.phrases.length - 1) {
+    if (i < props.phrases.length - 1) {
       const phraseDisplayTime = (props.phrases[i].timeOnScreen !== undefined) ?
         props.phrases[i].timeOnScreen : props.timeBtwnPhrases;
 
