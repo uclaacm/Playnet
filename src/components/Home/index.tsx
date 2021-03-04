@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { forwardRef, RefObject, useRef } from 'react';
 import Intro10Data from '../LottieAnimations/Intro10Animation';
 import Intro11Data from '../LottieAnimations/Intro11Animation';
 import Intro12Data from '../LottieAnimations/Intro12Animation';
@@ -13,27 +13,36 @@ import '../styles/Home.scss';
 import Intro from './Intro';
 
 function Home(): JSX.Element {
-  const IntroSlides = useRef(<Intro />);
+  const IntroSlides = forwardRef((_, ref: RefObject) => (
+    <Intro ref={ref}/>
+  ));
+  const ref = React.createRef();
+
   const content = [
     {
-      child: IntroSlides.current,
+      child: <IntroSlides ref={ref}/>,
       topText: 'First, your request gets sent to a server.',
+      animationTime: 2,
     },
     {
-      child: IntroSlides.current,
-      topText: 'Servers are like computers. They store information and do math.'
+      child: <IntroSlides ref={ref}/>,
+      topText: 'Servers are like computers. They store information and do math.',
+      animationTime: 2,
     },
     {
-      child: IntroSlides.current,
+      child: <IntroSlides ref={ref}/>,
       topText: 'Your request asks the server for information.',
+      animationTime: 2,
     },
     {
-      child: IntroSlides.current,
-      topText: 'It’s like asking a librarian for a book!'
+      child: <IntroSlides ref={ref}/>,
+      topText: 'It’s like asking a librarian for a book!',
+      animationTime: 2,
     },
     {
-      child: IntroSlides.current,
+      child: <IntroSlides ref={ref}/>,
       topText: 'Servers live in buildings called data centers.',
+      animationTime: 6,
     },
     {
       child: <LottieControl animationData={Intro8Data} />,

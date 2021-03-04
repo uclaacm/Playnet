@@ -1,12 +1,11 @@
 @import 'variables';
 
 #intro-container {
-  padding-top: 50px;
+  margin-top: 50px;
+  transform: translateX(-300px);
   width: 300vw;
-  position: absolute;
   left: -400px;
   display: flex;
-  // justify-content: center;
 }
 
 #computer {

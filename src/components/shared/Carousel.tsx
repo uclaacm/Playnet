@@ -9,6 +9,7 @@ export const CarouselContext = React.createContext({
   next: (): void => undefined,
   prev: (): void => undefined,
   slideIdx: 0,
+  reloadTime: Date.now(),
 });
 
 export interface CarouselItemComponents {
@@ -45,12 +46,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
-    setReloadTime(Date.now());
   }, [slideIdx]);
-
-  useEffect(() => {
-    child.child = React.cloneElement(child.child, { time: reloadTime });
-  }, [reloadTime]);
 
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
@@ -63,7 +59,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   }
 
   return (
-    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx: slideIdx }}>
+    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx, reloadTime }}>
       <div id={'carousel-wrapper'}>
         {props.title && <h1 id={'title'}>{props.title}</h1>}
         {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}
@@ -85,7 +81,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
                 {child.animationTime &&
                   <span className='time-bar-container'>
-                    <div key={String(reloadTime)} className='timebar'>
+                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                     <Tooltip text='Replay'>

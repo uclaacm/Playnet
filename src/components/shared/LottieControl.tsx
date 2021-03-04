@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import Lottie from 'react-lottie';
+import { CarouselContext } from './Carousel';
 
 export interface LottieControlProps {
   animationData: any;
-  time?: Date;
 }
 
 export default function LottieControl(props: LottieControlProps): JSX.Element {
+  const {reloadTime} = useContext(CarouselContext);
+
   const defaultOptions = {
     loop: false,
     autoplay: true,
@@ -18,7 +20,7 @@ export default function LottieControl(props: LottieControlProps): JSX.Element {
   };
 
   return (
-    <div key={String(props.time)} style={{ width: '90%', margin: 'auto' }}>
+    <div key={`${reloadTime}`} style={{ width: '90%', margin: 'auto' }}>
       <Lottie options={defaultOptions} />
     </div>
   );

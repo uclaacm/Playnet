@@ -1,10 +1,9 @@
 import anime, {AnimeTimelineInstance} from 'animejs';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-// import { animate_left, animate_right } from '../../utils/animations';
+import React, { useContext, useEffect, useRef} from 'react';
 import { CarouselContext } from '../shared/Carousel';
 
 function Intro(): JSX.Element {
-  const {slideIdx} = useContext(CarouselContext);
+  const {slideIdx, reloadTime} = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ function Intro(): JSX.Element {
     // Second Intro Animation
     timeline.current?.add({
       targets: '#intro-container',
-      translateX: '-500px',
+      translateX: ['-300px', '-800px'],
       duration: 1750,
       easing: 'easeInOutExpo',
       changeComplete: () => {
@@ -99,7 +98,7 @@ function Intro(): JSX.Element {
     })
     .add({
       targets: '#intro-container',
-      translateX: ['-500px', '-1750px'],
+      translateX: ['-800px', '-2050px'],
       duration: 2500,
       easing: 'easeInOutExpo',
     }, '-=2500')
@@ -115,8 +114,8 @@ function Intro(): JSX.Element {
     timeline.current?.seek(slideIdx * 2000);
     setTimeout(() => {
       timeline.current?.play();
-    }, 500);
-  }, [slideIdx]);
+    }, 250);
+  }, [slideIdx, reloadTime]);
 
   return (
     <div id={'intro-container'}>
