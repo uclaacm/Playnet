@@ -34,10 +34,13 @@ function Intro(): JSX.Element {
       easing: 'easeInOutExpo',
     }, '-=2000');
 
+    const width = document.querySelector('#carousel-content')?.clientWidth ?? screen.width;
+    const center = 1800 - (width / 2);
+
     // Second Intro Animation
     timeline.current?.add({
       targets: '#intro-container',
-      translateX: ['-300px', '-800px'],
+      translateX: ['-300px', `-${center}px`],
       duration: 1750,
       easing: 'easeInOutExpo',
       changeComplete: () => {
@@ -86,29 +89,12 @@ function Intro(): JSX.Element {
       easing: 'easeOutExpo',
     })
     .add({
-      targets: '#rocket',
-      rotate: '0deg',
-      duration: 1000,
-    })
-    .add({
-      targets: '#rocket',
-      translateX: path3('x'),
-      translateY: path3('y'),
-      duration: 2500,
+      targets: '#servers',
+      opacity: [0, 1],
+      scale: [1, 2],
+      duration: 2000,
       easing: 'easeInOutExpo',
-    })
-    .add({
-      targets: '#intro-container',
-      translateX: ['-800px', '-2050px'],
-      duration: 2500,
-      easing: 'easeInOutExpo',
-    }, '-=2500')
-    .add({
-      targets: '#rocket-path',
-      width: ['857px', '1606px'],
-      duration: 2500,
-      easing: 'easeInOutExpo',
-    }, '-=3000');
+    });
   }, []);
 
   useEffect(() => {

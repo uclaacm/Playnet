@@ -4,6 +4,7 @@
   margin-top: 50px;
   transform: translateX(-300px);
   width: 300vw;
+  overflow: hidden;
   left: -400px;
   display: flex;
 }
@@ -71,9 +72,12 @@
 }
 
 #servers {
-  margin-left: 600px;
+  position: absolute;
+  opacity: 0;
+  top: -50px;
+  left: 1550px;
   width: 600px;
-  height: 450px;
+  height: 600px;
   background-repeat: no-repeat;
   background-size: contain;
   background-image: url('../../assets/servers.svg');
