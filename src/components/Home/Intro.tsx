@@ -25,7 +25,7 @@ function Intro(): JSX.Element {
       easing: 'easeInOutExpo',
       changeComplete: () => {
         timeline.current?.pause();
-      }
+      },
     }).add({
       targets: '#rocket-path',
       width: ['0px', '343px'],
@@ -41,7 +41,7 @@ function Intro(): JSX.Element {
       easing: 'easeInOutExpo',
       changeComplete: () => {
         timeline.current?.pause();
-      }
+      },
     });
 
     // Third Intro Animation
@@ -52,7 +52,7 @@ function Intro(): JSX.Element {
       easing: 'easeInOutExpo',
       changeComplete: () => {
         timeline.current?.pause();
-      }
+      },
     }).add({
       targets: '#rocket',
       translateX: path2('x'),
@@ -74,7 +74,7 @@ function Intro(): JSX.Element {
       easing: 'easeOutExpo',
       changeComplete: () => {
         timeline.current?.pause();
-      }
+      },
     });
 
     // Fifth Intro Animation
@@ -123,9 +123,9 @@ function Intro(): JSX.Element {
       <div id={'rocket-container'}>
         <div id={'rocket-path'}/>
         <svg id={'bg-trajectory'} width="1606" height="128" viewBox="0 0 1606 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id={'path-1'} d="M4 4C4 4 81 4 339.5 4" stroke="black" stroke-width="8" stroke-linecap="round" stroke-dasharray="20 30"/>
-          <path id={'path-2'} d="M329 4C447 4 511 18.5 511 61.5C511 104.5 594 123.5 852.5 123.5" stroke="black" stroke-width="8" stroke-linecap="round" stroke-dasharray="20 30"/>
-          <path id={'path-3'} d="M843 124C843 124 1309.38 124 1602 124" stroke="black" stroke-width="8" stroke-linecap="round" stroke-dasharray="20 30"/>
+          <path id={'path-1'} d="M4 4C4 4 81 4 339.5 4" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
+          <path id={'path-2'} d="M329 4C447 4 511 18.5 511 61.5C511 104.5 594 123.5 852.5 123.5" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
+          <path id={'path-3'} d="M843 124C843 124 1309.38 124 1602 124" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
         </svg>
         <div id={'rocket'}/>
       </div>

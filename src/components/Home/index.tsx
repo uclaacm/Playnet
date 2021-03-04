@@ -16,33 +16,34 @@ function Home(): JSX.Element {
   const IntroSlides = forwardRef((_, ref: RefObject) => (
     <Intro ref={ref}/>
   ));
-  const ref = React.createRef();
+  IntroSlides.displayName = 'IntroSlides';
+  const ref = useRef(null);
 
   const content = [
     {
       child: <IntroSlides ref={ref}/>,
       topText: 'First, your request gets sent to a server.',
-      animationTime: 2,
+      animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref}/>,
       topText: 'Servers are like computers. They store information and do math.',
-      animationTime: 2,
+      animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref}/>,
       topText: 'Your request asks the server for information.',
-      animationTime: 2,
+      animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref}/>,
       topText: 'It’s like asking a librarian for a book!',
-      animationTime: 2,
+      animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref}/>,
       topText: 'Servers live in buildings called data centers.',
-      animationTime: 6,
+      animationTime: 5.5,
     },
     {
       child: <LottieControl animationData={Intro8Data} />,
