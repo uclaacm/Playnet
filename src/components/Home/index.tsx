@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Intro10Data from '../LottieAnimations/Intro10Animation';
 import Intro11Data from '../LottieAnimations/Intro11Animation';
@@ -7,10 +7,14 @@ import Intro8Data from '../LottieAnimations/Intro8Animation';
 import Intro9Data from '../LottieAnimations/Intro9Animation';
 import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
+import YouTube from '../shared/Youtube';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections } from '../shared/PlaynetConstants';
 
 function Home(): JSX.Element {
+  const [ chosenVideoPath, setChosenVideoPath ] = useState(null);
+  const [ showCarousel, setShowCarousel ] = useState(false);
+
   const content = [
     {
       child: <LottieControl animationData={Intro8Data} />,
@@ -41,6 +45,7 @@ function Home(): JSX.Element {
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
+        { showCarousel ? 
         <Carousel
           onNext={() => { /* Run function along with transition on next button press */
             // console.log('next');
@@ -53,7 +58,9 @@ function Home(): JSX.Element {
         >
           {/* Each child element of the Carousel is considered as one "slide", like so */}
           {content}
-        </Carousel>
+        </Carousel> : 
+        <YouTube chosenVideo= { chosenVideoPath } setVideo= { setChosenVideoPath } showNext = { setShowCarousel } /> 
+        }
       </Base>
     </div>
   );

@@ -9,7 +9,7 @@ import './styles/App.scss';
 
 import Activities from './Activities';
 import Feedback from './Feedback';
-import Home from './Home';
+import Home from './Home/index.tsx';
 
 function App(): JSX.Element {
   return (

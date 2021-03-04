@@ -30,26 +30,25 @@
     width: 100%;
     background-image: url("../../assets/computer.svg");
     background-repeat: no-repeat;
-    background-size: 56%;
+    background-size: contain;
     background-position: center;
 }
 
 #youtube-wrapper {
     margin-left: 10%;
     margin-right: 10%;
-    width: 30%;
+    width: 50%;
     height: auto;
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+    grid-template-columns: 33% 33% 33%;
     align-items: center;
 }
 
 .youtube-video{
     border: solid black 5px;
     border-radius: 10px;
-    width: 95%;
-    height: 95%;
+    width: auto;
+    height: 100%;
     display: grid;
     margin: 5px;
     transition-duration: 0.4s;
