@@ -22,5 +22,5 @@
       "./custom_typing"
     ]
   },
-  "includes": ["**/*.ts", "**/*.tsx"]
+  "include": ["**/*.ts", "**/*.tsx"]
 }
