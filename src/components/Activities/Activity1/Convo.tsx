@@ -45,7 +45,6 @@ function Convo(props: ConvoProps): JSX.Element {  //to replay convo, set i to 0 
     if (props.waitTimeBeforeStart !== undefined && !offsetYet) {
       setTimeout(() => setOffSetYet(true), props.waitTimeBeforeStart);
     } else if (i < props.phrases.length - 1) {
-
       const phraseDisplayTime = (props.phrases[i].timeOnScreen !== undefined) ?
         props.phrases[i].timeOnScreen : props.timeBtwnPhrases;
 
