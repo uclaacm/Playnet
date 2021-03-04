@@ -15,7 +15,6 @@ function Intro(): JSX.Element {
 
     const path1 = anime.path('#bg-trajectory #path-1');
     const path2 = anime.path('#bg-trajectory #path-2');
-    const path3 = anime.path('#bg-trajectory #path-3');
 
     // First Intro Animation
     timeline.current?.add({
