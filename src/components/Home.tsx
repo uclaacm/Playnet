@@ -1,7 +1,5 @@
 import React from 'react';
 
-import Computer from '../assets/blank-computer.svg';
-import AmbiguousGame from './Activities/Activity1/Game2';
 import Base from './shared/Base';
 import Carousel from './shared/Carousel';
 import { HeaderSections } from './shared/PlaynetConstants';
