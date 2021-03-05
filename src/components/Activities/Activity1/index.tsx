@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import '../../styles/Activity1.scss';
 
@@ -7,13 +7,16 @@ import CharacterSvg from '../../../assets/activity1/character3.svg';
 import ComputerSvg from '../../../assets/activity1/computer.svg';
 import LemonSvg from '../../../assets/activity1/lemon.svg';
 import PartyConfettiSvg from '../../../assets/activity1/party_confetti.svg';
+import BlankComputer from '../../../assets/blank-computer.svg';
 
-import Carousel from '../../shared/Carousel';
+import Carousel, { CarouselContext } from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import Convo, { Phrase } from './Convo';
+import AmbiguousGame from './Game2';
 import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
+  const context = useContext(CarouselContext);
   const timeBtwnWords = 3000;
   const personConvo: Phrase[] = [
     {
@@ -91,6 +94,41 @@ function Activity1(): JSX.Element {
     {
       topText: 'Computers have to learn just like we do: by trial and error!',
       child: <Slide3 />,
+    },
+    {
+      child:
+        <div id="game2-intro">
+          <span>But even if we know what the alien is saying...can you figure out what they mean?</span>
+          <br/>
+          <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>
+          <br/>
+          <button id="game2-intro-button" onClick={context.next}>
+            Play Game
+          </button>
+        </div>,
+    },
+    {
+      child: <AmbiguousGame />,
+      showNext: false,
+    },
+    {
+      child:
+        <div>
+          <h2 id={'body-text'}> Being a computer sure isn&apos;t easy... next time you use a search bar, now you know what it has to deal with! </h2>
+
+          <div id='blank-computer'>
+            <img id='blank-computer-img' src={BlankComputer} />
+            <div id='blank-computer-text'>
+              <div id='blank-computer-title-text'> More Information</div> <br/>
+              Computers in the real world use artificial intelligence (AI) to remember what they learn
+              from trial and error. They can share what they learn with other computers in order to
+              give us a better searching experience.
+              <br/> <br/>
+              When you&apos;re older, you&apos;ll get the chance to learn how to code you that you can
+              learn how AI works in more detail!
+            </div>
+          </div>
+        </div>,
     },
   ];
 

@@ -1,17 +1,17 @@
 import React, { useContext, useState } from 'react';
 
-import '../../styles/Game.scss';
+import '../../../styles/Game.scss';
 
-import Pair1A from '../../../assets/activity1/game2/pair1a.svg';
-import Pair1B from '../../../assets/activity1/game2/pair1b.svg';
-import Pair2A from '../../../assets/activity1/game2/pair2a.svg';
-import Pair2B from '../../../assets/activity1/game2/pair2b.svg';
-import Pair3A from '../../../assets/activity1/game2/pair3a.svg';
-import Pair3B from '../../../assets/activity1/game2/pair3b.svg';
-import Pair4A from '../../../assets/activity1/game2/pair4a.svg';
-import Pair4B from '../../../assets/activity1/game2/pair4b.svg';
+import Pair1A from '../../../../assets/activity1/game2/pair1a.svg';
+import Pair1B from '../../../../assets/activity1/game2/pair1b.svg';
+import Pair2A from '../../../../assets/activity1/game2/pair2a.svg';
+import Pair2B from '../../../../assets/activity1/game2/pair2b.svg';
+import Pair3A from '../../../../assets/activity1/game2/pair3a.svg';
+import Pair3B from '../../../../assets/activity1/game2/pair3b.svg';
+import Pair4A from '../../../../assets/activity1/game2/pair4a.svg';
+import Pair4B from '../../../../assets/activity1/game2/pair4b.svg';
 
-import { CarouselContext } from '../../shared/Carousel';
+import { CarouselContext } from '../../../shared/Carousel';
 import GameSlide from './components/GameSlide';
 
 function AmbiguousGame(): JSX.Element {
