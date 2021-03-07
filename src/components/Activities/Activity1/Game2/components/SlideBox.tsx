@@ -19,10 +19,7 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   }, [imgSrc]);
 
   const handleHover = (color : string) => {
-    let newBorder = INCORRECT_RED;
-    if (border !== INCORRECT_RED) {
-      newBorder = color;
-    }
+    let newBorder = (border === INCORRECT_RED) ? INCORRECT_RED : color;
 
     setBorder(newBorder);
   };
