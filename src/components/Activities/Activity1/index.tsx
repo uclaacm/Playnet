@@ -96,16 +96,8 @@ function Activity1(): JSX.Element {
       child: <Slide3 />,
     },
     {
-      child:
-        <div id="game2-intro">
-          <span>But even if we know what the alien is saying...can you figure out what they mean?</span>
-          <br/>
-          <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>
-          <br/>
-          <button id="game2-intro-button" onClick={context.next}>
-            Play Game
-          </button>
-        </div>,
+     child: <MiniGame2Intro/>,
+      showNext: false,
     },
     {
       child: <AmbiguousGame />,
