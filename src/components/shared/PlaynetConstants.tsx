@@ -12,3 +12,9 @@ export enum TextBubbleStyles {
   MEDIUM = 'medium',
   NONE = 'none',
 }
+
+export enum PlaynetColors {
+  BLACK = 'black',
+  HOVER_GREEN = '#1CC64B',
+  INCORRECT_RED = '#FF0000',
+}

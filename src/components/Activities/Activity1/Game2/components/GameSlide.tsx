@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-// import useSound from 'use-sound';
+import useSound from 'use-sound';
 
 import AlienSvg from '../../../../../assets/activity1/game2/alien.svg';
-// import CorrectSFX from '../../../../../assets/activity1/game2/correct.mp3';
-// import IncorrectSFX from '../../../../../assets/activity1/game2/oh_no_1.mp3';
+import CorrectSFX from '../../../../../assets/activity1/game2/correct.mp3';
+import IncorrectSFX from '../../../../../assets/activity1/game2/oh_no_1.mp3';
 
 import { TextBubbleStyles } from '../../../../shared/PlaynetConstants';
 import TextBubble from '../../TextBubble';
@@ -22,11 +22,11 @@ interface GameSlideProps {
 
 function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
-  // const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
-  // const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
+  const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
+  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
 
-  const img0 = props.img0;
-  const img1 = props.img1;
+  const img0 = props.imgOption0;
+  const img1 = props.imgOption1;
 
   const displayText: () => string = () => {
     if (incorrect) return props.textIncorrect ? props.textIncorrect : '';
@@ -37,11 +37,11 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     let newIncorrect = true;
 
     if (pos === props.correctImg) {
-      // playCorrect();
+      playCorrect();
       newIncorrect = false;
       props.advanceGame && props.advanceGame();
     } else if (!incorrect) {
-      // playIncorrect();
+      playIncorrect();
     }
     setIncorrect(newIncorrect);
   };

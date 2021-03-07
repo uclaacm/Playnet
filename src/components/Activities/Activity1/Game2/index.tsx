@@ -14,48 +14,45 @@ import Pair4B from '../../../../assets/activity1/game2/pair4b.svg';
 import { CarouselContext } from '../../../shared/Carousel';
 import GameSlide from './components/GameSlide';
 
-function AmbiguousGame(): JSX.Element {
+function AmbiguousPhrasingGame(): JSX.Element {
   const [ slideIdx, setSlideIdx ] = useState(0);
   const context = useContext(CarouselContext);
 
   const slides = [
     {
       correctImg: 1,
-      img0: Pair1A,
-      img1: Pair1B,
+      imgOption0: Pair1A,
+      imgOption1: Pair1B,
       textDefault: 'I saw her duck',
       textIncorrect: 'I meant I saw her crouch to avoid getting hit!',
     },
     {
       correctImg: 1,
-      img0: Pair2A,
-      img1: Pair2B,
+      imgOption0: Pair2A,
+      imgOption1: Pair2B,
       textDefault: 'Look at the couch potato',
       textIncorrect: 'I meant the potato on the couch!',
     },
     {
       correctImg: 0,
-      img0: Pair3A,
-      img1: Pair3B,
+      imgOption0: Pair3A,
+      imgOption1: Pair3B,
       textDefault: 'I want to buy 2000 pizza',
       textIncorrect: 'I meant I want to buy 2000 slices of pizza!',
     },
     {
       correctImg: 0,
-      img0: Pair4A,
-      img1: Pair4B,
+      imgOption0: Pair4A,
+      imgOption1: Pair4B,
       textDefault: 'Show me a toy hoyse',
       textIncorrect: 'I meant show me a toy horse!',
     },
   ];
 
   const advanceGame = () => {
-    let nextSlide = slideIdx+1;
+    const nextSlide = (slideIdx+1 < slides.length) ? slideIdx + 1 : slideIdx;
     if (slideIdx && slideIdx === slides.length-1) {
       context.next();
-
-      // this prevents the game from briefly loading past the last slide
-      nextSlide = slideIdx;
     }
     setSlideIdx(nextSlide);
   };
@@ -63,7 +60,6 @@ function AmbiguousGame(): JSX.Element {
   return (
     <div id={'game-wrapper'}>
       <h3> Try to guess what the alien is talking about.</h3>
-
       <GameSlide
         {...slides[slideIdx]}
         advanceGame={advanceGame}
@@ -72,4 +68,4 @@ function AmbiguousGame(): JSX.Element {
   );
 }
 
-export default AmbiguousGame;
+export default AmbiguousPhrasingGame;

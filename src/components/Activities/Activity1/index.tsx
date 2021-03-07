@@ -12,11 +12,10 @@ import BlankComputer from '../../../assets/blank-computer.svg';
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import Convo, { Phrase } from './Convo';
-import AmbiguousGame from './Game2';
+import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
-  const context = useContext(CarouselContext);
   const timeBtwnWords = 3000;
   const personConvo: Phrase[] = [
     {
@@ -74,6 +73,21 @@ function Activity1(): JSX.Element {
     );
   };
 
+  const AmbiguousPhrasingGameIntro = () => {
+    const context = useContext(CarouselContext);
+    return (
+      <div id="game2-intro">
+        <span>But even if we know what the alien is saying...can you figure out what they mean?</span>
+        <br/>
+        <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>
+        <br/>
+        <button id="game2-intro-button" onClick={context.next}>
+          Play Game
+        </button>
+      </div>
+    );
+  };
+
   const content = [
     {
       topText: 'How does YouTube bring you the videos you want?',
@@ -96,11 +110,11 @@ function Activity1(): JSX.Element {
       child: <Slide3 />,
     },
     {
-     child: <MiniGame2Intro/>,
+      child: <AmbiguousPhrasingGameIntro/>,
       showNext: false,
     },
     {
-      child: <AmbiguousGame />,
+      child: <AmbiguousPhrasingGame />,
       showNext: false,
     },
     {
@@ -123,20 +137,6 @@ function Activity1(): JSX.Element {
         </div>,
     },
   ];
-  const AmbiguousPhrasingGameIntro = () => {
-    const context = useContext(CarouselContext);
-    return (
-      <div id="game2-intro">
-          <span>But even if we know what the alien is saying...can you figure out what they mean?</span>
-          <br/>
-          <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>
-          <br/>
-          <button id="game2-intro-button" onClick={context.next}>
-            Play Game
-          </button>
-        </div>
-    );
-  };
   return (
     <Carousel title={'Lost in Translation'}>
       {content}

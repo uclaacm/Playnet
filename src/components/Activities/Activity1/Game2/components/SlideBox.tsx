@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
+import { PlaynetColors } from '../../../../shared/PlaynetConstants';
+
 interface SlideBoxProps {
   handleClick ?: () => void;
   imgSrc ?: string;
 }
 
 function SlideBox(props: SlideBoxProps): JSX.Element {
-  const BLACK = 'black';
-  const HOVER_GREEN = '#1CC64B';
-  const INCORRECT_RED = '#FF0000';
+  const BLACK : string = PlaynetColors.BLACK;
+  const HOVER_GREEN : string = PlaynetColors.HOVER_GREEN;
+  const INCORRECT_RED : string = PlaynetColors.INCORRECT_RED;
 
   const imgSrc = props.imgSrc;
 
@@ -19,7 +21,7 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   }, [imgSrc]);
 
   const handleHover = (color : string) => {
-    let newBorder = (border === INCORRECT_RED) ? INCORRECT_RED : color;
+    const newBorder = (border === INCORRECT_RED) ? INCORRECT_RED : color;
 
     setBorder(newBorder);
   };
