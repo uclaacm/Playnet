@@ -20,18 +20,12 @@ module.exports = merge(common, {
         ],
       },
       {
-        test: /\.(png|svg|jpe?g|gif)$/i,
+        test: /\.(png|svg|jpe?g|gif|mp3)$/i,
         use: {
           loader: 'file-loader',
           options: {
             name: 'assets/[name].[ext]',
           },
-        },
-      },
-      {
-        test: /\.(mp3)$/i,
-        use: {
-          loader: 'file-loader',
         },
       },
     ],
