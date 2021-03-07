@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-// import Anime from 'react-anime';
 // import useSound from 'use-sound';
 
 import AlienSvg from '../../../../../assets/activity1/game2/alien.svg';
