@@ -17,8 +17,8 @@ interface GameSlideProps {
   advanceGame ?: () => void;
   textDefault ?: string;
   textIncorrect ?: string;
-  img0 ?: string;
-  img1 ?: string;
+  imgOption0 ?: string;
+  imgOption1 ?: string;
 }
 
 function GameSlide(props: GameSlideProps): JSX.Element {
