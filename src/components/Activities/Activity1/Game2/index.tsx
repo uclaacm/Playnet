@@ -50,11 +50,10 @@ function AmbiguousPhrasingGame(): JSX.Element {
   ];
 
   const advanceGame = () => {
-    const nextSlide = (slideIdx+1 < slides.length) ? slideIdx + 1 : slideIdx;
-    if (slideIdx && slideIdx === slides.length-1) {
+    if (slideIdx === slides.length-1) {
       context.next();
     }
-    setSlideIdx(nextSlide);
+    setSlideIdx(slideIdx+1);
   };
 
   return (

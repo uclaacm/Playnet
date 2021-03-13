@@ -12,12 +12,11 @@ import SlideBox from './SlideBox';
 
 
 interface GameSlideProps {
-  correctImg ?: number;
-  advanceGame ?: () => void;
-  textDefault ?: string;
-  textIncorrect ?: string;
-  imgOption0 ?: string;
-  imgOption1 ?: string;
+  correctImg?: number;
+  advanceGame?: () => void;
+  textDefault?: string;
+  textIncorrect?: string;
+  imgs?: string[],
 }
 
 function GameSlide(props: GameSlideProps): JSX.Element {
@@ -25,8 +24,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
 
-  const img0 = props.imgOption0;
-  const img1 = props.imgOption1;
+const [img0, img1] = props.imgs;
 
   const displayText: () => string = () => {
     if (incorrect) return props.textIncorrect ? props.textIncorrect : '';
