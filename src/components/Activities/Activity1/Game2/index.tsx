@@ -21,29 +21,25 @@ function AmbiguousPhrasingGame(): JSX.Element {
   const slides = [
     {
       correctImg: 1,
-      imgOption0: Pair1A,
-      imgOption1: Pair1B,
+      imgs: [Pair1A, Pair1B],
       textDefault: 'I saw her duck',
       textIncorrect: 'I meant I saw her crouch to avoid getting hit!',
     },
     {
       correctImg: 1,
-      imgOption0: Pair2A,
-      imgOption1: Pair2B,
+      imgs: [Pair2A, Pair2B],
       textDefault: 'Look at the couch potato',
       textIncorrect: 'I meant the potato on the couch!',
     },
     {
       correctImg: 0,
-      imgOption0: Pair3A,
-      imgOption1: Pair3B,
+      imgs: [Pair3A, Pair3B],
       textDefault: 'I want to buy 2000 pizza',
       textIncorrect: 'I meant I want to buy 2000 slices of pizza!',
     },
     {
       correctImg: 0,
-      imgOption0: Pair4A,
-      imgOption1: Pair4B,
+      imgs: [Pair4A, Pair4B],
       textDefault: 'Show me a toy hoyse',
       textIncorrect: 'I meant show me a toy horse!',
     },
@@ -52,6 +48,7 @@ function AmbiguousPhrasingGame(): JSX.Element {
   const advanceGame = () => {
     if (slideIdx === slides.length-1) {
       context.next();
+      return;
     }
     setSlideIdx(slideIdx+1);
   };

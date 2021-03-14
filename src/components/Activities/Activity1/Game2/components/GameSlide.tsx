@@ -24,7 +24,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
 
-const [img0, img1] = props.imgs;
+  const [img0, img1] = props.imgs;
 
   const displayText: () => string = () => {
     if (incorrect) return props.textIncorrect ? props.textIncorrect : '';
@@ -48,7 +48,7 @@ const [img0, img1] = props.imgs;
     <div id={'game-content'}>
       <div className={'gamebox'}>
         <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
-        <img src={AlienSvg} />
+        <img src={AlienSvg} alt="friendly alien with translator device"/>
       </div>
       <div className={'gamebox'}>
         <SlideBox handleClick={()=>handleClick(0)} imgSrc={img0} />
