@@ -12,7 +12,7 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   const HOVER_GREEN : string = PlaynetColors.HOVER_GREEN;
   const INCORRECT_RED : string = PlaynetColors.INCORRECT_RED;
 
-  const imgSrc = props.imgSrc;
+  const {imgSrc, handleClick} = props;
 
   const [border, setBorder] = useState(BLACK);
 
@@ -21,9 +21,8 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   }, [imgSrc]);
 
   const handleHover = (color : string) => {
-    const newBorder = (border === INCORRECT_RED) ? INCORRECT_RED : color;
-
-    setBorder(newBorder);
+    if (border === PlaynetColors.INCORRECT_RED) return;
+    setBorder(color);
   };
 
   const handleClick = () => {
