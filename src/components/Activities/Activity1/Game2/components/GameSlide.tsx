@@ -10,13 +10,12 @@ import { TextBubbleStyles } from '../../../../shared/PlaynetConstants';
 import TextBubble from '../../TextBubble';
 import SlideBox from './SlideBox';
 
-
 interface GameSlideProps {
-  correctImg?: number;
-  advanceGame?: () => void;
-  textDefault?: string;
-  textIncorrect?: string;
-  imgs?: string[],
+  correctImg: number;
+  advanceGame: () => void;
+  textDefault: string;
+  textIncorrect: string;
+  imgs: string[],
 }
 
 function GameSlide(props: GameSlideProps): JSX.Element {
