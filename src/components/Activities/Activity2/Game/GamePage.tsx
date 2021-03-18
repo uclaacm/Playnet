@@ -12,15 +12,22 @@ import { SlideBoxStyles } from '../../../shared/PlaynetConstants';
 import SlideBox from '../../Activity1/Game2/components/SlideBox';
 
 interface GamePageProps {
+  addTime: (time: number, index: number) => void;
   advanceGame: () => void;
   choices: string[];
   correctChoice: number;
   gif: any;
   answer: JSX.Element;
+  slideNum: number;
+  gameNum: number;
 }
 
 function GamePage(props: GamePageProps): JSX.Element {
-  const [incorrect, setIncorrect] = useState(false);
+  // let intialChosenIncorrectChoices: boolean[] = [];
+  // for (let i = 0; i < props.choices.length; i++) {
+  //   intialChosenIncorrectChoices.push(false);
+  // }
+  const [chosenIncorrectChoices, setIncorrect] = useState<boolean[]>([]);
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
 
@@ -36,19 +43,32 @@ function GamePage(props: GamePageProps): JSX.Element {
   const handleClick = (pos: number) => {
     let newIncorrect = true;
     if (pos === props.correctChoice) {
+      props.addTime(currTime - startTime, 2 * props.gameNum + props.slideNum);
       playCorrect();
       newIncorrect = false;
       props.advanceGame && props.advanceGame();
+
       setStartTime(Date.now());
-    } else if (!incorrect) {
+      setCurrTime(Date.now());
+    } else if (!chosenIncorrectChoices[pos]) {
       playIncorrect();
     }
-    setIncorrect(newIncorrect);
+    const copyChosenIncorrectChoices = chosenIncorrectChoices;
+    copyChosenIncorrectChoices[pos] = newIncorrect;
+    setIncorrect(copyChosenIncorrectChoices);
   };
 
   useEffect(() => {
     setTimeout(updateTimePassed, 50);
   });
+
+  useEffect(() => {
+    const intialChosenIncorrectChoices: boolean[] = [];
+    for (let i = 0; i < props.choices.length; i++) {
+      intialChosenIncorrectChoices.push(false);
+    }
+    setIncorrect(intialChosenIncorrectChoices);
+  }, [props.choices]);
 
   return (
     <div className='game-page'>

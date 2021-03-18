@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
@@ -6,10 +6,43 @@ import '../../styles/CompressionGame.scss';
 
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 
-import CompressionGame from  './Game';
+import CompressionGame from './Game';
 
 function Activity2(): JSX.Element {
-  const AnswerDisplay = ()=> {
+  const [gameTimes, setGameTimes] = useState<number[]>([-1, -1, -1, -1]);
+
+  const addTime = (time: number, index: number) => {
+    const newGameTimes = gameTimes;
+    newGameTimes[index] = time;
+    setGameTimes(newGameTimes);
+  };
+
+  const GameResults = () => {
+    const renderTimeGridItem = (time: number, index: number) => {
+      let specialClass = '';
+      if (index === 1 || index === 3) {
+        specialClass += ' right-edge';
+      }
+      if (time === -1) {
+        return <div className={'time-grid-block time-' + index + specialClass} key={index}>No Time</div>;
+      }
+      return <div className={'time-grid-block time-' + index + specialClass} key={index}>{time / 1000} seconds</div>;
+
+    };
+
+    return (
+      <div className='grid-container'>
+        <div className='top-edge top-row top-left-corner grid-label'></div>
+        <div className='row1-col2 top-edge top-row grid-label'>Without Compression</div>
+        <div className='row1-col3 top-right-corner top-row grid-label'>With Compression</div>
+        <div className='row2-col1 grid-label'>Elephant</div>
+        <div className='row3-col1 grid-label bottom-left-corner'>Elephant Wearing Wig</div>
+        {gameTimes.map((time, index) => renderTimeGridItem(time, index))}
+      </div>
+    );
+  };
+
+  const AnswerDisplay = () => {
     return (
       <div className='flex-row'>
         <div className='individual-answer-display white-background'>elephant</div>
@@ -85,11 +118,11 @@ function Activity2(): JSX.Element {
       topText: 'dats the whole demo cyaa',
     },
     {
-      child: <CompressionGameIntro text={'If you were a computer, how long would it take you to understand the instructions without compression?'} buttonText={'Play Game'}/>,
+      child: <CompressionGameIntro text={'If you were a computer, how long would it take you to understand the instructions without compression?'} buttonText={'Play Game'} />,
       showNext: false,
     },
     {
-      child: <CompressionGame slides={uncompressedGameSlides}/>,
+      child: <CompressionGame slides={uncompressedGameSlides} addTime={addTime} gameNum={0} />,
       showNext: false,
     },
     {
@@ -97,8 +130,11 @@ function Activity2(): JSX.Element {
       showNext: false,
     },
     {
-      child: <CompressionGame slides={compressedGameSlides} />,
+      child: <CompressionGame slides={compressedGameSlides} addTime={addTime} gameNum={1} />,
       showNext: false,
+    },
+    {
+      child: <GameResults />,
     },
     {
       child:
@@ -131,7 +167,7 @@ function CompressionGameIntro(props: CompressionGameIntroProps): JSX.Element {
   );
 }
 
-function DemoMoveNextPage(props: {children: JSX.Element}) : JSX.Element {
+function DemoMoveNextPage(props: { children: JSX.Element }): JSX.Element {
   const context = useContext(CarouselContext);
   useEffect(
     () => {
@@ -143,7 +179,7 @@ function DemoMoveNextPage(props: {children: JSX.Element}) : JSX.Element {
   return <>{props.children}</>;
 }
 
-function DemoMovePrevPage(props: {children: JSX.Element}) : JSX.Element {
+function DemoMovePrevPage(props: { children: JSX.Element }): JSX.Element {
   const context = useContext(CarouselContext);
   useEffect(
     () => {

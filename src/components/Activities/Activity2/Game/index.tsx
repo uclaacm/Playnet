@@ -8,6 +8,8 @@ import GamePage from './GamePage';
 
 interface CompressionGameProps {
   slides: Record<string, unknown>[];  //each object should have a list of choices, a gif, and
+  addTime: (time: number, index: number) => void;
+  gameNum: number;
 }
 
 function CompressionGame(props: CompressionGameProps): JSX.Element {
@@ -25,7 +27,11 @@ function CompressionGame(props: CompressionGameProps): JSX.Element {
   return (
     <GamePage
       {...props.slides[i]}
-      advanceGame={advanceGame} />
+      addTime={props.addTime}
+      advanceGame={advanceGame}
+      gameNum={props.gameNum}
+      slideNum={i}
+    />
   );
 }
 
