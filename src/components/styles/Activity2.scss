@@ -1,0 +1,21 @@
+@import 'variables';
+
+.game-intro-content {
+  display: flex;
+  height: 100%;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.center-text {
+  margin: 5% 10%;
+}
+
+.orange-text {
+  color: $playnet-orange;
+}
+
+.padding-2 {
+  padding: 2%;
+}

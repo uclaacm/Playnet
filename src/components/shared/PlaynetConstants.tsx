@@ -18,3 +18,8 @@ export enum PlaynetColors {
   HOVER_GREEN = '#1CC64B',
   INCORRECT_RED = '#FF0000',
 }
+
+export enum SlideBoxStyles {
+  LARGE_PERCENT_BASED = 'choice-container',
+  SMALL_PX_BASED = 'px-choice-container',
+}

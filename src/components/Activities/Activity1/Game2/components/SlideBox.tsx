@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-import { PlaynetColors } from '../../../../shared/PlaynetConstants';
+import { PlaynetColors, SlideBoxStyles } from '../../../../shared/PlaynetConstants';
 
 interface SlideBoxProps {
   handleClick: () => void;
-  imgSrc: string;
+  imgSrc?: string;
+  text?: string;
+  style?: SlideBoxStyles;
 }
 
 function SlideBox(props: SlideBoxProps): JSX.Element {
   const imgSrc = props.imgSrc;
 
   const [border, setBorder] = useState(PlaynetColors.BLACK);
+  const classStyle = (props.style === undefined ? SlideBoxStyles.LARGE_PERCENT_BASED : props.style);
 
   useEffect (() => {
     setBorder(PlaynetColors.BLACK);
@@ -28,13 +31,13 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
 
   return (
     <div
-      className={'choice-container'}
+      className={classStyle}
       style={{borderColor: border}}
       onClick={handleClick}
       onMouseOver={() => handleHover(PlaynetColors.HOVER_GREEN)}
       onMouseLeave={() => handleHover(PlaynetColors.BLACK)}
     >
-      <img src={imgSrc ? imgSrc : 'error: missing image'}/>
+      {imgSrc !== undefined ?<img src={imgSrc}/> : <span>{props.text}</span>}
     </div>
   );
 }
