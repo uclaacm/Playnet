@@ -4,12 +4,17 @@ import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
 import '../../styles/CompressionGame.scss';
 
+import ElephantGIF from '../../../assets/activity2/game/elephant1.gif';
+import ElephantHatGIF from '../../../assets/activity2/game/elephant2.gif';
+import ElephantHatShoesGIF from '../../../assets/activity2/game/elephant3.gif';
+
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 
 import CompressionGame from './Game';
+import { AnswerDisplayStyles } from '../../shared/PlaynetConstants';
 
 function Activity2(): JSX.Element {
-  const [gameTimes, setGameTimes] = useState<number[]>([-1, -1, -1, -1]);
+  const [gameTimes, setGameTimes] = useState<number[]>([-1, -1, -1, -1,-1,-1]);
 
   const addTime = (time: number, index: number) => {
     const newGameTimes = gameTimes;
@@ -20,7 +25,7 @@ function Activity2(): JSX.Element {
   const GameResults = () => {
     const renderTimeGridItem = (time: number, index: number) => {
       let specialClass = '';
-      if (index === 1 || index === 3) {
+      if (index === 3 || index === 4 || index === 5) {
         specialClass += ' right-edge';
       }
       if (time === -1) {
@@ -36,18 +41,21 @@ function Activity2(): JSX.Element {
         <div className='row1-col2 top-edge top-row grid-label'>Without Compression</div>
         <div className='row1-col3 top-right-corner top-row grid-label'>With Compression</div>
         <div className='row2-col1 grid-label'>Elephant</div>
-        <div className='row3-col1 grid-label bottom-left-corner'>Elephant Wearing Wig</div>
+        <div className='row3-col1 grid-label'>Elephant Wearing Hat</div>
+        <div className='row4-col1 grid-label bottom-left-corner'>Elephant Wearing Hat and Shoes</div>
         {gameTimes.map((time, index) => renderTimeGridItem(time, index))}
       </div>
     );
   };
 
-  const AnswerDisplay = () => {
+  interface AnswerDisplayProps {
+    words: string[];
+    styles: AnswerDisplayStyles[];
+  }
+  const AnswerDisplay = (props: AnswerDisplayProps) => {
     return (
       <div className='flex-row'>
-        <div className='individual-answer-display white-background'>elephant</div>
-        <div className='individual-answer-display'>wearing</div>
-        <div className='individual-answer-display red-outline white-background white-text'>empty</div>
+        {props.words.map((word, index) => <div className={'individual-answer-display '+props.styles[index]}>{word}</div>)}
       </div>
     );
   };
@@ -56,7 +64,7 @@ function Activity2(): JSX.Element {
     {
       choices: ['elephant', 'cow', 'sheep'],
       correctChoice: 0,
-      gif: <div>gif of elephant being drawn</div>,
+      gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
       answer: <div
         className='px-choice-container'
         style={{
@@ -68,9 +76,15 @@ function Activity2(): JSX.Element {
     },
     {
       choices: ['hat', 'wig', 'bow'],
+      correctChoice: 0,
+      gif: <img src={ElephantHatGIF} alt='Gif of Elephant with Hat being Drawn' />,
+      answer: <AnswerDisplay words={['elephant', 'wearing', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
+    },
+    {
+      choices: ['wig', 'shoes', 'bow'],
       correctChoice: 1,
-      gif: <div>gif of elephant with wig</div>,
-      answer: <AnswerDisplay />,
+      gif: <img src={ElephantHatShoesGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
+      answer: <AnswerDisplay words={['elephant', 'wearing', 'hat', 'and', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
     },
   ];
 
@@ -78,7 +92,7 @@ function Activity2(): JSX.Element {
     {
       choices: ['elephant', 'cow', 'sheep'],
       correctChoice: 0,
-      gif: <div>compressed gif of elephant being drawn</div>,
+      gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
       answer: <div
         className='px-choice-container'
         style={{
@@ -90,9 +104,15 @@ function Activity2(): JSX.Element {
     },
     {
       choices: ['hat', 'wig', 'bow'],
+      correctChoice: 0,
+      gif: <img src={ElephantHatGIF} alt='Gif of Elephant with Hat being Drawn' />,
+      answer: <AnswerDisplay words={['elephant', 'wearing', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
+    },
+    {
+      choices: ['wig', 'shoes', 'bow'],
       correctChoice: 1,
-      gif: <div>compressed gif of elephant with wig</div>,
-      answer: <AnswerDisplay />,
+      gif: <img src={ElephantHatShoesGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
+      answer: <AnswerDisplay words={['elephant', 'wearing', 'hat', 'and', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
     },
   ];
 

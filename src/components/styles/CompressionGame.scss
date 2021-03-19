@@ -1,7 +1,9 @@
+@import 'variables';
+
 .answer-choices {
   width: 100%;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: center;
   display: flex;
 }
 
@@ -9,14 +11,21 @@
   flex-direction: column;
   justify-content: center;
   display: flex;
-  height: 100%;
+  height: calc(100vh - 220px);
+  @media (max-width: $mobile-width) {
+    justify-content: flex-start;
+  }
 }
 
 .main-content {
   flex-direction: row;
   justify-content: flex-start;
   display: flex;
-  height: calc(100% - 66px);
+  height: calc(90% - 66px);
+  @media (max-width: $mobile-width) {
+    flex-direction: column;
+    height: 75%;
+  }
 }
 
 .right-side {
@@ -25,6 +34,9 @@
   display: flex;
   height: 100%;
   width: 60%;
+  @media (max-width: $mobile-width) {
+    width: 100%;
+  }
 }
 
 .answer-display {
@@ -36,11 +48,25 @@
 }
 
 .gif {
-  width: 40%;
-  height: 90%;
+  max-width: 40%;
+  max-height: 90%;
+  width: fit-content;
+  height: fit-content;
   margin: 2%;
   background-color: white;
   border-radius: 20px;
+  @media (max-width: $mobile-width) {
+    max-width: 100%;
+    max-height: 40%;
+  }
+}
+
+.gif img {
+  width: 70%;
+  border-radius: 20px;
+  @media (max-width: $mobile-width) {
+    width: 35%;
+  }
 }
 
 .time-display {

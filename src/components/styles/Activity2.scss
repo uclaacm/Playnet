@@ -29,7 +29,7 @@ $grid-border-radius: 20px;
   border-color: black;
   border-radius: 20px;
   grid-template-columns: 30% 35% 35%;
-  grid-template-rows: 25% 37.5% 37.5%;
+  grid-template-rows: 19% 27% 27% 27%;
   width: 80%;
   height: 60%;
   margin: 5%;
@@ -41,7 +41,7 @@ $grid-border-radius: 20px;
   padding: 5%;
   border-top: 2px solid black;
   border-right: 2px solid black;
-  font-size: 2vw;
+  font-size: 1.8vw;
   box-sizing: border-box;
   text-align: center;
   position: relative;
@@ -73,24 +73,35 @@ $grid-border-radius: 20px;
 }
 
 .time-0 {
-  grid-column-start: 2;
   grid-row-start: 2;
+  grid-column-start: 2;
 }
 
 .time-1 {
-  grid-column-start: 3;
-  grid-row-start: 2;
+  grid-row-start: 3;
+  grid-column-start: 2;
 }
 
 .time-2 {
+  grid-row-start: 4;
   grid-column-start: 2;
-  grid-row-start: 3;
 }
 
 .time-3 {
+  grid-row-start: 2;
   grid-column-start: 3;
-  grid-row-start: 3;
 }
+
+.time-4 {
+  grid-row-start: 3;
+  grid-column-start: 3;
+}
+
+.time-5 {
+  grid-row-start: 4;
+  grid-column-start: 3;
+}
+
 
 .row1-col2 {
   grid-row-start: 1;
@@ -109,5 +120,10 @@ $grid-border-radius: 20px;
 
 .row3-col1 {
   grid-row-start: 3;
+  grid-column-start: 1;
+}
+
+.row4-col1 {
+  grid-row-start: 4;
   grid-column-start: 1;
 }

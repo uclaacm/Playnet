@@ -23,3 +23,9 @@ export enum SlideBoxStyles {
   LARGE_PERCENT_BASED = 'choice-container',
   SMALL_PX_BASED = 'px-choice-container',
 }
+
+export enum AnswerDisplayStyles {
+  WHITE_BACKGROUND = 'white-background',
+  NO_BACKGROUND = '',
+  RED_SELECTED = 'red-outline white-background white-text',
+}

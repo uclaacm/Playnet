@@ -16,17 +16,13 @@ interface GamePageProps {
   advanceGame: () => void;
   choices: string[];
   correctChoice: number;
-  gif: any;
+  gif: JSX.Element;
   answer: JSX.Element;
   slideNum: number;
   gameNum: number;
 }
 
 function GamePage(props: GamePageProps): JSX.Element {
-  // let intialChosenIncorrectChoices: boolean[] = [];
-  // for (let i = 0; i < props.choices.length; i++) {
-  //   intialChosenIncorrectChoices.push(false);
-  // }
   const [chosenIncorrectChoices, setIncorrect] = useState<boolean[]>([]);
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
@@ -43,7 +39,7 @@ function GamePage(props: GamePageProps): JSX.Element {
   const handleClick = (pos: number) => {
     let newIncorrect = true;
     if (pos === props.correctChoice) {
-      props.addTime(currTime - startTime, 2 * props.gameNum + props.slideNum);
+      props.addTime(currTime - startTime, 3 * props.gameNum + props.slideNum);
       playCorrect();
       newIncorrect = false;
       props.advanceGame && props.advanceGame();
