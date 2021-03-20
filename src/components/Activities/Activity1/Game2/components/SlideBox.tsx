@@ -26,8 +26,11 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   };
 
   const handleClick = () => {
-    props.handleClick();
-    setBorder(PlaynetColors.INCORRECT_RED);
+    if (props.handleClick()) {
+      setBorder(PlaynetColors.INCORRECT_RED);
+    } else {
+      setBorder(PlaynetColors.HOVER_GREEN);
+    }
   };
 
   return (

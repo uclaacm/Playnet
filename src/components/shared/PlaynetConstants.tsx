@@ -27,5 +27,7 @@ export enum SlideBoxStyles {
 export enum AnswerDisplayStyles {
   WHITE_BACKGROUND = 'white-background',
   NO_BACKGROUND = '',
-  RED_SELECTED = 'red-outline white-background white-text',
+  RED_BORDER = 'red-outline black-text',
+  GREEN_BORDER = 'green-outline black-text',
+  ANSWER_SPOT = 'gray-background gray-text'
 }

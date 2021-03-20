@@ -30,7 +30,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     return props.textDefault ? props.textDefault : '';
   };
 
-  const handleClick = (pos : number) => {
+  const handleClick = (pos : number) => { //returns true if the choice was incorrect
     let newIncorrect = true;
 
     if (pos === props.correctImg) {
@@ -41,6 +41,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
       playIncorrect();
     }
     setIncorrect(newIncorrect);
+    return newIncorrect;
   };
 
   return (

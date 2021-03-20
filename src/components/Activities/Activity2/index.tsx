@@ -4,9 +4,11 @@ import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
 import '../../styles/CompressionGame.scss';
 
-import ElephantGIF from '../../../assets/activity2/game/elephant1.gif';
-import ElephantHatGIF from '../../../assets/activity2/game/elephant2.gif';
-import ElephantHatShoesGIF from '../../../assets/activity2/game/elephant3.gif';
+import ElephantGIF from '../../../assets/activity2/game/elephant.gif';
+import ElephantHatCompressedGIF from '../../../assets/activity2/game/elephant_hat_compressed.gif';
+import ElephantHatUncompressedGIF from '../../../assets/activity2/game/elephant_hat_uncompressed.gif';
+import ElephantShoesCompressedGIF from '../../../assets/activity2/game/elephant_shoe_compressed.gif';
+import ElephantShoesUncompressedGIF from '../../../assets/activity2/game/elephant_shoe_uncompressed.gif';
 
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 
@@ -48,43 +50,33 @@ function Activity2(): JSX.Element {
     );
   };
 
-  interface AnswerDisplayProps {
-    words: string[];
-    styles: AnswerDisplayStyles[];
-  }
-  const AnswerDisplay = (props: AnswerDisplayProps) => {
-    return (
-      <div className='flex-row'>
-        {props.words.map((word, index) => <div className={'individual-answer-display '+props.styles[index]}>{word}</div>)}
-      </div>
-    );
-  };
-
   const uncompressedGameSlides = [
     {
       choices: ['elephant', 'cow', 'sheep'],
       correctChoice: 0,
       gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
-      answer: <div
-        className='px-choice-container'
-        style={{
-          backgroundColor: 'lightgray',
-          borderStyle: 'none',
-        }}
-      >
-      </div>,
+      answerDisplayWords: ['blankspot'],
+      answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
+      answerSlotIndex: 0,
     },
     {
       choices: ['hat', 'wig', 'bow'],
       correctChoice: 0,
-      gif: <img src={ElephantHatGIF} alt='Gif of Elephant with Hat being Drawn' />,
-      answer: <AnswerDisplay words={['elephant', 'wearing', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
+      gif: <img src={ElephantHatUncompressedGIF} alt='Gif of Elephant with Hat being Drawn' />,
+      answerDisplayWords: ['elephant', 'wearing', 'blank'],
+      answerDisplayStyles:
+        [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
+      answerSlotIndex: 2,
     },
     {
-      choices: ['wig', 'shoes', 'bow'],
-      correctChoice: 1,
-      gif: <img src={ElephantHatShoesGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
-      answer: <AnswerDisplay words={['elephant', 'wearing', 'hat', 'and', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
+      choices: ['wig', 'bow', 'shoes'],
+      correctChoice: 2,
+      gif: <img src={ElephantShoesUncompressedGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
+      answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
+      answerDisplayStyles:
+        [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
+          AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
+      answerSlotIndex: 4,
     },
   ];
 
@@ -93,26 +85,28 @@ function Activity2(): JSX.Element {
       choices: ['elephant', 'cow', 'sheep'],
       correctChoice: 0,
       gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
-      answer: <div
-        className='px-choice-container'
-        style={{
-          backgroundColor: 'lightgray',
-          borderStyle: 'none',
-        }}
-      >
-      </div>,
+      answerDisplayWords: ['blankspot'],
+      answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
+      answerSlotIndex: 0,
     },
     {
       choices: ['hat', 'wig', 'bow'],
       correctChoice: 0,
-      gif: <img src={ElephantHatGIF} alt='Gif of Elephant with Hat being Drawn' />,
-      answer: <AnswerDisplay words={['elephant', 'wearing', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
+      gif: <img src={ElephantHatCompressedGIF} alt='Gif of Elephant with Hat being Drawn' />,
+      answerDisplayWords: ['elephant', 'wearing', 'blank'],
+      answerDisplayStyles:
+        [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
+      answerSlotIndex: 2,
     },
     {
-      choices: ['wig', 'shoes', 'bow'],
-      correctChoice: 1,
-      gif: <img src={ElephantHatShoesGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
-      answer: <AnswerDisplay words={['elephant', 'wearing', 'hat', 'and', 'blank']} styles={[AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.RED_SELECTED]}/>,
+      choices: ['wig', 'bow', 'shoes'],
+      correctChoice: 2,
+      gif: <img src={ElephantShoesCompressedGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
+      answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
+      answerDisplayStyles:
+        [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
+          AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
+      answerSlotIndex: 4,
     },
   ];
 

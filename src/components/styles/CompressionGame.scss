@@ -12,6 +12,7 @@
   justify-content: center;
   display: flex;
   height: calc(100vh - 220px);
+
   @media (max-width: $mobile-width) {
     justify-content: flex-start;
   }
@@ -22,6 +23,7 @@
   justify-content: flex-start;
   display: flex;
   height: calc(90% - 66px);
+
   @media (max-width: $mobile-width) {
     flex-direction: column;
     height: 75%;
@@ -34,6 +36,7 @@
   display: flex;
   height: 100%;
   width: 60%;
+
   @media (max-width: $mobile-width) {
     width: 100%;
   }
@@ -55,6 +58,7 @@
   margin: 2%;
   background-color: white;
   border-radius: 20px;
+
   @media (max-width: $mobile-width) {
     max-width: 100%;
     max-height: 40%;
@@ -64,6 +68,7 @@
 .gif img {
   width: 70%;
   border-radius: 20px;
+
   @media (max-width: $mobile-width) {
     width: 35%;
   }
@@ -96,12 +101,30 @@
   border-color: red;
 }
 
+.green-outline {
+  border-style: solid;
+  border-width: 8px;
+  border-color: $hover_green;
+}
+
 .white-text {
   color: white;
 }
 
 .white-background {
   background-color: white;
+}
+
+.gray-background {
+  background-color: lightgray;
+}
+
+.gray-text {
+  color: lightgray;
+}
+
+.black-text {
+  color: black;
 }
 
 .flex-row {

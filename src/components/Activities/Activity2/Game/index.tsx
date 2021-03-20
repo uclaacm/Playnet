@@ -15,12 +15,15 @@ interface CompressionGameProps {
 function CompressionGame(props: CompressionGameProps): JSX.Element {
   const context = useContext(CarouselContext);
   const [i, setSlide] = useState(0);
+  // const [gif, setGif] = useState(props.slides[i].gif);
 
   const advanceGame = () => {
     if (i === props.slides.length - 1) {
       context.next();
+      // setGif('');
       return;
     }
+    // setGif(props.slides[i+1].gif);
     setSlide(i + 1);
   };
 

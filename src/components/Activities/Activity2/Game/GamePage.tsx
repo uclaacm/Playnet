@@ -8,7 +8,7 @@ import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
 import '../../../styles/CompressionGame.scss';
 
 import ClockSvg from '../../../../assets/activity2/game/clock.svg';
-import { SlideBoxStyles } from '../../../shared/PlaynetConstants';
+import { SlideBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 import SlideBox from '../../Activity1/Game2/components/SlideBox';
 
 interface GamePageProps {
@@ -16,8 +16,10 @@ interface GamePageProps {
   advanceGame: () => void;
   choices: string[];
   correctChoice: number;
-  gif: JSX.Element;
-  answer: JSX.Element;
+  gif: string;
+  answerDisplayWords: string[];
+  answerDisplayStyles: AnswerDisplayStyles[];
+  answerSlotIndex: number;
   slideNum: number;
   gameNum: number;
 }
@@ -32,26 +34,45 @@ function GamePage(props: GamePageProps): JSX.Element {
 
   const answerChoices: string[] = props.choices;
 
+  const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>(props.answerDisplayStyles);
+  const [answerDisplayWords, setAnswerDisplayWords] = useState<string[]>(props.answerDisplayWords);
+
   const updateTimePassed = () => {
     setCurrTime(Date.now());
   };
 
-  const handleClick = (pos: number) => {
+  const updateAnswerDisplaySlot = (style: AnswerDisplayStyles, word: string) => {
+    const copyAnswerDisplayStyles = answerDisplayStyles;
+    copyAnswerDisplayStyles[props.answerSlotIndex] = style;
+    setAnswerDisplayStyles(copyAnswerDisplayStyles);
+
+    const copyAnswerDisplayWords = answerDisplayWords;
+    copyAnswerDisplayWords[props.answerSlotIndex] = word;
+    setAnswerDisplayWords(copyAnswerDisplayWords);
+  };
+
+  const handleClick = (pos: number) => {  //returns true if the choice was incorrect
     let newIncorrect = true;
     if (pos === props.correctChoice) {
       props.addTime(currTime - startTime, 3 * props.gameNum + props.slideNum);
       playCorrect();
       newIncorrect = false;
-      props.advanceGame && props.advanceGame();
 
-      setStartTime(Date.now());
-      setCurrTime(Date.now());
+      updateAnswerDisplaySlot(AnswerDisplayStyles.GREEN_BORDER, props.choices[pos]);
+      setTimeout(() => {
+        props.advanceGame && props.advanceGame();
+        setStartTime(Date.now());
+        setCurrTime(Date.now());
+      }, 500);
+
     } else if (!chosenIncorrectChoices[pos]) {
+      updateAnswerDisplaySlot(AnswerDisplayStyles.RED_BORDER, props.choices[pos]);
       playIncorrect();
     }
     const copyChosenIncorrectChoices = chosenIncorrectChoices;
     copyChosenIncorrectChoices[pos] = newIncorrect;
     setIncorrect(copyChosenIncorrectChoices);
+    return newIncorrect;
   };
 
   useEffect(() => {
@@ -66,6 +87,22 @@ function GamePage(props: GamePageProps): JSX.Element {
     setIncorrect(intialChosenIncorrectChoices);
   }, [props.choices]);
 
+  useEffect(() => {
+    let differentWords = false;
+    if (answerDisplayWords.length !== props.answerDisplayWords.length) {
+      differentWords = true;
+    }
+    for (let i = 0; i < answerDisplayWords.length && !differentWords; i++) {
+      if (answerDisplayWords[i] !== props.answerDisplayWords[i]) {
+        differentWords = true;
+      }
+    }
+    if (differentWords) {
+      setAnswerDisplayWords(props.answerDisplayWords);
+      setAnswerDisplayStyles(props.answerDisplayStyles);
+    }
+  }, [props.answerDisplayWords, props.answerDisplayStyles]);
+
   return (
     <div className='game-page'>
       <div className='main-content'>
@@ -74,7 +111,9 @@ function GamePage(props: GamePageProps): JSX.Element {
         </div>
         <div className='right-side'>
           <div className='answer-display'>
-            {props.answer}
+            <div className='flex-row'>
+              {props.answerDisplayWords.map((word, index) => <div className={'individual-answer-display ' + props.answerDisplayStyles[index]} key={index}>{word}</div>)}
+            </div>
           </div>
           <div className='answer-choices'>
             {answerChoices.map((answerChoice, index) =>
