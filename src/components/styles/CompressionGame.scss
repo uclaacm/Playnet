@@ -56,7 +56,6 @@
   width: fit-content;
   height: fit-content;
   margin: 2%;
-  background-color: white;
   border-radius: 20px;
 
   @media (max-width: $mobile-width) {
@@ -66,7 +65,7 @@
 }
 
 .gif img {
-  width: 70%;
+  width: 90%;
   border-radius: 20px;
 
   @media (max-width: $mobile-width) {
