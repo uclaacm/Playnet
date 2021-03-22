@@ -10,10 +10,10 @@ import '../../../styles/CompressionGame.scss';
 import ClockSvg from '../../../../assets/activity2/game/clock.svg';
 import SceneSvg from '../../../../assets/activity2/game/scene.svg';
 
-import { SlideBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
-import SlideBox from '../../Activity1/Game2/components/SlideBox';
+import { AnswerChoiceBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
+import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';
 
-interface GamePageProps {
+interface FillInBlankGamePageProps {
   addTime: (time: number, index: number) => void;
   advanceGame: () => void;
   choices: string[];
@@ -26,7 +26,7 @@ interface GamePageProps {
   gameNum: number;
 }
 
-function GamePage(props: GamePageProps): JSX.Element {
+function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const [chosenIncorrectChoices, setIncorrect] = useState<boolean[]>([]);
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
@@ -53,7 +53,7 @@ function GamePage(props: GamePageProps): JSX.Element {
     setAnswerDisplayWords(copyAnswerDisplayWords);
   };
 
-  const handleClick = (pos: number) => {  //returns true if the choice was incorrect
+  const handleClickAndReturnIsCorrect = (pos: number) => {  //returns true if the choice is correct
     let newIncorrect = true;
     if (pos === props.correctChoice) {
       props.addTime(currTime - startTime, 3 * props.gameNum + props.slideNum);
@@ -74,7 +74,7 @@ function GamePage(props: GamePageProps): JSX.Element {
     const copyChosenIncorrectChoices = chosenIncorrectChoices;
     copyChosenIncorrectChoices[pos] = newIncorrect;
     setIncorrect(copyChosenIncorrectChoices);
-    return newIncorrect;
+    return !newIncorrect;
   };
 
   useEffect(() => {
@@ -119,10 +119,10 @@ function GamePage(props: GamePageProps): JSX.Element {
           </div>
           <div className='answer-choices'>
             {answerChoices.map((answerChoice, index) =>
-              <SlideBox
+              <AnsweChoiceBox
                 key={index}
-                handleClickAndReturnIsCorrect={() => handleClick(index)}
-                text={answerChoice} style={SlideBoxStyles.SMALL_PX_BASED}
+                handleClickAndReturnIsCorrect={() => handleClickAndReturnIsCorrect(index)}
+                text={answerChoice} style={AnswerChoiceBoxStyles.SMALL_PX_BASED}
               />,
             )}
           </div>
@@ -146,4 +146,4 @@ function GamePage(props: GamePageProps): JSX.Element {
   );
 }
 
-export default GamePage;
+export default FillInBlankGamePage;

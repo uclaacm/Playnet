@@ -4,7 +4,7 @@ import '../../../styles/CompressionGame.scss';
 
 import { CarouselContext } from '../../../shared/Carousel';
 
-import GamePage from './GamePage';
+import GamePage from './FillInBlankGamePage';
 
 interface CompressionGameProps {
   slides: Record<string, unknown>[];  //each object should have a list of choices, a gif, and

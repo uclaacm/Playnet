@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 
-import { PlaynetColors, SlideBoxStyles } from '../../../../shared/PlaynetConstants';
+import { PlaynetColors, AnswerChoiceBoxStyles } from './PlaynetConstants';
 
-interface SlideBoxProps {
+interface AnswerChoiceBoxProps {
   handleClickAndReturnIsCorrect: () => boolean;
   imgSrc?: string;
   text?: string;
-  style?: SlideBoxStyles;
+  style?: AnswerChoiceBoxStyles;
 }
 
-function SlideBox(props: SlideBoxProps): JSX.Element {
+function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
   const imgSrc = props.imgSrc;
 
   const [border, setBorder] = useState(PlaynetColors.BLACK);
-  const classStyle = (props.style === undefined ? SlideBoxStyles.LARGE_PERCENT_BASED : props.style);
+  const classStyle = (props.style === undefined ? AnswerChoiceBoxStyles.LARGE_PERCENT_BASED : props.style);
 
   useEffect(() => {
     setBorder(PlaynetColors.BLACK);
@@ -26,7 +26,7 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   };
 
   const handleClick = () => {
-    if (props.handleClickAndReturnIsCorrect()) {
+    if (!props.handleClickAndReturnIsCorrect()) {
       setBorder(PlaynetColors.INCORRECT_RED);
     } else {
       setBorder(PlaynetColors.HOVER_GREEN);
@@ -46,4 +46,4 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   );
 }
 
-export default SlideBox;
+export default AnswerChoiceBox;

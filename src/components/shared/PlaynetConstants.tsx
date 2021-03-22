@@ -19,7 +19,7 @@ export enum PlaynetColors {
   INCORRECT_RED = '#FF0000',
 }
 
-export enum SlideBoxStyles {
+export enum AnswerChoiceBoxStyles {
   LARGE_PERCENT_BASED = 'choice-container',
   SMALL_PX_BASED = 'px-choice-container',
 }

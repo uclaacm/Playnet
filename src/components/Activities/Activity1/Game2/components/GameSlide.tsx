@@ -8,7 +8,7 @@ import IncorrectSFX from '../../../../../assets/activity1/game2/oh_no_1.mp3';
 
 import { TextBubbleStyles } from '../../../../shared/PlaynetConstants';
 import TextBubble from '../../TextBubble';
-import SlideBox from './SlideBox';
+import AnswerChoiceBox from '../../../../shared/AnswerChoiceBox';
 
 interface GameSlideProps {
   correctImg: number;
@@ -30,7 +30,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     return props.textDefault ? props.textDefault : '';
   };
 
-  const handleClickAndReturnIsCorrect = (pos : number) => { //returns true if the choice was incorrect
+  const handleClickAndReturnIsCorrect = (pos : number) => { //returns true if the choice is correct
     let newIncorrect = true;
 
     if (pos === props.correctImg) {
@@ -41,7 +41,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
       playIncorrect();
     }
     setIncorrect(newIncorrect);
-    return newIncorrect;
+    return !newIncorrect;
   };
 
   return (
@@ -51,8 +51,8 @@ function GameSlide(props: GameSlideProps): JSX.Element {
         <img src={AlienSvg} alt="friendly alien with translator device"/>
       </div>
       <div className={'gamebox'}>
-        <SlideBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(0)} imgSrc={img0} />
-        <SlideBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(1)} imgSrc={img1} />
+        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(0)} imgSrc={img0} />
+        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(1)} imgSrc={img1} />
       </div>
     </div>
   );
