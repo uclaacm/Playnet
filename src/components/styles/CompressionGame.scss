@@ -74,17 +74,21 @@
   }
 }
 
-.time-display {
-  height: 66px;
+.scene-info {
+  display: flex;
+  flex-wrap: nowrap;
   width: 100%;
   margin: 2%;
-  flex-direction: row;
-  justify-content: flex-start;
-  display: flex;
 }
 
-.seconds-passed {
+.scene-info .icon {
+  height: 66px;
+  margin-left: 2%;
+}
+
+.scene-info .details {
   margin: auto 10px;
+  white-space: nowrap;
 }
 
 .individual-answer-display {

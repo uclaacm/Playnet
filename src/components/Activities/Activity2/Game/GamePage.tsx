@@ -16,7 +16,7 @@ interface GamePageProps {
   advanceGame: () => void;
   choices: string[];
   correctChoice: number;
-  gif: string;
+  gif: JSX.Element;
   answerDisplayWords: string[];
   answerDisplayStyles: AnswerDisplayStyles[];
   answerSlotIndex: number;
@@ -126,11 +126,19 @@ function GamePage(props: GamePageProps): JSX.Element {
           </div>
         </div>
       </div>
-      <div className='time-display'>
-        <img src={ClockSvg} />
-        <span className='seconds-passed'>
-          {((currTime - startTime) / 1000).toFixed(2)} seconds
-        </span>
+      <div className='scene-info'>
+        <div className='icon'>
+          <img src={ClockSvg} />
+          <span className='details'>
+            {((currTime - startTime) / 1000).toFixed(2)} seconds
+          </span>
+        </div>
+        <div className='icon'>
+          <img src={SceneSvg} />
+          <span className='details'>
+            Scene {props.slideNum + 1}
+          </span>
+        </div>
       </div>
     </div>
   );

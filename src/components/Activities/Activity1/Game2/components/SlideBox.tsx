@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { PlaynetColors, SlideBoxStyles } from '../../../../shared/PlaynetConstants';
 
 interface SlideBoxProps {
-  handleClick: () => void;
+  handleClickAndReturnIsCorrect: () => boolean;
   imgSrc?: string;
   text?: string;
   style?: SlideBoxStyles;
@@ -26,7 +26,7 @@ function SlideBox(props: SlideBoxProps): JSX.Element {
   };
 
   const handleClick = () => {
-    if (props.handleClick()) {
+    if (props.handleClickAndReturnIsCorrect()) {
       setBorder(PlaynetColors.INCORRECT_RED);
     } else {
       setBorder(PlaynetColors.HOVER_GREEN);
