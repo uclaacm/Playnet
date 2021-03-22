@@ -30,7 +30,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     return props.textDefault ? props.textDefault : '';
   };
 
-  const handleClickAndReturnIsCorrect: (pos : number) => { //returns true if the choice was incorrect
+  const handleClickAndReturnIsCorrect = (pos : number) => { //returns true if the choice was incorrect
     let newIncorrect = true;
 
     if (pos === props.correctImg) {
@@ -51,8 +51,8 @@ function GameSlide(props: GameSlideProps): JSX.Element {
         <img src={AlienSvg} alt="friendly alien with translator device"/>
       </div>
       <div className={'gamebox'}>
-        <SlideBox handleClick={()=>handleClick(0)} imgSrc={img0} />
-        <SlideBox handleClick={()=>handleClick(1)} imgSrc={img1} />
+        <SlideBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(0)} imgSrc={img0} />
+        <SlideBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(1)} imgSrc={img1} />
       </div>
     </div>
   );

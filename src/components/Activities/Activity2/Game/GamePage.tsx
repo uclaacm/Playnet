@@ -8,6 +8,8 @@ import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
 import '../../../styles/CompressionGame.scss';
 
 import ClockSvg from '../../../../assets/activity2/game/clock.svg';
+import SceneSvg from '../../../../assets/activity2/game/scene.svg';
+
 import { SlideBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 import SlideBox from '../../Activity1/Game2/components/SlideBox';
 
@@ -119,7 +121,7 @@ function GamePage(props: GamePageProps): JSX.Element {
             {answerChoices.map((answerChoice, index) =>
               <SlideBox
                 key={index}
-                handleClick={() => handleClick(index)}
+                handleClickAndReturnIsCorrect={() => handleClick(index)}
                 text={answerChoice} style={SlideBoxStyles.SMALL_PX_BASED}
               />,
             )}
