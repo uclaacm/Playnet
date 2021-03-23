@@ -16,7 +16,7 @@ import CompressionGame from './Game';
 import { AnswerDisplayStyles } from '../../shared/PlaynetConstants';
 
 function Activity2(): JSX.Element {
-  const [gameTimes, setGameTimes] = useState<string[]>(['-1', '-1', '-1', '-1','-1','-1']);
+  const [gameTimes, setGameTimes] = useState<string[]>(['-1', '-1', '-1', '-1', '-1', '-1']);
   const storage = window.sessionStorage;
 
   const addTime = (time: number, index: number) => {
@@ -53,11 +53,21 @@ function Activity2(): JSX.Element {
     return (
       <div className='grid-container'>
         <div className='top-edge top-row top-left-corner grid-label'></div>
-        <div className='row1-col2 top-edge top-row grid-label'>Without Compression</div>
-        <div className='row1-col3 top-right-corner top-row grid-label'>With Compression</div>
-        <div className='row2-col1 grid-label'>Elephant</div>
-        <div className='row3-col1 grid-label'>Elephant Wearing Hat</div>
-        <div className='row4-col1 grid-label bottom-left-corner'>Elephant Wearing Hat and Shoes</div>
+        <div className='top-edge top-row grid-label'
+          style={{ gridRowStart: 1, gridColumnStart: 2 }}
+        >Without Compression</div>
+        <div className='top-right-corner top-row grid-label'
+          style={{ gridRowStart: 1, gridColumnStart: 3 }}
+        >With Compression</div>
+        <div className='grid-label'
+          style={{ gridRowStart: 2, gridColumnStart: 1 }}
+        >Elephant</div>
+        <div className='grid-label'
+          style={{ gridRowStart: 3, gridColumnStart: 1 }}
+        >Elephant Wearing Hat</div>
+        <div className='grid-label bottom-left-corner'
+          style={{ gridRowStart: 4, gridColumnStart: 1 }}
+        >Elephant Wearing Hat and Shoes</div>
         {gameTimes.map((time, index) => renderTimeGridItem(time, index))}
       </div>
     );
