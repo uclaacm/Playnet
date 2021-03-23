@@ -5,9 +5,19 @@ import '../../../styles/CompressionGame.scss';
 import { CarouselContext } from '../../../shared/Carousel';
 
 import GamePage from './FillInBlankGamePage';
+import { AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
+
+interface CompressionGamePageComponents {
+  choices: string[];
+  correctChoice: number;
+  gif: JSX.Element;
+  answerDisplayWords: string[];
+  answerDisplayStyles: AnswerDisplayStyles[];
+  answerSlotIndex: number;
+}
 
 interface CompressionGameProps {
-  slides: Record<string, unknown>[];  //each object should have a list of choices, a gif, and
+  slides: CompressionGamePageComponents[];  //each object should have a list of choices, a gif, and
   addTime: (time: number, index: number) => void;
   gameNum: number;
 }
