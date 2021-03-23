@@ -16,27 +16,40 @@ import CompressionGame from './Game';
 import { AnswerDisplayStyles } from '../../shared/PlaynetConstants';
 
 function Activity2(): JSX.Element {
-  const [gameTimes, setGameTimes] = useState<number[]>([-1, -1, -1, -1,-1,-1]);
+  const [gameTimes, setGameTimes] = useState<string[]>(['-1', '-1', '-1', '-1','-1','-1']);
+  const storage = window.sessionStorage;
 
   const addTime = (time: number, index: number) => {
-    const newGameTimes = gameTimes;
-    newGameTimes[index] = time;
-    setGameTimes(newGameTimes);
+    time = time / 1000; //convert milliseconds to seconds
+    storage.setItem(String(index), String(time));
   };
 
   const GameResults = () => {
-    const renderTimeGridItem = (time: number, index: number) => {
+    const renderTimeGridItem = (time: string, index: number) => {
       let specialClass = '';
       if (index === 3 || index === 4 || index === 5) {
         specialClass += ' right-edge';
       }
-      if (time === -1) {
+      if (storage.getItem(String(index)) === null) {
         return <div className={'time-grid-block time-' + index + specialClass} key={index}>No Time</div>;
       }
-      return <div className={'time-grid-block time-' + index + specialClass} key={index}>{time / 1000} seconds</div>;
-
+      return <div className={'time-grid-block time-' + index + specialClass} key={index}>{time} seconds</div>;
     };
 
+    const updateGameTimes = () => {
+      for (let i = 0; i < 6; i++) {
+        const time = storage.getItem(String(i));
+        const copyGameTimes = gameTimes;
+        if (time !== null) {
+          copyGameTimes[i] = time;
+        } else {
+          copyGameTimes[i] = '-1';
+        }
+        setGameTimes(copyGameTimes);
+      }
+    };
+
+    updateGameTimes();
     return (
       <div className='grid-container'>
         <div className='top-edge top-row top-left-corner grid-label'></div>
