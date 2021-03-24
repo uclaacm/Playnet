@@ -4,7 +4,7 @@ import '../../../styles/CompressionGame.scss';
 
 import { CarouselContext } from '../../../shared/Carousel';
 
-import GamePage from './FillInBlankGamePage';
+import FillInBlankGamePage from './FillInBlankGamePage';
 import { AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 
 interface CompressionGamePageComponents {
@@ -35,7 +35,7 @@ function CompressionGame(props: CompressionGameProps): JSX.Element {
   };
 
   return (
-    <GamePage
+    <FillInBlankGamePage
       {...props.slides[i]}
       setTimeElapsed={props.setTimeElapsed}
       advanceGame={advanceGame}

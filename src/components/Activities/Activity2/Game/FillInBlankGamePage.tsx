@@ -56,7 +56,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const handleClickAndReturnIsCorrect = (pos: number) => {  //returns true if the choice is correct
     let newIncorrect = true;
     if (pos === props.correctChoice) {
-      props.setTimeElapsed(gameNum, slideNum, currTime - startTime);
+      props.setTimeElapsed(props.gameNum, props.slideNum, currTime - startTime);
       playCorrect();
       newIncorrect = false;
 

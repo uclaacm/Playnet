@@ -19,7 +19,8 @@ function Activity2(): JSX.Element {
   const [gameTimes, setGameTimes] = useState<string[]>(['-1', '-1', '-1', '-1', '-1', '-1']);
   const storage = window.sessionStorage;
 
-  const addTime = (time: number, index: number) => {
+  const setTimeElapsed = (gameNum: number, slideNum: number, time: number) => {
+    const index = gameNum * 3 + slideNum;
     time = time / 1000; //convert milliseconds to seconds
     storage.setItem("A2MinigameIndex" + String(index), String(time));
   };
