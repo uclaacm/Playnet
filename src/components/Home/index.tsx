@@ -47,6 +47,7 @@ function Home(): JSX.Element {
       <Base section={HeaderSections.INTRO}>
         { showCarousel ? 
         <Carousel
+          redirect={setShowCarousel}
           onNext={() => { /* Run function along with transition on next button press */
             // console.log('next');
           }}

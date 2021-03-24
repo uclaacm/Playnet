@@ -23,11 +23,11 @@ function YouTube(props): JSX.Element {
                             <p>LoFi hip hop to study to</p>
                         </button>
                         <button onClick={() => { props.showNext(true); props.setVideo(baby_shark_path)}} className={"youtube-video"}>
-                            <img className={"youtube-thumbnail"} src={baby_shark} alt={"Image of a girl with headphones on studying"} />
+                            <img className={"youtube-thumbnail"} src={baby_shark} alt={"Image of two children and a shark dancing"} />
                             <p>Baby Shark</p>
                         </button>
                         <button onClick={() => { props.showNext(true); props.setVideo(nether_portal_path) }} className={"youtube-video"}>
-                            <img className={"youtube-thumbnail"} src={nether_portal} alt={"Image of a girl with headphones on studying"} />
+                            <img className={"youtube-thumbnail"} src={nether_portal} alt={"Image of a pixelated portal from the popular videogame Minecraft"} />
                             <p>How to play Minecraft</p>
                         </button>
                     </div>
@@ -42,7 +42,7 @@ function YouTube(props): JSX.Element {
                 <p id={"intro-subtitle"}>Now find out what's going on behind the scenes!</p>
                 <div id={"computer"}>
                     <div id={ "final-video" }>
-                        <img  id={"final-thumbnail"} src={props.chosenVideo} />
+                        <iframe  id={"final-thumbnail"} src={"https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=1"} />
                     </div>
                 </div>
             </div>
