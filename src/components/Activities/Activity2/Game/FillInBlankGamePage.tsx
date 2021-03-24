@@ -27,7 +27,7 @@ interface FillInBlankGamePageProps {
 }
 
 function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
-  const [chosenIncorrectChoices, setIncorrect] = useState<boolean[]>([]);
+  const [chosenIncorrectChoices, setIncorrectChoices] = useState<boolean[]>([]);
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
 
@@ -73,7 +73,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
     }
     const copyChosenIncorrectChoices = chosenIncorrectChoices;
     copyChosenIncorrectChoices[pos] = newIncorrect;
-    setIncorrect(copyChosenIncorrectChoices);
+    setIncorrectChoices(copyChosenIncorrectChoices);
     return !newIncorrect;
   };
 
@@ -86,7 +86,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
     for (let i = 0; i < props.choices.length; i++) {
       intialChosenIncorrectChoices.push(false);
     }
-    setIncorrect(intialChosenIncorrectChoices);
+    setIncorrectChoices(intialChosenIncorrectChoices);
   }, [props.choices]);
 
   useEffect(() => {
