@@ -1,6 +1,6 @@
 import anime from 'animejs';
 
-export const animate_happy_alien = () => {
+export const animate_happy_alien = (): void => {
   const animation = anime.timeline();
   animation
     .add({
@@ -15,4 +15,4 @@ export const animate_happy_alien = () => {
       strokeWidth: '0',
       duration: 250,
     }, '+=250');
-}
+};

@@ -1,14 +1,14 @@
 import React, { useRef, useState } from 'react';
 import useSound from 'use-sound';
 
-import TranslatorSvg from '../../../../../assets/activity1/translator.svg';
 import CorrectSFX from '../../../../../assets/activity1/game2/correct.mp3';
 import IncorrectSFX from '../../../../../assets/activity1/game2/oh_no_1.mp3';
+import TranslatorSvg from '../../../../../assets/activity1/translator.svg';
 
+import Alien, { ALIEN_STATE } from '../../../../shared/Alien';
 import { TextBubbleStyles } from '../../../../shared/PlaynetConstants';
 import TextBubble from '../../TextBubble';
 import SlideBox from './SlideBox';
-import Alien, { ALIEN_STATE } from '../../../../shared/Alien';
 
 interface GameSlideProps {
   correctImg: number;
@@ -39,7 +39,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
       alienTimeout.current = undefined;
       setAlienState(ALIEN_STATE.BASE);
     }, 1000);
-  }
+  };
 
   const handleClick = (pos : number) => {
     let newIncorrect = true;

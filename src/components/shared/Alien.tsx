@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 
-import AlienSvg from '../../assets/alien/alien.svg';
-import HappyAlienSvg from '../../assets/alien/alien-happy.svg';
 import AngerAlienSvg from '../../assets/alien/alien-anger.svg';
+import HappyAlienSvg from '../../assets/alien/alien-happy.svg';
+import AlienSvg from '../../assets/alien/alien.svg';
+import { animate_happy_alien } from '../../utils/animations/alien';
 
 import '../styles/Alien.scss';
-import { animate_happy_alien } from '../../utils/animations/alien';
 
 export enum ALIEN_STATE {
   ANGER,
@@ -26,13 +26,13 @@ const ALIEN_STATES: {[key in ALIEN_STATE]: {src: string, alt: string}} = {
     alt: 'a happy and friendly alien',
     src: HappyAlienSvg,
   },
-}
+};
 
 export interface AlienProps {
   alienState: ALIEN_STATE,
 }
 
-export default function Alien(props: AlienProps) {
+export default function Alien(props: AlienProps): JSX.Element {
   const {alienState} = props;
   const {src, alt} = ALIEN_STATES[alienState];
 
@@ -46,7 +46,7 @@ export default function Alien(props: AlienProps) {
     <>
       <img id={'alien'} src={src} alt={alt}/>
       <svg id={'sparks'} width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="130" cy="130" r="115" stroke="#FFBA09" stroke-linejoin="round" stroke-dasharray="7 100"/>
+        <circle cx="130" cy="130" r="115" stroke="#FFBA09" strokeLinejoin="round" strokeDasharray="7 100"/>
       </svg>
     </>
   );
