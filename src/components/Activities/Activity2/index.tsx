@@ -13,6 +13,7 @@ import ElephantShoesUncompressedGIF from '../../../assets/activity2/game/elephan
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 import { AnswerDisplayStyles } from '../../shared/PlaynetConstants';
 import CompressionGame from './Game';
+import GIFPlayer from '../../shared/GIFPlayer';
 
 function Activity2(): JSX.Element {
   const [gameTimes, setGameTimes] = useState<string[]>(['-1', '-1', '-1', '-1', '-1', '-1']);
@@ -77,7 +78,8 @@ function Activity2(): JSX.Element {
     {
       choices: ['elephant', 'cow', 'sheep'],
       correctChoice: 0,
-      gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
+      gif: <GIFPlayer gifs={[{path: ElephantGIF, duration: 2000}]} alt='Gif of Elephant being Drawn'/>,
+      // gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
       answerDisplayWords: ['blankspot'],
       answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
       answerSlotIndex: 0,
@@ -85,7 +87,8 @@ function Activity2(): JSX.Element {
     {
       choices: ['hat', 'wig', 'bow'],
       correctChoice: 0,
-      gif: <img src={ElephantHatUncompressedGIF} alt='Gif of Elephant with Hat being Drawn' />,
+      gif: <GIFPlayer gifs={[{path: ElephantGIF, duration: 2000}, {path: ElephantHatCompressedGIF, duration: 2000}]} alt='Gif of Elephant with Hat being Drawn'/>,
+      // gif: <img src={ElephantHatUncompressedGIF} alt='Gif of Elephant with Hat being Drawn' />,
       answerDisplayWords: ['elephant', 'wearing', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
@@ -94,7 +97,8 @@ function Activity2(): JSX.Element {
     {
       choices: ['wig', 'bow', 'shoes'],
       correctChoice: 2,
-      gif: <img src={ElephantShoesUncompressedGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
+      gif: <GIFPlayer gifs={[{path: ElephantGIF, duration: 2000}, {path: ElephantHatCompressedGIF, duration: 2000}, {path: ElephantShoesCompressedGIF, duration: 2000}]} alt='Gif of Elephant wearing Hat and Shoes being Drawn'/>,
+      // gif: <img src={ElephantShoesUncompressedGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
       answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
