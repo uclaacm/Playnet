@@ -6,7 +6,7 @@ import { CarouselContext } from '../../../shared/Carousel';
 import { AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 import FillInBlankGamePage from './FillInBlankGamePage';
 
-interface CompressionGamePageComponents {
+export interface CompressionGamePageComponents {
   choices: string[];
   correctChoice: number;
   gif: JSX.Element;
@@ -35,7 +35,8 @@ function CompressionGame(props: CompressionGameProps): JSX.Element {
 
   return (
     <FillInBlankGamePage
-      {...props.slides[i]}
+      // {...props.slides[i]}
+      pageInfo={props.slides[i]}
       setTimeElapsed={props.setTimeElapsed}
       advanceGame={advanceGame}
       gameNum={props.gameNum}

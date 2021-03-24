@@ -11,17 +11,19 @@ import ClockSvg from '../../../../assets/activity2/game/clock.svg';
 import SceneSvg from '../../../../assets/activity2/game/scene.svg';
 
 import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';
+import { CompressionGamePageComponents } from '../../Activity2/Game/index';
 import { AnswerChoiceBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 
 interface FillInBlankGamePageProps {
   setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
   advanceGame: () => void;
-  choices: string[];
-  correctChoice: number;
-  gif: JSX.Element;
-  answerDisplayWords: string[];
-  answerDisplayStyles: AnswerDisplayStyles[];
-  answerSlotIndex: number;
+  pageInfo: CompressionGamePageComponents;
+  // choices: string[];
+  // correctChoice: number;
+  // gif: JSX.Element;
+  // answerDisplayWords: string[];
+  // answerDisplayStyles: AnswerDisplayStyles[];
+  // answerSlotIndex: number;
   slideNum: number;
   gameNum: number;
 }
@@ -34,10 +36,10 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const [startTime, setStartTime] = useState(Date.now());
   const [currTime, setCurrTime] = useState(Date.now());
 
-  const answerChoices: string[] = props.choices;
+  const answerChoices: string[] = props.pageInfo.choices;
 
-  const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>(props.answerDisplayStyles);
-  const [answerDisplayWords, setAnswerDisplayWords] = useState<string[]>(props.answerDisplayWords);
+  const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>(props.pageInfo.answerDisplayStyles);
+  const [answerDisplayWords, setAnswerDisplayWords] = useState<string[]>(props.pageInfo.answerDisplayWords);
 
   const updateTimePassed = () => {
     setCurrTime(Date.now());
@@ -45,22 +47,22 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
 
   const updateAnswerDisplaySlot = (style: AnswerDisplayStyles, word: string) => {
     const copyAnswerDisplayStyles = answerDisplayStyles;
-    copyAnswerDisplayStyles[props.answerSlotIndex] = style;
+    copyAnswerDisplayStyles[props.pageInfo.answerSlotIndex] = style;
     setAnswerDisplayStyles(copyAnswerDisplayStyles);
 
     const copyAnswerDisplayWords = answerDisplayWords;
-    copyAnswerDisplayWords[props.answerSlotIndex] = word;
+    copyAnswerDisplayWords[props.pageInfo.answerSlotIndex] = word;
     setAnswerDisplayWords(copyAnswerDisplayWords);
   };
 
   const handleClickAndReturnIsCorrect = (pos: number) => {  //returns true if the choice is correct
     let newIncorrect = true;
-    if (pos === props.correctChoice) {
+    if (pos === props.pageInfo.correctChoice) {
       props.setTimeElapsed(props.gameNum, props.slideNum, currTime - startTime);
       playCorrect();
       newIncorrect = false;
 
-      updateAnswerDisplaySlot(AnswerDisplayStyles.GREEN_BORDER, props.choices[pos]);
+      updateAnswerDisplaySlot(AnswerDisplayStyles.GREEN_BORDER, props.pageInfo.choices[pos]);
       setTimeout(() => {
         props.advanceGame && props.advanceGame();
         setStartTime(Date.now());
@@ -68,7 +70,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
       }, 500);
 
     } else if (!chosenIncorrectChoices[pos]) {
-      updateAnswerDisplaySlot(AnswerDisplayStyles.RED_BORDER, props.choices[pos]);
+      updateAnswerDisplaySlot(AnswerDisplayStyles.RED_BORDER, props.pageInfo.choices[pos]);
       playIncorrect();
     }
     const copyChosenIncorrectChoices = chosenIncorrectChoices;
@@ -83,44 +85,44 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
 
   useEffect(() => {
     const intialChosenIncorrectChoices: boolean[] = [];
-    for (let i = 0; i < props.choices.length; i++) {
+    for (let i = 0; i < props.pageInfo.choices.length; i++) {
       intialChosenIncorrectChoices.push(false);
     }
     setIncorrectChoices(intialChosenIncorrectChoices);
-  }, [props.choices]);
+  }, [props.pageInfo.choices]);
 
   useEffect(() => {
     let differentWords = false;
-    if (answerDisplayWords.length !== props.answerDisplayWords.length) {
+    if (answerDisplayWords.length !== props.pageInfo.answerDisplayWords.length) {
       differentWords = true;
     }
     for (let i = 0; i < answerDisplayWords.length && !differentWords; i++) {
-      if (answerDisplayWords[i] !== props.answerDisplayWords[i]) {
+      if (answerDisplayWords[i] !== props.pageInfo.answerDisplayWords[i]) {
         differentWords = true;
       }
     }
     if (differentWords) {
-      setAnswerDisplayWords(props.answerDisplayWords);
-      setAnswerDisplayStyles(props.answerDisplayStyles);
+      setAnswerDisplayWords(props.pageInfo.answerDisplayWords);
+      setAnswerDisplayStyles(props.pageInfo.answerDisplayStyles);
     }
-  }, [props.answerDisplayWords, props.answerDisplayStyles]);
+  }, [props.pageInfo.answerDisplayWords, props.pageInfo.answerDisplayStyles]);
 
   return (
     <div className='game-page'>
       <div className='main-content'>
         <div className='gif'>
-          {props.gif}
+          {props.pageInfo.gif}
         </div>
         <div className='right-side'>
           <div className='answer-display'>
             <div className='flex-row'>
-              {props.answerDisplayWords.map((word, index) => <div className={'individual-answer-display ' + props.answerDisplayStyles[index]} key={index}>{word}</div>)}
+              {props.pageInfo.answerDisplayWords.map((word, index) => <div className={'individual-answer-display ' + props.pageInfo.answerDisplayStyles[index]} key={props.slideNum+'-'+index}>{word}</div>)}
             </div>
           </div>
           <div className='answer-choices'>
             {answerChoices.map((answerChoice, index) =>
               <AnsweChoiceBox
-                key={index}
+                key={props.slideNum+'-'+index}
                 handleClickAndReturnIsCorrect={() => handleClickAndReturnIsCorrect(index)}
                 text={answerChoice} style={AnswerChoiceBoxStyles.SMALL_PX_BASED}
               />,
