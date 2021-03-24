@@ -18,29 +18,26 @@ interface CompressionGamePageComponents {
 
 interface CompressionGameProps {
   slides: CompressionGamePageComponents[];  //each object should have a list of choices, a gif, and
-  addTime: (time: number, index: number) => void;
+  setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
   gameNum: number;
 }
 
 function CompressionGame(props: CompressionGameProps): JSX.Element {
   const context = useContext(CarouselContext);
   const [i, setSlide] = useState(0);
-  // const [gif, setGif] = useState(props.slides[i].gif);
 
   const advanceGame = () => {
     if (i === props.slides.length - 1) {
       context.next();
-      // setGif('');
       return;
     }
-    // setGif(props.slides[i+1].gif);
     setSlide(i + 1);
   };
 
   return (
     <GamePage
       {...props.slides[i]}
-      addTime={props.addTime}
+      setTimeElapsed={props.setTimeElapsed}
       advanceGame={advanceGame}
       gameNum={props.gameNum}
       slideNum={i}

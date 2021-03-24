@@ -14,7 +14,7 @@ import { AnswerChoiceBoxStyles, AnswerDisplayStyles } from '../../../shared/Play
 import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';
 
 interface FillInBlankGamePageProps {
-  addTime: (time: number, index: number) => void;
+  setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
   advanceGame: () => void;
   choices: string[];
   correctChoice: number;
@@ -56,7 +56,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const handleClickAndReturnIsCorrect = (pos: number) => {  //returns true if the choice is correct
     let newIncorrect = true;
     if (pos === props.correctChoice) {
-      props.addTime(currTime - startTime, 3 * props.gameNum + props.slideNum);
+      props.setTimeElapsed(gameNum, slideNum, currTime - startTime);
       playCorrect();
       newIncorrect = false;
 

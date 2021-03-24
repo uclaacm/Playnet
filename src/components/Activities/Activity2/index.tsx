@@ -21,7 +21,7 @@ function Activity2(): JSX.Element {
 
   const addTime = (time: number, index: number) => {
     time = time / 1000; //convert milliseconds to seconds
-    storage.setItem(String(index), String(time));
+    storage.setItem("A2MinigameIndex" + String(index), String(time));
   };
 
   const GameResults = () => {
@@ -30,7 +30,7 @@ function Activity2(): JSX.Element {
       if (index === 3 || index === 4 || index === 5) {
         specialClass += ' right-edge';
       }
-      if (storage.getItem(String(index)) === null) {
+      if (storage.getItem("A2MinigameIndex" + String(index)) === null) {
         return <div className={'time-grid-block time-' + index + specialClass} key={index}>No Time</div>;
       }
       return <div className={'time-grid-block time-' + index + specialClass} key={index}>{time} seconds</div>;
@@ -38,7 +38,7 @@ function Activity2(): JSX.Element {
 
     const updateGameTimes = () => {
       for (let i = 0; i < 6; i++) {
-        const time = storage.getItem(String(i));
+        const time = storage.getItem("A2MinigameIndex" + String(i));
         const copyGameTimes = gameTimes;
         if (time !== null) {
           copyGameTimes[i] = time;
@@ -159,7 +159,7 @@ function Activity2(): JSX.Element {
       showNext: false,
     },
     {
-      child: <CompressionGame slides={uncompressedGameSlides} addTime={addTime} gameNum={0} />,
+      child: <CompressionGame slides={uncompressedGameSlides} setTimeElapsed={setTimeElapsed} gameNum={0} />,
       showNext: false,
     },
     {
@@ -167,7 +167,7 @@ function Activity2(): JSX.Element {
       showNext: false,
     },
     {
-      child: <CompressionGame slides={compressedGameSlides} addTime={addTime} gameNum={1} />,
+      child: <CompressionGame slides={compressedGameSlides} setTimeElapsed={setTimeElapsed} gameNum={1} />,
       showNext: false,
     },
     {
