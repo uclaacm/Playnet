@@ -11,9 +11,8 @@ import ElephantShoesCompressedGIF from '../../../assets/activity2/game/elephant_
 import ElephantShoesUncompressedGIF from '../../../assets/activity2/game/elephant_shoe_uncompressed.gif';
 
 import Carousel, { CarouselContext } from '../../shared/Carousel';
-
-import CompressionGame from './Game';
 import { AnswerDisplayStyles } from '../../shared/PlaynetConstants';
+import CompressionGame from './Game';
 
 function Activity2(): JSX.Element {
   const [gameTimes, setGameTimes] = useState<string[]>(['-1', '-1', '-1', '-1', '-1', '-1']);
@@ -22,7 +21,7 @@ function Activity2(): JSX.Element {
   const setTimeElapsed = (gameNum: number, slideNum: number, time: number) => {
     const index = gameNum * 3 + slideNum;
     time = time / 1000; //convert milliseconds to seconds
-    storage.setItem("A2MinigameIndex" + String(index), String(time));
+    storage.setItem('A2MinigameIndex' + String(index), String(time));
   };
 
   const GameResults = () => {
@@ -31,7 +30,7 @@ function Activity2(): JSX.Element {
       if (index === 3 || index === 4 || index === 5) {
         specialClass += ' right-edge';
       }
-      if (storage.getItem("A2MinigameIndex" + String(index)) === null) {
+      if (storage.getItem('A2MinigameIndex' + String(index)) === null) {
         return <div className={'time-grid-block time-' + index + specialClass} key={index}>No Time</div>;
       }
       return <div className={'time-grid-block time-' + index + specialClass} key={index}>{time} seconds</div>;
@@ -39,7 +38,7 @@ function Activity2(): JSX.Element {
 
     const updateGameTimes = () => {
       for (let i = 0; i < 6; i++) {
-        const time = storage.getItem("A2MinigameIndex" + String(i));
+        const time = storage.getItem('A2MinigameIndex' + String(i));
         const copyGameTimes = gameTimes;
         if (time !== null) {
           copyGameTimes[i] = time;

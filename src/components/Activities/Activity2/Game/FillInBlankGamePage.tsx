@@ -10,8 +10,8 @@ import '../../../styles/CompressionGame.scss';
 import ClockSvg from '../../../../assets/activity2/game/clock.svg';
 import SceneSvg from '../../../../assets/activity2/game/scene.svg';
 
-import { AnswerChoiceBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';
+import { AnswerChoiceBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 
 interface FillInBlankGamePageProps {
   setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;

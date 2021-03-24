@@ -3,9 +3,8 @@ import React, { useContext, useState } from 'react';
 import '../../../styles/CompressionGame.scss';
 
 import { CarouselContext } from '../../../shared/Carousel';
-
-import FillInBlankGamePage from './FillInBlankGamePage';
 import { AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
+import FillInBlankGamePage from './FillInBlankGamePage';
 
 interface CompressionGamePageComponents {
   choices: string[];
