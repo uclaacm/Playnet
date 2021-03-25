@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 interface GifInfoComponent {
   path: string;
   duration: number;
-  id: string;
+  // id: string;
 }
 
 interface GIFPlayerProps {
@@ -33,7 +33,7 @@ function GIFPlayer(props: GIFPlayerProps): JSX.Element {
   }, [props.id]);
 
   return (
-    <img src={props.gifs[index].path + '?'+ String(Date.now())} alt={props.alt+props.id} key={props.id + props.gifs[index].id}/>
+    <img src={props.gifs[index].path + '?'+ String(Date.now())} alt={props.alt+props.id} key={props.id}/>
   );
 }
 
