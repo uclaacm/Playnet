@@ -3,7 +3,7 @@ import React, { CSSProperties, useEffect, useState } from 'react';
 import '../styles/Carousel.scss';
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
-import Tooltip from './Tooltip';
+import Tooltip from './Tooltip';  
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
