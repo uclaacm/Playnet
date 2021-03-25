@@ -3,7 +3,7 @@ import React, { CSSProperties, useEffect, useState } from 'react';
 import '../styles/Carousel.scss';
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
-import Tooltip from './Tooltip';  
+import Tooltip from './Tooltip';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -85,7 +85,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                     <Tooltip text='Replay'>
-                      <button className='replay-button' onClick={()=>setReloadTime(Date.now())} />
+                      <button className='replay-button' onClick={() => setReloadTime(Date.now())} />
                     </Tooltip>
                   </span>}
               </>
