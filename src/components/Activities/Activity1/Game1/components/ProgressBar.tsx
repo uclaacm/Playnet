@@ -5,7 +5,7 @@ interface ProgressBarProps {
 }
 
 function ProgressBar(props: ProgressBarProps): JSX.Element {
-  const percentComplete = props.percentComplete <= 100 ? props.percentComplete : 100;
+  const percentComplete = Math.max(Math.min(props.percentComplete, 100), 0);
 
   const containerStyles ={
     height: 20,

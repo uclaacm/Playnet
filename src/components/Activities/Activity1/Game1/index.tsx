@@ -2,7 +2,12 @@ import React, { useContext, useState } from 'react';
 
 import '../../../styles/Game.scss';
 
+import useSound from 'use-sound';
+
 import Star from '../../../../assets/activity1/game1/star.svg';
+import CorrectSFX from '../../../../assets/activity1/game2/correct.mp3';
+import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
+
 import Pair1A from '../../../../assets/activity1/game2/pair1a.svg';
 import Pair1B from '../../../../assets/activity1/game2/pair1b.svg';
 import Pair2A from '../../../../assets/activity1/game2/pair2a.svg';
@@ -13,25 +18,14 @@ import Pair4A from '../../../../assets/activity1/game2/pair4a.svg';
 import Pair4B from '../../../../assets/activity1/game2/pair4b.svg';
 import AlienSvg from '../../../../assets/alien.svg';
 
-import useSound from 'use-sound';
-import CorrectSFX from '../../../../assets/activity1/game2/correct.mp3';
-import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
-
+import { scramble } from '../../../../utils';
 import { CarouselContext } from '../../../shared/Carousel';
 import { TextBubbleStyles } from '../../../shared/PlaynetConstants';
 import SlideBox from '../Game2/components/SlideBox';
 import TextBubble from '../TextBubble';
 import ProgressBar from './components/ProgressBar';
-import { scramble } from '../../../../utils';
 
 function Game1(): JSX.Element {
-  const [ slideIdx, setSlideIdx ] = useState(0);
-  const [ showSuccess, setShowSuccess] = useState(false);
-  const context = useContext(CarouselContext);
-
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
-
   const slides = [
     {
       correctImg: 1,
@@ -55,6 +49,14 @@ function Game1(): JSX.Element {
     },
   ];
 
+  const [ slideIdx, setSlideIdx ] = useState(0);
+  const [ showSuccess, setShowSuccess] = useState(false);
+  const [ incorrect, setIncorrect ] = useState(false);
+  const context = useContext(CarouselContext);
+
+  const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
+  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
+
   const advanceGame = () => {
     if (slideIdx === slides.length-1) {
       context.next();
@@ -72,14 +74,32 @@ function Game1(): JSX.Element {
 
   const handleClick = (option : number) => {
     if (option == 0) {
-      playIncorrect();
+      if (!incorrect) {
+        setIncorrect(true);
+        playIncorrect();
+        setPercent(percent-10);
+      }
       return;
     }
+    setIncorrect(false);
     playCorrect();
     setShowSuccess(true);
-    setPercent(percent+25);
+    setPercent(percent+20);
     setNumStars(numStars+1);
     advanceGame();
+  };
+
+  const starCounter = () => {
+    return (
+      <div style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'}}>
+        <img src={Star} alt="star points"/>
+        {numStars}
+      </div>
+    );
   };
 
   const displaySuccess = () => {
@@ -87,7 +107,14 @@ function Game1(): JSX.Element {
       <div id="game2-intro">
         <span>You got a star! Let&apos;s keep going.</span>
         <br/>
-        <img src={AlienSvg} alt="friendly alien"/>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center'}}>
+          <img src={AlienSvg} alt="friendly alien"/>
+          {starCounter()}
+        </div>
         <br/>
         <button id="game2-intro-button" onClick={()=> setShowSuccess(false)}>
           Next Level
@@ -120,10 +147,7 @@ function Game1(): JSX.Element {
             <SlideBox handleClick={()=>handleClick(1)} imgSrc={Pair1B} />
           </div>
         </div>
-        <div>
-          <img src={Star} alt="star points"/>
-          {numStars}
-        </div>
+        {starCounter()}
       </div>);
   };
 

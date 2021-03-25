@@ -5,6 +5,7 @@ import '../../styles/Activity1.scss';
 import AppleSvg from '../../../assets/activity1/apple.svg';
 import CharacterSvg from '../../../assets/activity1/character3.svg';
 import ComputerSvg from '../../../assets/activity1/computer.svg';
+import Game1EndScreen from '../../../assets/activity1/game1-endscreen.svg';
 import LemonSvg from '../../../assets/activity1/lemon.svg';
 import PartyConfettiSvg from '../../../assets/activity1/party_confetti.svg';
 import BlankComputer from '../../../assets/blank-computer.svg';
@@ -15,6 +16,8 @@ import Convo, { Phrase } from './Convo';
 import Game1 from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
+
+import IntroScreen from '../IntroScreen';
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
@@ -111,15 +114,26 @@ function Activity1(): JSX.Element {
       child: <Slide3 />,
     },
     {
+      child:
+        <IntroScreen buttonText='Play Game'>
+          <div>What if you were a computer?</div>
+          <div>Can you figure out what the alien wants and keep it happy?</div>
+        </IntroScreen>,
+      showNext: false,
+    },
+    {
       child: <Game1 />,
       showNext: false,
     },
     {
       child:
-        <div>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center'}}>
           Good news, we just found a translator that can help us understand the alien!
-          AWB GLAEW
-          PURPLE APPLE
+          <img src={Game1EndScreen}/>
         </div>,
     },
     {
