@@ -21,7 +21,7 @@ interface GameSlideProps {
 function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
-  const alienTimeout = useRef<Timeout>(undefined);
+  const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
 
@@ -32,12 +32,13 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     return props.textDefault ? props.textDefault : '';
   };
 
-  const handleAlienState = (state: ALIEN_STATE) => {
-    clearTimeout(alienTimeout.current);
+  const handleAlienState = (state: ALIEN_STATE, cb?: () => void) => {
+    alienTimeout.current && clearTimeout(alienTimeout.current);
     setAlienState(state);
     alienTimeout.current = setTimeout(() => {
       alienTimeout.current = undefined;
       setAlienState(ALIEN_STATE.BASE);
+      cb && cb();
     }, 1000);
   };
 
@@ -46,9 +47,8 @@ function GameSlide(props: GameSlideProps): JSX.Element {
 
     if (pos === props.correctImg) {
       playCorrect();
-      handleAlienState(ALIEN_STATE.HAPPY);
+      handleAlienState(ALIEN_STATE.HAPPY, props.advanceGame);
       newIncorrect = false;
-      props.advanceGame && props.advanceGame();
     } else if (!incorrect) {
       playIncorrect();
       handleAlienState(ALIEN_STATE.ANGER);
