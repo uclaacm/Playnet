@@ -24,10 +24,11 @@
   text-align: center;
 }
 
-.gamebox img {
-  max-height: 50%;
-  height: 100%;
+.gamebox #translator {
+  max-height: 25%;
   width: auto;
+  position: absolute;
+  margin-left: 300px;
 }
 
 .choice-container {
