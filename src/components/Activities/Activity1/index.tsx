@@ -12,6 +12,7 @@ import BlankComputer from '../../../assets/blank-computer.svg';
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import Convo, { Phrase } from './Convo';
+import Game1 from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
@@ -110,6 +111,18 @@ function Activity1(): JSX.Element {
       child: <Slide3 />,
     },
     {
+      child: <Game1 />,
+      showNext: false,
+    },
+    {
+      child:
+        <div>
+          Good news, we just found a translator that can help us understand the alien!
+          AWB GLAEW
+          PURPLE APPLE
+        </div>,
+    },
+    {
       child: <AmbiguousPhrasingGameIntro/>,
       showNext: false,
     },
@@ -130,7 +143,7 @@ function Activity1(): JSX.Element {
               from trial and error. They can share what they learn with other computers in order to
               give us a better searching experience.
               <br/> <br/>
-              When you&apos;re older, you&apos;ll get the chance to learn how to code you that you can
+              When you&apos;re older, you&apos;ll get the chance to learn how to code you so that you can
               learn how AI works in more detail!
             </div>
           </div>

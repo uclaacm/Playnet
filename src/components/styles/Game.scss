@@ -50,3 +50,13 @@
   height: 100%;
   width: auto;
 }
+
+.game-1-cards {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
