@@ -108,7 +108,7 @@ function Activity2(): JSX.Element {
       answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
-        AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
+          AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
       answerSlotIndex: 4,
     },
   ];
@@ -138,7 +138,7 @@ function Activity2(): JSX.Element {
       answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
-        AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
+          AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
       answerSlotIndex: 4,
     },
   ];

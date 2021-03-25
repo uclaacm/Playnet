@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 
 interface GifInfoComponent {
   path: string;
@@ -14,20 +14,25 @@ interface GIFPlayerProps {
 
 function GIFPlayer(props: GIFPlayerProps): JSX.Element {
   const [index, setIndex] = useState(0);
-  let lastTimeout: NodeJS.Timeout;
+  const lastTimeout = useRef(null);
 
   useEffect(() => {
     if (index === props.gifs.length -1) {
       return;
     }
-    lastTimeout = setTimeout(() => {
+    lastTimeout.current = setTimeout(() => {
       setIndex(index + 1);
     }, props.gifs[index].duration);
+    return () => {
+      if (lastTimeout !== undefined) {
+        clearTimeout(lastTimeout.current);
+      }
+    };
   });
 
   useEffect(() => {
     if (lastTimeout !== undefined && index !== 0) {
-      clearTimeout(lastTimeout);
+      clearTimeout(lastTimeout.current);
     }
     setIndex(0);
   }, [props.id]);
