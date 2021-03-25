@@ -16,7 +16,7 @@ export interface CompressionGamePageComponents {
 }
 
 interface CompressionGameProps {
-  slides: CompressionGamePageComponents[];  //each object should have a list of choices, a gif, and
+  slides: CompressionGamePageComponents[];
   setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
   gameNum: number;
 }
@@ -35,7 +35,6 @@ function CompressionGame(props: CompressionGameProps): JSX.Element {
 
   return (
     <FillInBlankGamePage
-      // {...props.slides[i]}
       pageInfo={props.slides[i]}
       setTimeElapsed={props.setTimeElapsed}
       advanceGame={advanceGame}

@@ -18,12 +18,6 @@ interface FillInBlankGamePageProps {
   setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
   advanceGame: () => void;
   pageInfo: CompressionGamePageComponents;
-  // choices: string[];
-  // correctChoice: number;
-  // gif: JSX.Element;
-  // answerDisplayWords: string[];
-  // answerDisplayStyles: AnswerDisplayStyles[];
-  // answerSlotIndex: number;
   slideNum: number;
   gameNum: number;
 }
