@@ -81,7 +81,7 @@ function Activity1(): JSX.Element {
         <br/>
         <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>
         <br/>
-        <button id="game2-intro-button" onClick={context.next}>
+        <button className="game-intro-button" onClick={context.next}>
           Play Game
         </button>
       </div>
