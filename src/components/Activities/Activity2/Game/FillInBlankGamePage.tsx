@@ -11,8 +11,8 @@ import ClockSvg from '../../../../assets/activity2/game/clock.svg';
 import SceneSvg from '../../../../assets/activity2/game/scene.svg';
 
 import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';
-import { CompressionGamePageComponents } from '../../Activity2/Game/index';
 import { AnswerChoiceBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
+import { CompressionGamePageComponents } from '../../Activity2/Game/index';
 
 interface FillInBlankGamePageProps {
   setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
@@ -32,7 +32,8 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
 
   const answerChoices: string[] = props.pageInfo.choices;
 
-  const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>(props.pageInfo.answerDisplayStyles);
+  const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>
+  (props.pageInfo.answerDisplayStyles);
   const [answerDisplayWords, setAnswerDisplayWords] = useState<string[]>(props.pageInfo.answerDisplayWords);
 
   const updateTimePassed = () => {

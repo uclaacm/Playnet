@@ -6,14 +6,12 @@ import '../../styles/CompressionGame.scss';
 
 import ElephantGIF from '../../../assets/activity2/game/elephant.gif';
 import ElephantHatGIF from '../../../assets/activity2/game/elephant_hat_compressed.gif';
-// import ElephantHatUncompressedGIF from '../../../assets/activity2/game/elephant_hat_uncompressed.gif';
 import ElephantShoesGIF from '../../../assets/activity2/game/elephant_shoe_compressed.gif';
-// import ElephantShoesUncompressedGIF from '../../../assets/activity2/game/elephant_shoe_uncompressed.gif';
 
 import Carousel, { CarouselContext } from '../../shared/Carousel';
+import GIFPlayer from '../../shared/GIFPlayer';
 import { AnswerDisplayStyles } from '../../shared/PlaynetConstants';
 import CompressionGame from './Game';
-import GIFPlayer from '../../shared/GIFPlayer';
 
 function Activity2(): JSX.Element {
   const [gameTimes, setGameTimes] = useState<string[]>(['-1', '-1', '-1', '-1', '-1', '-1']);
@@ -83,7 +81,6 @@ function Activity2(): JSX.Element {
       choices: ['elephant', 'cow', 'sheep'],
       correctChoice: 0,
       gif: <GIFPlayer gifs={[{path: ElephantGIF, duration: elephantGifTime, id: 'elephant0'}]} alt='Gif of Elephant being Drawn' id={'0-0'}/>,
-      // gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
       answerDisplayWords: ['blankspot'],
       answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
       answerSlotIndex: 0,
@@ -91,8 +88,10 @@ function Activity2(): JSX.Element {
     {
       choices: ['hat', 'wig', 'bow'],
       correctChoice: 0,
-      gif: <GIFPlayer gifs={[{path: ElephantGIF, duration: elephantGifTime, id: 'elephant1'}, {path: ElephantHatGIF, duration: elephantHatGifTime, id: 'hat0'}]} alt='Gif of Elephant with Hat being Drawn' id={'0-1'}/>,
-      // gif: <img src={ElephantHatUncompressedGIF} alt='Gif of Elephant with Hat being Drawn' />,
+      gif: <GIFPlayer gifs={[
+        {path: ElephantGIF, duration: elephantGifTime, id: 'elephant1'},
+        {path: ElephantHatGIF, duration: elephantHatGifTime, id: 'hat0'},
+      ]} alt='Gif of Elephant with Hat being Drawn' id={'0-1'}/>,
       answerDisplayWords: ['elephant', 'wearing', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
@@ -101,8 +100,11 @@ function Activity2(): JSX.Element {
     {
       choices: ['wig', 'bow', 'shoes'],
       correctChoice: 2,
-      gif: <GIFPlayer gifs={[{path: ElephantGIF, duration: elephantGifTime, id: 'elephant2'}, {path: ElephantHatGIF, duration: elephantHatGifTime, id: 'hat1'}, {path: ElephantShoesGIF, duration: elephantShoeGifTime, id: 'shoe0'}]} alt='Gif of Elephant wearing Hat and Shoes being Drawn' id={'0-2'}/>,
-      // gif: <img src={ElephantShoesUncompressedGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
+      gif: <GIFPlayer gifs={[
+        {path: ElephantGIF, duration: elephantGifTime, id: 'elephant2'},
+        {path: ElephantHatGIF, duration: elephantHatGifTime, id: 'hat1'},
+        {path: ElephantShoesGIF, duration: elephantShoeGifTime, id: 'shoe0'},
+      ]} alt='Gif of Elephant wearing Hat and Shoes being Drawn' id={'0-2'}/>,
       answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
@@ -116,7 +118,6 @@ function Activity2(): JSX.Element {
       choices: ['elephant', 'cow', 'sheep'],
       correctChoice: 0,
       gif: <GIFPlayer gifs={[{path: ElephantGIF, duration: elephantGifTime, id: 'elephant3'}]} alt='Gif of Elephant being Drawn' id={'1-0'}/>,
-      // gif: <img src={ElephantGIF} alt='Gif of Elephant being Drawn' />,
       answerDisplayWords: ['blankspot'],
       answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
       answerSlotIndex: 0,
@@ -125,7 +126,6 @@ function Activity2(): JSX.Element {
       choices: ['hat', 'wig', 'bow'],
       correctChoice: 0,
       gif: <GIFPlayer gifs={[{path: ElephantHatGIF, duration: elephantHatGifTime, id: 'elephant3'}]} alt='Gif of Elephant wearing Hat being Drawn' id={'1-0'}/>,
-      // gif: <img src={ElephantHatCompressedGIF} alt='Gif of Elephant with Hat being Drawn' />,
       answerDisplayWords: ['elephant', 'wearing', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
@@ -135,7 +135,6 @@ function Activity2(): JSX.Element {
       choices: ['wig', 'bow', 'shoes'],
       correctChoice: 2,
       gif: <GIFPlayer gifs={[{path: ElephantShoesGIF, duration: elephantShoeGifTime, id: 'elephant3'}]} alt='Gif of Elephant wearing hat and shoes being Drawn' id={'1-0'}/>,
-      // gif: <img src={ElephantShoesGIF} alt='Gif of Elephant wearing Hat and Shoes being Drawn' />,
       answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
