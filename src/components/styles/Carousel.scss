@@ -36,7 +36,9 @@
 
 #carousel-content {
   flex: 1;
-  background-color: #fff;
+  position: relative;
+  background-color: $carousel-background-white;
+  overflow: hidden;
   height: 100%;
   margin: 0 24px;
   border-radius: 20px;

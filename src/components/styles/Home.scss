@@ -1,0 +1,84 @@
+@import 'variables';
+
+#intro-container {
+  margin-top: 50px;
+  transform: translateX(-300px);
+  width: 300vw;
+  overflow: hidden;
+  left: -400px;
+  display: flex;
+}
+
+#computer {
+  width: 636px;
+  height: 418px;
+  margin-right: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/computer.svg');
+}
+
+#rocket-path {
+  position: absolute;
+  margin-top: 160px;
+  width: 1606px;
+  height: 128px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/rocket-path.svg');
+}
+
+#rocket {
+  transform-origin: 10% 50%;
+  margin-top: 100px;
+  width: 254px;
+  height: 125px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/rocket.svg');
+}
+
+#server-container {
+  margin-left: 650px;
+}
+
+#server {
+  margin-top: 100px;
+  width: 281px;
+  height: 234px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/server.svg');
+}
+
+#bg-trajectory {
+  opacity: 0;
+  position: absolute;
+  left: 750px;
+  margin-top: 160px;
+  width: 1606px;
+  height: 128px;
+}
+
+#library {
+  position: absolute;
+  opacity: 0;
+  left: 1350px;
+  width: 466px;
+  height: 372px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/library.svg');
+}
+
+#servers {
+  position: absolute;
+  opacity: 0;
+  top: -50px;
+  left: 1550px;
+  width: 600px;
+  height: 600px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/servers.svg');
+}
