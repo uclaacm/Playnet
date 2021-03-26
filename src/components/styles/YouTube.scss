@@ -69,14 +69,27 @@
 }
 
 #final-video {
-    display: grid;
     border: solid black 5px;
     border-radius: 10px;
     width: 30%;
-    height: auto;
+    height: 40%;
 }
 
-#final-thumbnail {
-    width: 100%;
-    height: auto;
+#continue-button {
+    border: solid $playnet-orange 5px;
+    border-radius: 10px;
+    font: $font-title;
+    font-size: 26px;
+    margin: 0px;
+    color: #fff;
+    background-color: $playnet-orange;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    outline: none;
+    margin: 5px;
+    padding: 3px;
+}
+
+#continue-button:hover{
+    transform: scale(1.1, 1.1);
 }

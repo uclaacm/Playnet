@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import '../styles/YouTube.scss';
 
@@ -18,15 +19,15 @@ function YouTube(props): JSX.Element {
                 <p id={"intro-subtitle"}>Choose a video below and we will show you!</p>
                 <div id={"computer"}>
                     <div id={"youtube-wrapper"}>
-                        <button onClick={() => { props.showNext(true); props.setVideo(chill_girl_path)}} className={"youtube-video"}>
+                        <button onClick={() => {props.showNext(true); props.setVideo(chill_girl_path)}} className={"youtube-video"}>
                             <img className={"youtube-thumbnail"} src={chill_girl} alt={"Image of a girl with headphones on studying"} />
                             <p>LoFi hip hop to study to</p>
                         </button>
-                        <button onClick={() => { props.showNext(true); props.setVideo(baby_shark_path)}} className={"youtube-video"}>
+                        <button onClick={() => {props.showNext(true); props.setVideo(baby_shark_path)}} className={"youtube-video"}>
                             <img className={"youtube-thumbnail"} src={baby_shark} alt={"Image of two children and a shark dancing"} />
                             <p>Baby Shark</p>
                         </button>
-                        <button onClick={() => { props.showNext(true); props.setVideo(nether_portal_path) }} className={"youtube-video"}>
+                        <button onClick={() => {props.showNext(true); props.setVideo(nether_portal_path) }} className={"youtube-video"}>
                             <img className={"youtube-thumbnail"} src={nether_portal} alt={"Image of a pixelated portal from the popular videogame Minecraft"} />
                             <p>How to play Minecraft</p>
                         </button>
@@ -39,11 +40,9 @@ function YouTube(props): JSX.Element {
         return(
             <div id={"intro-wrapper"}>
                 <h1 id={"intro-title"}>Yay! Your video is ready to be watched!</h1>
-                <p id={"intro-subtitle"}>Now find out what's going on behind the scenes!</p>
+                <Link id={"continue-button"} to="/activities">Now find out what's going on behind the scenes!</Link>
                 <div id={"computer"}>
-                    <div id={ "final-video" }>
-                        <iframe  id={"final-thumbnail"} src={"https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=1"} />
-                    </div>
+                    <iframe  id={"final-video"} src={"https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=1"} />
                 </div>
             </div>
         )
