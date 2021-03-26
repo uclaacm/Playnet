@@ -17,21 +17,21 @@ const nether_portal = [nether_portal_img, nether_portal_path, "https://www.youtu
 
 function YouTube(props): JSX.Element {
     if (props.chosenVideo == null) {
-        return(
+        return (
             <div id={"intro-wrapper"}>
                 <h1 id={"intro-title"}>Want to learn how YouTube works?</h1>
                 <p id={"intro-subtitle"}>Choose a video below and we will show you!</p>
                 <div id={"computer"}>
                     <div id={"youtube-wrapper"}>
-                        <button onClick={() => {props.showNext(true); props.setVideo(chill_girl)}} className={"youtube-video"}>
+                        <button onClick={() => { props.showNext(true); props.setVideo(chill_girl) }} className={"youtube-video"}>
                             <img className={"youtube-thumbnail"} src={chill_girl[0]} alt={"Image of a girl with headphones on studying"} />
                             <p>LoFi hip hop to study to</p>
                         </button>
-                        <button onClick={() => {props.showNext(true); props.setVideo(baby_shark)}} className={"youtube-video"}>
+                        <button onClick={() => { props.showNext(true); props.setVideo(baby_shark) }} className={"youtube-video"}>
                             <img className={"youtube-thumbnail"} src={baby_shark[0]} alt={"Image of two children and a shark dancing"} />
                             <p>Baby Shark</p>
                         </button>
-                        <button onClick={() => {props.showNext(true); props.setVideo(nether_portal) }} className={"youtube-video"}>
+                        <button onClick={() => { props.showNext(true); props.setVideo(nether_portal) }} className={"youtube-video"}>
                             <img className={"youtube-thumbnail"} src={nether_portal[0]} alt={"Image of a pixelated portal from the popular videogame Minecraft"} />
                             <p>How to play Minecraft</p>
                         </button>
@@ -40,13 +40,13 @@ function YouTube(props): JSX.Element {
             </div>
         )
     }
-    else{
-        return(
+    else {
+        return (
             <div id={"intro-wrapper"}>
                 <h1 id={"intro-title"}>Yay! Your video is ready to be watched!</h1>
                 <Link id={"continue-button"} to="/activities">Now find out what's going on behind the scenes!</Link>
                 <div id={"computer"}>
-                    <iframe  id={"final-video"} src={props.chosenVideo[2]} />
+                    <iframe id={"final-video"} src={props.chosenVideo[2]} />
                 </div>
             </div>
         )

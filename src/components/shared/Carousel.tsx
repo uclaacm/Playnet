@@ -20,6 +20,7 @@ export interface CarouselItemComponents {
 }
 
 interface CarouselProps {
+  redirect: any;
   children: CarouselItemComponents[];
   title?: string;
   subtitle?: string;
@@ -97,10 +98,10 @@ function Carousel(props: CarouselProps): JSX.Element {
           <button
             className={'carousel-btn next'}
             style={{
-              visibility: (child?.showNext === false || (props.redirect == true && slideIdx === props.children.length - 1))
+              visibility: (child?.showNext === false || (props.redirect == false && slideIdx === props.children.length - 1))
                 ? 'hidden' : 'visible',
             }}
-            onClick={slideIdx === props.children.length - 1 ? () => props.redirect(false) : () => goNext()}
+            onClick={(slideIdx === props.children.length - 1 && props.redirect) ? () => props.redirect(false) : () => goNext()}
           >
             <img src={NextSvg} />
           </button>
