@@ -22,13 +22,13 @@
     color: #fff;
   }
 
-#computer {
+#youtube-computer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
     width: 100%;
-    background-image: url("../../assets/computer.svg");
+    background-image: url("../../assets/computer-youtube.svg");
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
@@ -68,10 +68,10 @@
     height: auto;
 }
 
-#final-video {
+#youtube-final-video {
     border: solid black 5px;
     border-radius: 10px;
-    width: 30%;
+    width: 40%;
     height: 40%;
 }
 

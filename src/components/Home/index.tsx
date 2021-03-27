@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 import React, { useState, forwardRef, RefObject, useRef } from 'react';
         
 import Intro10Data from '../LottieAnimations/Intro10Animation';

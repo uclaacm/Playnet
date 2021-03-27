@@ -21,7 +21,7 @@ function YouTube(props): JSX.Element {
             <div id={"intro-wrapper"}>
                 <h1 id={"intro-title"}>Want to learn how YouTube works?</h1>
                 <p id={"intro-subtitle"}>Choose a video below and we will show you!</p>
-                <div id={"computer"}>
+                <div id={"youtube-computer"}>
                     <div id={"youtube-wrapper"}>
                         <button onClick={() => { props.showNext(true); props.setVideo(chill_girl) }} className={"youtube-video"}>
                             <img className={"youtube-thumbnail"} src={chill_girl[0]} alt={"Image of a girl with headphones on studying"} />
@@ -45,8 +45,8 @@ function YouTube(props): JSX.Element {
             <div id={"intro-wrapper"}>
                 <h1 id={"intro-title"}>Yay! Your video is ready to be watched!</h1>
                 <Link id={"continue-button"} to="/activities">Now find out what's going on behind the scenes!</Link>
-                <div id={"computer"}>
-                    <iframe id={"final-video"} src={props.chosenVideo[2]} />
+                <div id={"youtube-computer"}>
+                    <iframe id={"youtube-final-video"} src={props.chosenVideo[2]} />
                 </div>
             </div>
         )
