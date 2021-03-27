@@ -79,7 +79,7 @@ function Activity2(): JSX.Element {
   const elephantGifTime = { path: ElephantGIF, duration: 13000 };
   const elephantHatGifTime = { path: ElephantHatGIF, duration: 6000 };
   const elephantShoeGifTime = { path: ElephantShoesGIF, duration: 2000 };
-  
+
   const alienGifTime = { path: AlienGif, duration: 8200 };
   const alienFlowerGifTime = { path: AlienFlowerGif, duration: 4000 };
   const alienWigGifTime = { path: AlienWigGif, duration: 3500 };
