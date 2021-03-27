@@ -234,7 +234,7 @@ function Activity2(): JSX.Element {
   ];
 
   return (
-    <Carousel subtitle='Activity 2 (rn quick demo carousel item)'>
+    <Carousel title='Sending Videos'>
       {content}
     </Carousel>
   );
