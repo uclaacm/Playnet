@@ -83,17 +83,22 @@
   align-items: center;
 }
 
-#game2-intro-button {
+.game-intro-button {
   width: 300px;
   height: 50px;
   max-width: 50%;
   max-height: 50%;
   background-color: #ff5c41;
   color: white;
-  font-size: 1vw;
+  font-size: 2vw;
   font-family: inherit;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
+  outline: 0;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 #blank-computer {
