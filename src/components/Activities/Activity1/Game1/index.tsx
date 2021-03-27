@@ -26,7 +26,7 @@ import { TextBubbleStyles } from '../../../shared/PlaynetConstants';
 import TextBubble from '../TextBubble';
 import ProgressBar from './components/ProgressBar';
 
-function Game1(): JSX.Element {
+function CipherGame(): JSX.Element {
   const slides = [
     {
       correctImg: 1,
@@ -34,7 +34,7 @@ function Game1(): JSX.Element {
       imgs: [UFO, Car],
     },
     {
-      correctImg: 1,
+      correctImg: 0,
       text: 'APPLE',
       imgs: [Apple, Lemon],
     },
@@ -49,7 +49,7 @@ function Game1(): JSX.Element {
       imgs: [TwoUFOs, TwoCars],
     },
     {
-      correctImg: 0,
+      correctImg: 1,
       text: 'THREE LEMONS',
       imgs: [ThreeApples, ThreeLemons],
     },
@@ -84,7 +84,7 @@ function Game1(): JSX.Element {
   };
 
   const displayText = () : string => {
-    return scramble('5', slides[slideIdx].text);
+    return scramble(5, slides[slideIdx].text);
   };
 
   const [happiness, setHappiness] = useState(0);
@@ -146,11 +146,7 @@ function Game1(): JSX.Element {
 
   const displayGame = () => {
     return showSuccess ? displaySuccess() :
-      <div className={'game-1-cards'} style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'}}>
+      <div className={'game-1-cards'}>
         <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={slides[slideIdx].imgs[0]} />
         <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={slides[slideIdx].imgs[1]} />
       </div>;
@@ -163,8 +159,10 @@ function Game1(): JSX.Element {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'flex-end',
-        height: 'inherit'}}>
+        alignItems: 'flex-start',
+        height: 'inherit',
+        width: '75%'}}>
+        {starCounter()}
         <div id={'game-content'}>
           <div className={'gamebox'}>
             <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
@@ -182,10 +180,9 @@ function Game1(): JSX.Element {
           </div>
           {displayGame()}
         </div>
-        {starCounter()}
       </div>
     </div>
   );
 }
 
-export default Game1;
+export default CipherGame;

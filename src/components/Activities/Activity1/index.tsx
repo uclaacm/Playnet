@@ -13,7 +13,7 @@ import BlankComputer from '../../../assets/blank-computer.svg';
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import Convo, { Phrase } from './Convo';
-import Game1 from './Game1';
+import CipherGame from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
@@ -125,11 +125,11 @@ function Activity1(): JSX.Element {
       child: <Slide3 />,
     },
     {
-      child: <CipherGameIntro/>,
+      child: <CipherGameIntro />,
       showNext: false,
     },
     {
-      child: <Game1 />,
+      child: <CipherGame />,
       showNext: false,
     },
     {
