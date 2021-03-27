@@ -4,9 +4,13 @@ import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
 import '../../styles/CompressionGame.scss';
 
-import ElephantGIF from '../../../assets/activity2/game/elephant.gif';
-import ElephantHatGIF from '../../../assets/activity2/game/elephant_hat_compressed.gif';
-import ElephantShoesGIF from '../../../assets/activity2/game/elephant_shoe_compressed.gif';
+import AlienGif from '../../../assets/activity2/game/al1.gif';
+import AlienFlowerGif from '../../../assets/activity2/game/a2.gif';
+import AlienWigGif from '../../../assets/activity2/game/a3.gif';
+
+import ElephantGIF from '../../../assets/activity2/game/el1.gif';
+import ElephantHatGIF from '../../../assets/activity2/game/el2.gif';
+import ElephantShoesGIF from '../../../assets/activity2/game/el3.gif';
 
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 import GIFPlayer from '../../shared/GIFPlayer';
@@ -60,13 +64,13 @@ function Activity2(): JSX.Element {
         >With Compression</div>
         <div className='grid-label'
           style={{ gridRowStart: 2, gridColumnStart: 1 }}
-        >Elephant</div>
+        >Part A</div>
         <div className='grid-label'
           style={{ gridRowStart: 3, gridColumnStart: 1 }}
-        >Elephant Wearing Hat</div>
+        >Part B</div>
         <div className='grid-label bottom-left-corner'
           style={{ gridRowStart: 4, gridColumnStart: 1 }}
-        >Elephant Wearing Hat and Shoes</div>
+        >Part C</div>
         {gameTimes.map((time, index) => renderTimeGridItem(time, index))}
       </div>
     );
@@ -76,36 +80,40 @@ function Activity2(): JSX.Element {
   const elephantHatGifTime = { path: ElephantHatGIF, duration: 6000 };
   const elephantShoeGifTime = { path: ElephantShoesGIF, duration: 2000 };
 
+  const alienGifTime = { path: AlienGif, duration: 8200 };
+  const alienFlowerGifTime = { path: AlienFlowerGif, duration: 4000 };
+  const alienWigGifTime = { path: AlienWigGif, duration: 3500 };
+
   const uncompressedGameSlides = [
     {
-      choices: ['elephant', 'cow', 'sheep'],
-      correctChoice: 0,
-      gif: <GIFPlayer gifs={[elephantGifTime]} alt='Gif of Elephant being Drawn' id={'0-0'} />,
+      choices: ['frog', 'alien', 'pig'],
+      correctChoice: 1,
+      gif: <GIFPlayer gifs={[alienGifTime]} alt='Gif of Alien being Drawn' id={'0-0'} />,
       answerDisplayWords: ['blankspot'],
       answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
       answerSlotIndex: 0,
     },
     {
-      choices: ['hat', 'wig', 'bow'],
-      correctChoice: 0,
+      choices: ['shoes', 'wig', 'flower'],
+      correctChoice: 2,
       gif: <GIFPlayer gifs={[
-        elephantGifTime,
-        elephantHatGifTime,
-      ]} alt='Gif of Elephant with Hat being Drawn' id={'0-1'} />,
-      answerDisplayWords: ['elephant', 'wearing', 'blank'],
+        alienGifTime,
+        alienFlowerGifTime,
+      ]} alt='Gif of Alien with Flower being Drawn' id={'0-1'} />,
+      answerDisplayWords: ['alien', 'with', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
       answerSlotIndex: 2,
     },
     {
-      choices: ['wig', 'bow', 'shoes'],
-      correctChoice: 2,
+      choices: ['wig', 'dress', 'shoes'],
+      correctChoice: 0,
       gif: <GIFPlayer gifs={[
-        elephantGifTime,
-        elephantHatGifTime,
-        elephantShoeGifTime,
-      ]} alt='Gif of Elephant wearing Hat and Shoes being Drawn' id={'0-2'} />,
-      answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
+        alienGifTime,
+        alienFlowerGifTime,
+        alienWigGifTime,
+      ]} alt='Gif of Alien with Flower and Wig being Drawn' id={'0-2'} />,
+      answerDisplayWords: ['alien', 'with', 'flower', 'and', 'blank'],
       answerDisplayStyles:
         [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
           AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
