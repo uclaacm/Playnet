@@ -17,8 +17,6 @@ import Game1 from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
-import IntroScreen from '../IntroScreen';
-
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
   const personConvo: Phrase[] = [
@@ -77,6 +75,19 @@ function Activity1(): JSX.Element {
     );
   };
 
+  const CipherGameIntro = () => {
+    const context = useContext(CarouselContext);
+    return (
+      <div id="game2-intro">
+        <div>What if you were a computer?</div>
+        <div>Can you figure out what the alien wants and keep it happy?</div>
+        <button className="game-intro-button" onClick={context.next}>
+          Play Game
+        </button>
+      </div>
+    );
+  };
+
   const AmbiguousPhrasingGameIntro = () => {
     const context = useContext(CarouselContext);
     return (
@@ -114,11 +125,7 @@ function Activity1(): JSX.Element {
       child: <Slide3 />,
     },
     {
-      child:
-        <IntroScreen buttonText='Play Game'>
-          <div>What if you were a computer?</div>
-          <div>Can you figure out what the alien wants and keep it happy?</div>
-        </IntroScreen>,
+      child: <CipherGameIntro/>,
       showNext: false,
     },
     {
