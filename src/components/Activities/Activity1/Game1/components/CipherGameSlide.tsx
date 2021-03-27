@@ -7,13 +7,13 @@ import AnswerChoiceBox from '../../../../shared/AnswerChoiceBox';
 
 interface CipherGameSlideProps {
   correctImg: number;
-  advanceGame: (correct : boolean) => void;
+  advanceRound: (correct : boolean) => void;
   text: string;
   imgs: string[],
 }
 
 function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
-  const {correctImg, advanceGame} = props;
+  const {correctImg, advanceRound} = props;
   const [img0, img1] = props.imgs;
 
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
@@ -22,10 +22,10 @@ function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
   const handleClick = (option : number) => {
     if (option == correctImg) {
       playCorrect();
-      advanceGame(true);
+      advanceRound(true);
     } else {
       playIncorrect();
-      advanceGame(false);
+      advanceRound(false);
     }
     return true;
   };
