@@ -40,6 +40,15 @@
   width: fit-content;
 }
 
+.bubble-contents {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
 .centered {
   padding: 0 10px 20px;
+  display: grid;
+  place-content: center;
+  position: relative;
+  height: calc(100% - 20px);
 }
