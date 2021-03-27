@@ -21,7 +21,7 @@ import Pair4B from '../../../../assets/activity1/game2/pair4b.svg';
 import { scramble } from '../../../../utils';
 import { CarouselContext } from '../../../shared/Carousel';
 import { TextBubbleStyles } from '../../../shared/PlaynetConstants';
-import SlideBox from '../Game2/components/SlideBox';
+import AnswerChoiceBox from '../../../shared/AnswerChoiceBox';
 import TextBubble from '../TextBubble';
 import ProgressBar from './components/ProgressBar';
 
@@ -79,7 +79,7 @@ function Game1(): JSX.Element {
         playIncorrect();
         setPercent(percent-10);
       }
-      return;
+      return true;
     }
     setIncorrect(false);
     playCorrect();
@@ -87,6 +87,8 @@ function Game1(): JSX.Element {
     setPercent(percent+20);
     setNumStars(numStars+1);
     advanceGame();
+
+    return false;
   };
 
   const starCounter = () => {
@@ -126,8 +128,8 @@ function Game1(): JSX.Element {
   const displayGame = () => {
     return showSuccess ? displaySuccess() :
       <div className={'game-1-cards'}>
-        <SlideBox handleClick={()=>handleClick(0)} imgSrc={Pair1A} />
-        <SlideBox handleClick={()=>handleClick(1)} imgSrc={Pair1B} />
+        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={Pair1A} />
+        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={Pair1B} />
       </div>;
   };
 

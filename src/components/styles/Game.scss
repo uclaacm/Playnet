@@ -44,6 +44,12 @@
   border-width: 8px;
   border-color: black;
   transition: 0.1s;
+
+  background: white;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .choice-container img {
@@ -55,9 +61,23 @@
 .game-1-cards {
   width: 50%;
   height: 100%;
+}
+
+.px-choice-container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  height: 86px;
+  width: 150px;
+  margin: 10px;
+  border-style: solid;
+  border-radius: 20px;
+  border-width: 8px;
+  border-color: black;
+  transition: 0.1s;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -18,3 +18,16 @@ export enum PlaynetColors {
   HOVER_GREEN = '#1CC64B',
   INCORRECT_RED = '#FF0000',
 }
+
+export enum AnswerChoiceBoxStyles {
+  LARGE_PERCENT_BASED = 'choice-container',
+  SMALL_PX_BASED = 'px-choice-container',
+}
+
+export enum AnswerDisplayStyles {
+  WHITE_BACKGROUND = 'white-background',
+  NO_BACKGROUND = '',
+  RED_BORDER = 'red-outline black-text',
+  GREEN_BORDER = 'green-outline black-text',
+  ANSWER_SPOT = 'gray-background gray-text'
+}
