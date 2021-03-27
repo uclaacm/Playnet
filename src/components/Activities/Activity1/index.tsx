@@ -78,7 +78,7 @@ function Activity1(): JSX.Element {
   const CipherGameIntro = () => {
     const context = useContext(CarouselContext);
     return (
-      <div id="game2-intro">
+      <div className="game-intro">
         <div>What if you were a computer?</div>
         <div>Can you figure out what the alien wants and keep it happy?</div>
         <button className="game-intro-button" onClick={context.next}>
@@ -91,7 +91,7 @@ function Activity1(): JSX.Element {
   const AmbiguousPhrasingGameIntro = () => {
     const context = useContext(CarouselContext);
     return (
-      <div id="game2-intro">
+      <div className="game-intro">
         <span>But even if we know what the alien is saying...can you figure out what they mean?</span>
         <br/>
         <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>

@@ -58,7 +58,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   };
 
   return (
-    <div id={'game-content'}>
+    <div className={'game-content'}>
       <div className={'gamebox'}>
         <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
         <Alien alienState={alienState} />

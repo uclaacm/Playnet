@@ -2,8 +2,6 @@ import React, { useContext, useRef, useState } from 'react';
 
 import '../../../styles/Game.scss';
 
-import useSound from 'use-sound';
-
 import Apple from '../../../../assets/activity1/apple.svg';
 import Car from '../../../../assets/activity1/game1/car.svg';
 import Star from '../../../../assets/activity1/game1/star.svg';
@@ -14,16 +12,15 @@ import TwoCars from '../../../../assets/activity1/game1/twocars.svg';
 import TwoLemons from '../../../../assets/activity1/game1/twolemons.svg';
 import TwoUFOs from '../../../../assets/activity1/game1/twoufos.svg';
 import UFO from '../../../../assets/activity1/game1/ufo.svg';
-import CorrectSFX from '../../../../assets/activity1/game2/correct.mp3';
-import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
 import Lemon from '../../../../assets/activity1/lemon.svg';
 
 import { scramble } from '../../../../utils';
 import Alien, { ALIEN_STATE } from '../../../shared/Alien';
-import AnswerChoiceBox from '../../../shared/AnswerChoiceBox';
 import { CarouselContext } from '../../../shared/Carousel';
 import { TextBubbleStyles } from '../../../shared/PlaynetConstants';
+
 import TextBubble from '../TextBubble';
+import CipherGameSlide from './components/CipherGameSlide';
 import ProgressBar from './components/ProgressBar';
 
 function CipherGame(): JSX.Element {
@@ -55,13 +52,13 @@ function CipherGame(): JSX.Element {
     },
   ];
 
-  const [ slideIdx, setSlideIdx ] = useState(0);
-  const [ showSuccess, setShowSuccess] = useState(false);
+  const MAX_HAPPINESS = 3;
+  const [slideIdx, setSlideIdx] = useState(0);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [happiness, setHappiness] = useState(0);
   const context = useContext(CarouselContext);
 
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
-
+  // -----ALIEN HANDLERS------
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -74,70 +71,50 @@ function CipherGame(): JSX.Element {
       cb && cb();
     }, 1000);
   };
-
-  const advanceGame = () => {
-    if (happiness === 3) {
-      context.next();
-      return;
-    }
-    setShowSuccess(false);
-  };
+  // ------------------------
 
   const displayText = () : string => {
     return scramble(5, slides[slideIdx].text);
   };
 
-  const [happiness, setHappiness] = useState(0);
-
-  const handleClick = (option : number) => {
-    if (option == slides[slideIdx].correctImg) {
-      playCorrect();
+  const advanceGame = (correct : boolean) => {
+    if (correct) {
+      if (happiness+1 === MAX_HAPPINESS) {
+        context.next();
+        return;
+      }
+      setHappiness(happiness+1);
       handleAlienState(ALIEN_STATE.HAPPY, nextSlide);
       setShowSuccess(true);
-      setHappiness(happiness+1);
     } else {
-      playIncorrect();
       handleAlienState(ALIEN_STATE.ANGER, nextSlide);
       setShowSuccess(false);
     }
-    return true;
   };
 
   const nextSlide = () => {
-    let newSlideIdx = slideIdx+1;
-    if (newSlideIdx === slides.length) {
-      newSlideIdx = Math.floor(Math.random()*(slides.length-1));
+    if (slideIdx === slides.length-1) { // randomly loop to a previous slide
+      setSlideIdx(Math.floor(Math.random()*(slides.length-1)));
+      return;
     }
-    setSlideIdx(newSlideIdx);
+    setSlideIdx(slideIdx+1);
   };
 
   const starCounter = () => {
     return (
-      <div style={{
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center'}}>
+      <div className={'star-counter'}>
         <img src={Star} alt="star points"/>
         {happiness}
       </div>
     );
   };
 
-  const displaySuccess = () => {
+  const displaySuccessScreen = () => {
     return (
       <div>
-        <span>You got a star! Let&apos;s keep going.</span>
-        <br/>
-        <div style={{
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center'}}>
-          {starCounter()}
-        </div>
-        <br/>
-        <button className="game-intro-button" onClick={advanceGame}>
+        <div>You got a star! Let&apos;s keep going.</div>
+        {starCounter()}
+        <button className="game-intro-button" onClick={() => setShowSuccess(false)}>
           Next Level
         </button>
       </div>
@@ -145,41 +122,26 @@ function CipherGame(): JSX.Element {
   };
 
   const displayGame = () => {
-    return showSuccess ? displaySuccess() :
-      <div className={'game-1-cards'}>
-        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={slides[slideIdx].imgs[0]} />
-        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={slides[slideIdx].imgs[1]} />
-      </div>;
+    return showSuccess ? displaySuccessScreen() : <CipherGameSlide {...slides[slideIdx]} advanceGame={advanceGame} />;
   };
 
   return (
     <div id={'game-wrapper'}>
       <h3> Try to guess what image the alien wants.</h3>
-      <div style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        height: 'inherit',
-        width: '75%'}}>
+      <div id={'cipher-game-content'}>
         {starCounter()}
-        <div id={'game-content'}>
+        <div className={'game-content'}>
           <div className={'gamebox'}>
             <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
             <Alien alienState={alienState} />
-            <div style={{
-              width: '75%',
-              display: 'flex',
-              flexDirection: 'row',
-              justifyContent: 'center',
-              alignItems: 'center'}}>
-              <ProgressBar percentComplete={happiness*34}/>
+            <div className={'happiness-bar'}>
+              <ProgressBar percentComplete={happiness*(100/MAX_HAPPINESS)}/>
               <img src={Star} alt="star points"/>
             </div>
             Happiness
           </div>
           {displayGame()}
-        </div>
+        </div>;
       </div>
     </div>
   );
