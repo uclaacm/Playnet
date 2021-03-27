@@ -228,7 +228,7 @@ function Activity2(): JSX.Element {
         <div className='center-text'>
           <div className='padding-2'>We ended up with the same result, but the uncompressed was a lot faster!</div>
           <div className='padding-2'>This is because compression takes out unhelpful information.</div>
-          <div className='padding-2'>The videos that you watch are only fast because of <span className='orange-text'>compression</span>.</div>
+          <div className='padding-2'>The videos that you watch are only fast because of <span id={'body-text'}><b>compression</b></span>.</div>
         </div>,
     },
   ];
