@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react';
 
 import '../../../styles/Game.scss';
 
-import Alien from '../../../../assets/alien/alien.svg';
 import Apple from '../../../../assets/activity1/apple.svg';
 import Car from '../../../../assets/activity1/game1/car.svg';
 import Star from '../../../../assets/activity1/game1/star.svg';
@@ -14,6 +13,7 @@ import TwoLemons from '../../../../assets/activity1/game1/twolemons.svg';
 import TwoUFOs from '../../../../assets/activity1/game1/twoufos.svg';
 import UFO from '../../../../assets/activity1/game1/ufo.svg';
 import Lemon from '../../../../assets/activity1/lemon.svg';
+import Alien from '../../../../assets/alien/alien.svg';
 
 import { CarouselContext } from '../../../shared/Carousel';
 import CipherGameRound from './components/CipherGameRound';
