@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import '../../../styles/Game.scss';
 
@@ -15,9 +15,7 @@ import UFO from '../../../../assets/activity1/game1/ufo.svg';
 import Lemon from '../../../../assets/activity1/lemon.svg';
 
 import { CarouselContext } from '../../../shared/Carousel';
-
 import CipherGameRound from './components/CipherGameRound';
-import CipherGameSlide from './components/CipherGameSlide';
 
 function CipherGame(): JSX.Element {
   const rounds = [
