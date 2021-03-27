@@ -56,6 +56,7 @@ function CipherGame(): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const [happiness, setHappiness] = useState(0);
+  // const [stars, setStars] = useState(0);
   const context = useContext(CarouselContext);
 
   // -----ALIEN HANDLERS------
@@ -73,8 +74,14 @@ function CipherGame(): JSX.Element {
   };
   // ------------------------
 
+  const hash = 5;
   const displayText = () : string => {
-    return scramble(5, slides[slideIdx].text);
+    return scramblePhrase(slides[slideIdx].text);
+  };
+
+  const scramblePhrase = (phrase : string) => { // split phrase into words and scramble individually
+    const reducer = (acc : string, cur : string) => acc + ' ' + scramble(hash,cur);
+    return phrase.split(' ').reduce(reducer, '');
   };
 
   const advanceGame = (correct : boolean) => {
