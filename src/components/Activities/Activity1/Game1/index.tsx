@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 
 import '../../../styles/Game.scss';
 
+import Alien from '../../../../assets/alien/alien.svg';
 import Apple from '../../../../assets/activity1/apple.svg';
 import Car from '../../../../assets/activity1/game1/car.svg';
 import Star from '../../../../assets/activity1/game1/star.svg';
@@ -87,6 +88,7 @@ function CipherGame(): JSX.Element {
     return (
       <div className={'cipher-game-success'}>
         <div>You got a star! Let&apos;s keep going.</div>
+        <img src={Alien} alt='friendly alien'/>
         {starCounter()}
         <button className="game-intro-button" onClick={() => setShowSuccess(false)}>
           Next Level
@@ -95,18 +97,12 @@ function CipherGame(): JSX.Element {
     );
   };
 
-  const displayGame = () => {
-    return showSuccess ?
-      displaySuccessScreen() :
-      <CipherGameRound advanceGame={advanceGame} slides={rounds[numStars]}/>;
-  };
-
   return (
     <div id={'game-wrapper'}>
       <h3> Try to guess what image the alien wants.</h3>
       <div id={'cipher-game-content'}>
         {starCounter()}
-        {displayGame()}
+        {showSuccess ? displaySuccessScreen() : <CipherGameRound advanceGame={advanceGame} slides={rounds[numStars]}/>}
       </div>
     </div>
   );

@@ -21,11 +21,11 @@ interface CipherGameRoundProps {
   advanceGame: () => void;
 }
 
-
 function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const {slides, advanceGame} = props;
 
   const [MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS] = [100, 20, 10];
+  const HASH_VAL = 5;
   const [slideIdx, setSlideIdx] = useState(0);
   const [happiness, setHappiness] = useState(0);
 
@@ -43,34 +43,26 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     }, 1000);
   };
   // ------------------------
-
-  // -----CIPHERING----------
-  const hash = 5;
-  const displayText = () : string => {
-    return scramblePhrase(slides[slideIdx].text);
+  const displayScrambledText = () : string => { // split phrase into words and scramble individually
+    const words = slides[slideIdx].text.split(' ');
+    const reducer = (acc : string, cur : string) => acc + ' ' + scramble(HASH_VAL, cur);
+    return words.reduce(reducer, '');
   };
-
-  const scramblePhrase = (phrase : string) => { // split phrase into words and scramble individually
-    const reducer = (acc : string, cur : string) => acc + ' ' + scramble(hash,cur);
-    return phrase.split(' ').reduce(reducer, '');
-  };
-  // ------------------------
 
   const advanceRound = (correct : boolean) => {
     if (correct) {
-      const newHappiness = Math.min(happiness+CORRECT_PTS, 100);
+      const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       if (newHappiness === MAX_HAPPINESS) {
         advanceGame();
         return;
       }
       setHappiness(newHappiness);
-      nextSlide();
       handleAlienState(ALIEN_STATE.HAPPY);
     } else {
-      setHappiness(Math.max(happiness-INCORRECT_PTS,0));
-      nextSlide();
+      setHappiness(Math.max(happiness-INCORRECT_PTS,0)); // no underflow
       handleAlienState(ALIEN_STATE.ANGER);
     }
+    nextSlide();
   };
 
   const nextSlide = () => {
@@ -84,7 +76,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   return (
     <div className={'game-content'}>
       <div className={'gamebox'}>
-        <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
+        <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayScrambledText()} />
         <Alien alienState={alienState} />
         <div className={'happiness-bar'}>
           <ProgressBar percentComplete={happiness}/>
