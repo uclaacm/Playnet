@@ -10,7 +10,7 @@
 #title {
   font: $font-title;
   color: #fff;
-  margin-top: 36px;
+  margin-top: 12px;
   margin-bottom: 0;
 }
 
@@ -27,14 +27,17 @@
   margin: 5px;
 }
 
+b {
+  font: $font-title;
+  font-size: 26px;
+  font-weight: bold;
+  color: $playnet-orange;
+}
+
 #carousel {
   display: flex;
   align-items: center;
-  // height: auto;
-  // height: -moz-max-content;
-
-
-  margin: 36px 64px 64px;
+  margin: 12px 64px 64px;
 }
 
 #carousel-content {

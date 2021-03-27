@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
@@ -8,8 +8,18 @@ import ElephantGIF from '../../../assets/activity2/game/elephant.gif';
 import ElephantHatGIF from '../../../assets/activity2/game/elephant_hat_compressed.gif';
 import ElephantShoesGIF from '../../../assets/activity2/game/elephant_shoe_compressed.gif';
 
+import * as A2Animation1 from '../../../assets/lottie_animation_data/activity2/1VideosLotsInfo.json';
+import * as A2Animation2 from '../../../assets/lottie_animation_data/activity2/2TrySendWholeVideo.json';
+import * as A2Animation3 from '../../../assets/lottie_animation_data/activity2/3VerySlow.json';
+import * as A2Animation4 from '../../../assets/lottie_animation_data/activity2/4HaveToLightenLoad.json';
+import * as A2Animation5 from '../../../assets/lottie_animation_data/activity2/5CompressVideo.json';
+import * as A2Animation6 from '../../../assets/lottie_animation_data/activity2/6RocketLighter.json';
+import * as A2Animation7 from '../../../assets/lottie_animation_data/activity2/7LikeInstructions.json';
+import * as A2Animation8 from '../../../assets/lottie_animation_data/activity2/8FinalVideo.json';
+
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 import GIFPlayer from '../../shared/GIFPlayer';
+import LottieControl from '../../shared/LottieControl';
 import { AnswerDisplayStyles } from '../../shared/PlaynetConstants';
 import CompressionGame from './Game';
 
@@ -145,24 +155,54 @@ function Activity2(): JSX.Element {
 
   const content = [
     {
-      child: <img src='/assets/img_11.svg' />,
-      bottomText: 'go next page to demo somes go back and forth without buttons :)',
+      child: <LottieControl animationData={A2Animation1.default} />,
+      topText: 'Videos contain a lot of information!',
+      animationTime: 1.47,
     },
     {
-      child: <div><DemoMovePrevPage><img src='/assets/img_8.svg' /></DemoMovePrevPage></div>,
-      showPrev: false,
-      topText: ':0 :0 :0',
-      bottomText: 'ill go backwards for you in a few sec',
+      child: <LottieControl animationData={A2Animation2.default} />,
+      topText: 'So if a server tried to send you a whole video,',
+      animationTime: 3.45,
     },
     {
-      child: <div><DemoMoveNextPage><img src='/assets/img_8.svg' /></DemoMoveNextPage></div>,
-      showNext: false,
-      topText: ':0 :0 :0',
-      bottomText: 'ill go forward for you in a few sec',
+      child: <LottieControl animationData={A2Animation3.default} />,
+      topText: 'It would be very slow.',
+      animationTime: 5.24,
     },
     {
-      child: <div></div>,
-      topText: 'dats the whole demo cyaa',
+      child: <LottieControl animationData={A2Animation4.default} />,
+      topText: 'To give you videos fast, we should go back to lighten the load',
+      animationTime: 5.35,
+    },
+    {
+      child:
+        <>
+          <h2 id={'body-text'}>which we do with <b>compression</b>, or packing, before the video is sent</h2>
+          <LottieControl animationData={A2Animation5.default} />
+        </>,
+      animationTime: 5.89,
+    },
+    {
+      child: <LottieControl animationData={A2Animation6.default} />,
+      topText: 'See how much faster and happier the rocket is?',
+      animationTime: 3.12,
+    },
+    {
+      child:
+      <>
+        <h2 id={'body-text'}><b>Decompressing</b> is when your computer uses these instructions to show you the video.</h2>
+        <LottieControl animationData={A2Animation7.default} />
+      </>,
+      animationTime: 10.31,
+    },
+    {
+      child:
+      <>
+        <h2 id={'body-text'}>But don’t just take our word for it,</h2>
+        <LottieControl animationData={A2Animation8.default} />
+        <h2 id={'body-text'}>find out whether <b>you</b> think that <b>compression</b> speeds things up!</h2>
+      </>,
+      animationTime: 8,
     },
     {
       child: <CompressionGameIntro text={'If you were a computer, how long would it take you to understand the instructions without compression?'} buttonText={'Play Game'} />,
@@ -188,13 +228,13 @@ function Activity2(): JSX.Element {
         <div className='center-text'>
           <div className='padding-2'>We ended up with the same result, but the uncompressed was a lot faster!</div>
           <div className='padding-2'>This is because compression takes out unhelpful information.</div>
-          <div className='padding-2'>The videos that you watch are only fast because of <span className='orange-text'>compression</span>.</div>
+          <div className='padding-2'>The videos that you watch are only fast because of <span id={'body-text'}><b>compression</b></span>.</div>
         </div>,
     },
   ];
 
   return (
-    <Carousel subtitle='Activity 2 (rn quick demo carousel item)'>
+    <Carousel title='Sending Videos'>
       {content}
     </Carousel>
   );
@@ -212,30 +252,6 @@ function CompressionGameIntro(props: CompressionGameIntroProps): JSX.Element {
       <button className='game-intro-button' onClick={context.next}>{props.buttonText}</button>
     </div>
   );
-}
-
-function DemoMoveNextPage(props: { children: JSX.Element }): JSX.Element {
-  const context = useContext(CarouselContext);
-  useEffect(
-    () => {
-      const timer = setTimeout(() => context.next(), 1000);
-      return () => {
-        clearTimeout(timer);
-      };
-    });
-  return <>{props.children}</>;
-}
-
-function DemoMovePrevPage(props: { children: JSX.Element }): JSX.Element {
-  const context = useContext(CarouselContext);
-  useEffect(
-    () => {
-      const timer = setTimeout(() => context.prev(), 5000);
-      return () => {
-        clearTimeout(timer);
-      };
-    });
-  return <>{props.children}</>;
 }
 
 export default Activity2;
