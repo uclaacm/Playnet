@@ -6,9 +6,9 @@ import IncorrectSFX from '../../../../../assets/activity1/game2/oh_no_1.mp3';
 import TranslatorSvg from '../../../../../assets/activity1/translator.svg';
 
 import Alien, { ALIEN_STATE } from '../../../../shared/Alien';
+import AnswerChoiceBox from '../../../../shared/AnswerChoiceBox';
 import { TextBubbleStyles } from '../../../../shared/PlaynetConstants';
 import TextBubble from '../../TextBubble';
-import AnswerChoiceBox from '../../../../shared/AnswerChoiceBox';
 
 interface GameSlideProps {
   correctImg: number;

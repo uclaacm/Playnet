@@ -1,5 +1,5 @@
 import React, { useState, forwardRef, RefObject, useRef } from 'react';
-        
+
 import Intro10Data from '../LottieAnimations/Intro10Animation';
 import Intro11Data from '../LottieAnimations/Intro11Animation';
 import Intro12Data from '../LottieAnimations/Intro12Animation';
@@ -7,9 +7,9 @@ import Intro8Data from '../LottieAnimations/Intro8Animation';
 import Intro9Data from '../LottieAnimations/Intro9Animation';
 import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
-import YouTube from '../shared/Youtube';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections } from '../shared/PlaynetConstants';
+import YouTube from '../shared/Youtube';
 
 import '../styles/Home.scss';
 import Intro from './Intro';
@@ -17,7 +17,7 @@ import Intro from './Intro';
 function Home(): JSX.Element {
   const [ chosenVideoPath, setChosenVideoPath ] = useState(null);
   const [ showCarousel, setShowCarousel ] = useState(false);
-  
+
   const IntroSlides = forwardRef((_, ref: RefObject) => (
     <Intro ref={ref}/>
   ));
@@ -79,22 +79,22 @@ function Home(): JSX.Element {
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
-        { showCarousel ? 
-        <Carousel
-          redirect={setShowCarousel}
-          onNext={() => { /* Run function along with transition on next button press */
+        { showCarousel ?
+          <Carousel
+            redirect={setShowCarousel}
+            onNext={() => { /* Run function along with transition on next button press */
             // console.log('next');
-          }}
-          onPrev={() => { /* Run function along with transition on previous button press */
+            }}
+            onPrev={() => { /* Run function along with transition on previous button press */
             // console.log('prev');
-          }}
-        /* can use showNext={true|false} to manually show or hide button */
-        /*         showPrev={true|false}                                 */
-        >
-          {/* Each child element of the Carousel is considered as one "slide", like so */}
-          {content}
-        </Carousel> : 
-        <YouTube chosenVideo= { chosenVideoPath } setVideo= { setChosenVideoPath } showNext = { setShowCarousel } /> 
+            }}
+            /* can use showNext={true|false} to manually show or hide button */
+            /*         showPrev={true|false}                                 */
+          >
+            {/* Each child element of the Carousel is considered as one "slide", like so */}
+            {content}
+          </Carousel> :
+          <YouTube chosenVideo= { chosenVideoPath } setVideo= { setChosenVideoPath } showNext = { setShowCarousel } />
         }
       </Base>
     </div>
