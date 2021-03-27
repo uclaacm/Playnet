@@ -1,27 +1,28 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 
 import '../../../styles/Game.scss';
 
 import useSound from 'use-sound';
 
-import Alien, { ALIEN_STATE } from '../../../shared/Alien';
+import Apple from '../../../../assets/activity1/apple.svg';
+import Car from '../../../../assets/activity1/game1/car.svg';
 import Star from '../../../../assets/activity1/game1/star.svg';
+import ThreeApples from '../../../../assets/activity1/game1/threeapples.svg';
+import ThreeLemons from '../../../../assets/activity1/game1/threelemons.svg';
+import TwoApples from '../../../../assets/activity1/game1/twoapples.svg';
+import TwoCars from '../../../../assets/activity1/game1/twocars.svg';
+import TwoLemons from '../../../../assets/activity1/game1/twolemons.svg';
+import TwoUFOs from '../../../../assets/activity1/game1/twoufos.svg';
+import UFO from '../../../../assets/activity1/game1/ufo.svg';
 import CorrectSFX from '../../../../assets/activity1/game2/correct.mp3';
 import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
-
-import Pair1A from '../../../../assets/activity1/game1/twoapples.svg';
-import Pair1B from '../../../../assets/activity1/apple.svg';
-import Pair2A from '../../../../assets/activity1/lemon.svg';
-import Pair2B from '../../../../assets/activity1/game2/pair2b.svg';
-import Pair3A from '../../../../assets/activity1/game2/pair3a.svg';
-import Pair3B from '../../../../assets/activity1/game2/pair3b.svg';
-import Pair4A from '../../../../assets/activity1/game2/pair4a.svg';
-import Pair4B from '../../../../assets/activity1/game2/pair4b.svg';
+import Lemon from '../../../../assets/activity1/lemon.svg';
 
 import { scramble } from '../../../../utils';
+import Alien, { ALIEN_STATE } from '../../../shared/Alien';
+import AnswerChoiceBox from '../../../shared/AnswerChoiceBox';
 import { CarouselContext } from '../../../shared/Carousel';
 import { TextBubbleStyles } from '../../../shared/PlaynetConstants';
-import AnswerChoiceBox from '../../../shared/AnswerChoiceBox';
 import TextBubble from '../TextBubble';
 import ProgressBar from './components/ProgressBar';
 
@@ -29,66 +30,85 @@ function Game1(): JSX.Element {
   const slides = [
     {
       correctImg: 1,
-      imgs: [Pair1A, Pair1B],
-      cipherText: scramble('GLAEW', 'APPLE'),
+      text: 'CAR',
+      imgs: [UFO, Car],
     },
     {
       correctImg: 1,
-      imgs: [Pair2A, Pair2B],
-      cipherText: 'GLAEW',
+      text: 'APPLE',
+      imgs: [Apple, Lemon],
     },
     {
       correctImg: 0,
-      imgs: [Pair3A, Pair3B],
-      cipherText: 'GLAEW',
+      text: 'TWO APPLES',
+      imgs: [TwoApples, TwoLemons],
     },
     {
       correctImg: 0,
-      imgs: [Pair4A, Pair4B],
-      cipherText: 'GLAEW',
+      text: 'TWO UFOS',
+      imgs: [TwoUFOs, TwoCars],
+    },
+    {
+      correctImg: 0,
+      text: 'THREE LEMONS',
+      imgs: [ThreeApples, ThreeLemons],
     },
   ];
 
   const [ slideIdx, setSlideIdx ] = useState(0);
   const [ showSuccess, setShowSuccess] = useState(false);
-  const [ incorrect, setIncorrect ] = useState(false);
   const context = useContext(CarouselContext);
 
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
 
+  const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
+  const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
+
+  const handleAlienState = (state: ALIEN_STATE, cb?: () => void) => {
+    alienTimeout.current && clearTimeout(alienTimeout.current);
+    setAlienState(state);
+    alienTimeout.current = setTimeout(() => {
+      alienTimeout.current = undefined;
+      setAlienState(ALIEN_STATE.BASE);
+      cb && cb();
+    }, 1000);
+  };
+
   const advanceGame = () => {
-    if (slideIdx === slides.length-1) {
+    if (happiness === 3) {
       context.next();
       return;
     }
-    setSlideIdx(slideIdx+1);
+    setShowSuccess(false);
   };
 
   const displayText = () : string => {
-    return slides[slideIdx].cipherText;
+    return scramble('5', slides[slideIdx].text);
   };
 
-  const [percent, setPercent] = useState(0);
-  const [numStars, setNumStars] = useState(0);
+  const [happiness, setHappiness] = useState(0);
 
   const handleClick = (option : number) => {
-    if (option == 0) {
-      if (!incorrect) {
-        setIncorrect(true);
-        playIncorrect();
-        setPercent(percent-10);
-      }
-      return true;
+    if (option == slides[slideIdx].correctImg) {
+      playCorrect();
+      handleAlienState(ALIEN_STATE.HAPPY, nextSlide);
+      setShowSuccess(true);
+      setHappiness(happiness+1);
+    } else {
+      playIncorrect();
+      handleAlienState(ALIEN_STATE.ANGER, nextSlide);
+      setShowSuccess(false);
     }
-    setIncorrect(false);
-    playCorrect();
-    setShowSuccess(true);
-    setPercent(percent+20);
-    setNumStars(numStars+1);
-    advanceGame();
+    return true;
+  };
 
-    return false;
+  const nextSlide = () => {
+    let newSlideIdx = slideIdx+1;
+    if (newSlideIdx === slides.length) {
+      newSlideIdx = Math.floor(Math.random()*(slides.length-1));
+    }
+    setSlideIdx(newSlideIdx);
   };
 
   const starCounter = () => {
@@ -99,14 +119,14 @@ function Game1(): JSX.Element {
         justifyContent: 'center',
         alignItems: 'center'}}>
         <img src={Star} alt="star points"/>
-        {numStars}
+        {happiness}
       </div>
     );
   };
 
   const displaySuccess = () => {
     return (
-      <div id="game2-intro">
+      <div>
         <span>You got a star! Let&apos;s keep going.</span>
         <br/>
         <div style={{
@@ -114,11 +134,10 @@ function Game1(): JSX.Element {
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center'}}>
-          {/* <Alien alienState={ALIEN_STATE.BASE} /> */}
           {starCounter()}
         </div>
         <br/>
-        <button id="game2-intro-button" onClick={()=> setShowSuccess(false)}>
+        <button className="game-intro-button" onClick={advanceGame}>
           Next Level
         </button>
       </div>
@@ -127,27 +146,36 @@ function Game1(): JSX.Element {
 
   const displayGame = () => {
     return showSuccess ? displaySuccess() :
-      <div className={'game-1-cards'}>
-        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={Pair1A} />
-        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={Pair1B} />
+      <div className={'game-1-cards'} style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'}}>
+        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={slides[slideIdx].imgs[0]} />
+        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={slides[slideIdx].imgs[1]} />
       </div>;
   };
 
   return (
     <div id={'game-wrapper'}>
       <h3> Try to guess what image the alien wants.</h3>
-      <div>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        height: 'inherit'}}>
         <div id={'game-content'}>
           <div className={'gamebox'}>
             <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
-            <Alien alienState={ALIEN_STATE.BASE} />
+            <Alien alienState={alienState} />
             <div style={{
               width: '75%',
               display: 'flex',
               flexDirection: 'row',
               justifyContent: 'center',
               alignItems: 'center'}}>
-              <ProgressBar percentComplete={percent}/>
+              <ProgressBar percentComplete={happiness*34}/>
               <img src={Star} alt="star points"/>
             </div>
             Happiness
@@ -156,7 +184,6 @@ function Game1(): JSX.Element {
         </div>
         {starCounter()}
       </div>
-      {/* {displayGame()} */}
     </div>
   );
 }

@@ -17,7 +17,7 @@ function IntroScreen(props : IntroScreenProps): JSX.Element {
   return (
     <div id="game2-intro">
       {child}
-      <button id="game2-intro-button" onClick={context.next}>
+      <button className="game-intro-button" onClick={context.next}>
         {buttonText}
       </button>
     </div>
