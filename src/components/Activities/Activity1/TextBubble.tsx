@@ -12,8 +12,8 @@ interface TextBubbleProps {
 function TextBubble(props: TextBubbleProps): JSX.Element {
   return (
     <div id={props.textBubbleStyle} className='text-bubble'>
-      {(props.contentSvg !== undefined) ? <img src={props.contentSvg} className='centered'/>: ''}
-      {(props.text !== undefined) ? <span className='centered'>{props.text}</span> : ''}
+      {(props.contentSvg !== undefined) && <img src={props.contentSvg} className='centered'/>}
+      {(props.text !== undefined) && <span className='centered'>{props.text}</span>}
     </div>
   );
 }

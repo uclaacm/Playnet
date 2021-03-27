@@ -1,5 +1,6 @@
 .text-bubble {
-  display: inline-block;
+  display: grid;
+  place-content: center;
   position: relative;
   width: fit-content;
 }
@@ -40,8 +41,5 @@
 }
 
 .centered {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  padding: 0px 10px 20px;
 }
