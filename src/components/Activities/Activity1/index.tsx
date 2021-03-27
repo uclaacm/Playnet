@@ -133,13 +133,9 @@ function Activity1(): JSX.Element {
       showNext: false,
     },
     {
+      topText: 'Good news, we just found a translator that can help us understand the alien!',
       child:
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center'}}>
-          Good news, we just found a translator that can help us understand the alien!
+        <div>
           <img src={Game1EndScreen}/>
         </div>,
     },
