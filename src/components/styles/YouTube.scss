@@ -1,95 +1,94 @@
 @import 'variables';
 
 #intro-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: auto;
 }
 
 #intro-title {
-    font: $font-title;
-    margin-bottom: 0px;
-    color: #fff;
+  font: $font-title;
+  margin-bottom: 0;
+  color: #fff;
 }
 
 #intro-subtitle {
-    font: $font-title;
-    font-size: 26px;
-    margin: 0px;
-    color: #fff;
-  }
+  font: $font-title;
+  font-size: 26px;
+  margin: 0;
+  color: #fff;
+}
 
 #youtube-computer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    background-image: url("../../assets/computer-youtube.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-image: url("../../assets/computer-youtube.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 #youtube-wrapper {
-    margin-left: 10%;
-    margin-right: 10%;
-    width: 50%;
-    height: auto;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    align-items: center;
+  margin-left: 10%;
+  margin-right: 10%;
+  width: 50%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  align-items: center;
 }
 
-.youtube-video{
-    border: solid black 5px;
-    border-radius: 10px;
-    width: auto;
-    height: 100%;
-    display: grid;
-    margin: 5px;
-    transition-duration: 0.4s;
-    font: $font-footer;
-    cursor: pointer;
-    outline: none;
+.youtube-video {
+  border: solid black 5px;
+  border-radius: 10px;
+  width: auto;
+  height: 100%;
+  display: grid;
+  margin: 5px;
+  transition-duration: 0.4s;
+  font: $font-footer;
+  cursor: pointer;
+  outline: none;
 }
 
-.youtube-video:hover{
-    transform: scale(1.1, 1.1);
+.youtube-video:hover {
+  transform: scale(1.1, 1.1);
 }
 
 .youtube-thumbnail {
-    margin: 5px;
-    justify-self: center;
-    width: 100%;
-    height: auto;
+  margin: 5px;
+  justify-self: center;
+  width: 100%;
+  height: auto;
 }
 
 #youtube-final-video {
-    border: solid black 5px;
-    border-radius: 10px;
-    width: 40%;
-    height: 40%;
+  border: solid black 5px;
+  border-radius: 10px;
+  width: 40%;
+  height: 40%;
 }
 
 #continue-button {
-    border: solid $playnet-orange 5px;
-    border-radius: 10px;
-    font: $font-title;
-    font-size: 26px;
-    margin: 0px;
-    color: #fff;
-    background-color: $playnet-orange;
-    transition-duration: 0.4s;
-    cursor: pointer;
-    outline: none;
-    margin: 5px;
-    padding: 3px;
+  border: solid $playnet-orange 5px;
+  border-radius: 10px;
+  font: $font-title;
+  font-size: 26px;
+  color: #fff;
+  background-color: $playnet-orange;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  outline: none;
+  margin: 5px;
+  padding: 3px;
 }
 
-#continue-button:hover{
-    transform: scale(1.1, 1.1);
+#continue-button:hover {
+  transform: scale(1.1, 1.1);
 }
