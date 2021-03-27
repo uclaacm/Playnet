@@ -30,7 +30,10 @@
 #carousel {
   display: flex;
   align-items: center;
-  height: 100%;
+  // height: auto;
+  // height: -moz-max-content;
+
+
   margin: 36px 64px 64px;
 }
 
@@ -39,7 +42,9 @@
   position: relative;
   background-color: $carousel-background-white;
   overflow: hidden;
-  height: 100%;
+  min-height: 60vh;  // height: auto;
+
+  height: fit-content;
   margin: 0 24px;
   border-radius: 20px;
 }
