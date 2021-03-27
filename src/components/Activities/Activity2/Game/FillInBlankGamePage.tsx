@@ -7,7 +7,6 @@ import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
 
 import '../../../styles/CompressionGame.scss';
 
-import ClockSvg from '../../../../assets/activity2/game/clock.svg';
 import SceneSvg from '../../../../assets/activity2/game/scene.svg';
 
 import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';
@@ -28,17 +27,12 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
 
   const [startTime, setStartTime] = useState(Date.now());
-  const [currTime, setCurrTime] = useState(Date.now());
 
   const answerChoices: string[] = props.pageInfo.choices;
 
   const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>
   (props.pageInfo.answerDisplayStyles);
   const [answerDisplayWords, setAnswerDisplayWords] = useState<string[]>(props.pageInfo.answerDisplayWords);
-
-  const updateTimePassed = () => {
-    setCurrTime(Date.now());
-  };
 
   const updateAnswerDisplaySlot = (style: AnswerDisplayStyles, word: string) => {
     const copyAnswerDisplayStyles = answerDisplayStyles;
@@ -53,7 +47,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const handleClickAndReturnIsCorrect = (pos: number) => {  //returns true if the choice is correct
     let newIncorrect = true;
     if (pos === props.pageInfo.correctChoice) {
-      props.setTimeElapsed(props.gameNum, props.slideNum, currTime - startTime);
+      props.setTimeElapsed(props.gameNum, props.slideNum, Date.now() - startTime);
       playCorrect();
       newIncorrect = false;
 
@@ -61,7 +55,6 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
       setTimeout(() => {
         props.advanceGame && props.advanceGame();
         setStartTime(Date.now());
-        setCurrTime(Date.now());
       }, 500);
 
     } else if (!chosenIncorrectChoices[pos]) {
@@ -73,10 +66,6 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
     setIncorrectChoices(copyChosenIncorrectChoices);
     return !newIncorrect;
   };
-
-  useEffect(() => {
-    setTimeout(updateTimePassed, 50);
-  });
 
   useEffect(() => {
     const intialChosenIncorrectChoices: boolean[] = [];
@@ -126,12 +115,6 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
         </div>
       </div>
       <div className='scene-info'>
-        <div className='icon'>
-          <img src={ClockSvg} />
-          <span className='details'>
-            {((currTime - startTime) / 1000).toFixed(2)} seconds
-          </span>
-        </div>
         <div className='icon'>
           <img src={SceneSvg} />
           <span className='details'>
