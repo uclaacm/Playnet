@@ -22,7 +22,7 @@ export interface CarouselItemComponents {
 }
 
 interface CarouselProps {
-  redirect: () => void;
+  redirect?: () => void;
   children: CarouselItemComponents[];
   title?: string;
   subtitle?: string;
