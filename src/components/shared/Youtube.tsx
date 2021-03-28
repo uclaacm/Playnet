@@ -15,23 +15,28 @@ const chill_girl = [chill_girl_img, chill_girl_path, 'https://www.youtube.com/em
 const baby_shark = [baby_shark_img, baby_shark_path, 'https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=1'];
 const nether_portal = [nether_portal_img, nether_portal_path, 'https://www.youtube.com/embed/h27ugp3gzWI?autoplay=1&mute=1'];
 
+function youtubeButton(video, props) {
+  props.showNext(true);
+  props.setVideo(video);
+}
+
 function YouTube(props): JSX.Element {
-  if (props.chosenVideo == null) {
+  if (!props.chosenVideo) {
     return (
       <div id={'intro-wrapper'}>
         <h1 id={'intro-title'}>Want to learn how YouTube works?</h1>
         <p id={'intro-subtitle'}>Choose a video below and we will show you!</p>
         <div id={'youtube-computer'}>
           <div id={'youtube-wrapper'}>
-            <button onClick={() => { props.showNext(true); props.setVideo(chill_girl); }} className={'youtube-video'}>
+            <button onClick={() => {youtubeButton(chill_girl, props);}} className={'youtube-video'}>
               <img className={'youtube-thumbnail'} src={chill_girl[0]} alt={'Image of a girl with headphones on studying'} />
               <p>LoFi hip hop to study to</p>
             </button>
-            <button onClick={() => { props.showNext(true); props.setVideo(baby_shark); }} className={'youtube-video'}>
+            <button onClick={() => {youtubeButton(baby_shark, props);}} className={'youtube-video'}>
               <img className={'youtube-thumbnail'} src={baby_shark[0]} alt={'Image of two children and a shark dancing'} />
               <p>Baby Shark</p>
             </button>
-            <button onClick={() => { props.showNext(true); props.setVideo(nether_portal); }} className={'youtube-video'}>
+            <button onClick={() => {youtubeButton(nether_portal, props);}} className={'youtube-video'}>
               <img className={'youtube-thumbnail'} src={nether_portal[0]} alt={'Image of a pixelated portal from the popular videogame Minecraft'} />
               <p>How to play Minecraft</p>
             </button>
