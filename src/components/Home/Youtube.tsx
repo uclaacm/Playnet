@@ -15,12 +15,17 @@ const chill_girl = [chill_girl_img, chill_girl_path, 'https://www.youtube.com/em
 const baby_shark = [baby_shark_img, baby_shark_path, 'https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=1'];
 const nether_portal = [nether_portal_img, nether_portal_path, 'https://www.youtube.com/embed/h27ugp3gzWI?autoplay=1&mute=1'];
 
-function youtubeButton(video, props) {
-  props.showNext(true);
-  props.setVideo(video);
+interface YouTubeProps {
+  chosenVideo: string;
+  setVideo: () => void;
+  showNext: () => void;
 }
 
-function YouTube(props): JSX.Element {
+function YouTube(props: YouTubeProps): JSX.Element {
+  function youtubeButton(video, parentProps) {
+    parentProps.showNext();
+    parentProps.setVideo(video);
+  }
   if (!props.chosenVideo) {
     return (
       <div id={'intro-wrapper'}>

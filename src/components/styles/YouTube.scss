@@ -3,7 +3,6 @@
 #intro-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   height: 100%;
   width: auto;
@@ -18,7 +17,7 @@
 #intro-subtitle {
   font: $font-title;
   font-size: 26px;
-  margin: 0;
+  margin: 5px;
   color: #fff;
 }
 
@@ -26,8 +25,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  width: 100%;
+  height: calc(45vw * 15 / 23);
+  width: 45vw;
   background-image: url("../../assets/computer-youtube.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -35,9 +34,9 @@
 }
 
 #youtube-wrapper {
-  margin-left: 10%;
-  margin-right: 10%;
-  width: 50%;
+  margin-left: 3vw;
+  margin-right: 3vw;
+  width: 100%;
   height: auto;
   display: grid;
   grid-template-columns: 33% 33% 33%;
@@ -71,7 +70,6 @@
 #youtube-final-video {
   border: solid black 5px;
   border-radius: 10px;
-  width: 40%;
   height: 40%;
 }
 

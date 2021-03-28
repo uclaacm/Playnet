@@ -9,7 +9,7 @@ import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections } from '../shared/PlaynetConstants';
-import YouTube from '../shared/Youtube';
+import YouTube from './Youtube';
 
 import '../styles/Home.scss';
 import Intro from './Intro';
@@ -94,7 +94,8 @@ function Home(): JSX.Element {
             {/* Each child element of the Carousel is considered as one "slide", like so */}
             {content}
           </Carousel> :
-          <YouTube chosenVideo= { chosenVideoPath } setVideo= { setChosenVideoPath } showNext = { setShowCarousel } />
+          <YouTube chosenVideo= { chosenVideoPath } setVideo= { setChosenVideoPath }
+            showNext = {() => setShowCarousel(true) } />
         }
       </Base>
     </div>
