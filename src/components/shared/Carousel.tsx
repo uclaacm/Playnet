@@ -34,6 +34,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [child, setChild] = useState(props.children[slideIdx]);
   const [reloadTime, setReloadTime] = useState(Date.now());
+  const [isAutoAdvance, setAutoAdvance] = useState(false);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -49,9 +50,16 @@ function Carousel(props: CarouselProps): JSX.Element {
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
 
+  function autoAdvance(animationLength: number): void {
+    console.log('Waiting for' + animationLength);
+    setTimeout(goNext,animationLength * 1000)
+  }
+
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
+    if (isAutoAdvance){autoAdvance(child.animationTime)}
+    console.log(child.animationTime);
   }
 
   function goPrev(): void {
@@ -78,17 +86,23 @@ function Carousel(props: CarouselProps): JSX.Element {
             {child &&
               <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
-                {child.child}
-                {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
                 {child.animationTime &&
                   <span className='time-bar-container'>
                     <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
-                    <Tooltip text='Replay'>
+                    <Tooltip text='Mute'>
                       <button className='replay-button' onClick={()=>setReloadTime(Date.now())} />
                     </Tooltip>
+                    <Tooltip text='Autoplay'>
+                      <button className='replay-button' onClick={()=>{setAutoAdvance(true); autoAdvance(child.animationTime);}}  />
+                    </Tooltip>
+                    <Tooltip text='Replay'>
+                      <button className='replay-button' onClick={()=>setReloadTime(Date.now())}  />
+                    </Tooltip>
                   </span>}
+                {child.child}
+                {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
               </>
             }
           </div>
