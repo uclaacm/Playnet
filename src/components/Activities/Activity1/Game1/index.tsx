@@ -19,6 +19,14 @@ import { CarouselContext } from '../../../shared/Carousel';
 import CipherGameRound from './components/CipherGameRound';
 
 function CipherGame(): JSX.Element {
+  // const items = ['APPLE', 'CAR', 'UFO', 'LEMON'];
+  // const nums = ['ONE', 'TWO', 'THREE'];
+  // const nums_and_items : string[] = nums.reduce((n_acc : string[], n_v : string) => {
+  //   const num_and_items = items.map((i_v) => `${n_v} ${i_v}`);
+  //   return [...n_acc, ...num_and_items];
+  // }, []);
+  // const LEVELS = [items, nums, nums_and_items];
+
   const rounds = [
     // ROUND 1
     [
@@ -84,7 +92,7 @@ function CipherGame(): JSX.Element {
     );
   };
 
-  const displaySuccessScreen = () => {
+  const displayYouGotStar = () => {
     return (
       <div className={'cipher-game-success'}>
         <div>You got a star! Let&apos;s keep going.</div>
@@ -102,7 +110,7 @@ function CipherGame(): JSX.Element {
       <h3> Try to guess what image the alien wants.</h3>
       <div id={'cipher-game-content'}>
         {starCounter()}
-        {showSuccess ? displaySuccessScreen() : <CipherGameRound advanceGame={advanceGame} slides={rounds[numStars]}/>}
+        {showSuccess ? displayYouGotStar() : <CipherGameRound advanceGame={advanceGame} slides={rounds[numStars]}/>}
       </div>
     </div>
   );

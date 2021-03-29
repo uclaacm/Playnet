@@ -118,3 +118,69 @@
     cursor: pointer;
   }
 }
+
+.progress-bar-outer {
+  height: 20px;
+  width: 100%;
+  background-color: #D3D3D3;
+  border-radius: 50px;
+  margin: 20px;
+}
+
+.progress-bar-inner {
+  height: inherit;
+  background-color: #DF3A1F;
+  border-radius: inherit;
+  transition: width 0.5s ease-in-out;
+}
+
+// CARD IMAGES
+
+#APPLE, #ONE-APPLE {
+  background-image: url('../../assets/activity1/apple.svg');
+  background-repeat: no-repeat;
+}
+
+#TWO-APPLE {
+  background-image: url('../../assets/activity1/game1/twoapples.svg');
+}
+
+#THREE-APPLE {
+  background-image: url('../../assets/activity1/game1/threeapples.svg');
+}
+
+#CAR, #ONE-CAR {
+  background-image: url('../../assets/activity1/game1/car.svg');
+}
+
+#TWO-CAR {
+  background-image: url('../../assets/activity1/game1/twocars.svg');
+}
+
+#THREE-CAR {
+  background-image: url('../../assets/activity1/game1/twocars.svg');
+}
+
+#UFO, #ONE-UFO {
+  background-image: url('../../assets/activity1/game1/ufo.svg');
+}
+
+#TWO-UFO {
+  background-image: url('../../assets/activity1/game1/twoufos.svg');
+}
+
+#THREE-UFO {
+  background-image: url('../../assets/activity1/game1/twoufos.svg');
+}
+
+#LEMON, #ONE-LEMON {
+  background-image: url('../../assets/activity1/lemon.svg');
+}
+
+#TWO-LEMON {
+  background-image: url('../../assets/activity1/game1/twolemons.svg');
+}
+
+#THREE-LEMON {
+  background-image: url('../../assets/activity1/game1/threelemons.svg');
+}

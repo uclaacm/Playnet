@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import '../../styles/Activity1.scss';
 
@@ -10,8 +10,9 @@ import LemonSvg from '../../../assets/activity1/lemon.svg';
 import PartyConfettiSvg from '../../../assets/activity1/party_confetti.svg';
 import BlankComputer from '../../../assets/blank-computer.svg';
 
-import Carousel, { CarouselContext } from '../../shared/Carousel';
+import Carousel from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
+import TransitionSlide from '../../shared/TransitionSlide';
 import Convo, { Phrase } from './Convo';
 import CipherGame from './Game1';
 import AmbiguousPhrasingGame from './Game2';
@@ -75,34 +76,6 @@ function Activity1(): JSX.Element {
     );
   };
 
-  const CipherGameIntro = () => {
-    const context = useContext(CarouselContext);
-    return (
-      <div className="game-intro">
-        <div>What if you were a computer?</div>
-        <div>Can you figure out what the alien wants and keep it happy?</div>
-        <button className="game-intro-button" onClick={context.next}>
-          Play Game
-        </button>
-      </div>
-    );
-  };
-
-  const AmbiguousPhrasingGameIntro = () => {
-    const context = useContext(CarouselContext);
-    return (
-      <div className="game-intro">
-        <span>But even if we know what the alien is saying...can you figure out what they mean?</span>
-        <br/>
-        <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>
-        <br/>
-        <button className="game-intro-button" onClick={context.next}>
-          Play Game
-        </button>
-      </div>
-    );
-  };
-
   const content = [
     {
       topText: 'How does YouTube bring you the videos you want?',
@@ -125,7 +98,11 @@ function Activity1(): JSX.Element {
       child: <Slide3 />,
     },
     {
-      child: <CipherGameIntro />,
+      child:
+        <TransitionSlide buttonText={'Play Game'}>
+          <div>What if you were a computer?</div>
+          <div>Can you figure out what the alien wants and keep it happy?</div>
+        </TransitionSlide>,
       showNext: false,
     },
     {
@@ -140,7 +117,11 @@ function Activity1(): JSX.Element {
         </div>,
     },
     {
-      child: <AmbiguousPhrasingGameIntro/>,
+      child:
+        <TransitionSlide buttonText={'Play Game'}>
+          <div>But even if we know what the alien is saying...can you figure out what they mean?</div>
+          <div>Warning: One sentence can mean two things, so the answer might not be what you expect!</div>
+        </TransitionSlide>,
       showNext: false,
     },
     {

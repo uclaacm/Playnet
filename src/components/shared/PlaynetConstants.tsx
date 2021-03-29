@@ -31,3 +31,9 @@ export enum AnswerDisplayStyles {
   GREEN_BORDER = 'green-outline black-text',
   ANSWER_SPOT = 'gray-background gray-text'
 }
+
+export enum Activity1Game1Values {
+  MAX_HAPPINESS = 100,
+  CORRECT_PTS = 20,
+  INCORRECT_PTS = 10,
+}

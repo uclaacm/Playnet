@@ -4,7 +4,7 @@ import Star from '../../../../../assets/activity1/game1/star.svg';
 
 import { scramble } from '../../../../../utils';
 import Alien, { ALIEN_STATE } from '../../../../shared/Alien';
-import { TextBubbleStyles } from '../../../../shared/PlaynetConstants';
+import { TextBubbleStyles, Activity1Game1Values } from '../../../../shared/PlaynetConstants';
 
 import TextBubble from '../../TextBubble';
 import CipherGameSlide from './../components/CipherGameSlide';
@@ -24,7 +24,7 @@ interface CipherGameRoundProps {
 function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const {slides, advanceGame} = props;
 
-  const [MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS] = [100, 20, 10];
+  const {MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS} = Activity1Game1Values;
   const HASH_VAL = 5;
   const [slideIdx, setSlideIdx] = useState(0);
   const [happiness, setHappiness] = useState(0);
