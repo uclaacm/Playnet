@@ -1,3 +1,4 @@
+@import 'variables';
 .content {
   * {
     display: block;
@@ -86,17 +87,19 @@
 .game-intro-button {
   max-width: 50%;
   max-height: 50%;
-  background-color: #ff5c41;
+  background-color: $playnet-orange;
   color: white;
-  font-size: 2vw;
+  // font-size: 2vw;
   font-family: inherit;
   padding: 0.5vw 1vw;
   border-radius: 10px;
   border: none;
   outline: 0;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
 
   &:hover {
     cursor: pointer;
+    filter: brightness(90%);
   }
 }
 

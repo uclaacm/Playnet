@@ -15,7 +15,10 @@ function Feedback(): JSX.Element {
           If you liked the problems in that space, maybe you’d like computer science :)
           <br/>
           <br/>
-          Got any feedback? We’d love to improve!
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfpCmyRZ7Ilrg263iYYiXLaM8UWX7iK9aSuVl0_u8mguvxgiA/viewform?usp=sf_link" 
+          className='game-intro-button' target='_blank'>
+            Got any feedback? We’d love to improve!
+          </a>
         </p>
       </div>
     </Base>
