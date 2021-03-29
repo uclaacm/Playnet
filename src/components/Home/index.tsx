@@ -81,7 +81,7 @@ function Home(): JSX.Element {
       <Base section={HeaderSections.INTRO}>
         { showCarousel ?
           <Carousel
-            redirect={setShowCarousel}
+            finalButtonHandleClick={() => setShowCarousel(false)}
             onNext={() => { /* Run function along with transition on next button press */
             // console.log('next');
             }}
@@ -94,8 +94,8 @@ function Home(): JSX.Element {
             {/* Each child element of the Carousel is considered as one "slide", like so */}
             {content}
           </Carousel> :
-          <YouTube chosenVideo= { chosenVideoPath } setVideo= { setChosenVideoPath }
-            showNext = {() => setShowCarousel(true) } />
+          <YouTube chosenVideoPath = { chosenVideoPath } setChosenVideoPath= { setChosenVideoPath }
+            showCarousel = {() => setShowCarousel(true) } />
         }
       </Base>
     </div>

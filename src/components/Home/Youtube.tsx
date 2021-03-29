@@ -3,46 +3,42 @@ import { Link } from 'react-router-dom';
 
 import '../styles/YouTube.scss';
 
-import baby_shark_img from '../../assets/baby_shark.jpg';
-import chill_girl_img from '../../assets/chill_girl.jpg';
-import nether_portal_img from '../../assets/nether_portal.jpg';
+import baby_shark from '../../assets/baby_shark.jpg';
+import chill_girl from '../../assets/chill_girl.jpg';
+import nether_portal from '../../assets/nether_portal.jpg';
 
-const chill_girl_path = '../../assets/chill_girl.jpg';
-const baby_shark_path = '../../assets/baby_shark.jpg';
-const nether_portal_path = '../../assets/nether_portal.jpg';
-
-const chill_girl = [chill_girl_img, chill_girl_path, 'https://www.youtube.com/embed/-FlxM_0S2lA?autoplay=1&mute=1'];
-const baby_shark = [baby_shark_img, baby_shark_path, 'https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=1'];
-const nether_portal = [nether_portal_img, nether_portal_path, 'https://www.youtube.com/embed/h27ugp3gzWI?autoplay=1&mute=1'];
+const CHILL_GIRL_URL = 'https://www.youtube.com/embed/-FlxM_0S2lA?autoplay=1&mute=1';
+const BABY_SHARK_URL = 'https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=1';
+const NETHER_PORTAL_URL = 'https://www.youtube.com/embed/h27ugp3gzWI?autoplay=1&mute=1';
 
 interface YouTubeProps {
-  chosenVideo: string;
-  setVideo: () => void;
-  showNext: () => void;
+  chosenVideoPath: null|string;
+  setChosenVideoPath: (chosenVideoPath: string|null) => void;
+  showCarousel: () => void;
 }
 
 function YouTube(props: YouTubeProps): JSX.Element {
-  function youtubeButton(video, parentProps) {
-    parentProps.showNext();
-    parentProps.setVideo(video);
+  function youtubeButton(videoPath: string|null) {
+    props.showCarousel();
+    props.setChosenVideoPath(videoPath);
   }
-  if (!props.chosenVideo) {
+  if (!props.chosenVideoPath) {
     return (
       <div id={'intro-wrapper'}>
         <h1 id={'intro-title'}>Want to learn how YouTube works?</h1>
         <p id={'intro-subtitle'}>Choose a video below and we will show you!</p>
         <div id={'youtube-computer'}>
           <div id={'youtube-wrapper'}>
-            <button onClick={() => {youtubeButton(chill_girl, props);}} className={'youtube-video'}>
-              <img className={'youtube-thumbnail'} src={chill_girl[0]} alt={'Image of a girl with headphones on studying'} />
+            <button onClick={() => youtubeButton(CHILL_GIRL_URL)} className={'youtube-video'}>
+              <img className={'youtube-thumbnail'} src={chill_girl} alt={'Image of a girl with headphones on studying'} />
               <p>LoFi hip hop to study to</p>
             </button>
-            <button onClick={() => {youtubeButton(baby_shark, props);}} className={'youtube-video'}>
-              <img className={'youtube-thumbnail'} src={baby_shark[0]} alt={'Image of two children and a shark dancing'} />
+            <button onClick={() => youtubeButton(BABY_SHARK_URL)} className={'youtube-video'}>
+              <img className={'youtube-thumbnail'} src={baby_shark} alt={'Image of two children and a shark dancing'} />
               <p>Baby Shark</p>
             </button>
-            <button onClick={() => {youtubeButton(nether_portal, props);}} className={'youtube-video'}>
-              <img className={'youtube-thumbnail'} src={nether_portal[0]} alt={'Image of a pixelated portal from the popular videogame Minecraft'} />
+            <button onClick={() => youtubeButton(NETHER_PORTAL_URL)} className={'youtube-video'}>
+              <img className={'youtube-thumbnail'} src={nether_portal} alt={'Image of a pixelated portal from the popular videogame Minecraft'} />
               <p>How to play Minecraft</p>
             </button>
           </div>
@@ -56,7 +52,7 @@ function YouTube(props: YouTubeProps): JSX.Element {
         <h1 id={'intro-title'}>Yay! Your video is ready to be watched!</h1>
         <Link id={'continue-button'} to="/activities">Now find out what&apos;s going on behind the scenes!</Link>
         <div id={'youtube-computer'}>
-          <iframe id={'youtube-final-video'} src={props.chosenVideo[2]} />
+          <iframe id={'youtube-final-video'} src={props.chosenVideoPath} />
         </div>
       </div>
     );
