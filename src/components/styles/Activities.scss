@@ -3,24 +3,20 @@
 #activity-home {
   min-height: calc(100vh - #{$head-foot-height} - #{$foot-height});
   height: fit-content;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
   margin-bottom: #{$foot-height};
 
-
   h2 {
     color: #fff;
-    margin: 12px 0px 15px 0px;
-    // margin-bottom: 0;
+    margin: 12px 0 15px 0;
   }
 
   h4 {
     color: #fff;
-    margin: 15px 0px 12px 0px;
-    // margin-bottom: 0;
+    margin: 15px 0 12px 0;
   }
 }
 
@@ -29,7 +25,6 @@
   display: flex;
   justify-content: center;
   max-width: 100vw;
-  // margin-top: 20px;
 }
 
 .activity-card {

@@ -45,8 +45,7 @@ b {
   position: relative;
   background-color: $carousel-background-white;
   overflow: hidden;
-  min-height: $min_carousel_height;  // height: auto;
-
+  min-height: $min_carousel_height;
   height: fit-content;
   margin: 0 24px;
   border-radius: 20px;
