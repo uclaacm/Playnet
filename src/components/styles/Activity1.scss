@@ -78,7 +78,8 @@
 
 #game2-intro {
   display: flex;
-  height: 100%;
+  min-height: $min_carousel_height;
+  height: auto;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
@@ -89,8 +90,7 @@
   max-height: 50%;
   background-color: $playnet-orange;
   color: white;
-  // font-size: 2vw;
-  font-family: inherit;
+  font: $font-normal;
   padding: 0.5vw 1vw;
   border-radius: 10px;
   border: none;
