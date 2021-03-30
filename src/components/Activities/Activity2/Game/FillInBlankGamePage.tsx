@@ -31,7 +31,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const answerChoices: string[] = props.pageInfo.choices;
 
   const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>
-  (props.pageInfo.answerDisplayStyles);
+    (props.pageInfo.answerDisplayStyles);
   const [answerDisplayWords, setAnswerDisplayWords] = useState<string[]>(props.pageInfo.answerDisplayWords);
 
   const updateAnswerDisplaySlot = (style: AnswerDisplayStyles, word: string) => {
@@ -100,13 +100,13 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
         <div className='right-side'>
           <div className='answer-display'>
             <div className='flex-row'>
-              {props.pageInfo.answerDisplayWords.map((word, index) => <div className={'individual-answer-display ' + props.pageInfo.answerDisplayStyles[index]} key={props.slideNum+'-'+index}>{word}</div>)}
+              {props.pageInfo.answerDisplayWords.map((word, index) => <div className={'individual-answer-display ' + props.pageInfo.answerDisplayStyles[index]} key={props.slideNum + '-' + index}>{word}</div>)}
             </div>
           </div>
           <div className='answer-choices'>
             {answerChoices.map((answerChoice, index) =>
               <AnsweChoiceBox
-                key={props.slideNum+'-'+index}
+                key={props.slideNum + '-' + index}
                 handleClickAndReturnIsCorrect={() => handleClickAndReturnIsCorrect(index)}
                 text={answerChoice} style={AnswerChoiceBoxStyles.SMALL_PX_BASED}
               />,
@@ -117,10 +117,10 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
       <div className='scene-info'>
         <div className='icon'>
           <img src={SceneSvg} />
-          <span className='details'>
-            Scene {props.slideNum + 1}
-          </span>
         </div>
+        <span className='details'>
+          Scene {props.slideNum + 1}
+        </span>
       </div>
     </div>
   );
