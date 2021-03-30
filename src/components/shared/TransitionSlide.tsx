@@ -12,7 +12,7 @@ interface TransitionSlideProps {
 function TransitionSlide(props : TransitionSlideProps) : JSX.Element {
   const { buttonText } = props;
   const context = useContext(CarouselContext);
-  const children = props.children && props.children.map((item) => item);
+  const children = props.children && props.children;
 
   return (
     <div className="game-intro">

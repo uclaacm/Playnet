@@ -37,7 +37,7 @@ function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
   return (
     <div
       className={`${classStyle} no-background-repeat`}
-      id={backgroundImg}
+      id={id}
       style={{ borderColor: border }}
       onClick={handleClick}
       onMouseOver={() => handleHover(PlaynetColors.HOVER_GREEN)}

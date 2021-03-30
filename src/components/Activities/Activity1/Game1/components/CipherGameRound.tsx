@@ -33,18 +33,18 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
       const correct_card = cards.splice(Math.floor(Math.random()*cards.length), 1)[0]; // get correct card & remove
       const incorrect_card = cards[Math.floor(Math.random()*cards.length)]; // get a non duplicate card
 
-      if (Math.floor(Math.random()*2)) { // want correct img to be card #1
+      if (Math.floor(Math.random()*2)) {
         newSlides.push(
           {
             correctIdx: 0,
-            cards: [card0, card1],
+            cards: [correct_card, incorrect_card],
           },
         );
       } else {
         newSlides.push(
           {
             correctIdx: 1,
-            cards: [card1, card0],
+            cards: [incorrect_card, correct_card],
           },
         );
       }
@@ -55,6 +55,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const [slides, setSlides] = useState<SlideComponents[]>(getShuffledCards());
   const [slideIdx, setSlideIdx] = useState(0);
   const [happiness, setHappiness] = useState(0);
+  const [clickDisabled, setClickDisabled] = useState(false);
 
   // -----ALIEN HANDLERS------
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
@@ -78,6 +79,8 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   };
 
   const advanceRound = (correct : boolean) => {
+    if (clickDisabled) return;
+    setClickDisabled(true); // block repeated clicks during alien animation
     if (correct) {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : () => nextSlide(); // prevent no-op by finishing animation before scene change
@@ -90,6 +93,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   };
 
   const nextSlide = () => {
+    setClickDisabled(false);
     if (slideIdx+1 === slides.length) {
       setSlides(getShuffledCards);
       setSlideIdx(0);

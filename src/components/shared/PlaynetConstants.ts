@@ -37,12 +37,8 @@ export enum AnswerDisplayStyles {
   ANSWER_SPOT = 'gray-background gray-text'
 }
 
-export var Activity1Game1Values = {
+export const Activity1Game1Values = {
   MAX_HAPPINESS: 100,
   CORRECT_PTS: 20,
   INCORRECT_PTS: 10,
-}
-  MAX_HAPPINESS = 100,
-  CORRECT_PTS = 20,
-  INCORRECT_PTS = 10,
-}
+};
