@@ -42,6 +42,7 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
           </Link>,
         )}
       </nav>
+      <h4>Done? <Link to={'/feedback'}>Let us know if you liked it!</Link></h4>
     </div>
   );
 }

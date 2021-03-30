@@ -91,7 +91,7 @@ function Activity1(): JSX.Element {
   const content = [
     {
       topText: 'How does YouTube bring you the videos you want?',
-      child: <img src={ComputerSvg} alt='Image of Youtube on Computer' />,
+      child: <img src={ComputerSvg} width='40%'alt='Image of Youtube on Computer' />,
       bottomText: 'Let\'s dive into what happens in the search bar.',
     },
     {

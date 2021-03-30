@@ -9,10 +9,11 @@ import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections } from '../shared/PlaynetConstants';
-import YouTube from './Youtube';
 
 import '../styles/Home.scss';
 import Intro from './Intro';
+import YouTube from './Youtube';
+
 
 function Home(): JSX.Element {
   const [ chosenVideoPath, setChosenVideoPath ] = useState(null);
