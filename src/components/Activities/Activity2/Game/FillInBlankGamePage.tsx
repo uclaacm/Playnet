@@ -31,7 +31,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const answerChoices: string[] = props.pageInfo.choices;
 
   const [answerDisplayStyles, setAnswerDisplayStyles] = useState<AnswerDisplayStyles[]>
-    (props.pageInfo.answerDisplayStyles);
+  (props.pageInfo.answerDisplayStyles);
   const [answerDisplayWords, setAnswerDisplayWords] = useState<string[]>(props.pageInfo.answerDisplayWords);
 
   const updateAnswerDisplaySlot = (style: AnswerDisplayStyles, word: string) => {

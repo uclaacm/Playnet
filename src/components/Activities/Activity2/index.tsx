@@ -4,13 +4,13 @@ import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
 import '../../styles/CompressionGame.scss';
 
-import AlienGif from '../../../assets/activity2/game/alien.gif';
 import AlienFlowerGif from '../../../assets/activity2/game/alien-flower.gif';
 import AlienWigGif from '../../../assets/activity2/game/alien-wig.gif';
+import AlienGif from '../../../assets/activity2/game/alien.gif';
 
-import ElephantGIF from '../../../assets/activity2/game/elephant.gif';
 import ElephantHatGIF from '../../../assets/activity2/game/elephant-hat.gif';
 import ElephantShoesGIF from '../../../assets/activity2/game/elephant-shoes.gif';
+import ElephantGIF from '../../../assets/activity2/game/elephant.gif';
 
 import Carousel, { CarouselContext } from '../../shared/Carousel';
 import GIFPlayer from '../../shared/GIFPlayer';
