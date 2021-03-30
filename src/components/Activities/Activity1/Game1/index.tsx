@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 
 import '../../../styles/Game.scss';
 
@@ -24,6 +24,21 @@ function CipherGame(): JSX.Element {
   const [numStars, setNumStars] = useState(0);
   const [showSuccess, setShowSuccess] = useState(false);
   const context = useContext(CarouselContext);
+
+  const [hash, setHash] = useState(5);
+  const storage = window.sessionStorage;
+
+  useEffect(() => {
+    const state = storage.getItem('cipher-hash');
+    if (state) {
+      setHash(parseInt(state));
+    } else {
+      const HASH_VAL = Math.floor(Math.random()*10)+1;
+      storage.setItem('cipher-hash', `${HASH_VAL}`);
+      setHash(HASH_VAL);
+    }
+    return () => storage.removeItem('cipher-hash');
+  }, []);
 
   const advanceGame = () => {
     if (numStars+1 === MAX_STARS) {
@@ -61,7 +76,9 @@ function CipherGame(): JSX.Element {
       <h3> Try to guess what image the alien wants.</h3>
       <div id={'cipher-game-content'}>
         {starCounter()}
-        {showSuccess ? displayYouGotStar() : <CipherGameRound advanceGame={advanceGame} round={LEVELS[numStars]}/>}
+        {showSuccess ?
+          displayYouGotStar() :
+          <CipherGameRound advanceGame={advanceGame} round={LEVELS[numStars]} HASH_VAL={hash}/>}
       </div>
     </div>
   );

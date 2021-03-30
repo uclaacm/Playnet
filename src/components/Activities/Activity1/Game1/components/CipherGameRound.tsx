@@ -18,13 +18,12 @@ export interface SlideComponents {
 interface CipherGameRoundProps {
   round: string[];
   advanceGame: () => void;
+  HASH_VAL: number;
 }
 
 function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const {MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS} = Activity1Game1Values;
-  const HASH_VAL = 5;
-
-  const {round, advanceGame} = props;
+  const {round, advanceGame, HASH_VAL} = props;
 
   const getShuffledCards = () => {
     let cards = [...round];
@@ -74,20 +73,17 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   // ------------------------
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
     const slide = slides[slideIdx];
-    const words = slide.cards[slide.correctIdx].split(' ');
+    const correctWord = slide.cards[slide.correctIdx].split(' ');
     const reducer = (acc : string, cur : string) => `${acc} ${scramble(HASH_VAL, cur)}`;
-    return words.reduce(reducer, '');
+    return correctWord.reduce(reducer, '');
   };
 
   const advanceRound = (correct : boolean) => {
     if (correct) {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
-      if (newHappiness === MAX_HAPPINESS) {
-        advanceGame();
-        return;
-      }
+      const handler = newHappiness === MAX_HAPPINESS ? advanceGame : () => {return;}; // prevent no-op by finishing animation before scene change
       setHappiness(newHappiness);
-      handleAlienState(ALIEN_STATE.HAPPY);
+      handleAlienState(ALIEN_STATE.HAPPY, handler);
     } else {
       setHappiness(Math.max(happiness-INCORRECT_PTS,0)); // no underflow
       handleAlienState(ALIEN_STATE.ANGER);
