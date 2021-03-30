@@ -32,7 +32,7 @@ function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
   return (
     <div className={'cipher-game-cards'}>
       <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={''} backgroundImg={card0.split(' ').join('-')}/>
-      <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={''} backgroundImg={card1.split(' ').join('-')}/>
+      <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} id={card1.split(' ').join('-')}/>
     </div>
   );
 }
