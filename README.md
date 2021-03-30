@@ -48,7 +48,7 @@ comfortable making a [draft pull request](https://docs.github.com/en/github/coll
 you can also tag the Playnet team in a comment: `@uclaacm/playnet-team`!
 
 ## Changing Feedback Form URL
-1. go to [PlaynetConstants](src/components/shared/PlaynetConstants.tsx)
+1. go to [PlaynetConstants](src/components/shared/PlaynetConstants.ts)
 2. change `FEEDBACK_FORM_URL` and add your new url!
 
 ## License
