@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Base from './shared/Base';
-import { HeaderSections } from './shared/PlaynetConstants';
+import { HeaderSections, FEEDBACK_FORM_URL } from './shared/PlaynetConstants';
 import './styles/Feedback.scss';
 
 function Feedback(): JSX.Element {
@@ -15,7 +15,9 @@ function Feedback(): JSX.Element {
           If you liked the problems in that space, maybe you’d like computer science :)
           <br/>
           <br/>
-          Got any feedback? We’d love to improve!
+          <a href={FEEDBACK_FORM_URL} className='game-intro-button' target='_blank' rel='noreferrer'>
+            Got any feedback? We’d love to improve!
+          </a>
         </p>
       </div>
     </Base>
