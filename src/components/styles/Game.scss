@@ -1,3 +1,5 @@
+@import 'variables';
+
 #game-wrapper {
   display: flex;
   flex-flow: column;
@@ -43,6 +45,7 @@
   border-radius: 20px;
   border-width: 8px;
   border-color: black;
+  overflow: hidden;
   transition: 0.1s;
   background: white;
 
@@ -122,14 +125,14 @@
 .progress-bar-outer {
   height: 20px;
   width: 100%;
-  background-color: #d3d3d3;
+  background-color: $progessbar-background-grey;
   border-radius: 50px;
   margin: 20px;
 }
 
 .progress-bar-inner {
   height: inherit;
-  background-color: #df3a1f;
+  background-color: $playnet-orange;
   border-radius: inherit;
   transition: width 0.5s ease-in-out;
 }

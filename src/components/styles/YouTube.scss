@@ -1,0 +1,92 @@
+@import 'variables';
+
+#intro-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: auto;
+}
+
+#intro-title {
+  font: $font-title;
+  margin-bottom: 0;
+  color: #fff;
+}
+
+#intro-subtitle {
+  font: $font-title;
+  font-size: 26px;
+  margin: 5px;
+  color: #fff;
+}
+
+#youtube-computer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(45vw * 15 / 23);
+  width: 45vw;
+  background-image: url("../../assets/computer-youtube.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+#youtube-wrapper {
+  margin-left: 3vw;
+  margin-right: 3vw;
+  width: 100%;
+  height: auto;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  align-items: center;
+}
+
+.youtube-video {
+  border: solid black 5px;
+  border-radius: 10px;
+  width: auto;
+  height: 100%;
+  display: grid;
+  margin: 5px;
+  transition-duration: 0.4s;
+  font: $font-footer;
+  cursor: pointer;
+  outline: none;
+}
+
+.youtube-video:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.youtube-thumbnail {
+  margin: 5px;
+  justify-self: center;
+  width: 100%;
+  height: auto;
+}
+
+#youtube-final-video {
+  border: solid black 5px;
+  border-radius: 10px;
+  height: 40%;
+}
+
+#continue-button {
+  border: solid $playnet-orange 5px;
+  border-radius: 10px;
+  font: $font-title;
+  font-size: 26px;
+  color: #fff;
+  background-color: $playnet-orange;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  outline: none;
+  margin: 5px;
+  padding: 3px;
+}
+
+#continue-button:hover {
+  transform: scale(1.1, 1.1);
+}

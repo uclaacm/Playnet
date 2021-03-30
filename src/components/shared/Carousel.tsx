@@ -22,6 +22,7 @@ export interface CarouselItemComponents {
 }
 
 interface CarouselProps {
+  finalButtonHandleClick?: () => void;
   children: CarouselItemComponents[];
   title?: string;
   subtitle?: string;
@@ -85,7 +86,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                     <Tooltip text='Replay'>
-                      <button className='replay-button' onClick={()=>setReloadTime(Date.now())} />
+                      <button className='replay-button' onClick={() => setReloadTime(Date.now())} />
                     </Tooltip>
                   </span>}
               </>
@@ -94,10 +95,12 @@ function Carousel(props: CarouselProps): JSX.Element {
           <button
             className={'carousel-btn next'}
             style={{
-              visibility: (child?.showNext === false || slideIdx === props.children.length - 1)
+              visibility: (child?.showNext === false ||
+                (!props.finalButtonHandleClick && slideIdx === props.children.length - 1))
                 ? 'hidden' : 'visible',
             }}
-            onClick={() => goNext()}
+            onClick={(slideIdx === props.children.length - 1 && props.finalButtonHandleClick)
+              ? props.finalButtonHandleClick : () => goNext()}
           >
             <img src={NextSvg} />
           </button>
