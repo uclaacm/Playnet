@@ -1,3 +1,5 @@
+@import 'variables';
+
 #game-wrapper {
   display: flex;
   flex-flow: column;
@@ -5,7 +7,7 @@
   height: 100%;
 }
 
-#game-content {
+.game-content {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -45,6 +47,7 @@
   border-color: black;
   overflow: hidden;
   transition: 0.1s;
+  background: white;
 
   &:hover {
     cursor: pointer;
@@ -54,7 +57,50 @@
 .choice-container img {
   max-height: 100%;
   height: 100%;
+  max-width: 100%;
   width: auto;
+}
+
+#cipher-game-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: inherit;
+  width: 75%;
+}
+
+.cipher-game-cards {
+  width: 50%;
+  height: 400px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cipher-game-success {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.happiness-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 75%;
+}
+
+.star-counter {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .px-choice-container {
@@ -74,4 +120,78 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.progress-bar-outer {
+  height: 20px;
+  width: 100%;
+  background-color: $progessbar-background-grey;
+  border-radius: 50px;
+  margin: 20px;
+}
+
+.progress-bar-inner {
+  height: inherit;
+  background-color: $playnet-orange;
+  border-radius: inherit;
+  transition: width 0.5s ease-in-out;
+}
+
+// CARD IMAGES
+
+.no-background-repeat {
+  background: no-repeat center;
+  background-size: contain;
+}
+
+#APPLE,
+#ONE-APPLE {
+  background-image: url('../../assets/activity1/apple.svg');
+}
+
+#TWO-APPLE {
+  background-image: url('../../assets/activity1/game1/twoapples.svg');
+}
+
+#THREE-APPLE {
+  background-image: url('../../assets/activity1/game1/threeapples.svg');
+}
+
+#CAR,
+#ONE-CAR {
+  background-image: url('../../assets/activity1/game1/car.svg');
+}
+
+#TWO-CAR {
+  background-image: url('../../assets/activity1/game1/twocars.svg');
+}
+
+#THREE-CAR {
+  background-image: url('../../assets/activity1/game1/threecars.svg');
+}
+
+#UFO,
+#ONE-UFO {
+  background-image: url('../../assets/activity1/game1/ufo.svg');
+}
+
+#TWO-UFO {
+  background-image: url('../../assets/activity1/game1/twoufos.svg');
+}
+
+#THREE-UFO {
+  background-image: url('../../assets/activity1/game1/threeufos.svg');
+}
+
+#LEMON,
+#ONE-LEMON {
+  background-image: url('../../assets/activity1/lemon.svg');
+}
+
+#TWO-LEMON {
+  background-image: url('../../assets/activity1/game1/twolemons.svg');
+}
+
+#THREE-LEMON {
+  background-image: url('../../assets/activity1/game1/threelemons.svg');
 }
