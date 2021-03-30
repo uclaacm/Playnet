@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState} from 'react';
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
@@ -11,21 +11,50 @@ import CipherGameSlide from './../components/CipherGameSlide';
 import ProgressBar from './../components/ProgressBar';
 
 export interface SlideComponents {
-  correctImg: number,
-  text: string,
-  imgs: string[],
+  correctIdx: number,
+  cards: string[],
 }
 
 interface CipherGameRoundProps {
-  slides: SlideComponents[];
+  round: string[];
   advanceGame: () => void;
 }
 
 function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
-  const {slides, advanceGame} = props;
-
   const {MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS} = Activity1Game1Values;
   const HASH_VAL = 5;
+
+  const {round, advanceGame} = props;
+
+  const getShuffledCards = () => {
+    let cards = [...round];
+    const newSlides = [];
+    for (let i = 0; i < 3; i++) {
+      if (cards.length === 1) cards = [...round];
+      const card0 = cards[Math.floor(Math.random()*cards.length)]; // get card #1
+      cards = cards.filter(item => item !== card0);
+      const card1 = cards[Math.floor(Math.random()*cards.length)]; // get a non duplicate card
+
+      if (Math.floor(Math.random()*2)) { // want correct img to be card #1
+        newSlides.push(
+          {
+            correctIdx: 0,
+            cards: [card0, card1],
+          },
+        );
+      } else {
+        newSlides.push(
+          {
+            correctIdx: 1,
+            cards: [card1, card0],
+          },
+        );
+      }
+    }
+    return newSlides;
+  };
+
+  const [slides, setSlides] = useState<SlideComponents[]>(getShuffledCards());
   const [slideIdx, setSlideIdx] = useState(0);
   const [happiness, setHappiness] = useState(0);
 
@@ -44,8 +73,9 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   };
   // ------------------------
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
-    const words = slides[slideIdx].text.split(' ');
-    const reducer = (acc : string, cur : string) => acc + ' ' + scramble(HASH_VAL, cur);
+    const slide = slides[slideIdx];
+    const words = slide.cards[slide.correctIdx].split(' ');
+    const reducer = (acc : string, cur : string) => `${acc} ${scramble(HASH_VAL, cur)}`;
     return words.reduce(reducer, '');
   };
 
@@ -66,8 +96,9 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   };
 
   const nextSlide = () => {
-    if (slideIdx === slides.length-1) { // randomly loop to a previous slide
-      setSlideIdx(Math.floor(Math.random()*(slides.length-1)));
+    if (slideIdx+1 === slides.length) {
+      setSlides(getShuffledCards);
+      setSlideIdx(0);
       return;
     }
     setSlideIdx(slideIdx+1);

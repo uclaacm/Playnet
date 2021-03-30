@@ -136,10 +136,14 @@
 
 // CARD IMAGES
 
+.no-background-repeat {
+  background: no-repeat center;
+  background-size: contain;
+}
+
 #APPLE,
 #ONE-APPLE {
   background-image: url('../../assets/activity1/apple.svg');
-  background-repeat: no-repeat;
 }
 
 #TWO-APPLE {
@@ -160,7 +164,7 @@
 }
 
 #THREE-CAR {
-  background-image: url('../../assets/activity1/game1/twocars.svg');
+  background-image: url('../../assets/activity1/game1/threecars.svg');
 }
 
 #UFO,
@@ -173,7 +177,7 @@
 }
 
 #THREE-UFO {
-  background-image: url('../../assets/activity1/game1/twoufos.svg');
+  background-image: url('../../assets/activity1/game1/threeufos.svg');
 }
 
 #LEMON,

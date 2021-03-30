@@ -22,8 +22,8 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
+  const [playCorrect] = useSound(CorrectSFX, { volume: 0.5 });
+  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5 });
 
   const [img0, img1] = props.imgs;
 

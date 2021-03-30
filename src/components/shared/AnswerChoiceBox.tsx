@@ -7,10 +7,11 @@ interface AnswerChoiceBoxProps {
   imgSrc?: string;
   text?: string;
   style?: AnswerChoiceBoxStyles;
+  backgroundImg?: string;
 }
 
 function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
-  const imgSrc = props.imgSrc;
+  const {imgSrc, backgroundImg} = props;
 
   const [border, setBorder] = useState(PlaynetColors.BLACK);
   const classStyle = (props.style === undefined ? AnswerChoiceBoxStyles.LARGE_PERCENT_BASED : props.style);
@@ -35,13 +36,14 @@ function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
 
   return (
     <div
-      className={classStyle}
+      className={`${classStyle} no-background-repeat`}
+      id={backgroundImg}
       style={{ borderColor: border }}
       onClick={handleClick}
       onMouseOver={() => handleHover(PlaynetColors.HOVER_GREEN)}
       onMouseLeave={() => handleHover(PlaynetColors.BLACK)}
     >
-      {imgSrc !== undefined ? <img src={imgSrc} /> : <span>{props.text}</span>}
+      {imgSrc !== undefined ? <img src={imgSrc}/> : <span>{props.text}</span>}
     </div>
   );
 }

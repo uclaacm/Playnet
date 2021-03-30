@@ -6,21 +6,20 @@ import IncorrectSFX from '../../../../../assets/activity1/game2/oh_no_1.mp3';
 import AnswerChoiceBox from '../../../../shared/AnswerChoiceBox';
 
 interface CipherGameSlideProps {
-  correctImg: number;
   advanceRound: (correct : boolean) => void;
-  text: string;
-  imgs: string[],
+  correctIdx: number;
+  cards: string[];
 }
 
 function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
-  const {correctImg, advanceRound} = props;
-  const [img0, img1] = props.imgs;
+  const {correctIdx, advanceRound} = props;
+  const [card0, card1] = props.cards;
 
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
 
   const handleClick = (option : number) => {
-    if (option == correctImg) {
+    if (option == correctIdx) {
       playCorrect();
       advanceRound(true);
     } else {
@@ -32,8 +31,8 @@ function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
 
   return (
     <div className={'cipher-game-cards'}>
-      <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={img0} />
-      <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={img1} />
+      <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(0)} imgSrc={''} backgroundImg={card0.split(' ').join('-')}/>
+      <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClick(1)} imgSrc={''} backgroundImg={card1.split(' ').join('-')}/>
     </div>
   );
 }
