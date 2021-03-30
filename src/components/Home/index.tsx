@@ -8,7 +8,7 @@ import Intro9Data from '../LottieAnimations/Intro9Animation';
 import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
-import { HeaderSections } from '../shared/PlaynetConstants';
+import { HeaderSections, VideoChoices } from '../shared/PlaynetConstants';
 
 import '../styles/Home.scss';
 import Intro from './Intro';
@@ -16,7 +16,7 @@ import YouTube from './Youtube';
 
 
 function Home(): JSX.Element {
-  const [ chosenVideoPath, setChosenVideoPath ] = useState(null);
+  const [ chosenVideo, setChosenVideo ] = useState(VideoChoices.NONE_CHOSEN);
   const [ showCarousel, setShowCarousel ] = useState(false);
 
   const IntroSlides = forwardRef((_, ref: RefObject) => (
@@ -95,7 +95,7 @@ function Home(): JSX.Element {
             {/* Each child element of the Carousel is considered as one "slide", like so */}
             {content}
           </Carousel> :
-          <YouTube chosenVideoPath = { chosenVideoPath } setChosenVideoPath= { setChosenVideoPath }
+          <YouTube chosenVideo = { chosenVideo } setChosenVideo= { setChosenVideo }
             showCarousel = {() => setShowCarousel(true) } />
         }
       </Base>
