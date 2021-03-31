@@ -13,24 +13,21 @@ interface IntroYouTubeProps {
 }
 
 function IntroYouTube(props: IntroYouTubeProps): JSX.Element {
-  function youtubeButton(videoPath: VideoChoices) {
-    props.setChosenVideo(videoPath);
-  }
   return (
     <div id={'intro-wrapper'}>
       <h1 id={'intro-title'}>Want to learn how YouTube works?</h1>
       <p id={'intro-subtitle'}>Choose a video below and we will show you!</p>
       <div id={'youtube-computer'}>
         <div id={'youtube-wrapper'}>
-          <button onClick={() => youtubeButton(VideoChoices.CHILL_GIRL)} className={'youtube-video'}>
+          <button onClick={() => props.setChosenVideo(VideoChoices.CHILL_GIRL)} className={'youtube-video'}>
             <img className={'youtube-thumbnail'} src={chill_girl} alt={'Image of a girl with headphones on studying'} />
             <p>LoFi hip hop to study to</p>
           </button>
-          <button onClick={() => youtubeButton(VideoChoices.BABY_SHARK)} className={'youtube-video'}>
+          <button onClick={() => props.setChosenVideo(VideoChoices.BABY_SHARK)} className={'youtube-video'}>
             <img className={'youtube-thumbnail'} src={baby_shark} alt={'Image of two children and a shark dancing'} />
             <p>Baby Shark</p>
           </button>
-          <button onClick={() => youtubeButton(VideoChoices.NETHER_PORTAL)} className={'youtube-video'}>
+          <button onClick={() => props.setChosenVideo(VideoChoices.NETHER_PORTAL)} className={'youtube-video'}>
             <img className={'youtube-thumbnail'} src={nether_portal} alt={'Image of a pixelated portal from the popular videogame Minecraft'} />
             <p>How to play Minecraft</p>
           </button>
