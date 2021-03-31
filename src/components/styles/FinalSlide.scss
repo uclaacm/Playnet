@@ -1,0 +1,96 @@
+#final-intro-container {
+  // margin-top: 50px;
+  // transform: translateX(-300px);
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+}
+#final-intro-container #lottie-mock-container {
+  width: 100%;
+  height: 390px;
+  margin: auto;
+}
+
+#final-intro-container #final-intro-background {
+  width: 1000px;
+  height: 390px;
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-image: url('../../assets/intro/Intro12.png');
+}
+
+#final-intro-container #server {
+  position: absolute;
+  margin-top: 78px;
+  margin-left: 785px;
+  width: 88px;
+  height: 74px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/server.svg');
+}
+
+
+#final-intro-container #rocket {
+  position: absolute;
+  transform-origin: 10% 50%;
+  transform: rotate(180deg);
+  margin-top: 175px;
+  margin-left: 785px; 
+  width: 60px;
+  height: 30px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/rocket.svg');
+}
+
+#final-intro-container #computer {
+  position: absolute;
+  margin-top: 140px;
+  margin-left: -170px; 
+  width: 160px;
+  height: 107px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url('../../assets/computer.svg');
+  transform-origin: 50% 45%;
+}
+
+#final-intro-container #video-pulley {
+  position: absolute;
+  width: 80px;
+  height: 5px;
+  margin-top: 14px;
+  margin-left: -70px; 
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/intro/video-pulley.svg');
+}
+
+#final-intro-container #video {
+  position: absolute;
+  margin-top: 168px;
+  margin-left: 825px; 
+  width: 70px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border-radius: 3px;
+
+}
+
+#video.none-chosen, #video.chill-girl {
+  background-image: url('../../assets/chill_girl.jpg');
+}
+
+#video.baby-shark {
+  background-image: url('../../assets/baby_shark.jpg');
+}
+
+#video.nether-portal {
+  background-image: url('../../assets/nether_portal.jpg');
+}
