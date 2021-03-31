@@ -11,6 +11,7 @@ import LottieControl from '../shared/LottieControl';
 import { HeaderSections, VideoChoices } from '../shared/PlaynetConstants';
 
 import '../styles/Home.scss';
+import FinalSlide from './FinalSlide';
 import Intro from './Intro';
 import { FinalYouTube, IntroYouTube } from './Youtube';
 
@@ -90,6 +91,11 @@ function Home(): JSX.Element {
       child: <LottieControl animationData={Intro12Data} />,
       topText: 'a request gets sent all the way to your nearest data center',
       animationTime: 6.21,
+    },
+    {
+      child: <FinalSlide chosenVideo={chosenVideo} />,
+      topText: 'and all the way back to your computer!',
+      animationTime: 6,
     },
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,

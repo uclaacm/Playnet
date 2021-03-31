@@ -1,7 +1,12 @@
 import anime, {AnimeTimelineInstance} from 'animejs';
 import React, { useEffect, useRef } from 'react';
+import { VideoChoices } from '../shared/PlaynetConstants';
 
-function FinalSlide(props): JSX.Element {
+interface FinalSlideProps {
+  chosenVideo: VideoChoices,
+}
+
+function FinalSlide(props: FinalSlideProps): JSX.Element {
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   useEffect(() => { // why useEffect??
     timeline.current = anime.timeline({
@@ -46,7 +51,7 @@ function FinalSlide(props): JSX.Element {
     <div id={'final-intro-background'}/>
     <div id={'server'}/>
     <div id={'video-pulley'}/>
-    <div id={'video'} className={props.video}/>
+    <div id={'video'} className={props.chosenVideo}/>
     <div id={'rocket'}/>
     <div id={'computer'}/>
   </div>
