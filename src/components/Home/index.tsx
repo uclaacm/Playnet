@@ -26,7 +26,7 @@ function Home(): JSX.Element {
   const storage = window.sessionStorage;
 
   useEffect(() => { // set chosen video if known; if not, remove saved carousel slide
-    const video = storage.getItem("chosenVideo");
+    const video = storage.getItem('chosenVideo');
     const carouselSlide = storage.getItem('slideIdx');
     if (video && carouselSlide) {
       setChosenVideo(video as VideoChoices);
@@ -38,7 +38,7 @@ function Home(): JSX.Element {
 
   useEffect(() => {
     storage.setItem('chosenVideo', chosenVideo);
-  }, [chosenVideo])
+  }, [chosenVideo]);
 
   const content = [
     {
@@ -94,7 +94,7 @@ function Home(): JSX.Element {
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,
       showBackground: false,
-    }
+    },
   ];
   return (
     <div>

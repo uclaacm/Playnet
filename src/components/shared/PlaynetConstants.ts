@@ -47,11 +47,11 @@ export enum VideoChoices {
 }
 
 export const VideoLinks : Record<VideoChoices, string> = {
-  'chill_girl': 'https://www.youtube.com/embed/-FlxM_0S2lA',
-  'baby_shark': 'https://www.youtube.com/embed/XqZsoesa55w',
-  'nether_portal': 'https://www.youtube.com/embed/h27ugp3gzWI',
-  'none_chosen': 'https://www.youtube.com/embed/-FlxM_0S2lA', // default to lofi beats
-}
+  chill_girl: 'https://www.youtube.com/embed/-FlxM_0S2lA',
+  baby_shark: 'https://www.youtube.com/embed/XqZsoesa55w',
+  nether_portal: 'https://www.youtube.com/embed/h27ugp3gzWI',
+  none_chosen: 'https://www.youtube.com/embed/-FlxM_0S2lA', // default to lofi beats
+};
 
 // ACTIVITY1
 export const Activity1Game1Values = {
