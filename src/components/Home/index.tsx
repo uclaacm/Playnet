@@ -96,11 +96,15 @@ function Home(): JSX.Element {
       child: <FinalSlide chosenVideo={chosenVideo} />,
       topText: 'and all the way back to your computer!',
       animationTime: 6,
+<<<<<<< HEAD
     },
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,
       showBackground: false,
     },
+=======
+    }
+>>>>>>> 2beed87 (save)
   ];
   return (
     <div>

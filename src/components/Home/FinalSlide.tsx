@@ -3,10 +3,17 @@ import React, { useEffect, useRef } from 'react';
 import { VideoChoices } from '../shared/PlaynetConstants';
 
 interface FinalSlideProps {
+<<<<<<< HEAD
   chosenVideo: VideoChoices,
 }
 
 function FinalSlide(props: FinalSlideProps): JSX.Element {
+=======
+  chosenVideo: string,
+}
+
+function FinalSlide(props): JSX.Element {
+>>>>>>> 2beed87 (save)
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   useEffect(() => { // why useEffect??
     timeline.current = anime.timeline({
