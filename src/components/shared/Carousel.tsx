@@ -85,9 +85,11 @@ function Carousel(props: CarouselProps): JSX.Element {
                     <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
-                    <Tooltip text='Replay'>
-                      <button className='replay-button' onClick={() => setReloadTime(Date.now())} />
-                    </Tooltip>
+                    <div onClick={() => setReloadTime(Date.now())}>
+                      <Tooltip text='Replay' >
+                        <button className='replay-button' />
+                      </Tooltip>
+                    </div>
                   </span>}
               </>
             }
