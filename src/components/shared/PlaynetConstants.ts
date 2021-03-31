@@ -49,19 +49,19 @@ export enum VideoChoices {
 export const VideoInfo : Record<VideoChoices, {url: string, rocket_word: string}> = {
   [VideoChoices.CHILL_GIRL]: {
     url: 'https://www.youtube.com/embed/-FlxM_0S2lA',
-    rocket_word: "Lofi"
+    rocket_word: 'Lofi',
   },
   [VideoChoices.BABY_SHARK]: {
     url: 'https://www.youtube.com/embed/XqZsoesa55w',
-    rocket_word: "Shark"
+    rocket_word: 'Shark',
   },
-  [VideoChoices.NETHER_PORTAL]:  {
+  [VideoChoices.NETHER_PORTAL]: {
     url: 'https://www.youtube.com/embed/h27ugp3gzWI',
-    rocket_word: "Minecraft"
+    rocket_word: 'Minecraft',
   },
   [VideoChoices.NONE_CHOSEN]: { // default to lofi beats
     url: 'https://www.youtube.com/embed/-FlxM_0S2lA',
-    rocket_word: "Lofi"
+    rocket_word: 'Lofi',
   },
 };
 

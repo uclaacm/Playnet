@@ -38,11 +38,11 @@ function IntroYouTube(props: IntroYouTubeProps): JSX.Element {
       <div id={'youtube-computer'}>
         <div id={'youtube-wrapper'}>
           {
-            Object.entries(VIDEOS).map(([key, value]) => 
-              <button onClick={() => props.setChosenVideo(key as VideoChoices)} className={'youtube-video'}>
-                <img className={'youtube-thumbnail'} src={value['src']} alt={value['alt']} />
-                <p>{value['text']}</p>
-              </button>
+            Object.entries(VIDEOS).map(([key, value], i) =>
+              <button onClick={() => props.setChosenVideo(key as VideoChoices)} className={'youtube-video'} key={i}>
+                <img className={'youtube-thumbnail'} src={value.src} alt={value.alt} />
+                <p>{value.text}</p>
+              </button>,
             )
           }
         </div>
