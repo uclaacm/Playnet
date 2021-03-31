@@ -51,7 +51,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     <div id={'final-intro-background'}/>
     <div id={'server'}/>
     <div id={'video-pulley'}/>
-    <div id={'video'} className={props.chosenVideo}/>
+    <div id={'video'} className={props.video.replace('_', '-')}/>
     <div id={'rocket'}/>
     <div id={'computer'}/>
   </div>
