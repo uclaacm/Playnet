@@ -1,4 +1,4 @@
-import React, { useState, forwardRef, RefObject, useRef } from 'react';
+import React, { useState, forwardRef, RefObject, useRef, useEffect } from 'react';
 
 import Intro10Data from '../LottieAnimations/Intro10Animation';
 import Intro11Data from '../LottieAnimations/Intro11Animation';
@@ -8,46 +8,59 @@ import Intro9Data from '../LottieAnimations/Intro9Animation';
 import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
-import { HeaderSections } from '../shared/PlaynetConstants';
+import { HeaderSections, VideoChoices } from '../shared/PlaynetConstants';
 
 import '../styles/Home.scss';
 import Intro from './Intro';
-import YouTube from './Youtube';
+import { FinalYouTube, IntroYouTube } from './Youtube';
 
 
 function Home(): JSX.Element {
-  const [ chosenVideoPath, setChosenVideoPath ] = useState(null);
-  const [ showCarousel, setShowCarousel ] = useState(false);
+  const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
+  const [showCarousel, setShowCarousel] = useState(false);
 
   const IntroSlides = forwardRef((_, ref: RefObject) => (
-    <Intro ref={ref}/>
+    <Intro ref={ref} />
   ));
   IntroSlides.displayName = 'IntroSlides';
   const ref = useRef(null);
+  const storage = window.sessionStorage;
+
+  useEffect(() => { // set chosen video if known; if not, remove saved carousel slide
+    const video = storage.getItem("chosenVideo");
+    const carouselSlide = storage.getItem('slideIdx');
+
+    if (video && carouselSlide) {
+      setChosenVideo(video as VideoChoices);
+    } else if (carouselSlide) { // remove slide number if video is not known
+      storage.removeItem('slideIdx');
+    }
+    return () => storage.removeItem('chosenVideo');
+  }, []);
 
   const content = [
     {
-      child: <IntroSlides ref={ref}/>,
+      child: <IntroSlides ref={ref} />,
       topText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref}/>,
+      child: <IntroSlides ref={ref} />,
       topText: 'Servers are like computers. They store information and do math.',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref}/>,
+      child: <IntroSlides ref={ref} />,
       topText: 'Your request asks the server for information.',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref}/>,
+      child: <IntroSlides ref={ref} />,
       topText: 'It’s like asking a librarian for a book!',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref}/>,
+      child: <IntroSlides ref={ref} />,
       topText: 'Servers live in buildings called data centers.',
       animationTime: 5.5,
     },
@@ -76,27 +89,29 @@ function Home(): JSX.Element {
       topText: 'a request gets sent all the way to your nearest data center',
       animationTime: 6.21,
     },
+    {
+      child: <FinalYouTube chosenVideo={chosenVideo} />,
+      showBackground: false,
+    }
   ];
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
-        { showCarousel ?
+        {showCarousel ?
           <Carousel
-            finalButtonHandleClick={() => setShowCarousel(false)}
             onNext={() => { /* Run function along with transition on next button press */
-            // console.log('next');
+              // console.log('next');
             }}
             onPrev={() => { /* Run function along with transition on previous button press */
-            // console.log('prev');
+              // console.log('prev');
             }}
-            /* can use showNext={true|false} to manually show or hide button */
-            /*         showPrev={true|false}                                 */
+          /* can use showNext={true|false} to manually show or hide button */
+          /*         showPrev={true|false}                                 */
           >
             {/* Each child element of the Carousel is considered as one "slide", like so */}
             {content}
           </Carousel> :
-          <YouTube chosenVideoPath = { chosenVideoPath } setChosenVideoPath= { setChosenVideoPath }
-            showCarousel = {() => setShowCarousel(true) } />
+          <IntroYouTube setChosenVideo={setChosenVideo} continue={() => setShowCarousel(true)} />
         }
       </Base>
     </div>
