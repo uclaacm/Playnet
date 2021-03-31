@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import Computer from '../../../shared/Computer';
 
 export default function Outro(): JSX.Element {
@@ -15,7 +14,7 @@ export default function Outro(): JSX.Element {
           <p>
             If you want to learn how compression works in more detail, you can learn coding
             when you’re older! You can get a head start today on websites
-            like <Link to='https://code.org'>code.org</Link> and <Link to='https://scratch.mit.edu'>scratch.mit.edu</Link>.
+            like <a href='https://code.org' target='_blank' rel='noreferrer'>code.org</a> and <a href='https://scratch.mit.edu' target='_blank' rel='noreferrer'>scratch.mit.edu</a>.
           </p>
         </>
       }/>
