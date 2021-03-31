@@ -39,7 +39,7 @@ export enum AnswerDisplayStyles {
 
 // Section Specific Constants
 // INTRO
-export const enum VideoChoices {
+export enum VideoChoices {
   CHILL_GIRL = 'chill_girl',
   BABY_SHARK = 'baby_shark',
   NETHER_PORTAL = 'nether_portal',
