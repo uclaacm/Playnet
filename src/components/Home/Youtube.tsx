@@ -6,31 +6,45 @@ import '../styles/YouTube.scss';
 import baby_shark from '../../assets/baby_shark.jpg';
 import chill_girl from '../../assets/chill_girl.jpg';
 import nether_portal from '../../assets/nether_portal.jpg';
-import { VideoChoices, VideoLinks } from '../shared/PlaynetConstants';
+import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 
 interface IntroYouTubeProps {
   setChosenVideo: (chosenVideo: VideoChoices) => void;
 }
 
 function IntroYouTube(props: IntroYouTubeProps): JSX.Element {
+  const VIDEOS = {
+    [VideoChoices.CHILL_GIRL]: {
+      alt: 'Image of a girl with headphones on studying',
+      text: 'LoFi hip hop to study to',
+      src: chill_girl,
+    },
+    [VideoChoices.BABY_SHARK]: {
+      alt: 'Image of two children and a shark dancing',
+      text: 'Baby Shark',
+      src: baby_shark,
+    },
+    [VideoChoices.NETHER_PORTAL]: {
+      alt: 'Image of a girl with headphones on studying',
+      text: 'How to play Minecraft',
+      src: nether_portal,
+    },
+  };
+
   return (
     <div id={'intro-wrapper'}>
       <h1 id={'intro-title'}>Want to learn how YouTube works?</h1>
       <p id={'intro-subtitle'}>Choose a video below and we will show you!</p>
       <div id={'youtube-computer'}>
         <div id={'youtube-wrapper'}>
-          <button onClick={() => props.setChosenVideo(VideoChoices.CHILL_GIRL)} className={'youtube-video'}>
-            <img className={'youtube-thumbnail'} src={chill_girl} alt={'Image of a girl with headphones on studying'} />
-            <p>LoFi hip hop to study to</p>
-          </button>
-          <button onClick={() => props.setChosenVideo(VideoChoices.BABY_SHARK)} className={'youtube-video'}>
-            <img className={'youtube-thumbnail'} src={baby_shark} alt={'Image of two children and a shark dancing'} />
-            <p>Baby Shark</p>
-          </button>
-          <button onClick={() => props.setChosenVideo(VideoChoices.NETHER_PORTAL)} className={'youtube-video'}>
-            <img className={'youtube-thumbnail'} src={nether_portal} alt={'Image of a pixelated portal from the popular videogame Minecraft'} />
-            <p>How to play Minecraft</p>
-          </button>
+          {
+            Object.entries(VIDEOS).map(([key, value]) => 
+              <button onClick={() => props.setChosenVideo(key as VideoChoices)} className={'youtube-video'}>
+                <img className={'youtube-thumbnail'} src={value['src']} alt={value['alt']} />
+                <p>{value['text']}</p>
+              </button>
+            )
+          }
         </div>
       </div>
     </div>
@@ -46,7 +60,7 @@ function FinalYouTube(props: FinalYouTubeProps): JSX.Element {
       <h1 id={'intro-title'} style={{ marginTop: 0 }}>Yay! Your video is ready to be watched!</h1>
       <Link id={'continue-button'} to="/activities">Now find out what&apos;s going on behind the scenes!</Link>
       <div id={'youtube-computer'}>
-        <iframe id={'youtube-final-video'} src={`${VideoLinks[props.chosenVideo]}?autoplay=1&mute=1`} />
+        <iframe id={'youtube-final-video'} src={`${VideoInfo[props.chosenVideo].url}?autoplay=1&mute=1`} />
       </div>
     </div>
   );
