@@ -17,7 +17,6 @@ import { FinalYouTube, IntroYouTube } from './Youtube';
 
 function Home(): JSX.Element {
   const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
-  const [showCarousel, setShowCarousel] = useState(false);
 
   const IntroSlides = forwardRef((_, ref: RefObject) => (
     <Intro ref={ref} />
@@ -29,7 +28,6 @@ function Home(): JSX.Element {
   useEffect(() => { // set chosen video if known; if not, remove saved carousel slide
     const video = storage.getItem("chosenVideo");
     const carouselSlide = storage.getItem('slideIdx');
-
     if (video && carouselSlide) {
       setChosenVideo(video as VideoChoices);
     } else if (carouselSlide) { // remove slide number if video is not known
@@ -37,6 +35,10 @@ function Home(): JSX.Element {
     }
     return () => storage.removeItem('chosenVideo');
   }, []);
+
+  useEffect(() => {
+    storage.setItem('chosenVideo', chosenVideo);
+  }, [chosenVideo])
 
   const content = [
     {
@@ -97,7 +99,7 @@ function Home(): JSX.Element {
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
-        {showCarousel ?
+        {(chosenVideo !== VideoChoices.NONE_CHOSEN) ?
           <Carousel
             onNext={() => { /* Run function along with transition on next button press */
               // console.log('next');
@@ -111,7 +113,7 @@ function Home(): JSX.Element {
             {/* Each child element of the Carousel is considered as one "slide", like so */}
             {content}
           </Carousel> :
-          <IntroYouTube setChosenVideo={setChosenVideo} continue={() => setShowCarousel(true)} />
+          <IntroYouTube setChosenVideo={setChosenVideo} />
         }
       </Base>
     </div>

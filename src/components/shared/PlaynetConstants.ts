@@ -43,14 +43,14 @@ export enum VideoChoices {
   CHILL_GIRL = 'chill_girl',
   BABY_SHARK = 'baby_shark',
   NETHER_PORTAL = 'nether_portal',
-  NONE_CHOSEN = 'none_chosen',
+  NONE_CHOSEN = 'none_chosen', // no video has been chosen yet
 }
 
 export const VideoLinks : Record<VideoChoices, string> = {
   'chill_girl': 'https://www.youtube.com/embed/-FlxM_0S2lA',
   'baby_shark': 'https://www.youtube.com/embed/XqZsoesa55w',
   'nether_portal': 'https://www.youtube.com/embed/h27ugp3gzWI',
-  'none_chosen': '',
+  'none_chosen': 'https://www.youtube.com/embed/-FlxM_0S2lA', // default to lofi beats
 }
 
 // ACTIVITY1

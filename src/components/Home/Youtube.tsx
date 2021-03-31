@@ -10,12 +10,10 @@ import { VideoChoices, VideoLinks } from '../shared/PlaynetConstants';
 
 interface IntroYouTubeProps {
   setChosenVideo: (chosenVideo: VideoChoices) => void;
-  continue: () => void;
 }
 
 function IntroYouTube(props: IntroYouTubeProps): JSX.Element {
   function youtubeButton(videoPath: VideoChoices) {
-    props.continue();
     props.setChosenVideo(videoPath);
   }
   return (
