@@ -11,11 +11,11 @@ import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import Convo, { Phrase } from './Convo';
 
 
-interface PersonCompConvoAnimationProps {
+interface ComputerConversationProps {
   timeBtwnWords: number;
 }
 
-const PersonCompConvoAnimation = (props: PersonCompConvoAnimationProps): JSX.Element => {
+const ComputerConversation = (props: ComputerConversationProps): JSX.Element => {
   const {reloadTime} = useContext(CarouselContext);
   const personConvo: Phrase[] = [
     {
@@ -72,4 +72,4 @@ const PersonCompConvoAnimation = (props: PersonCompConvoAnimationProps): JSX.Ele
   );
 };
 
-export default PersonCompConvoAnimation;
+export default ComputerConversation;

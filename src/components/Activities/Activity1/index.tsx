@@ -9,9 +9,9 @@ import BlankComputer from '../../../assets/blank-computer.svg';
 import Carousel from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import TransitionSlide from '../../shared/TransitionSlide';
+import ComputerConversation from './ComputerConversation';
 import CipherGame from './Game1';
 import AmbiguousPhrasingGame from './Game2';
-import PersonCompConvoAnimation from './PersonCompConvoAnimation';
 import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
@@ -36,7 +36,7 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Computers have to learn just like we do: by trial and error!',
-      child: <PersonCompConvoAnimation timeBtwnWords={timeBtwnWords} />,
+      child: <ComputerConversation timeBtwnWords={timeBtwnWords} />,
       animationTime: 3 * timeBtwnWords/1000,
     },
     {
