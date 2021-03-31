@@ -17,29 +17,29 @@ export interface CompressionGamePageComponents {
 
 interface CompressionGameProps {
   slides: CompressionGamePageComponents[];
-  setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
+  setTimeElapsed: (time: number) => void;
   gameNum: number;
 }
 
 function CompressionGame(props: CompressionGameProps): JSX.Element {
   const context = useContext(CarouselContext);
-  const [i, setSlide] = useState(0);
+  const [slide, setSlide] = useState(0);
 
   const advanceGame = () => {
-    if (i === props.slides.length - 1) {
+    if (slide === props.slides.length - 1) {
       context.next();
       return;
     }
-    setSlide(i + 1);
+    setSlide(slide + 1);
   };
 
   return (
     <FillInBlankGamePage
-      pageInfo={props.slides[i]}
+      pageInfo={props.slides[slide]}
       setTimeElapsed={props.setTimeElapsed}
       advanceGame={advanceGame}
       gameNum={props.gameNum}
-      slideNum={i}
+      slideNum={slide}
     />
   );
 }

@@ -1,0 +1,26 @@
+#blank-computer {
+  margin-top: 32px;
+  display: inline-block;
+  position: relative;
+  width: 50%;
+}
+
+#blank-computer-img {
+  width: 100%;
+}
+
+#blank-computer-text {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.3vw;
+  text-align: left;
+  width: 80%;
+  max-height: 70%;
+}
+
+#blank-computer-title-text {
+  text-align: center;
+  color: red;
+}
