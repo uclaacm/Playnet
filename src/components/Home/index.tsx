@@ -28,7 +28,7 @@ function Home(): JSX.Element {
     {
       child: <IntroSlides ref={ref}/>,
       topText: 'First, your request gets sent to a server.',
-      animationTime: 2.52,
+      animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref}/>,

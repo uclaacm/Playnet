@@ -50,21 +50,25 @@ function Carousel(props: CarouselProps): JSX.Element {
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
 
-  function autoAdvance(animationLength: number): void {
-    console.log('Waiting for' + animationLength);
-    setTimeout(goNext,animationLength * 1000)
-  }
+  useEffect(() => {
+    if (isAutoAdvance) {autoAdvance(child.animationTime);}
+  }, [child]);
 
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
-    if (isAutoAdvance){autoAdvance(child.animationTime)}
-    console.log(child.animationTime);
+    // console.log(slideIdx + props.children.length)
+    // if (isAutoAdvance && slideIdx < props.children.length){autoAdvance(child.animationTime)}
+    // console.log(child.animationTime);
   }
 
   function goPrev(): void {
     setSlideIdx(old => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
+  }
+
+  function autoAdvance(animationLength: number): void {
+    setTimeout(() => goNext(),animationLength * 1000);
   }
 
   return (
