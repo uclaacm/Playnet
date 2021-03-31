@@ -1,81 +1,21 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import '../../styles/Activity1.scss';
 
-import AppleSvg from '../../../assets/activity1/apple.svg';
-import CharacterSvg from '../../../assets/activity1/character3.svg';
 import ComputerSvg from '../../../assets/activity1/computer.svg';
 import Game1EndScreen from '../../../assets/activity1/game1-endscreen.svg';
-import LemonSvg from '../../../assets/activity1/lemon.svg';
-import PartyConfettiSvg from '../../../assets/activity1/party_confetti.svg';
 import BlankComputer from '../../../assets/blank-computer.svg';
 
-import Carousel, { CarouselContext } from '../../shared/Carousel';
+import Carousel from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import TransitionSlide from '../../shared/TransitionSlide';
-import Convo, { Phrase } from './Convo';
 import CipherGame from './Game1';
 import AmbiguousPhrasingGame from './Game2';
+import PersonCompConvoAnimation from './PersonCompConvoAnimation';
 import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
-  const personConvo: Phrase[] = [
-    {
-      text: 'apple',
-      isText: true,
-    },
-    {
-      text: 'no...',
-      isText: true,
-    },
-    {
-      text: 'yes!',
-      isText: true,
-    },
-  ];
-  const computerGuesses: Phrase[] = [
-    {
-      text: '',
-      isText: true,
-      timeOnScreen: timeBtwnWords / 2,
-      textBubbleStyle: TextBubbleStyles.NONE,
-    },
-    {
-      image: LemonSvg,
-      isText: false,
-    },
-    {
-      image: AppleSvg,
-      isText: false,
-    },
-  ];
-
-  const Slide3 = () => {
-    const {reloadTime} = useContext(CarouselContext);
-    return (
-      <div id='slide-3'>
-        <div className='left-content content'>
-          <div id='cartoon-person-speech'>
-            <Convo key={`left-${reloadTime}`} phrases={personConvo} timeBtwnPhrases={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT}
-            />
-          </div>
-          <img src={CharacterSvg} alt='Image of Cartoon Person' />
-          <img key={`confetti-${reloadTime}`} id='party-confetti' src={PartyConfettiSvg} style={{
-            animationDelay: 2 * timeBtwnWords / 1000 + 's',
-            animationDuration: timeBtwnWords / 1000 + 's',
-          }} />
-        </div>
-        <div className='right-content content'>
-          <div id='computer-speech-bubble'>
-            <Convo key={`right-${reloadTime}`} phrases={computerGuesses} timeBtwnPhrases={timeBtwnWords}
-              textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
-          </div>
-          <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
-        </div>
-      </div>
-    );
-  };
 
   const content = [
     {
@@ -96,7 +36,7 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Computers have to learn just like we do: by trial and error!',
-      child: <Slide3 />,
+      child: <PersonCompConvoAnimation timeBtwnWords={timeBtwnWords} />,
       animationTime: 3 * timeBtwnWords/1000,
     },
     {
