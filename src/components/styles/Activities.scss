@@ -71,6 +71,15 @@
   background-image: url('../../assets/mind-reading.svg');
 }
 
+#coming-soon {
+  background-image: url('../../assets//coming-soon.svg');
+  background-position: center;
+}
+
+.no-hover {
+  pointer-events: none;
+}
+
 .activity-card:hover .activity-splash {
   box-shadow: inset 0 0 0 100vw rgba(0, 0, 0, 0.3);
 }

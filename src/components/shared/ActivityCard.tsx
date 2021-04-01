@@ -9,9 +9,9 @@ export interface ActivityCardProps {
 function ActivityCard(props: ActivityCardProps): JSX.Element {
   const {id, description} = props;
   const title = id.split('-').map((word) => capitalize(word)).join(' ');
-
+  const activityCardStyle = id === 'coming-soon' ? 'activity-card no-hover' : 'activity-card';
   return (
-    <div className={'activity-card'}>
+    <div className={activityCardStyle}>
       <div id={id} className={'activity-splash'}/>
       <div className={'content'}>
         <h3>{title}</h3>
