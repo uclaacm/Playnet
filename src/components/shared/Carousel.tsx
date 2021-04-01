@@ -35,6 +35,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [child, setChild] = useState(props.children[slideIdx]);
   const [reloadTime, setReloadTime] = useState(Date.now());
   const [isAutoAdvance, setAutoAdvance] = useState(false);
+  const [isMuted, setMute] = useState(false);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -96,13 +97,13 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                     <Tooltip text='Mute'>
-                      <button className='replay-button' onClick={()=>setReloadTime(Date.now())} />
+                      <button className='util-button mute-button' onClick={()=>setMute(true)} />
                     </Tooltip>
                     <Tooltip text='Autoplay'>
-                      <button className='replay-button' onClick={()=>{setAutoAdvance(true); autoAdvance(child.animationTime);}}  />
+                      <button className='util-button autoplay-button' onClick={()=>{setAutoAdvance(true); autoAdvance(child.animationTime);}}  />
                     </Tooltip>
                     <Tooltip text='Replay'>
-                      <button className='replay-button' onClick={()=>setReloadTime(Date.now())}  />
+                      <button className='util-button replay-button' onClick={()=>setReloadTime(Date.now())}  />
                     </Tooltip>
                   </span>}
                 {child.child}
