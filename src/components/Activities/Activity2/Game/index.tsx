@@ -35,7 +35,7 @@ function CompressionGame(props: CompressionGameProps): JSX.Element {
   return (
     <FillInBlankGamePage
       pageInfo={props.slides[slide]}
-      setTimeElapsed={props.setTimeElapsed}
+      addTimeElapsed={props.setTimeElapsed}
       advanceGame={advanceGame}
       slideNum={slide}
     />

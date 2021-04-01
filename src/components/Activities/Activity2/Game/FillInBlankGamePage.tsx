@@ -13,14 +13,14 @@ import '../../../styles/CompressionGame.scss';
 import { CompressionGamePageComponents } from '../../Activity2/Game/index';
 
 interface FillInBlankGamePageProps {
-  setTimeElapsed: (time: number) => void;
+  addTimeElapsed: (time: number) => void;
   advanceGame: () => void;
   pageInfo: CompressionGamePageComponents;
   slideNum: number;
 }
 
 function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
-  const {pageInfo, slideNum, setTimeElapsed, advanceGame} = props;
+  const {pageInfo, slideNum, addTimeElapsed, advanceGame} = props;
   const {choices, correctChoice, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
@@ -38,7 +38,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const handleClickAndReturnIsCorrect = (pos: number) => {  //returns true if the choice is correct
     const isCorrect = pos === correctChoice;
     if (isCorrect) {
-      setTimeElapsed(Date.now() - startTime.current);
+      addTimeElapsed(Date.now() - startTime.current);
       setTimeout(() => {
         advanceGame && advanceGame();
       }, 500);
@@ -74,9 +74,9 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
         <div className='right-side'>
           <div className='answer-display'>
             <div className='flex-row'>
-              {answerDisplayWords.map((word, index) =>
+              {words.map((word, index) =>
                 <div
-                  className={`individual-answer-display ${answerDisplayStyles[index]}`}
+                  className={`individual-answer-display ${styles[index]}`}
                   key={`${slideNum}-${index}`}>
                   {word}
                 </div>,

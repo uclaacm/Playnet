@@ -16,8 +16,8 @@ import IntroSlides from './IntroSlides';
 function Activity2(): JSX.Element {
   const [uncompressedTime, setUncompressedTime] = useState(0);
   const [compressedTime, setCompressedTime] = useState(0);
-  const setUncompressedTimeElapsed = (time: number) => setUncompressedTime(uncompressedTime + time);
-  const setCompressedTimeElapsed = (time: number) => setCompressedTime(compressedTime + time);
+  const setUncompressedTimeElapsed = (time: number) => setUncompressedTime(prev => prev + time);
+  const setCompressedTimeElapsed = (time: number) => setCompressedTime(prev => prev + time);
 
   interface ResultsProps {
     header: string,
