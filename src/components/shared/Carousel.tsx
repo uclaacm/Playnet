@@ -57,7 +57,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   useEffect(() => {
     if (!storage.getItem('isAutoAdvance')) return;
     setAutoAdvance(true);
-    setTimeout(() => goNext(), child.animationTime * 1000);
+    if (child.animationTime) {setTimeout(() => goNext(), child.animationTime * 1000);}
   }, []);
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   }, [slideIdx]);
 
   useEffect(() => {
-    if (isAutoAdvance) {autoAdvance(child.animationTime);}
+    if (isAutoAdvance && child.animationTime) {autoAdvance(child.animationTime);}
   }, [child]);
 
   function goNext(): void {
@@ -87,7 +87,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   function startAutoAdvance(): void {
     setReloadTime(Date.now());
     setAutoAdvance(true);
-    setTimeout(() => goNext(), child.animationTime * 1000);
+    if (child.animationTime) {setTimeout(() => goNext(), child.animationTime * 1000);}
     storage.setItem('isAutoAdvance', 'true');
   }
 
