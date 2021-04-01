@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import '../../../styles/CompressionGame.scss';
 
@@ -17,29 +17,36 @@ export interface CompressionGamePageComponents {
 
 interface CompressionGameProps {
   slides: CompressionGamePageComponents[];
-  setTimeElapsed: (gameNum: number, slideNum: number, time: number) => void;
-  gameNum: number;
+  tag: string;
 }
 
 function CompressionGame(props: CompressionGameProps): JSX.Element {
+  const {slides, tag} = props;
+  const sessionStorage = window.sessionStorage;
   const context = useContext(CarouselContext);
-  const [i, setSlide] = useState(0);
+  const [time, setTime] = useState(0);
+  const [slide, setSlide] = useState(0);
+  const addTimeElapsed = (t: number) => setTime(prev => prev + t);
+
+  useEffect(() => {
+    if (!time) return;
+    sessionStorage.setItem(`${tag}Time`, `${time}`);
+  }, [time]);
 
   const advanceGame = () => {
-    if (i === props.slides.length - 1) {
+    if (slide === slides.length - 1) {
       context.next();
       return;
     }
-    setSlide(i + 1);
+    setSlide(slide + 1);
   };
 
   return (
     <FillInBlankGamePage
-      pageInfo={props.slides[i]}
-      setTimeElapsed={props.setTimeElapsed}
+      pageInfo={slides[slide]}
+      addTimeElapsed={addTimeElapsed}
       advanceGame={advanceGame}
-      gameNum={props.gameNum}
-      slideNum={i}
+      slideNum={slide}
     />
   );
 }
