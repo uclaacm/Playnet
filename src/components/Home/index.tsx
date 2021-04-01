@@ -18,8 +18,6 @@ import { FinalYouTube, IntroYouTube } from './Youtube';
 
 function Home(): JSX.Element {
   const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
-  const [rocketWord, setRocketWord] = useState(VideoInfo.none_chosen.rocket_word);
-
   const IntroSlides = forwardRef((props: IntroAnimeProps, ref: RefObject) => (
     <Intro ref={ref} {...props}/>
   ));
@@ -37,9 +35,9 @@ function Home(): JSX.Element {
 
   useEffect(() => {
     storage.setItem('chosenVideo', chosenVideo);
-    setRocketWord(VideoInfo[chosenVideo].rocket_word);
   }, [chosenVideo]);
 
+  const rocketWord = VideoInfo[chosenVideo].rocket_word;
   const content = [
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
