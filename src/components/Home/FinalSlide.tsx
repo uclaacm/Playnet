@@ -3,8 +3,6 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 import { CarouselContext } from '../shared/Carousel';
 
-import '../styles/FinalSlide.scss';
-
 interface FinalSlideProps {
   chosenVideo: VideoChoices,
 }
