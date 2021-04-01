@@ -18,7 +18,6 @@ export interface CompressionGamePageComponents {
 interface CompressionGameProps {
   slides: CompressionGamePageComponents[];
   setTimeElapsed: (time: number) => void;
-  gameNum: number;
 }
 
 function CompressionGame(props: CompressionGameProps): JSX.Element {
@@ -38,7 +37,6 @@ function CompressionGame(props: CompressionGameProps): JSX.Element {
       pageInfo={props.slides[slide]}
       setTimeElapsed={props.setTimeElapsed}
       advanceGame={advanceGame}
-      gameNum={props.gameNum}
       slideNum={slide}
     />
   );

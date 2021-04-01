@@ -59,7 +59,7 @@ function Activity2(): JSX.Element {
       showNext: false,
     },
     {
-      child: <CompressionGame slides={uncompressedSlides} setTimeElapsed={setUncompressedTimeElapsed} gameNum={0} />,
+      child: <CompressionGame slides={uncompressedSlides} setTimeElapsed={setUncompressedTimeElapsed}/>,
       showNext: false,
     },
     {
@@ -67,7 +67,7 @@ function Activity2(): JSX.Element {
       showNext: false,
     },
     {
-      child: <CompressionGame slides={compressedSlides} setTimeElapsed={setCompressedTimeElapsed} gameNum={1} />,
+      child: <CompressionGame slides={compressedSlides} setTimeElapsed={setCompressedTimeElapsed}/>,
       showNext: false,
     },
     { child: <GameResults /> },

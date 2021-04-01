@@ -5,7 +5,7 @@ export default function Outro(): JSX.Element {
 
   return (
     <div id={'outro-container'}>
-      <Computer text={
+      <Computer>
         <>
           <p>
             Just like in the game, video compression involves taking out information
@@ -17,7 +17,7 @@ export default function Outro(): JSX.Element {
             like <a href='https://code.org' target='_blank' rel='noreferrer'>code.org</a> and <a href='https://scratch.mit.edu' target='_blank' rel='noreferrer'>scratch.mit.edu</a>.
           </p>
         </>
-      }/>
+      </Computer>
       <button>Play another activity</button>
     </div>
   );
