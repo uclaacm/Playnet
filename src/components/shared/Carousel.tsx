@@ -64,15 +64,17 @@ function Carousel(props: CarouselProps): JSX.Element {
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
+    setAutoAdvance(false);
   }
 
   function goPrev(): void {
     setSlideIdx(old => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
+    setAutoAdvance(false);
   }
 
   function autoAdvance(animationLength: number): void {
-    setTimeout(() => goNext(),animationLength * 1000);
+    setTimeout(() => {if (isAutoAdvance) {goNext()}}, animationLength * 1000);
   }
 
   return (
@@ -104,10 +106,12 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <button className='util-button mute-button' onClick={()=>{setMute(true); storage.setItem('isMuted', 'true');}} />}
                     </Tooltip>
                     <Tooltip text='Autoplay'>
-                      <button className='util-button autoplay-button' onClick={()=>{setAutoAdvance(true); autoAdvance(child.animationTime);}}  />
+                      { isAutoAdvance ? <div className='util-button autoplay-button-inactive'></div> :
+                      <button className='util-button autoplay-button' onClick={()=>{setAutoAdvance(true);
+                        setTimeout(() => goNext(), child.animationTime * 1000)}}  /> }
                     </Tooltip>
                     <Tooltip text='Replay'>
-                      <button className='util-button replay-button' onClick={()=>setReloadTime(Date.now())}  />
+                      <button className='util-button replay-button' onClick={()=>{setReloadTime(Date.now()); setAutoAdvance(false);}}  />
                     </Tooltip>
                   </span>}
                 {child.child}

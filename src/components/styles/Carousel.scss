@@ -98,6 +98,11 @@
   background-image: url('../../assets/autoplay_btn.svg');
 }
 
+.autoplay-button-inactive{
+  background-image: url('../../assets/autoplay_btn.svg');
+  background-color: brown;
+}
+
 .mute-button{
   background-image: url('../../assets/mute_btn.svg');
 }
