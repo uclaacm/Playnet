@@ -24,6 +24,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
+  const storage = window.sessionStorage;
 
   const [img0, img1] = props.imgs;
 
@@ -46,11 +47,11 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     let newIncorrect = true;
 
     if (pos === props.correctImg) {
-      playCorrect();
+      if(!storage.getItem('isMuted')) {playCorrect();}
       handleAlienState(ALIEN_STATE.HAPPY, props.advanceGame);
       newIncorrect = false;
     } else if (!incorrect) {
-      playIncorrect();
+      if(!storage.getItem('isMuted')) {playIncorrect();}
       handleAlienState(ALIEN_STATE.ANGER);
     }
     setIncorrect(newIncorrect);

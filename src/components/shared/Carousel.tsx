@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState, useRef } from 'react';
 
 import '../styles/Carousel.scss';
 import NextSvg from '../../assets/next_btn.svg';
@@ -36,6 +36,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [reloadTime, setReloadTime] = useState(Date.now());
   const [isAutoAdvance, setAutoAdvance] = useState(false);
   const [isMuted, setMute] = useState(false);
+  const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -53,6 +54,12 @@ function Carousel(props: CarouselProps): JSX.Element {
   }, [])
 
   useEffect(() => {
+    if (!storage.getItem('isAutoAdvance')) return;
+    setAutoAdvance(true);
+    setTimeout(() => goNext(), child.animationTime * 1000);
+  }, [])
+
+  useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
@@ -64,17 +71,30 @@ function Carousel(props: CarouselProps): JSX.Element {
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
-    setAutoAdvance(false);
   }
 
   function goPrev(): void {
     setSlideIdx(old => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
-    setAutoAdvance(false);
+    stopAutoAdvance();
   }
 
   function autoAdvance(animationLength: number): void {
-    setTimeout(() => {if (isAutoAdvance) {goNext()}}, animationLength * 1000);
+    lastTimeout.current = setTimeout(() => goNext(), animationLength * 1000);
+  }
+
+  function startAutoAdvance(): void {
+    setReloadTime(Date.now());
+    setAutoAdvance(true);
+    setTimeout(() => goNext(), child.animationTime * 1000);
+    storage.setItem('isAutoAdvance', 'true');
+  }
+
+  function stopAutoAdvance(): void {
+    if (!isAutoAdvance) return
+    if (lastTimeout !== undefined) {clearTimeout(lastTimeout.current);}
+    setAutoAdvance(false);
+    storage.removeItem('isAutoAdvance');
   }
 
   return (
@@ -107,11 +127,10 @@ function Carousel(props: CarouselProps): JSX.Element {
                     </Tooltip>
                     <Tooltip text='Autoplay'>
                       { isAutoAdvance ? <div className='util-button autoplay-button-inactive'></div> :
-                      <button className='util-button autoplay-button' onClick={()=>{setAutoAdvance(true);
-                        setTimeout(() => goNext(), child.animationTime * 1000)}}  /> }
+                      <button className='util-button autoplay-button' onClick={()=>startAutoAdvance()} /> }
                     </Tooltip>
                     <Tooltip text='Replay'>
-                      <button className='util-button replay-button' onClick={()=>{setReloadTime(Date.now()); setAutoAdvance(false);}}  />
+                      <button className='util-button replay-button' onClick={()=>{setReloadTime(Date.now()); stopAutoAdvance();}}  />
                     </Tooltip>
                   </span>}
                 {child.child}
@@ -127,7 +146,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                 ? 'hidden' : 'visible',
             }}
             onClick={(slideIdx === props.children.length - 1 && props.finalButtonHandleClick)
-              ? props.finalButtonHandleClick : () => goNext()}
+              ? props.finalButtonHandleClick : () => {goNext(); stopAutoAdvance();}}
           >
             <img src={NextSvg} />
           </button>

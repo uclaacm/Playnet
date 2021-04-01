@@ -27,6 +27,8 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
 
+  const storage = window.sessionStorage; 
+
   const [startTime, setStartTime] = useState(Date.now());
   const [currTime, setCurrTime] = useState(Date.now());
 
@@ -54,7 +56,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
     let newIncorrect = true;
     if (pos === props.pageInfo.correctChoice) {
       props.setTimeElapsed(props.gameNum, props.slideNum, currTime - startTime);
-      playCorrect();
+      if(!storage.getItem('isMuted')) {playCorrect();}
       newIncorrect = false;
 
       updateAnswerDisplaySlot(AnswerDisplayStyles.GREEN_BORDER, props.pageInfo.choices[pos]);
@@ -66,7 +68,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
 
     } else if (!chosenIncorrectChoices[pos]) {
       updateAnswerDisplaySlot(AnswerDisplayStyles.RED_BORDER, props.pageInfo.choices[pos]);
-      playIncorrect();
+      if(!storage.getItem('isMuted')) {playIncorrect();}
     }
     const copyChosenIncorrectChoices = chosenIncorrectChoices;
     copyChosenIncorrectChoices[pos] = newIncorrect;
