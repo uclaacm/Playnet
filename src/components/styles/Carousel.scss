@@ -10,7 +10,7 @@
 #title {
   font: $font-title;
   color: #fff;
-  margin-top: 36px;
+  margin-top: 12px;
   margin-bottom: 0;
 }
 
@@ -27,11 +27,17 @@
   margin: 5px;
 }
 
+b {
+  font: $font-title;
+  font-size: 26px;
+  font-weight: bold;
+  color: $playnet-orange;
+}
+
 #carousel {
   display: flex;
   align-items: center;
-  height: 100%;
-  margin: 36px 64px 64px;
+  margin: 12px 64px 64px;
 }
 
 #carousel-content {
@@ -39,7 +45,8 @@
   position: relative;
   background-color: $carousel-background-white;
   overflow: hidden;
-  height: 100%;
+  min-height: $min_carousel_height;
+  height: fit-content;
   margin: 0 24px;
   border-radius: 20px;
 }
@@ -77,6 +84,7 @@
   background-color: $playnet-orange;
   outline: none;
   border: none;
+  cursor: pointer;
   margin: 8px;
   border-radius: 15px;
   transition-duration: 0.2s;

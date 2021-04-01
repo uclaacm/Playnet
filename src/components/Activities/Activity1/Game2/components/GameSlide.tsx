@@ -22,8 +22,9 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.01});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01});
+
+  const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
+  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
   const storage = window.sessionStorage;
 
   const [img0, img1] = props.imgs;
@@ -59,7 +60,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   };
 
   return (
-    <div id={'game-content'}>
+    <div className={'game-content'}>
       <div className={'gamebox'}>
         <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
         <Alien alienState={alienState} />

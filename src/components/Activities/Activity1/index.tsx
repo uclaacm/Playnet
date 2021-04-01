@@ -1,97 +1,26 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
 import '../../styles/Activity1.scss';
 
-import AppleSvg from '../../../assets/activity1/apple.svg';
-import CharacterSvg from '../../../assets/activity1/character3.svg';
 import ComputerSvg from '../../../assets/activity1/computer.svg';
-import LemonSvg from '../../../assets/activity1/lemon.svg';
-import PartyConfettiSvg from '../../../assets/activity1/party_confetti.svg';
+import Game1EndScreen from '../../../assets/activity1/game1-endscreen.svg';
 import BlankComputer from '../../../assets/blank-computer.svg';
 
-import Carousel, { CarouselContext } from '../../shared/Carousel';
+import Carousel from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
-import Convo, { Phrase } from './Convo';
+import TransitionSlide from '../../shared/TransitionSlide';
+import ComputerConversation from './ComputerConversation';
+import CipherGame from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
-  const personConvo: Phrase[] = [
-    {
-      text: 'apple',
-      isText: true,
-    },
-    {
-      text: 'no...',
-      isText: true,
-    },
-    {
-      text: 'yes!',
-      isText: true,
-    },
-  ];
-  const computerGuesses: Phrase[] = [
-    {
-      text: '',
-      isText: true,
-      timeOnScreen: timeBtwnWords / 2,
-      textBubbleStyle: TextBubbleStyles.NONE,
-    },
-    {
-      image: LemonSvg,
-      isText: false,
-    },
-    {
-      image: AppleSvg,
-      isText: false,
-    },
-  ];
-
-  const Slide3 = () => {
-    return (
-      <div id='slide-3'>
-        <div className='left-content content'>
-          <div id='cartoon-person-speech'>
-            <Convo phrases={personConvo} timeBtwnPhrases={timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT}
-            />
-          </div>
-          <img src={CharacterSvg} alt='Image of Cartoon Person' />
-          <img id='party-confetti' src={PartyConfettiSvg} style={{
-            animationDelay: 2 * timeBtwnWords / 1000 + 's',
-            animationDuration: timeBtwnWords / 1000 + 's',
-          }} />
-        </div>
-        <div className='right-content content'>
-          <div id='computer-speech-bubble'>
-            <Convo phrases={computerGuesses} timeBtwnPhrases={timeBtwnWords}
-              textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
-          </div>
-          <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
-        </div>
-      </div>
-    );
-  };
-
-  const AmbiguousPhrasingGameIntro = () => {
-    const context = useContext(CarouselContext);
-    return (
-      <div id="game2-intro">
-        <span>But even if we know what the alien is saying...can you figure out what they mean?</span>
-        <br/>
-        <span>Warning: One sentence can mean two things, so the answer might not be what you expect!</span>
-        <br/>
-        <button className="game-intro-button" onClick={context.next}>
-          Play Game
-        </button>
-      </div>
-    );
-  };
 
   const content = [
     {
       topText: 'How does YouTube bring you the videos you want?',
-      child: <img src={ComputerSvg} alt='Image of Youtube on Computer' />,
+      child: <img src={ComputerSvg} width='40%'alt='Image of Youtube on Computer' />,
       bottomText: 'Let\'s dive into what happens in the search bar.',
     },
     {
@@ -107,10 +36,34 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Computers have to learn just like we do: by trial and error!',
-      child: <Slide3 />,
+      child: <ComputerConversation timeBtwnWords={timeBtwnWords} />,
+      animationTime: 3 * timeBtwnWords/1000,
     },
     {
-      child: <AmbiguousPhrasingGameIntro/>,
+      child:
+        <TransitionSlide buttonText={'Play Game'}>
+          <div>What if you were a computer?</div>
+          <div>Can you figure out what the alien wants and keep it happy?</div>
+        </TransitionSlide>,
+      showNext: false,
+    },
+    {
+      child: <CipherGame />,
+      showNext: false,
+    },
+    {
+      topText: 'Good news, we just found a translator that can help us understand the alien!',
+      child:
+        <div>
+          <img src={Game1EndScreen}/>
+        </div>,
+    },
+    {
+      child:
+        <TransitionSlide buttonText={'Play Game'}>
+          <div>But even if we know what the alien is saying...can you figure out what they mean?</div>
+          <div>Warning: One sentence can mean two things, so the answer might not be what you expect!</div>
+        </TransitionSlide>,
       showNext: false,
     },
     {
@@ -130,7 +83,7 @@ function Activity1(): JSX.Element {
               from trial and error. They can share what they learn with other computers in order to
               give us a better searching experience.
               <br/> <br/>
-              When you&apos;re older, you&apos;ll get the chance to learn how to code you that you can
+              When you&apos;re older, you&apos;ll get the chance to learn how to code you so that you can
               learn how AI works in more detail!
             </div>
           </div>

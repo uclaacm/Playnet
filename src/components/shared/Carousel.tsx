@@ -19,6 +19,7 @@ export interface CarouselItemComponents {
   topText?: string;
   bottomText?: string;
   animationTime?: number;
+  showBackground?: boolean;
 }
 
 interface CarouselProps {
@@ -112,7 +113,7 @@ function Carousel(props: CarouselProps): JSX.Element {
           >
             <img src={PrevSvg} />
           </button>
-          <div id={'carousel-content'}>
+          <div id={'carousel-content'} style={{backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}`}}>
             {child &&
               <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
