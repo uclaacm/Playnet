@@ -29,11 +29,8 @@ function Home(): JSX.Element {
   useEffect(() => { // set chosen video if known; if not, remove saved carousel slide
     const video = storage.getItem('chosenVideo');
     const carouselSlide = storage.getItem('slideIdx');
-    if (video && carouselSlide) {
-      setChosenVideo(video as VideoChoices);
-    } else if (carouselSlide) { // remove slide number if video is not known
-      storage.removeItem('slideIdx');
-    }
+    if (!carouselSlide) return;
+    video ? setChosenVideo(video as VideoChoices) : storage.remove('slideIdx');
     return () => storage.removeItem('chosenVideo');
   }, []);
 

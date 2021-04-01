@@ -46,11 +46,23 @@ export enum VideoChoices {
   NONE_CHOSEN = 'none_chosen', // no video has been chosen yet
 }
 
-export const VideoLinks : Record<VideoChoices, string> = {
-  chill_girl: 'https://www.youtube.com/embed/-FlxM_0S2lA',
-  baby_shark: 'https://www.youtube.com/embed/XqZsoesa55w',
-  nether_portal: 'https://www.youtube.com/embed/h27ugp3gzWI',
-  none_chosen: 'https://www.youtube.com/embed/-FlxM_0S2lA', // default to lofi beats
+export const VideoInfo : Record<VideoChoices, {url: string, rocket_word: string}> = {
+  [VideoChoices.CHILL_GIRL]: {
+    url: 'https://www.youtube.com/embed/-FlxM_0S2lA',
+    rocket_word: 'Lofi',
+  },
+  [VideoChoices.BABY_SHARK]: {
+    url: 'https://www.youtube.com/embed/XqZsoesa55w',
+    rocket_word: 'Shark',
+  },
+  [VideoChoices.NETHER_PORTAL]: {
+    url: 'https://www.youtube.com/embed/h27ugp3gzWI',
+    rocket_word: 'Minecraft',
+  },
+  [VideoChoices.NONE_CHOSEN]: { // default to lofi beats
+    url: 'https://www.youtube.com/embed/-FlxM_0S2lA',
+    rocket_word: 'Lofi',
+  },
 };
 
 // ACTIVITY1
