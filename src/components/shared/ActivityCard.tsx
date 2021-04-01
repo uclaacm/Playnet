@@ -8,9 +8,9 @@ export interface ActivityCardProps {
 }
 
 function ActivityCard(props: ActivityCardProps): JSX.Element {
-  const {id, description} = props;
+  const {id, description, disableHover} = props;
   const title = id.split('-').map((word) => capitalize(word)).join(' ');
-  const activityCardStyle = (props.disableHover === true) ? 'activity-card no-hover' : 'activity-card';
+  const activityCardStyle = (disableHover === true) ? 'activity-card no-hover' : 'activity-card';
   return (
     <div className={activityCardStyle}>
       <div id={id} className={'activity-splash'}/>
