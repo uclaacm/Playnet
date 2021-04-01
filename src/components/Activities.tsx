@@ -38,7 +38,7 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
             <ActivityCard
               id={path}
               description={ACTIVITIES[`${path}`]} />
-          </Link>
+          </Link>,
         )}
         <div>
           <ActivityCard
