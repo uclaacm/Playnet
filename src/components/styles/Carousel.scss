@@ -102,23 +102,22 @@ b {
   background-image: url('../../assets/replay_btn.svg');
 }
 
-.autoplay-button{
+.autoplay-button {
   background-image: url('../../assets/autoplay_btn.svg');
 }
 
-.autoplay-button-inactive{
+.autoplay-button-inactive {
   background-image: url('../../assets/autoplay_btn.svg');
   background-color: brown;
 }
 
-.mute-button{
+.mute-button {
   background-image: url('../../assets/mute_btn.svg');
 }
 
-.unmute-button{
+.unmute-button {
   background-image: url('../../assets//unmute_btn.svg');
 }
-
 
 ////////////////////////////// TIMEBAR //////////////////////////////
 // Stolen from https://itqna.net/questions/56/how-make-progress-bar-goes-0-100-css-only

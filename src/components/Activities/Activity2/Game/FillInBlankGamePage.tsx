@@ -26,7 +26,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
 
-  const storage = window.sessionStorage; 
+  const storage = window.sessionStorage;
 
   const [startTime, setStartTime] = useState(Date.now());
 
