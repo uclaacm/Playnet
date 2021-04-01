@@ -37,7 +37,7 @@ function Home(): JSX.Element {
 
   useEffect(() => {
     storage.setItem('chosenVideo', chosenVideo);
-    setRocketWord(VideoInfo[chosenVideo].rocket_word)
+    setRocketWord(VideoInfo[chosenVideo].rocket_word);
   }, [chosenVideo]);
 
   const content = [
@@ -93,8 +93,8 @@ function Home(): JSX.Element {
     },
     {
       child: <FinalSlide chosenVideo={chosenVideo} />,
-     topText: 'and all the way back to your computer!',
-    animationTime: 8.7,
+      topText: 'and all the way back to your computer!',
+      animationTime: 8.7,
     },
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,

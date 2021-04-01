@@ -1,7 +1,7 @@
 import anime, { AnimeTimelineInstance } from 'animejs';
 import React, { useContext, useEffect, useRef } from 'react';
-import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 import { CarouselContext } from '../shared/Carousel';
+import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 
 interface FinalSlideProps {
   chosenVideo: VideoChoices,
@@ -79,7 +79,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       <div id={'server'} />
       <div id={'computer'}/>
       <div id={'final-rocket'}>
-      <div id={'rocket-text'}>{VideoInfo[chosenVideo].rocket_word}</div>
+        <div id={'rocket-text'}>{VideoInfo[chosenVideo].rocket_word}</div>
         <div id={'rocket-image'}/>
         <div id={'video-pulley'}/>
       </div>
