@@ -47,6 +47,12 @@ function Carousel(props: CarouselProps): JSX.Element {
   }, []);
 
   useEffect(() => {
+    const isMutedStorage = storage.getItem('isMuted');
+    if (!isMutedStorage) return;
+    setMute(true);
+  }, [])
+
+  useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
@@ -58,9 +64,6 @@ function Carousel(props: CarouselProps): JSX.Element {
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
-    // console.log(slideIdx + props.children.length)
-    // if (isAutoAdvance && slideIdx < props.children.length){autoAdvance(child.animationTime)}
-    // console.log(child.animationTime);
   }
 
   function goPrev(): void {
@@ -96,8 +99,9 @@ function Carousel(props: CarouselProps): JSX.Element {
                     <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
-                    <Tooltip text='Mute'>
-                      <button className='util-button mute-button' onClick={()=>setMute(true)} />
+                    <Tooltip text= {isMuted ? 'Unmute' : 'Mute'}>
+                      { isMuted ? <button className='util-button unmute-button' onClick={()=>{setMute(false); storage.removeItem('isMuted')}} />:
+                      <button className='util-button mute-button' onClick={()=>{setMute(true); storage.setItem('isMuted', 'true');}} />}
                     </Tooltip>
                     <Tooltip text='Autoplay'>
                       <button className='util-button autoplay-button' onClick={()=>{setAutoAdvance(true); autoAdvance(child.animationTime);}}  />
