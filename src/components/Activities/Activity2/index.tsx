@@ -7,8 +7,8 @@ import '../../styles/CompressionGame.scss';
 
 import CompressionGame from './Game';
 import compressedSlides from './Game/compressedSlides';
-import Intro from './Game/Intro';
 import GameResults from './Game/GameResults';
+import Intro from './Game/Intro';
 import Outro from './Game/Outro';
 import uncompressedSlides from './Game/uncompressedSlides';
 import IntroSlides from './IntroSlides';

@@ -17,7 +17,7 @@ function Results(props: ResultsProps){
       </div>
     </div>
   );
-};
+}
 
 function GameResults(): JSX.Element {
   const t_uncompressedTime = sessionStorage.getItem('uncompressedTime');
@@ -37,6 +37,6 @@ function GameResults(): JSX.Element {
       <p>That’s why YouTube videos are compressed: it makes your computer play videos faster.</p>
     </div>
   );
-};
+}
 
 export default GameResults;
