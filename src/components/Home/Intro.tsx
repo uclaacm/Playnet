@@ -117,7 +117,9 @@ function Intro(): JSX.Element {
           <path id={'path-2'} d="M329 4C447 4 511 18.5 511 61.5C511 104.5 594 123.5 852.5 123.5" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
           <path id={'path-3'} d="M843 124C843 124 1309.38 124 1602 124" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
         </svg>
-        <div id={'rocket'}/>
+        <div id={'rocket'}>
+          <div id={'rocket-text'}>rocket</div>
+        </div>
       </div>
       <div id={'server-container'}>
         <div id={'library'}/>
