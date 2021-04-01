@@ -1,6 +1,8 @@
 import anime, { AnimeTimelineInstance } from 'animejs';
-import React, { useEffect, useRef } from 'react';
-import { VideoChoices } from '../shared/PlaynetConstants';
+import React, { useContext, useEffect, useRef } from 'react';
+import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
+import { CarouselContext } from '../shared/Carousel';
+
 import '../styles/FinalSlide.scss';
 
 interface FinalSlideProps {
@@ -8,8 +10,13 @@ interface FinalSlideProps {
 }
 
 function FinalSlide(props: FinalSlideProps): JSX.Element {
+  const {reloadTime} = useContext(CarouselContext);
+
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const timeout = useRef<NodeJS.Timeout | null>(null);
+
+  const { chosenVideo } = props;
+
   useEffect(() => {
     timeline.current = anime.timeline({
       autoplay: false,
@@ -28,7 +35,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       duration: 500,
     }, '-=50')
     .add({
-      targets: ['#rocket', '#video-pulley', '#video'],
+      targets: ['#final-rocket', '#video-pulley', '#video'],
       opacity: [0,1],
       duration: 1000,
     }, '-=50')
@@ -39,14 +46,14 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       duration: 1000,
     })
     .add({
-      targets: ['#rocket', '#video'],
-      left: -265,
+      targets: ['#final-rocket', '#video'],
+      translateX: -264,
       duration: 1000,
       easing: 'easeInSine',
     }, '-=100')
     .add({
-      targets: ['#rocket'],
-      left: -1000,
+      targets: ['#final-rocket'],
+      translateX: -1000,
       duration: 1000,
       easing: 'linear',
     }, '-=50')
@@ -66,17 +73,19 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     timeout.current = setTimeout(() => {
       timeline.current?.play();
     }, 250);
-  }, []);
+  }, [reloadTime]);
 
   return <div id={'final-intro-container'}>
     <div id={'lottie-mock-container'}>
       <div id={'final-intro-background'} />
       <div id={'server'} />
       <div id={'computer'}/>
-      <div id={'rocket'}>
+      <div id={'final-rocket'}>
+      <div id={'rocket-text'}>{VideoInfo[chosenVideo].rocket_word}</div>
+        <div id={'rocket-image'}/>
         <div id={'video-pulley'}/>
       </div>
-      <div id={'video'} className={props.chosenVideo.replace('_', '-')}/>
+      <div id={'video'} className={chosenVideo.replace('_', '-')}/>
     </div>
   </div>;
 }

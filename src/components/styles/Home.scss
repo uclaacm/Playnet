@@ -36,12 +36,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url('../../assets/rocket.svg');
-}
-
-#rocket-text {
-  padding: auto;
-  // width: 100%;
-  // height: 100%;
+  display: grid;
+  place-content: center;
 }
 
 #server-container {
