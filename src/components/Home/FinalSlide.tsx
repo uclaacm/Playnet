@@ -1,16 +1,11 @@
 import anime, { AnimeTimelineInstance } from 'animejs';
 import React, { useContext, useEffect, useRef } from 'react';
+import { viewportToPixels } from '../../utils/view';
 import { CarouselContext } from '../shared/Carousel';
 import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 
 interface FinalSlideProps {
   chosenVideo: VideoChoices,
-}
-function viewportToPixels(value: string) {
-  var parts = value.match(/([0-9\.]+)(vh|vw)/)
-  var q = Number(parts[1])
-  var side = window[['innerHeight', 'innerWidth'][['vh', 'vw'].indexOf(parts[2])]]
-  return side * (q / 100)
 }
 
 function FinalSlide(props: FinalSlideProps): JSX.Element {
@@ -80,8 +75,8 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
   const marginTop = 390 / 2 * (scale - 1);
   const height = 390 * scale;
 
-  return <div id={'final-intro-container'} style={{'transform': `scale(${scale})`, 'marginLeft': `${marginLeft}px`,
-    'marginTop': `${marginTop}px`,'height': `${height}px`}}>
+  return <div id={'final-intro-container'} style={{transform: `scale(${scale})`, marginLeft: `${marginLeft}px`,
+    marginTop: `${marginTop}px`,height: `${height}px`}}>
     <div id={'lottie-mock-container'}>
       <div id={'final-intro-background'} />
       <div id={'server'} />
