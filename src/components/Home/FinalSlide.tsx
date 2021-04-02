@@ -73,7 +73,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
   const scale = .9 * (viewportToPixels('100vw') - 152 * 2) / 1000;
   const marginLeft = 1000 / 2 * (scale - 1) + .05 * .9 * (viewportToPixels('100vw') - 152 * 2);
   const marginTop = 390 / 2 * (scale - 1);
-  const height = 390 * scale;
+  const height = 390;
 
   return <div id={'final-intro-container'} style={{transform: `scale(${scale})`, marginLeft: `${marginLeft}px`,
     marginTop: `${marginTop}px`,height: `${height}px`}}>
