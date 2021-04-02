@@ -88,6 +88,18 @@ b {
   cursor: pointer;
 }
 
+// Shared
+#outro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  a {
+    text-decoration: underline;
+    color: inherit;
+  }
+}
+
 ////////////////////////////// TIMEBAR //////////////////////////////
 // Stolen from https://itqna.net/questions/56/how-make-progress-bar-goes-0-100-css-only
 .timebar {

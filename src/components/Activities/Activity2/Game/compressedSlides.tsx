@@ -14,7 +14,7 @@ const elephantShoeGifTime = { path: ElephantShoesGIF, duration: 2000 };
 const compressedSlides = [
   {
     choices: ['elephant', 'cow', 'sheep'],
-    correctChoice: 0,
+    correctIdx: 0,
     gif: <GIFPlayer gifs={[elephantGifTime]} alt='Gif of Elephant being Drawn' id={'1-0'} />,
     answerDisplayWords: ['blankspot'],
     answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
@@ -22,7 +22,7 @@ const compressedSlides = [
   },
   {
     choices: ['hat', 'wig', 'bow'],
-    correctChoice: 0,
+    correctIdx: 0,
     gif: <GIFPlayer gifs={[elephantHatGifTime]} alt='Gif of Elephant wearing Hat being Drawn' id={'1-0'} />,
     answerDisplayWords: ['elephant', 'wearing', 'blank'],
     answerDisplayStyles:
@@ -31,7 +31,7 @@ const compressedSlides = [
   },
   {
     choices: ['wig', 'bow', 'shoes'],
-    correctChoice: 2,
+    correctIdx: 2,
     gif: <GIFPlayer gifs={[elephantShoeGifTime]} alt='Gif of Elephant wearing hat and shoes being Drawn' id={'1-0'} />,
     answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
     answerDisplayStyles:

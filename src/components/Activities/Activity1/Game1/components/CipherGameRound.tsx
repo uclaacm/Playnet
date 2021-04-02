@@ -56,6 +56,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [happiness, setHappiness] = useState(0);
   const [clickDisabled, setClickDisabled] = useState(false);
+  const [hoverIncorrect, setHoverIncorrect] = useState(false);
 
   // -----ALIEN HANDLERS------
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
@@ -85,7 +86,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : () => nextSlide(); // prevent no-op by finishing animation before scene change
       setHappiness(newHappiness);
-      handleAlienState(ALIEN_STATE.HAPPY, handler);
+      handleAlienState(ALIEN_STATE.HAPPY, ()=>{handler(); console.log("done")});
     } else {
       setHappiness(Math.max(happiness-INCORRECT_PTS,0)); // no underflow
       handleAlienState(ALIEN_STATE.ANGER, ()=>nextSlide());
@@ -112,8 +113,8 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
           <img src={Star} alt="star points"/>
         </div>
         Happiness
-      </div>
-      <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound} />
+      </div>    
+      <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound} setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx}/>
     </div>
   );
 }

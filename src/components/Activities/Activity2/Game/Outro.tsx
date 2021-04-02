@@ -4,7 +4,6 @@ import Computer from '../../../shared/Computer';
 export default function Outro(): JSX.Element {
 
   return (
-    <div id={'outro-container'}>
       <Computer>
         <>
           <p>
@@ -18,7 +17,5 @@ export default function Outro(): JSX.Element {
           </p>
         </>
       </Computer>
-      <button>Play another activity</button>
-    </div>
   );
 }

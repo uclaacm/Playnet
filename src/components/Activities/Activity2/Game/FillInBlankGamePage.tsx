@@ -21,7 +21,7 @@ interface FillInBlankGamePageProps {
 
 function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const {pageInfo, slideNum, addTimeElapsed, advanceGame} = props;
-  const {choices, correctChoice, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
+  const {choices, correctIdx, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
 
@@ -35,8 +35,9 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
     setWords(replace(words, answerSlotIndex, word));
   };
 
-  const handleClickAndReturnIsCorrect = (pos: number) => {  //returns true if the choice is correct
-    const isCorrect = pos === correctChoice;
+  const handleClick = (pos: number) => {
+    console.log(correctIdx)
+    const isCorrect = pos === correctIdx;
     if (isCorrect) {
       addTimeElapsed(Date.now() - startTime.current);
       setTimeout(() => {
@@ -48,7 +49,6 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
     isCorrect ? playCorrect() : playIncorrect();
 
     setIncorrectChoices(replace(incorrectChoices, pos, isCorrect));
-    return isCorrect;
   };
 
   useEffect(() => {
@@ -87,8 +87,9 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
             {choices.map((answerChoice, index) =>
               <AnsweChoiceBox
                 key={slideNum + '-' + index}
-                handleClickAndReturnIsCorrect={() => handleClickAndReturnIsCorrect(index)}
+                handleClick={() => handleClick(index)}
                 text={answerChoice} style={AnswerChoiceBoxStyles.SMALL_PX_BASED}
+                isCorrect={index === correctIdx}
               />,
             )}
           </div>
