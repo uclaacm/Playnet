@@ -74,18 +74,19 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
     const slide = slides[slideIdx];
     const correctWord = slide.cards[slide.correctIdx].split(' ');
-    const reducer = (acc : string, cur : string) => `${acc} ${scramble(HASH_VAL, cur)}`;
-    return vowelize(correctWord.reduce(reducer, ''));
+    const reducer = (acc : string, cur : string) => `${acc} ${vowelize(scramble(HASH_VAL, cur))}`;
+    return correctWord.reduce(reducer, '');
   };
 
   const vowelize = (word : string) : string => {
-    let char = word.trim().charCodeAt(0);
+    const start = 0;
+    let char = word.charCodeAt(start);
     const vowelcodes = [65, 69, 73, 79, 85];
     while (vowelcodes.indexOf(char) === -1) {
       if (char === 90) char = 64;
       char++;
     }
-    return String.fromCharCode(char) + word.slice(1);
+    return String.fromCharCode(char) + word.slice(start+1);
   };
 
   const advanceRound = (correct : boolean) => {
