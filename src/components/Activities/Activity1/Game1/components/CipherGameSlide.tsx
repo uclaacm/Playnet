@@ -16,7 +16,7 @@ function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
   const [card0, card1] = props.cards;
   const storage = window.sessionStorage;
 
-  const volume = storage.getItem('isMuted') ? 0 : 0.5
+  const volume = storage.getItem('isMuted') ? 0 : 0.5;
   const [playCorrect] = useSound(CorrectSFX, { volume: volume});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: volume});
 

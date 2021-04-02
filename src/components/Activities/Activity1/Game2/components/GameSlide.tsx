@@ -24,10 +24,10 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
   const storage = window.sessionStorage;
 
-  const volume = storage.getItem('isMuted') ? 0 : 0.5
+  const volume = storage.getItem('isMuted') ? 0 : 0.5;
   const [playCorrect] = useSound(CorrectSFX, { volume: volume});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: volume});
-  
+
 
   const [img0, img1] = props.imgs;
 
