@@ -32,9 +32,9 @@ function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
 
   return (
     <div className={'cipher-game-cards'}>
-      <AnswerChoiceBox handleClick={()=>handleClick(0)} imgSrc={''} id={card0.split(' ').join('-')} isCorrect={correctIdx === 0} 
+      <AnswerChoiceBox handleClick={()=>handleClick(0)} imgSrc={''} id={card0.split(' ').join('-')} isCorrect={correctIdx === 0}
         roundId={roundNum} setHover={correctIdx !== 0 ? setHoverIncorrect : undefined}/>
-      <AnswerChoiceBox handleClick={()=>handleClick(1)} imgSrc={''} id={card1.split(' ').join('-')} isCorrect={correctIdx === 1} 
+      <AnswerChoiceBox handleClick={()=>handleClick(1)} imgSrc={''} id={card1.split(' ').join('-')} isCorrect={correctIdx === 1}
         roundId={roundNum}  setHover={correctIdx !== 1 ? setHoverIncorrect : undefined}/>
     </div>
   );

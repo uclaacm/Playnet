@@ -60,10 +60,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const [roundNum, setRoundNum] = useState(0);
 
   useEffect(()=>{
-    console.log(roundNum)
     if (roundNum >   THRESHOLD_TO_HELP_PER_GAME ) {
-      console.log(roundNum)
-
       hoverIncorrect ? handleAlienState(ALIEN_STATE.SAD) : handleAlienState(ALIEN_STATE.BASE);
     }
   }, [hoverIncorrect]);
@@ -129,7 +126,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
         </div>
         Happiness
       </div>
-      <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound} 
+      <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound}
         setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx}/>
     </div>
   );
