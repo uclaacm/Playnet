@@ -71,16 +71,30 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     }, 1000);
   };
   // ------------------------
+  const vowelize = (word : string) : string => {
+    const start = 0;
+    let char = word.charCodeAt(start);
+    const vowelcodes = [65, 69, 73, 79, 85];
+    while (vowelcodes.indexOf(char) === -1) {
+      if (char === 90) char = 64;
+      char++;
+    }
+    return String.fromCharCode(char) + word.slice(start+1);
+  };
+
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
     const slide = slides[slideIdx];
     const correctWord = slide.cards[slide.correctIdx].split(' ');
-    const reducer = (acc : string, cur : string) => `${acc} ${scramble(HASH_VAL, cur)}`;
+    const reducer = (acc : string, cur : string) => `${acc} ${vowelize(scramble(HASH_VAL, cur))}`;
     return correctWord.reduce(reducer, '');
   };
 
   const advanceRound = (correct : boolean) => {
     if (clickDisabled) return;
     setClickDisabled(true); // block repeated clicks during alien animation
+
+    const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
+    speechSynthesis.speak(speech);
     if (correct) {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : () => nextSlide(); // prevent no-op by finishing animation before scene change
