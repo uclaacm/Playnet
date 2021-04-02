@@ -98,6 +98,31 @@ function Carousel(props: CarouselProps): JSX.Element {
     storage.removeItem('isAutoAdvance');
   }
 
+  function handleMuteButtonClick(): void {
+    if (isMuted) {
+      setIsMuted(false);
+      storage.removeItem('isMuted');
+    }
+    if (!isMuted){
+      setIsMuted(true);
+      storage.setItem('isMuted', 'true');
+    }
+  }
+
+  function handleAutoplayButtonClick(): void {
+    if (isAutoAdvance) {
+      disableAutoAdvance();
+    }
+    if (!isAutoAdvance) {
+      enableAutoAdvance();
+    }
+  }
+
+  function handleReplayButtonClick(): void {
+    setReloadTime(Date.now());
+    disableAutoAdvance();
+  }
+
   return (
     <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx, reloadTime }}>
       <div id={'carousel-wrapper'}>
@@ -123,15 +148,13 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                     <Tooltip text= {isMuted ? 'Unmute' : 'Mute'}>
-                      { isMuted ? <button className='util-button unmute-button' onClick={()=>{setIsMuted(false); storage.removeItem('isMuted');}} />:
-                        <button className='util-button mute-button' onClick={()=>{setIsMuted(true); storage.setItem('isMuted', 'true');}} />}
+                      <button className={'util-button ' + (isMuted ? 'unmute-button' : 'mute-button')} onClick={handleMuteButtonClick} />
                     </Tooltip>
                     <Tooltip text='Autoplay'>
-                      { isAutoAdvance ? <button className='util-button autoplay-button-inactive' onClick={() => disableAutoAdvance()} /> :
-                        <button className='util-button autoplay-button' onClick={()=>enableAutoAdvance()} /> }
+                      <button className={'util-button autoplay-button-' + (isAutoAdvance ? 'autoplaying' : 'not-autoplaying')} onClick={() => handleAutoplayButtonClick()} />
                     </Tooltip>
                     <Tooltip text='Replay'>
-                      <button className='util-button replay-button' onClick={()=>{setReloadTime(Date.now()); disableAutoAdvance();}}  />
+                      <button className='util-button replay-button' onClick={()=>handleReplayButtonClick()}  />
                     </Tooltip>
                   </span>}
                 {child.child}

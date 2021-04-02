@@ -102,11 +102,11 @@ b {
   background-image: url('../../assets/replay_btn.svg');
 }
 
-.autoplay-button {
+.autoplay-button-not-autoplaying {
   background-image: url('../../assets/autoplay_btn.svg');
 }
 
-.autoplay-button-inactive {
+.autoplay-button-autoplaying {
   background-image: url('../../assets/autoplay_btn.svg');
   background-color: brown;
 }
