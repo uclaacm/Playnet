@@ -71,13 +71,6 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     }, 1000);
   };
   // ------------------------
-  const displayScrambledText = () : string => { // split phrase into words and scramble individually
-    const slide = slides[slideIdx];
-    const correctWord = slide.cards[slide.correctIdx].split(' ');
-    const reducer = (acc : string, cur : string) => `${acc} ${vowelize(scramble(HASH_VAL, cur))}`;
-    return correctWord.reduce(reducer, '');
-  };
-
   const vowelize = (word : string) : string => {
     const start = 0;
     let char = word.charCodeAt(start);
@@ -87,6 +80,13 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
       char++;
     }
     return String.fromCharCode(char) + word.slice(start+1);
+  };
+
+  const displayScrambledText = () : string => { // split phrase into words and scramble individually
+    const slide = slides[slideIdx];
+    const correctWord = slide.cards[slide.correctIdx].split(' ');
+    const reducer = (acc : string, cur : string) => `${acc} ${vowelize(scramble(HASH_VAL, cur))}`;
+    return correctWord.reduce(reducer, '');
   };
 
   const advanceRound = (correct : boolean) => {
