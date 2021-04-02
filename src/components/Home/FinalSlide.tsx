@@ -6,19 +6,23 @@ import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 interface FinalSlideProps {
   chosenVideo: VideoChoices,
 }
+function viewportToPixels(value: string) {
+  var parts = value.match(/([0-9\.]+)(vh|vw)/)
+  var q = Number(parts[1])
+  var side = window[['innerHeight', 'innerWidth'][['vh', 'vw'].indexOf(parts[2])]]
+  return side * (q / 100)
+}
 
 function FinalSlide(props: FinalSlideProps): JSX.Element {
-  const {reloadTime} = useContext(CarouselContext);
+  const { reloadTime } = useContext(CarouselContext);
 
   const timeline = useRef<AnimeTimelineInstance | null>(null);
-  const timeout = useRef<NodeJS.Timeout | null>(null);
 
   const { chosenVideo } = props;
 
   useEffect(() => {
     timeline.current = anime.timeline({
       autoplay: false,
-      delay: 250,
       easing: 'easeInOutSine',
     });
 
@@ -31,12 +35,12 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       targets: ['#server'],
       translateY: 80,
       duration: 500,
-    }, '-=50')
+    })
     .add({
       targets: ['#final-rocket', '#video-pulley', '#video'],
       opacity: [0,1],
       duration: 1000,
-    }, '-=50')
+    })
     .add({
       targets: ['#server', '#computer'],
       translateX: 685,
@@ -48,42 +52,46 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       translateX: -264,
       duration: 1000,
       easing: 'easeInSine',
-    }, '-=100')
+    })
     .add({
       targets: ['#final-rocket'],
       translateX: -1000,
       duration: 1000,
       easing: 'linear',
-    }, '-=50')
+    })
     .add({
       targets: ['#computer', '#video'],
       scale: [1, 3],
       duration: 1000,
-    }, '-=50');
+    });
   }, []);
 
   useEffect(() => {
-    if (timeout.current) {
-      clearTimeout(timeout.current);
-    }
-    timeline.current?.pause();
-    timeline.current?.seek(0);
-    timeout.current = setTimeout(() => {
+    const timeout = setTimeout(() => {
       timeline.current?.play();
     }, 250);
+    timeline.current?.pause();
+    timeline.current?.seek(0);
+    () => clearTimeout(timeout);
   }, [reloadTime]);
 
-  return <div id={'final-intro-container'}>
+  const scale = .9 * (viewportToPixels('100vw') - 152 * 2) / 1000;
+  const marginLeft = 1000 / 2 * (scale - 1) + .05 * .9 * (viewportToPixels('100vw') - 152 * 2);
+  const marginTop = 390 / 2 * (scale - 1);
+  const height = 390 * scale;
+
+  return <div id={'final-intro-container'} style={{'transform': `scale(${scale})`, 'marginLeft': `${marginLeft}px`,
+    'marginTop': `${marginTop}px`,'height': `${height}px`}}>
     <div id={'lottie-mock-container'}>
       <div id={'final-intro-background'} />
       <div id={'server'} />
-      <div id={'computer'}/>
+      <div id={'computer'} />
       <div id={'final-rocket'}>
         <div id={'rocket-text'}>{VideoInfo[chosenVideo].rocket_word}</div>
-        <div id={'rocket-image'}/>
-        <div id={'video-pulley'}/>
+        <div id={'rocket-image'} />
+        <div id={'video-pulley'} />
       </div>
-      <div id={'video'} className={chosenVideo.replace('_', '-')}/>
+      <div id={'video'} className={chosenVideo.replace('_', '-')} />
     </div>
   </div>;
 }

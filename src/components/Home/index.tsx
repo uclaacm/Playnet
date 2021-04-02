@@ -92,7 +92,7 @@ function Home(): JSX.Element {
     {
       child: <FinalSlide chosenVideo={chosenVideo} />,
       topText: 'and all the way back to your computer!',
-      animationTime: 8.7,
+      animationTime: 7,
     },
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,

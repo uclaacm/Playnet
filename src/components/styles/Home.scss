@@ -87,10 +87,14 @@
 
 // FINAL SLIDE
 #final-intro-container {
-  width: 100%;
+  width:fit-content;
+margin:auto;  // transform: scale(100vw / 1000px);
   display: flex;
+  // object-fit: contain;
+
   justify-content: center;
-  position: relative;
+  // position: relative;
+  // overflow: hidden;
 }
 
 #final-intro-container #lottie-mock-container {
