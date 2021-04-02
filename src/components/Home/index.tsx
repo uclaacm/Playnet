@@ -8,18 +8,18 @@ import Intro9Data from '../LottieAnimations/Intro9Animation';
 import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
-import { HeaderSections, VideoChoices } from '../shared/PlaynetConstants';
+import { HeaderSections, VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 
 import '../styles/Home.scss';
-import Intro from './Intro';
+import FinalSlide from './FinalSlide';
+import Intro, { IntroAnimeProps } from './Intro';
 import { FinalYouTube, IntroYouTube } from './Youtube';
 
 
 function Home(): JSX.Element {
   const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
-
-  const IntroSlides = forwardRef((_, ref: RefObject) => (
-    <Intro ref={ref} />
+  const IntroSlides = forwardRef((props: IntroAnimeProps, ref: RefObject) => (
+    <Intro ref={ref} {...props}/>
   ));
   IntroSlides.displayName = 'IntroSlides';
   const ref = useRef(null);
@@ -37,29 +37,30 @@ function Home(): JSX.Element {
     storage.setItem('chosenVideo', chosenVideo);
   }, [chosenVideo]);
 
+  const rocketWord = VideoInfo[chosenVideo].rocket_word;
   const content = [
     {
-      child: <IntroSlides ref={ref} />,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       topText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref} />,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       topText: 'Servers are like computers. They store information and do math.',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref} />,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       topText: 'Your request asks the server for information.',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref} />,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       topText: 'It’s like asking a librarian for a book!',
       animationTime: 2.5,
     },
     {
-      child: <IntroSlides ref={ref} />,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       topText: 'Servers live in buildings called data centers.',
       animationTime: 5.5,
     },
@@ -87,6 +88,11 @@ function Home(): JSX.Element {
       child: <LottieControl animationData={Intro12Data} />,
       topText: 'a request gets sent all the way to your nearest data center',
       animationTime: 6.21,
+    },
+    {
+      child: <FinalSlide chosenVideo={chosenVideo} />,
+      topText: 'and all the way back to your computer!',
+      animationTime: 7,
     },
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,
