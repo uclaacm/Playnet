@@ -14,9 +14,11 @@ interface CipherGameSlideProps {
 function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
   const {correctIdx, advanceRound} = props;
   const [card0, card1] = props.cards;
+  const storage = window.sessionStorage;
 
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.5});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5});
+  const volume = storage.getItem('isMuted') ? 0 : 0.5
+  const [playCorrect] = useSound(CorrectSFX, { volume: volume});
+  const [playIncorrect] = useSound(IncorrectSFX, { volume: volume});
 
   const handleClick = (option : number) => {
     if (option == correctIdx) {

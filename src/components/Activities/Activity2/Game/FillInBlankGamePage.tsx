@@ -22,14 +22,16 @@ interface FillInBlankGamePageProps {
 function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const {pageInfo, slideNum, addTimeElapsed, advanceGame} = props;
   const {choices, correctChoice, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
+  const storage = window.sessionStorage;
+
+  const volume = storage.getItem('isMuted') ? 0 : 0.5
+  const [playCorrect] = useSound(CorrectSFX, { volume: volume });
+  const [playIncorrect] = useSound(IncorrectSFX, { volume: volume });
 
   const [incorrectChoices, setIncorrectChoices] = useState<boolean[]>([]);
   const startTime = useRef(Date.now());
   const [styles, setStyles] = useState<AnswerDisplayStyles[]>(answerDisplayStyles);
   const [words, setWords] = useState<string[]>(answerDisplayWords);
-  const storage = window.sessionStorage;
 
   const updateDisplay = (style: AnswerDisplayStyles, word: string) => {
     setStyles(replace(styles, answerSlotIndex, style));
@@ -46,7 +48,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
     }
     const style = isCorrect ? AnswerDisplayStyles.GREEN_BORDER : AnswerDisplayStyles.RED_BORDER;
     updateDisplay(style, choices[pos]);
-    if(!storage.getItem('isMuted')) {isCorrect ? playCorrect() : playIncorrect();}
+    isCorrect ? playCorrect() : playIncorrect();
 
     setIncorrectChoices(replace(incorrectChoices, pos, isCorrect));
     return isCorrect;
