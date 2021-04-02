@@ -36,7 +36,6 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   };
 
   const handleClick = (pos: number) => {
-    console.log(correctIdx)
     const isCorrect = pos === correctIdx;
     if (isCorrect) {
       addTimeElapsed(Date.now() - startTime.current);
