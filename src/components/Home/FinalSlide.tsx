@@ -35,11 +35,10 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     const marginLeftPx = lottieWidthPx / 2 * (animationScale - 1) + carouselContentPx * (1 - lottieScaling) / 2;
     const marginBottomPx = marginTopPx;
 
-    const style = {
+    return {
       transform: `scale(${animationScale})`,
       margin: `${marginTopPx}px ${marginRightPx}px ${marginBottomPx}px ${marginLeftPx}px`,
     };
-    return style;
   };
 
   useEffect(() => {
