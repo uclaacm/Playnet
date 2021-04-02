@@ -10,13 +10,11 @@ interface FinalSlideProps {
 
 function FinalSlide(props: FinalSlideProps): JSX.Element {
   const { reloadTime } = useContext(CarouselContext);
-
   const timeline = useRef<AnimeTimelineInstance | null>(null);
-
   const { chosenVideo } = props;
 
   // very unfortunate hard codings for now
-  const getStyling = () => {
+  const getCSSStyling = () => {
     const lottieWidthPx = 1000;
     const lottieHeightPx = 390;
     const lottieScaling = .9;
@@ -29,6 +27,9 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     const carouselContentPx = viewportToPixels('100vw') - totalMarginContentPx * 2;
 
     const animationScale = lottieScaling * (carouselContentPx) / lottieWidthPx;
+
+    // these all refer to -> excess/lack of spacing due to animationScaling
+    //     ( a bit confusing, might need to draw out)
     const marginTopPx = lottieHeightPx / 2 * (animationScale - 1);
     const marginRightPx = 0;
     const marginLeftPx = lottieWidthPx / 2 * (animationScale - 1) + carouselContentPx * (1 - lottieScaling) / 2;
@@ -36,10 +37,10 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
 
     const style = {
       transform: `scale(${animationScale})`,
-      margin: `${marginTopPx}px ${marginRightPx}px ${marginBottomPx}px ${marginLeftPx}px`
+      margin: `${marginTopPx}px ${marginRightPx}px ${marginBottomPx}px ${marginLeftPx}px`,
     };
     return style;
-  }
+  };
 
   useEffect(() => {
     timeline.current = anime.timeline({
@@ -82,7 +83,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       })
       .add({
         targets: ['#computer', '#video'],
-        scale: [1, 3],
+        scale: [1, 3.5],
         duration: 1000,
       });
   }, []);
@@ -96,7 +97,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     return () => clearTimeout(timeout);
   }, [reloadTime]);
 
-  return <div id={'final-intro-container'} style={getStyling()}>
+  return <div id={'final-intro-container'} style={getCSSStyling()}>
     <div id={'lottie-mock-container'}>
       <div id={'final-intro-background'} />
       <div id={'server'} />
