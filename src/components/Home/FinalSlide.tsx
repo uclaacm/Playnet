@@ -14,6 +14,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
   const { chosenVideo } = props;
 
   // very unfortunate hard codings for now
+  // scaling [child with set width (1000px) + children w/ absolute locations] to fit carousel perfectly
   const getCSSStyling = () => {
     const lottieWidthPx = 1000;
     const lottieHeightPx = 390;
