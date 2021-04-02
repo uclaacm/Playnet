@@ -1,4 +1,4 @@
-import React, { useRef, useState} from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
@@ -58,18 +58,26 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const [clickDisabled, setClickDisabled] = useState(false);
   const [hoverIncorrect, setHoverIncorrect] = useState(false);
 
+  useEffect(()=>{
+    hoverIncorrect ? handleAlienState(ALIEN_STATE.ANGER) : handleAlienState(ALIEN_STATE.BASE);
+  }, [hoverIncorrect]);
+
   // -----ALIEN HANDLERS------
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
-  const handleAlienState = (state: ALIEN_STATE, cb?: () => void) => {
-    alienTimeout.current && clearTimeout(alienTimeout.current);
+  const handleAlienState = (state: ALIEN_STATE, timeout?: boolean, cb?: () => void) => {
     setAlienState(state);
-    alienTimeout.current = setTimeout(() => {
-      alienTimeout.current = undefined;
-      setAlienState(ALIEN_STATE.BASE);
-      cb && cb();
-    }, 1000);
+    if(timeout === true) {
+      alienTimeout.current && clearTimeout(alienTimeout.current);
+      alienTimeout.current = setTimeout(() => {
+        alienTimeout.current = undefined;
+        setAlienState(ALIEN_STATE.BASE);
+        cb && cb();
+      }, 1000);
+    } else {
+      setAlienState(state);
+    }
   };
   // ------------------------
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
@@ -86,10 +94,10 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : nextSlide; // prevent no-op by finishing animation before scene change
       setHappiness(newHappiness);
-      handleAlienState(ALIEN_STATE.HAPPY, handler);
+      handleAlienState(ALIEN_STATE.HAPPY, true, handler);
     } else {
       setHappiness(Math.max(happiness-INCORRECT_PTS,0)); // no underflow
-      handleAlienState(ALIEN_STATE.ANGER, ()=>nextSlide());
+      handleAlienState(ALIEN_STATE.ANGER, true, nextSlide);
     }
   };
 
