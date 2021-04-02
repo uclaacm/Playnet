@@ -93,7 +93,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     if (clickDisabled) return;
     setClickDisabled(true); // block repeated clicks during alien animation
 
-    const speech = new SpeechSynthesisUtterance(vowelize(displayScrambledText()).toLowerCase());
+    const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
     speechSynthesis.speak(speech);
     if (correct) {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
