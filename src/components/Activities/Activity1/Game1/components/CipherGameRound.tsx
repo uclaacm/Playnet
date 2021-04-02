@@ -72,19 +72,19 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   };
   // ------------------------
   const vowelize = (word : string) : string => {
-    const start = 0;
-    let char = word.charCodeAt(start);
-    const vowelcodes = [65, 69, 73, 79, 85];
-    while (vowelcodes.indexOf(char) === -1) {
-      if (char === 90) char = 64;
-      char++;
-    }
-    // var Typo = require("typo-js");
-    // var dictionary = new Typo("en_US", false, false, { dictionaryPath: `/dictionaries` });
-    // var array_of_suggestions = dictionary.suggest(word);
-    // console.log(array_of_suggestions);
-    return String.fromCharCode(char) + word.slice(start+1);
-    // return array_of_suggestions[0];
+  //   const start = 0;
+  //   let char = word.charCodeAt(start);
+  //   const vowelcodes = [65, 69, 73, 79, 85];
+  //   while (vowelcodes.indexOf(char) === -1) {
+  //     if (char === 90) char = 64;
+  //     char++;
+  //   }
+    var Typo = require("typo-js");
+    var dictionary = new Typo("en_US", false, false, { dictionaryPath: `/dictionaries` });
+    var array_of_suggestions = dictionary.suggest(word);
+    console.log(array_of_suggestions);
+    // return String.fromCharCode(char) + word.slice(start+1);
+    return array_of_suggestions[0];
   };
 
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
