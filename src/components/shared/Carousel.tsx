@@ -127,7 +127,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                         <button className='util-button mute-button' onClick={()=>{setMute(true); storage.setItem('isMuted', 'true');}} />}
                     </Tooltip>
                     <Tooltip text='Autoplay'>
-                      { isAutoAdvance ? <div className='util-button autoplay-button-inactive'></div> :
+                      { isAutoAdvance ? <button className='util-button autoplay-button-inactive' onClick={() => stopAutoAdvance()} /> :
                         <button className='util-button autoplay-button' onClick={()=>startAutoAdvance()} /> }
                     </Tooltip>
                     <Tooltip text='Replay'>
