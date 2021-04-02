@@ -1,6 +1,6 @@
 import anime, { AnimeTimelineInstance } from 'animejs';
 import React, { useContext, useEffect, useRef } from 'react';
-import { viewportToPixels } from '../../utils/view';
+import { viewportToPixels } from '../../utils/viewport';
 import { CarouselContext } from '../shared/Carousel';
 import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 
@@ -15,6 +15,32 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
 
   const { chosenVideo } = props;
 
+  // very unfortunate hard codings for now
+  const getStyling = () => {
+    const lottieWidthPx = 1000;
+    const lottieHeightPx = 390;
+    const lottieScaling = .9;
+
+    const carouselPaddingPx = 64;
+    const carouselButtonPx = 64;
+    const carouselContentMarginPx = 24;
+
+    const totalMarginContentPx = carouselPaddingPx + carouselButtonPx + carouselContentMarginPx;
+    const carouselContentPx = viewportToPixels('100vw') - totalMarginContentPx * 2;
+
+    const animationScale = lottieScaling * (carouselContentPx) / lottieWidthPx;
+    const marginTopPx = lottieHeightPx / 2 * (animationScale - 1);
+    const marginRightPx = 0;
+    const marginLeftPx = lottieWidthPx / 2 * (animationScale - 1) + carouselContentPx * (1 - lottieScaling) / 2;
+    const marginBottomPx = marginTopPx;
+
+    const style = {
+      transform: `scale(${animationScale})`,
+      margin: `${marginTopPx}px ${marginRightPx}px ${marginBottomPx}px ${marginLeftPx}px`
+    };
+    return style;
+  }
+
   useEffect(() => {
     timeline.current = anime.timeline({
       autoplay: false,
@@ -26,39 +52,39 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       opacity: [1, 0],
       duration: 1000,
     })
-    .add({
-      targets: ['#server'],
-      translateY: 80,
-      duration: 500,
-    })
-    .add({
-      targets: ['#final-rocket', '#video-pulley', '#video'],
-      opacity: [0,1],
-      duration: 1000,
-    })
-    .add({
-      targets: ['#server', '#computer'],
-      translateX: 685,
-      easing: 'easeInSine',
-      duration: 1000,
-    })
-    .add({
-      targets: ['#final-rocket', '#video'],
-      translateX: -264,
-      duration: 1000,
-      easing: 'easeInSine',
-    })
-    .add({
-      targets: ['#final-rocket'],
-      translateX: -1000,
-      duration: 1000,
-      easing: 'linear',
-    })
-    .add({
-      targets: ['#computer', '#video'],
-      scale: [1, 3],
-      duration: 1000,
-    });
+      .add({
+        targets: ['#server'],
+        translateY: 80,
+        duration: 500,
+      })
+      .add({
+        targets: ['#final-rocket', '#video-pulley', '#video'],
+        opacity: [0, 1],
+        duration: 1000,
+      })
+      .add({
+        targets: ['#server', '#computer'],
+        translateX: 706,
+        easing: 'easeInSine',
+        duration: 1000,
+      })
+      .add({
+        targets: ['#final-rocket', '#video'],
+        translateX: -243,
+        duration: 1000,
+        easing: 'easeInSine',
+      })
+      .add({
+        targets: ['#final-rocket'],
+        translateX: -1000,
+        duration: 1000,
+        easing: 'linear',
+      })
+      .add({
+        targets: ['#computer', '#video'],
+        scale: [1, 3],
+        duration: 1000,
+      });
   }, []);
 
   useEffect(() => {
@@ -67,16 +93,10 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     }, 250);
     timeline.current?.pause();
     timeline.current?.seek(0);
-    () => clearTimeout(timeout);
+    return () => clearTimeout(timeout);
   }, [reloadTime]);
 
-  const scale = .9 * (viewportToPixels('100vw') - 152 * 2) / 1000;
-  const marginLeft = 1000 / 2 * (scale - 1) + .05 * .9 * (viewportToPixels('100vw') - 152 * 2);
-  const marginTop = 390 / 2 * (scale - 1);
-  const height = 390;
-
-  return <div id={'final-intro-container'} style={{transform: `scale(${scale})`, marginLeft: `${marginLeft}px`,
-    marginTop: `${marginTop}px`,height: `${height}px`}}>
+  return <div id={'final-intro-container'} style={getStyling()}>
     <div id={'lottie-mock-container'}>
       <div id={'final-intro-background'} />
       <div id={'server'} />
