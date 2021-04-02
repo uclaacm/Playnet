@@ -9,7 +9,7 @@ interface AnswerChoiceBoxProps {
   text?: string;
   style?: AnswerChoiceBoxStyles;
   id?: string;
-  isCorrect: boolean; 
+  isCorrect: boolean;
   roundId?: number;
 }
 
@@ -37,7 +37,7 @@ function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
 
   const handleClick = () => {
     isCorrect ? setBorder(PlaynetColors.HOVER_GREEN) : setBorder(PlaynetColors.INCORRECT_RED);
-    props.handleClick()
+    props.handleClick();
   };
 
   return (

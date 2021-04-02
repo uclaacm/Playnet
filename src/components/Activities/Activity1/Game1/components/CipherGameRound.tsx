@@ -113,8 +113,9 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
           <img src={Star} alt="star points"/>
         </div>
         Happiness
-      </div>    
-      <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound} setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx}/>
+      </div>
+      <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound} 
+        setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx}/>
     </div>
   );
 }

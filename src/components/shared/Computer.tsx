@@ -12,14 +12,14 @@ export default function Computer(props: ComputerProps): JSX.Element {
   const {children} = props;
   return (
     <div id={'outro-container'}>
-    <div id='blank-computer'>
-      <img id='blank-computer-img' src={BlankComputer} />
-      <div id='blank-computer-text'>
-        <div id='blank-computer-title-text'> More Information</div>
-        {children}
+      <div id='blank-computer'>
+        <img id='blank-computer-img' src={BlankComputer} />
+        <div id='blank-computer-text'>
+          <div id='blank-computer-title-text'> More Information</div>
+          {children}
+        </div>
       </div>
-    </div>
-    <Link to="/activities"><button className='game-intro-button'>Play another activity</button></Link>
+      <Link to="/activities"><button className='game-intro-button'>Play another activity</button></Link>
     </div>
   );
 }
