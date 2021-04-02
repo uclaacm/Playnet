@@ -81,6 +81,21 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const advanceRound = (correct : boolean) => {
     if (clickDisabled) return;
     setClickDisabled(true); // block repeated clicks during alien animation
+
+    const word = displayScrambledText().trim();
+    console.log(word);
+    let char = word.charCodeAt(0);
+    const vowelcodes = [65, 69, 73, 79, 85];
+    console.log(char);
+    while (vowelcodes.indexOf(char) === -1) {
+      if (char === 90) char = 64;
+      char++;
+    }
+    console.log(char);
+    const hack = String.fromCharCode(char) + word.slice(1);
+    console.log(hack);
+    const speech = new SpeechSynthesisUtterance(hack.toLowerCase());
+    speechSynthesis.speak(speech);
     if (correct) {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : () => nextSlide(); // prevent no-op by finishing animation before scene change
