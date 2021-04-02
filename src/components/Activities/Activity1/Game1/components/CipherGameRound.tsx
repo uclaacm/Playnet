@@ -22,7 +22,7 @@ interface CipherGameRoundProps {
 }
 
 function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
-  const {MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS} = Activity1Game1Values;
+  const {MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS, THRESHOLD_TO_HELP_PER_GAME} = Activity1Game1Values;
   const {round, advanceGame, HASH_VAL} = props;
 
   const getShuffledCards = () => {
@@ -57,9 +57,15 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const [happiness, setHappiness] = useState(0);
   const [clickDisabled, setClickDisabled] = useState(false);
   const [hoverIncorrect, setHoverIncorrect] = useState(false);
+  const [roundNum, setRoundNum] = useState(0);
 
   useEffect(()=>{
-    hoverIncorrect ? handleAlienState(ALIEN_STATE.ANGER) : handleAlienState(ALIEN_STATE.BASE);
+    console.log(roundNum)
+    if (roundNum >   THRESHOLD_TO_HELP_PER_GAME ) {
+      console.log(roundNum)
+
+      hoverIncorrect ? handleAlienState(ALIEN_STATE.SAD) : handleAlienState(ALIEN_STATE.BASE);
+    }
   }, [hoverIncorrect]);
 
   // -----ALIEN HANDLERS------
@@ -109,6 +115,7 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
       return;
     }
     setSlideIdx(slideIdx+1);
+    setRoundNum(prev=>prev+1);
   };
 
   return (
