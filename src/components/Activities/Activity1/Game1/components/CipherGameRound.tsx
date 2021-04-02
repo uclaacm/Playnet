@@ -1,4 +1,4 @@
-import React, { useRef, useState} from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
@@ -79,7 +79,12 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
       if (char === 90) char = 64;
       char++;
     }
+    // var Typo = require("typo-js");
+    // var dictionary = new Typo("en_US", false, false, { dictionaryPath: `/dictionaries` });
+    // var array_of_suggestions = dictionary.suggest(word);
+    // console.log(array_of_suggestions);
     return String.fromCharCode(char) + word.slice(start+1);
+    // return array_of_suggestions[0];
   };
 
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
@@ -93,8 +98,6 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     if (clickDisabled) return;
     setClickDisabled(true); // block repeated clicks during alien animation
 
-    const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
-    speechSynthesis.speak(speech);
     if (correct) {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : () => nextSlide(); // prevent no-op by finishing animation before scene change
@@ -115,6 +118,15 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     }
     setSlideIdx(slideIdx+1);
   };
+
+  useEffect(()=>{
+    const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
+    speech.lang = 'de-DE';
+    var synth = window.speechSynthesis;
+
+    console.log(synth.getVoices()[0]);
+    speechSynthesis.speak(speech);
+  },[slideIdx]);
 
   return (
     <div className={'game-content'}>

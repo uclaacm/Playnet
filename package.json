@@ -16,9 +16,10 @@
     "react": "^16.13.1",
     "react-anime": "^3.0.3",
     "react-dom": "^16.13.1",
-    "use-sound": "^2.0.1",
     "react-lottie": "^1.2.3",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "typo-js": "^1.2.0",
+    "use-sound": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
@@ -38,6 +39,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
     "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^6.3.2",
     "css-loader": "^3.5.2",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
