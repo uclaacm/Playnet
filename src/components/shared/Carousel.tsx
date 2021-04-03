@@ -150,7 +150,7 @@ function Carousel(props: CarouselProps): JSX.Element {
               </div>}
             {child &&
               <>
-                {child.topText && child.bottomText && <h2 id={'body-text'}> {child.topText} </h2>}
+                {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.animationTime &&
                   <div className='util-button-container'>
                     <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
@@ -164,11 +164,8 @@ function Carousel(props: CarouselProps): JSX.Element {
                         <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
                       </Tooltip>}
                   </div>}
-
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
-                {child.topText && !child.bottomText && <h2 id={'body-text'}> {child.topText} </h2>}
-
               </>
             }
           </div>
