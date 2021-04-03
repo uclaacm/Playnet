@@ -63,8 +63,8 @@ const IntroSlides = [
   {
     child:
     <>
-      <h2 id={'body-text'}>But don’t just take our word for it,</h2>
       <LottieControl animationData={A2Animation8.default} />
+      <h2 id={'body-text'}>But don’t just take our word for it,</h2>
       <h2 id={'body-text'}>find out whether <b>you</b> think that <b>compression</b> speeds things up!</h2>
     </>,
     animationTime: 8,

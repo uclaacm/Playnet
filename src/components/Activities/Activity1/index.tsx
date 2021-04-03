@@ -26,14 +26,13 @@ function Activity1(): JSX.Element {
 
   const content = [
     {
-      topText: 'How does YouTube bring you the videos you want?',
       child: <img src={ComputerSvg} width='40%' alt='Image of Youtube on Computer' />,
-      bottomText: 'Let\'s dive into what happens in the search bar.',
+      bottomText: 'How does YouTube bring you the videos you want?',
+      bottomText2: 'Let\'s dive into what happens in the search bar.',
       animationTime: 5.5,
       soundtrack: SoundTrack.Activity1_1,
     },
     {
-      topText: 'Computers don\'t know English...',
       child:
         <div className='content'>
           <div id='binary-text-bubble'>
@@ -41,7 +40,8 @@ function Activity1(): JSX.Element {
           </div>
           <img src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
         </div>,
-      bottomText: 'So how does it know what you are saying?',
+      bottomText: 'Computers don\'t know English...',
+      bottomText2: 'So how does it know what you are saying?',
       animationTime: 4.5,
       soundtrack: SoundTrack.Activity1_2,
     },
@@ -116,22 +116,24 @@ function Activity1(): JSX.Element {
     },
     {
       child:
-        <div>
-          <h2 id={'body-text'}> Being a computer sure isn&apos;t easy... next time you use a search bar, now you know what it has to deal with! </h2>
+        <>
+          <h2 id={'body-text'}> Being a computer sure isn&apos;t easy... next time you use a search bar, </h2>
+          <h2 id={'body-text'}> now you know what it has to deal with! </h2>
           <Computer>
             <>
-              <br />
+            <p>
               Computers in the real world use artificial intelligence (AI) to remember what they learn
-              from trial and error. They can share what they learn with other computers in order to
+              from trial and error. They can share what they learn with other computers to
               give us a better searching experience.
-              <br /> <br />
+              </p>
+              
               When you&apos;re older, you&apos;ll get the chance to learn how to code you so that you can
               learn how AI works in more detail!
             </>
           </Computer>
-        </div>,
-      animationTime: 6,
-      soundtrack: SoundTrack.Activity1_End,
+        </>,
+      // animationTime: 6,
+      // soundtrack: SoundTrack.Activity1_End,
     },
   ];
   return (

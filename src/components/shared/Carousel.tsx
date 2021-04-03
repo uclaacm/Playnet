@@ -21,6 +21,7 @@ export interface CarouselItemComponents {
   showPrev?: boolean;
   topText?: string;
   bottomText?: string;
+  bottomText2?: string;
   animationTime?: number;
   showBackground?: boolean;
   hasSound?: boolean;
@@ -191,6 +192,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
+                {child.bottomText2 && <h2 id={'body-text'}> {child.bottomText2} </h2>}
               </>
             }
           </div>

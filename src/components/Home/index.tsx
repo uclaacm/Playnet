@@ -67,7 +67,7 @@ function Home(): JSX.Element {
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'Servers live in buildings called data centers.',
-      animationTime: 5.5,
+      animationTime: 3,
       soundtrack: SoundTrack.Intro_5,
     },
     {
@@ -85,7 +85,7 @@ function Home(): JSX.Element {
     {
       child: <LottieControl animationData={Intro10Data} />,
       bottomText: 'There are data centers all over the world.',
-      animationTime: 13.26,
+      animationTime: 11,
       soundtrack: SoundTrack.Intro_8,
     },
     {

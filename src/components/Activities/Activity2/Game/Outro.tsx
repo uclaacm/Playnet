@@ -7,11 +7,12 @@ export default function Outro(): JSX.Element {
     <Computer>
       <>
         <p>
-            Just like in the game, video compression involves taking out information
-            that we’ve seen before. We don’t need to be told something we already know!
+            If you want to learn how compression works in more detail, you can  
+            watch <a href='https://www.youtube.com/watch?v=QoZ8pccsYo4&ab_channel=LeoIsikdogan' target='_blank' rel='noreferrer'>this video</a>. 
+            Spatial compression, temporal compression, quantizing, codecs, there is so much that goes into video compression! 
         </p>
         <p>
-            If you want to learn how compression works in more detail, you can learn coding
+            To find out more, you can learn coding
             when you’re older! You can get a head start today on websites
             like <a href='https://code.org' target='_blank' rel='noreferrer'>code.org</a> and <a href='https://scratch.mit.edu' target='_blank' rel='noreferrer'>scratch.mit.edu</a>.
         </p>
