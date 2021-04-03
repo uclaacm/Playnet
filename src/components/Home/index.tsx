@@ -86,6 +86,7 @@ function Home(): JSX.Element {
       child: <LottieControl animationData={Intro10Data} />,
       bottomText: 'There are data centers all over the world.',
       animationTime: 13.26,
+      soundtrack: SoundTrack.Intro_8,
     },
     {
       child: <LottieControl animationData={Intro11Data} />,

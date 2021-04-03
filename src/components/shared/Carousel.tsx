@@ -42,30 +42,27 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [isAutoAdvance, setIsAutoAdvance] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [soundtrack, setSoundtrack] = useState((child.soundtrack !== undefined) ? child.soundtrack : SoundTrack.NONE);
-  const [play, { stop }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.5});
+  const [play, { stop }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true,});
   const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
 
   useEffect(() => {
     const state = storage.getItem('slideIdx');
-    if (state) {
+    const muted = storage.getItem('isMuted');
+    const autoAdvancing = storage.getItem('isAutoAdvance');
+
+    if (muted) setIsMuted(true); //set muted
+
+    if (autoAdvancing) { //set autoAdvance
+      setIsAutoAdvance(true);
+      if (child.animationTime) { autoAdvance(child.animationTime); }
+    }
+
+    if (state) { //set slideIdx
       setSlideIdx(+state);
     }
     return () => storage.removeItem('slideIdx');
   }, []);
-
-  useEffect(() => {
-    const muted = storage.getItem('isMuted');
-    if (!muted) return;
-    setIsMuted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!storage.getItem('isAutoAdvance')) return;
-    setIsAutoAdvance(true);
-    if (child.animationTime) { autoAdvance(child.animationTime); }
-  }, []);
-
 
   useEffect(() => {
     storage.setItem('slideIdx', slideIdx.toString());
@@ -87,7 +84,8 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   useEffect(() => {
     stop();
-    play && play();
+    if(!isMuted)
+      play && play();
   }, [play, reloadTime]);
 
   function goNext(): void {
