@@ -11,7 +11,7 @@ import { TextBubbleStyles } from '../../../../shared/PlaynetConstants';
 import TextBubble from '../../TextBubble';
 
 interface GameSlideProps {
-  correctImg: number;
+  correctIdx: number;
   advanceGame: () => void;
   textDefault: string;
   textIncorrect: string;
@@ -25,11 +25,13 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const [playCorrect] = useSound(CorrectSFX, { volume: 0.5 });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.5 });
 
-  const [img0, img1] = props.imgs;
+  const {correctIdx, advanceGame, textDefault, textIncorrect, imgs} = props;
+
+  const [img0, img1] = imgs;
 
   const displayText: () => string = () => {
-    if (incorrect) return props.textIncorrect ? props.textIncorrect : '';
-    return props.textDefault ? props.textDefault : '';
+    if (incorrect) return textIncorrect ? textIncorrect : '';
+    return textDefault ? textDefault : '';
   };
 
   const handleAlienState = (state: ALIEN_STATE, cb?: () => void) => {
@@ -42,19 +44,18 @@ function GameSlide(props: GameSlideProps): JSX.Element {
     }, 1000);
   };
 
-  const handleClickAndReturnIsCorrect = (pos : number) => { //returns true if the choice is correct
+  const handleClick = (pos : number) => {
     let newIncorrect = true;
 
-    if (pos === props.correctImg) {
+    if (pos === correctIdx) {
       playCorrect();
-      handleAlienState(ALIEN_STATE.HAPPY, props.advanceGame);
+      handleAlienState(ALIEN_STATE.HAPPY, advanceGame);
       newIncorrect = false;
     } else if (!incorrect) {
       playIncorrect();
       handleAlienState(ALIEN_STATE.ANGER);
     }
     setIncorrect(newIncorrect);
-    return !newIncorrect;
   };
 
   return (
@@ -65,8 +66,8 @@ function GameSlide(props: GameSlideProps): JSX.Element {
         <img id={'translator'} src={TranslatorSvg} alt="a translator device" />
       </div>
       <div className={'gamebox'}>
-        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(0)} imgSrc={img0} />
-        <AnswerChoiceBox handleClickAndReturnIsCorrect={()=>handleClickAndReturnIsCorrect(1)} imgSrc={img1} />
+        <AnswerChoiceBox handleClick={()=>handleClick(0)} imgSrc={img0} isCorrect={correctIdx === 0}/>
+        <AnswerChoiceBox handleClick={()=>handleClick(1)} imgSrc={img1} isCorrect={correctIdx === 1}/>
       </div>
     </div>
   );
