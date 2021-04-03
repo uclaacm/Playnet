@@ -61,7 +61,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
 
   useEffect(() => {
     const speech = new SpeechSynthesisUtterance(incorrect ? textIncorrect : textDefault);
-    speech.lang = 'de-DE';
+    speech.lang = 'en-US';
     if (!storage.getItem('isMuted')) {speechSynthesis.speak(speech);}
 
     return () => speechSynthesis.cancel();
