@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
@@ -21,19 +21,19 @@ interface CipherGameRoundProps {
   HASH_VAL: number;
 }
 
-function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
-  const {MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS, THRESHOLD_TO_HELP_PER_GAME} = Activity1Game1Values;
-  const {round, advanceGame, HASH_VAL} = props;
+function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
+  const { MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS, THRESHOLD_TO_HELP_PER_GAME } = Activity1Game1Values;
+  const { round, advanceGame, HASH_VAL } = props;
 
   const getShuffledCards = () => {
     let cards = [...round];
     const newSlides = [];
     for (let i = 0; i < 3; i++) {
       if (cards.length === 1) cards = [...round];
-      const correct_card = cards.splice(Math.floor(Math.random()*cards.length), 1)[0]; // get correct card & remove
-      const incorrect_card = cards[Math.floor(Math.random()*cards.length)]; // get a non duplicate card
+      const correct_card = cards.splice(Math.floor(Math.random() * cards.length), 1)[0]; // get correct card & remove
+      const incorrect_card = cards[Math.floor(Math.random() * cards.length)]; // get a non duplicate card
 
-      if (Math.floor(Math.random()*2)) {
+      if (Math.floor(Math.random() * 2)) {
         newSlides.push(
           {
             correctIdx: 0,
@@ -60,59 +60,56 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   const [roundNum, setRoundNum] = useState(0);
 
   useEffect(()=>{
-    if (roundNum >   THRESHOLD_TO_HELP_PER_GAME ) {
-      hoverIncorrect ? handleAlienState(ALIEN_STATE.SAD) : handleAlienState(ALIEN_STATE.BASE);
-    }
+    if (roundNum <= THRESHOLD_TO_HELP_PER_GAME) return;
+    handleAlienState(hoverIncorrect ? ALIEN_STATE.SAD : ALIEN_STATE.BASE);
   }, [hoverIncorrect]);
 
   // -----ALIEN HANDLERS------
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
-  const handleAlienState = (state: ALIEN_STATE, timeout?: boolean, cb?: () => void) => {
+  const handleAlienState = (state: ALIEN_STATE, cb?: () => void) => {
     setAlienState(state);
-    if(timeout === true) {
+    if (cb) {
       alienTimeout.current && clearTimeout(alienTimeout.current);
       alienTimeout.current = setTimeout(() => {
         alienTimeout.current = undefined;
         setAlienState(ALIEN_STATE.BASE);
         cb && cb();
       }, 1000);
-    } else {
-      setAlienState(state);
     }
   };
   // ------------------------
-  const displayScrambledText = () : string => { // split phrase into words and scramble individually
+  const displayScrambledText = (): string => { // split phrase into words and scramble individually
     const slide = slides[slideIdx];
     const correctWord = slide.cards[slide.correctIdx].split(' ');
-    const reducer = (acc : string, cur : string) => `${acc} ${scramble(HASH_VAL, cur)}`;
+    const reducer = (acc: string, cur: string) => `${acc} ${scramble(HASH_VAL, cur)}`;
     return correctWord.reduce(reducer, '');
   };
 
-  const advanceRound = (correct : boolean) => {
+  const advanceRound = (correct: boolean) => {
     if (clickDisabled) return;
     setClickDisabled(true); // block repeated clicks during alien animation
     if (correct) {
-      const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
+      const newHappiness = Math.min(happiness + CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : nextSlide; // prevent no-op by finishing animation before scene change
       setHappiness(newHappiness);
-      handleAlienState(ALIEN_STATE.HAPPY, true, handler);
+      handleAlienState(ALIEN_STATE.HAPPY, handler);
     } else {
-      setHappiness(Math.max(happiness-INCORRECT_PTS,0)); // no underflow
-      handleAlienState(ALIEN_STATE.ANGER, true, nextSlide);
+      setHappiness(Math.max(happiness + INCORRECT_PTS, 0)); // no underflow
+      handleAlienState(ALIEN_STATE.ANGER, nextSlide);
     }
   };
 
   const nextSlide = () => {
     setClickDisabled(false);
-    if (slideIdx+1 === slides.length) {
+    if (slideIdx + 1 === slides.length) {
       setSlides(getShuffledCards);
       setSlideIdx(0);
       return;
     }
-    setSlideIdx(slideIdx+1);
-    setRoundNum(prev=>prev+1);
+    setSlideIdx(slideIdx + 1);
+    setRoundNum(prev => prev + 1);
   };
 
   return (
@@ -121,13 +118,13 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
         <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayScrambledText()} />
         <Alien alienState={alienState} />
         <div className={'happiness-bar'}>
-          <ProgressBar percentComplete={happiness}/>
-          <img src={Star} alt="star points"/>
+          <ProgressBar percentComplete={happiness} />
+          <img src={Star} alt="star points" />
         </div>
         Happiness
       </div>
       <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound}
-        setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx}/>
+        setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx} />
     </div>
   );
 }
