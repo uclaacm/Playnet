@@ -42,7 +42,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [isAutoAdvance, setIsAutoAdvance] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [soundtrack, setSoundtrack] = useState((child.soundtrack !== undefined) ? child.soundtrack : SoundTrack.NONE);
-  const [play, { stop }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true,});
+  const [play, { stop }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true});
   const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
 
