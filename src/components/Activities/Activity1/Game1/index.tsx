@@ -8,7 +8,14 @@ import Alien from '../../../../assets/alien/alien.svg';
 import { CarouselContext } from '../../../shared/Carousel';
 import CipherGameRound from './components/CipherGameRound';
 
-function CipherGame(): JSX.Element {
+interface CipherGameProps {
+  numStars: number,
+  showSuccess: boolean,
+}
+
+function CipherGame(props: CipherGameProps): JSX.Element {
+  const {numStars, showSuccess} = props;
+
   const items = ['APPLE', 'CAR', 'UFO', 'LEMON'];
   const nums = ['ONE', 'TWO', 'THREE'];
   const nums_and_apple : string[] = nums.reduce((n_acc : string[], n_v : string) => {
@@ -19,10 +26,6 @@ function CipherGame(): JSX.Element {
     return [...n_acc, ...num_and_items];
   }, []);
   const LEVELS = [items, nums_and_apple, nums_and_items];
-
-  const MAX_STARS = 3;
-  const [numStars, setNumStars] = useState(0);
-  const [showSuccess, setShowSuccess] = useState(false);
   const context = useContext(CarouselContext);
 
   const [hash, setHash] = useState(5);
@@ -41,12 +44,7 @@ function CipherGame(): JSX.Element {
   }, []);
 
   const advanceGame = () => {
-    if (numStars+1 === MAX_STARS) {
-      context.next();
-      return;
-    }
-    setShowSuccess(true);
-    setNumStars(numStars+1);
+    context.next();
   };
 
   const starCounter = () => {
@@ -64,7 +62,7 @@ function CipherGame(): JSX.Element {
         <div>You got a star! Let&apos;s keep going.</div>
         <img src={Alien} alt='friendly alien'/>
         {starCounter()}
-        <button className="game-intro-button" onClick={() => setShowSuccess(false)}>
+        <button className="game-intro-button" onClick={context.next}>
           Next Level
         </button>
       </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef, useRef } from 'react';
 
 import '../../styles/Activity1.scss';
 
@@ -17,6 +17,12 @@ import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
+
+  const SplitCipherGame = forwardRef((_, ref: RefObject) => (
+    <CipherGame ref={ref}/>
+  ));
+  SplitCipherGame.displayName = 'SplitCipherGame';
+  const ref = useRef(null);
 
   const content = [
     {
@@ -56,7 +62,31 @@ function Activity1(): JSX.Element {
       soundtrack: SoundTrack.Activity1_4,
     },
     {
-      child: <CipherGame />,
+      child: <CipherGame ref={ref} numStars={0} showSuccess={false}/>,
+      showNext: false,
+      hasSound: true,
+    },
+    {
+      child: <CipherGame ref={ref} numStars={1} showSuccess={true}/>,
+      showNext: false,
+      hasSound: true,
+      animationTime: 2.5,
+      soundtrack: SoundTrack.Activity1_G1_Center,
+    },
+    {
+      child: <CipherGame ref={ref} numStars={1} showSuccess={false}/>,
+      showNext: false,
+      hasSound: true,
+    },
+    {
+      child: <CipherGame ref={ref} numStars={2} showSuccess={true}/>,
+      showNext: false,
+      hasSound: true,
+      animationTime: 2.5,
+      soundtrack: SoundTrack.Activity1_G1_Center,
+    },
+    {
+      child: <CipherGame ref={ref} numStars={2} showSuccess={false}/>,
       showNext: false,
       hasSound: true,
     },
