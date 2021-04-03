@@ -40,7 +40,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [reloadTime, setReloadTime] = useState(Date.now());
   const storage = window.sessionStorage;
   
-  const [playSound] = child.soundtrack && useSound(SoundTrackMapping[child.soundtrack], { volume: 0.5});
+  const [playSound] = child.soundtrack && useSound(SoundTrackMapping[child.soundtrack], { volume: 0.5}) || [];
 
   useEffect(() => {
     const state = storage.getItem('slideIdx');

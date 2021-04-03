@@ -89,7 +89,7 @@
 #final-intro-container {
   width: fit-content;
   margin: auto;  // transform: scale(100vw / 1000px);
-  display: flex;
+  display: inline-flex;
   // object-fit: contain;
 
   justify-content: center;
