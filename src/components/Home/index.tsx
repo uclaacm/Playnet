@@ -41,57 +41,57 @@ function Home(): JSX.Element {
   const content = [
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
-      topText: 'First, your request gets sent to a server.',
+      bottomText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
-      topText: 'Servers are like computers. They store information and do math.',
+      bottomText: 'Servers are like computers. They store information and do math.',
       animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
-      topText: 'Your request asks the server for information.',
+      bottomText: 'Your request asks the server for information.',
       animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
-      topText: 'It’s like asking a librarian for a book!',
+      bottomText: 'It’s like asking a librarian for a book!',
       animationTime: 2.5,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
-      topText: 'Servers live in buildings called data centers.',
+      bottomText: 'Servers live in buildings called data centers.',
       animationTime: 5.5,
     },
     {
       child: <LottieControl animationData={Intro8Data} />,
-      topText: 'This is a real-life data center at Google!',
+      bottomText: 'This is a real-life data center at Google!',
       animationTime: 3.14,
     },
     {
       child: <LottieControl animationData={Intro9Data} />,
-      topText: 'And this is the outside of the data center.',
+      bottomText: 'And this is the outside of the data center.',
       animationTime: 8.04,
     },
     {
       child: <LottieControl animationData={Intro10Data} />,
-      topText: 'There are data centers all over the world.',
+      bottomText: 'There are data centers all over the world.',
       animationTime: 13.26,
     },
     {
       child: <LottieControl animationData={Intro11Data} />,
-      topText: 'When you search on the web from your house,',
+      bottomText: 'When you search on the web from your house,',
       animationTime: 4.21,
     },
     {
       child: <LottieControl animationData={Intro12Data} />,
-      topText: 'a request gets sent all the way to your nearest data center',
+      bottomText: 'a request gets sent all the way to your nearest data center',
       animationTime: 6.21,
     },
     {
       child: <FinalSlide chosenVideo={chosenVideo} />,
-      topText: 'and all the way back to your computer!',
+      bottomText: 'and all the way back to your computer!',
       animationTime: 7,
     },
     {
