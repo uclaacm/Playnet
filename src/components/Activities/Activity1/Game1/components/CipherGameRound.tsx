@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
@@ -80,14 +80,28 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
     }
   };
   // ------------------------
-  const displayScrambledText = (): string => { // split phrase into words and scramble individually
+  const vowelize = (word : string) : string => { // sets the first character of a word to the nearest vowel
+    const charCode = word.toUpperCase().charCodeAt(0);
+
+    const vowels = ['A', 'E', 'I', 'O', 'U'];
+    const closestVowel = vowels.find((vowel) => charCode <= vowel.charCodeAt(0)) || 'U';
+    return closestVowel + word.slice(1);
+  };
+
+  const displayScrambledText = () : string => { // split phrase into words and scramble individually
     const slide = slides[slideIdx];
     const correctWord = slide.cards[slide.correctIdx].split(' ');
-    const reducer = (acc: string, cur: string) => `${acc} ${scramble(HASH_VAL, cur)}`;
+    const reducer = (acc : string, cur : string) => `${acc} ${vowelize(scramble(HASH_VAL, cur))}`;
     return correctWord.reduce(reducer, '');
   };
 
-  const advanceRound = (correct: boolean) => {
+  useEffect(()=> {
+    const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
+    speech.lang = 'de-DE';
+    speechSynthesis.speak(speech);
+  }, [slideIdx]);
+
+  const advanceRound = (correct : boolean) => {
     if (clickDisabled) return;
     setClickDisabled(true); // block repeated clicks during alien animation
     if (correct) {
