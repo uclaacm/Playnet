@@ -50,6 +50,7 @@ function Activity1(): JSX.Element {
     {
       child: <CipherGame />,
       showNext: false,
+      hasSound: true,
     },
     {
       topText: 'Good news, we just found a translator that can help us understand the alien!',
@@ -69,6 +70,7 @@ function Activity1(): JSX.Element {
     {
       child: <AmbiguousPhrasingGame />,
       showNext: false,
+      hasSound: true,
     },
     {
       child:

@@ -22,8 +22,11 @@ interface FillInBlankGamePageProps {
 function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const {pageInfo, slideNum, addTimeElapsed, advanceGame} = props;
   const {choices, correctIdx, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
-  const [playCorrect] = useSound(CorrectSFX, { volume: 0.01 });
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: 0.01 });
+  const storage = window.sessionStorage;
+
+  const volume = storage.getItem('isMuted') ? 0 : 0.1;
+  const [playCorrect] = useSound(CorrectSFX, { volume: volume });
+  const [playIncorrect] = useSound(IncorrectSFX, { volume: volume });
 
   const [incorrectChoices, setIncorrectChoices] = useState<boolean[]>([]);
   const startTime = useRef(Date.now());

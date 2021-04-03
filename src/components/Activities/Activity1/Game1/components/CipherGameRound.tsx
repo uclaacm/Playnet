@@ -24,6 +24,7 @@ interface CipherGameRoundProps {
 function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
   const { MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS, THRESHOLD_TO_HELP_PER_GAME } = Activity1Game1Values;
   const { round, advanceGame, HASH_VAL } = props;
+  const storage = window.sessionStorage;
 
   const getShuffledCards = () => {
     let cards = [...round];
@@ -98,7 +99,7 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
   useEffect(()=> {
     const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
     speech.lang = 'de-DE';
-    speechSynthesis.speak(speech);
+    if (!storage.getItem('isMuted')) {speechSynthesis.speak(speech);}
   }, [slideIdx]);
 
   const advanceRound = (correct : boolean) => {

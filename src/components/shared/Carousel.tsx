@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { CSSProperties, useEffect, useState, useRef } from 'react';
 
 import '../styles/Carousel.scss';
 import NextSvg from '../../assets/next_btn.svg';
@@ -20,6 +20,7 @@ export interface CarouselItemComponents {
   bottomText?: string;
   animationTime?: number;
   showBackground?: boolean;
+  hasSound?: boolean;
 }
 
 interface CarouselProps {
@@ -35,11 +36,24 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [child, setChild] = useState(props.children[slideIdx]);
   const [reloadTime, setReloadTime] = useState(Date.now());
+  const [isAutoAdvance, setIsAutoAdvance] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
 
   useEffect(() => {
     const state = storage.getItem('slideIdx');
-    if (state) {
+    const muted = storage.getItem('isMuted');
+    const autoAdvancing = storage.getItem('isAutoAdvance');
+
+    if (muted) setIsMuted(true); //set muted
+
+    if (autoAdvancing) { //set autoAdvance
+      setIsAutoAdvance(true);
+      if (child.animationTime) { autoAdvance(child.animationTime); }
+    }
+
+    if (state) { //set slideIdx
       setSlideIdx(+state);
     }
     return () => storage.removeItem('slideIdx');
@@ -50,6 +64,10 @@ function Carousel(props: CarouselProps): JSX.Element {
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
 
+  useEffect(() => {
+    if (isAutoAdvance && child.animationTime) { autoAdvance(child.animationTime); }
+  }, [child]);
+
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
@@ -58,6 +76,49 @@ function Carousel(props: CarouselProps): JSX.Element {
   function goPrev(): void {
     setSlideIdx(old => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
+  }
+
+  function autoAdvance(animationLength: number): void {
+    lastTimeout.current = setTimeout(() => goNext(), animationLength * 1000);
+  }
+
+  function enableAutoAdvance(): void {
+    setReloadTime(Date.now());
+    setIsAutoAdvance(true);
+    if (child.animationTime) { autoAdvance(child.animationTime); }
+    storage.setItem('isAutoAdvance', 'true');
+  }
+
+  function disableAutoAdvance(): void {
+    if (!isAutoAdvance) return;
+    if (lastTimeout !== undefined) { clearTimeout(lastTimeout.current); }
+    setIsAutoAdvance(false);
+    storage.removeItem('isAutoAdvance');
+  }
+
+  function handleMuteButtonClick(): void {
+    if (isMuted) {
+      setIsMuted(false);
+      storage.removeItem('isMuted');
+    }
+    else {
+      setIsMuted(true);
+      storage.setItem('isMuted', 'true');
+    }
+  }
+
+  function handleAutoplayButtonClick(): void {
+    if (isAutoAdvance) {
+      disableAutoAdvance();
+    }
+    else {
+      enableAutoAdvance();
+    }
+  }
+
+  function handleReplayButtonClick(): void {
+    setReloadTime(Date.now());
+    disableAutoAdvance();
   }
 
   return (
@@ -71,25 +132,39 @@ function Carousel(props: CarouselProps): JSX.Element {
             style={{
               visibility: (child?.showPrev === false || slideIdx === 0) ? 'hidden' : 'visible',
             }}
-            onClick={() => goPrev()}
-          >
+            onClick={() => { goPrev(); disableAutoAdvance(); }}>
             <img src={PrevSvg} />
           </button>
-          <div id={'carousel-content'} style={{backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}`}}>
+          <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
+            <div className='universal-button'>
+              {child.hasSound && !child.animationTime &&
+                <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
+                  <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
+                </Tooltip>}
+            </div>
             {child &&
               <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
+                {child.animationTime &&
+                  <div className='util-button-container'>
+                    <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
+                      <button className={'util-button autoplay-button-' + (isAutoAdvance ? 'autoplaying' : 'not-autoplaying')} onClick={handleAutoplayButtonClick} />
+                    </Tooltip>
+                    <Tooltip text='Replay'>
+                      <button className='util-button replay-button' onClick={handleReplayButtonClick} />
+                    </Tooltip>
+                    {child.hasSound &&
+                      <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
+                        <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
+                      </Tooltip>}
+                  </div>}
+
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
                 {child.animationTime &&
                   <span className='time-bar-container'>
                     <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
-                    </div>
-                    <div onClick={() => setReloadTime(Date.now())}>
-                      <Tooltip text='Replay' >
-                        <button className='replay-button' />
-                      </Tooltip>
                     </div>
                   </span>}
               </>
@@ -103,7 +178,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                 ? 'hidden' : 'visible',
             }}
             onClick={(slideIdx === props.children.length - 1 && props.finalButtonHandleClick)
-              ? props.finalButtonHandleClick : () => goNext()}
+              ? props.finalButtonHandleClick : () => { goNext(); disableAutoAdvance(); }}
           >
             <img src={NextSvg} />
           </button>
