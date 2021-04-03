@@ -4,6 +4,7 @@ import '../styles/Carousel.scss';
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
 import Tooltip from './Tooltip';
+import { SoundTrack } from './soundtrack';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -20,6 +21,7 @@ export interface CarouselItemComponents {
   bottomText?: string;
   animationTime?: number;
   showBackground?: boolean;
+  soundtrack?: SoundTrack;
 }
 
 interface CarouselProps {
