@@ -33,6 +33,8 @@ import I8 from '../../assets/sounds/Intro/Intro8.mp3';
 import I9 from '../../assets/sounds/Intro/Intro9.mp3';
 
 export enum SoundTrack {
+  NONE,
+
   Activity1_1,
   Activity1_2,
   Activity1_3,
@@ -66,8 +68,6 @@ export enum SoundTrack {
   Intro_10,
   Intro_11,
   Intro_12,
-
-  NONE,
 }
 export const SoundTrackMapping : Record<SoundTrack, any> = {
   [SoundTrack.NONE]: undefined,
