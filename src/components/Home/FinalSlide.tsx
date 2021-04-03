@@ -13,7 +13,6 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const { chosenVideo } = props;
 
-  // TODO: cleanup
   // very unfortunate hard codings for now
   // scaling [child with set width (1000px) + children w/ absolute locations] to fit carousel same as last animation
   const getCSSStyling = () => {
@@ -25,6 +24,8 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     const carouselButtonPx = 64;
     const carouselContentMarginPx = 24;
 
+    const utilButtonsOffsetPx = 56;
+
     const totalMarginContentPx = carouselPaddingPx + carouselButtonPx + carouselContentMarginPx;
     const carouselContentPx = viewportToPixels('100vw') - totalMarginContentPx * 2;
 
@@ -32,10 +33,10 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
 
     // these all refer to -> excess/lack of spacing due to animationScaling
     //     ( a bit confusing, might need to draw out)
-    const marginTopPx = lottieHeightPx / 2 * (animationScale - 1);
+    const marginBottomPx = lottieHeightPx / 2 * (animationScale - 1);
+    const marginTopPx = marginBottomPx + utilButtonsOffsetPx ;
     const marginRightPx = 0;
     const marginLeftPx = lottieWidthPx / 2 * (animationScale - 1) + carouselContentPx * (1 - lottieScaling) / 2;
-    const marginBottomPx = marginTopPx;
 
     return {
       transform: `scale(${animationScale})`,
@@ -84,7 +85,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
       })
       .add({
         targets: ['#computer', '#video'],
-        scale: [1, 3.5],
+        scale: [1, 3.3],
         duration: 1000,
       });
   }, []);
