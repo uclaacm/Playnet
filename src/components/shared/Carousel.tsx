@@ -6,6 +6,7 @@ import PrevSvg from '../../assets/prev_btn.svg';
 import Tooltip from './Tooltip';
 import { SoundTrack, SoundTrackMapping } from './soundtrack';
 import useSound from 'use-sound';
+import { PlayFunction } from 'use-sound/dist/types';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -41,12 +42,12 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [reloadTime, setReloadTime] = useState(Date.now());
   const [isAutoAdvance, setIsAutoAdvance] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [playSound, setPlaySound] = useSound(SoundTrackMapping[child.soundtrack], { volume: 0.5});
   const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
-  
-  const [playSound] = child.soundtrack ? useSound(SoundTrackMapping[child.soundtrack], { volume: 0.5}) : [];
 
   useEffect(() => {
+
     const state = storage.getItem('slideIdx');
     const muted = storage.getItem('isMuted');
     const autoAdvancing = storage.getItem('isAutoAdvance');
@@ -65,6 +66,11 @@ function Carousel(props: CarouselProps): JSX.Element {
   }, []);
 
   useEffect(() => {
+    console.log(SoundTrackMapping[child.soundtrack])
+    if(child.soundtrack !== undefined)
+      setPlaySound(useSound(SoundTrackMapping[child.soundtrack], { volume: 0.5})[0]);
+    console.log(child.soundtrack);
+
     storage.setItem('slideIdx', slideIdx.toString());
     setChild(props.children[slideIdx]);
   }, [slideIdx]);
@@ -73,6 +79,11 @@ function Carousel(props: CarouselProps): JSX.Element {
     if (isAutoAdvance && child.animationTime) { autoAdvance(child.animationTime); }
     playSound && playSound();
   }, [child]);
+
+  useEffect(() => {
+    playSound && playSound();
+    console.log(playSound);
+  }, [playSound])
 
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));

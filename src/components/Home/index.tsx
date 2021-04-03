@@ -9,6 +9,7 @@ import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections, VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
+import { SoundTrack } from '../shared/soundtrack';
 
 import '../styles/Home.scss';
 import FinalSlide from './FinalSlide';
@@ -43,6 +44,8 @@ function Home(): JSX.Element {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       topText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
+      soundtrack: SoundTrack.Activity1_1,
+      hasSound: true,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
