@@ -136,13 +136,13 @@ function Carousel(props: CarouselProps): JSX.Element {
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
-          {child.animationTime &&
+            {child.animationTime &&
                   <span className='time-bar-container'>
                     <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                   </span>}
-              {child.hasSound && !child.animationTime &&
+            {child.hasSound && !child.animationTime &&
               <div className='universal-button'>
                 <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
                   <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
@@ -168,7 +168,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
                 {child.topText && !child.bottomText && <h2 id={'body-text'}> {child.topText} </h2>}
-                
+
               </>
             }
           </div>
