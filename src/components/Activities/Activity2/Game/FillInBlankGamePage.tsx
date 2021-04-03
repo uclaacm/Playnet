@@ -23,7 +23,7 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   const {pageInfo, slideNum, addTimeElapsed, advanceGame} = props;
   const {choices, correctIdx, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
   const storage = window.sessionStorage;
-        
+
   const volume = storage.getItem('isMuted') ? 0 : 0.1;
   const [playCorrect] = useSound(CorrectSFX, { volume: volume });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: volume });
