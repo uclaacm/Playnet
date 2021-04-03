@@ -4,7 +4,8 @@ import '../styles/Carousel.scss';
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
 import Tooltip from './Tooltip';
-import { SoundTrack } from './soundtrack';
+import { SoundTrack, SoundTrackMapping } from './soundtrack';
+import useSound from 'use-sound';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -38,6 +39,8 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [child, setChild] = useState(props.children[slideIdx]);
   const [reloadTime, setReloadTime] = useState(Date.now());
   const storage = window.sessionStorage;
+  
+  const [playSound] = child.soundtrack && useSound(SoundTrackMapping[child.soundtrack], { volume: 0.5});
 
   useEffect(() => {
     const state = storage.getItem('slideIdx');
