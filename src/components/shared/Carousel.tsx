@@ -77,7 +77,6 @@ function Carousel(props: CarouselProps): JSX.Element {
   function goPrev(): void {
     setSlideIdx(old => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
-    disableAutoAdvance();
   }
 
   function autoAdvance(animationLength: number): void {
@@ -134,8 +133,7 @@ function Carousel(props: CarouselProps): JSX.Element {
             style={{
               visibility: (child?.showPrev === false || slideIdx === 0) ? 'hidden' : 'visible',
             }}
-            onClick={() => goPrev()}
-          >
+            onClick={() => {goPrev(); disableAutoAdvance();}}>
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'} style={{backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}`}}>
