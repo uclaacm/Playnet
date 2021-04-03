@@ -43,22 +43,20 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   useEffect(() => {
     const state = storage.getItem('slideIdx');
-    if (state) {
+    const muted = storage.getItem('isMuted');
+    const autoAdvancing = storage.getItem('isAutoAdvance');
+
+    if (muted) setIsMuted(true); //set muted
+
+    if (autoAdvancing) { //set autoAdvance
+      setIsAutoAdvance(true);
+      if (child.animationTime) { autoAdvance(child.animationTime); }
+    }
+
+    if (state) { //set slideIdx
       setSlideIdx(+state);
     }
     return () => storage.removeItem('slideIdx');
-  }, []);
-
-  useEffect(() => {
-    const muted = storage.getItem('isMuted');
-    if (!muted) return;
-    setIsMuted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!storage.getItem('isAutoAdvance')) return;
-    setIsAutoAdvance(true);
-    if (child.animationTime) { autoAdvance(child.animationTime); }
   }, []);
 
   useEffect(() => {
