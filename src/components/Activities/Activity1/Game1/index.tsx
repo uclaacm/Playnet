@@ -47,10 +47,6 @@ function CipherGame(props: CipherGameProps): JSX.Element {
     context.next();
   };
 
-  const continueToGame = () => {
-    context.next();
-  };
-
   const starCounter = () => {
     return (
       <div className={'star-counter'}>
@@ -66,7 +62,7 @@ function CipherGame(props: CipherGameProps): JSX.Element {
         <div>You got a star! Let&apos;s keep going.</div>
         <img src={Alien} alt='friendly alien'/>
         {starCounter()}
-        <button className="game-intro-button" onClick={continueToGame}>
+        <button className="game-intro-button" onClick={context.next}>
           Next Level
         </button>
       </div>
