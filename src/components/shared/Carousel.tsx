@@ -158,12 +158,18 @@ function Carousel(props: CarouselProps): JSX.Element {
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
-            <div className='universal-button'>
-              {(child.hasSound === true || child.soundtrack !== undefined) && !child.animationTime &&
+            {child.animationTime &&
+                  <span className='time-bar-container'>
+                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
+                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
+                    </div>
+                  </span>}
+            {(child.hasSound === true || child.soundtrack !== undefined) && !child.animationTime &&
+              <div className='universal-button'>
                 <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
                   <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
-                </Tooltip>}
-            </div>
+                </Tooltip>
+              </div>}
             {child &&
               <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
@@ -180,15 +186,8 @@ function Carousel(props: CarouselProps): JSX.Element {
                         <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
                       </Tooltip>}
                   </div>}
-
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
-                {child.animationTime &&
-                  <span className='time-bar-container'>
-                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
-                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
-                    </div>
-                  </span>}
               </>
             }
           </div>

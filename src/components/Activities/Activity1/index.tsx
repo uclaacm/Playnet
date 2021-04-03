@@ -40,7 +40,7 @@ function Activity1(): JSX.Element {
       soundtrack: SoundTrack.Activity1_2,
     },
     {
-      topText: 'Computers have to learn just like we do: by trial and error!',
+      bottomText: 'Computers have to learn just like we do: by trial and error!',
       child: <ComputerConversation timeBtwnWords={timeBtwnWords} />,
       animationTime: Math.max(3 * timeBtwnWords / 1000, 4.5),
       soundtrack: SoundTrack.Activity1_3,
@@ -61,7 +61,7 @@ function Activity1(): JSX.Element {
       hasSound: true,
     },
     {
-      topText: 'Good news, we just found a translator that can help us understand the alien!',
+      bottomText: 'Good news, we just found a translator that can help us understand the alien!',
       child:
         <div>
           <img src={Game1EndScreen} />

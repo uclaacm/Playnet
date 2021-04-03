@@ -14,49 +14,48 @@ import { SoundTrack } from '../../shared/soundtrack';
 const IntroSlides = [
   {
     child: <LottieControl animationData={A2Animation1.default} />,
-    topText: 'Videos contain a lot of information!',
+    bottomText: 'Videos contain a lot of information!',
     animationTime: 3.5,
     soundtrack: SoundTrack.Activity2_1,
   },
   {
     child: <LottieControl animationData={A2Animation2.default} />,
-    topText: 'So if a server tried to send you a whole video,',
+    bottomText: 'So if a server tried to send you a whole video,',
     animationTime: 3.5,
     soundtrack: SoundTrack.Activity2_2,
   },
   {
     child: <LottieControl animationData={A2Animation3.default} />,
-    topText: 'It would be very slow.',
+    bottomText: 'It would be very slow.',
     animationTime: 5.24,
-    animationTime: 3.5,
     soundtrack: SoundTrack.Activity2_3,
   },
   {
     child: <LottieControl animationData={A2Animation4.default} />,
-    topText: 'To give you videos fast, we should go back to lighten the load',
+    bottomText: 'To give you videos fast, we should go back to lighten the load',
     animationTime: 5.35,
     soundtrack: SoundTrack.Activity2_4,
   },
   {
     child:
       <>
-        <h2 id={'body-text'}>which we do with <b>compression</b>, or packing, before the video is sent</h2>
         <LottieControl animationData={A2Animation5.default} />
+        <h2 id={'body-text'}>which we do with <b>compression</b>, or packing, before the video is sent</h2>
       </>,
     animationTime: 5.89,
     soundtrack: SoundTrack.Activity2_5,
   },
   {
     child: <LottieControl animationData={A2Animation6.default} />,
-    topText: 'See how much faster and happier the rocket is?',
+    bottomText: 'See how much faster and happier the rocket is?',
     animationTime: 3.5,
     soundtrack: SoundTrack.Activity2_6,
   },
   {
     child:
     <>
-      <h2 id={'body-text'}><b>Decompressing</b> is when your computer uses these instructions to show you the video.</h2>
       <LottieControl animationData={A2Animation7.default} />
+      <h2 id={'body-text'}><b>Decompressing</b> is when your computer uses these instructions to show you the video.</h2>
     </>,
     animationTime: 10.31,
     soundtrack: SoundTrack.Activity2_7,
