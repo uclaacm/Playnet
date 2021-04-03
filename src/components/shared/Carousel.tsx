@@ -42,7 +42,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [isAutoAdvance, setIsAutoAdvance] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [soundtrack, setSoundtrack] = useState((child.soundtrack !== undefined) ? child.soundtrack : SoundTrack.NONE);
-  const [play, { stop, sound }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true});
+  const [play, { stop, sound }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true });
   const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
 
@@ -75,7 +75,7 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   useEffect(() => {
     stop();
-    if(isMuted || child.soundtrack === undefined){
+    if (isMuted || child.soundtrack === undefined) {
       setSoundtrack(SoundTrack.NONE);
     } else {
       setSoundtrack(child.soundtrack);
@@ -84,13 +84,12 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   useEffect(() => {
     stop();
-    if(!isMuted)
+    if (!isMuted)
       play && play();
   }, [play, reloadTime]);
 
   useEffect(() => {
-    console.log(sound?.state())
-    return ()=>sound?.unload()
+    return () => sound?.unload()
   }, [sound]);
 
   function goNext(): void {
@@ -162,11 +161,11 @@ function Carousel(props: CarouselProps): JSX.Element {
           </button>
           <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
             {child.animationTime &&
-                  <span className='time-bar-container'>
-                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
-                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
-                    </div>
-                  </span>}
+              <span className='time-bar-container'>
+                <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
+                  <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
+                </div>
+              </span>}
             {(child.hasSound === true || child.soundtrack !== undefined) && !child.animationTime &&
               <div className='universal-button'>
                 <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
