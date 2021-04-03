@@ -8,7 +8,7 @@ import FillInBlankGamePage from './FillInBlankGamePage';
 
 export interface CompressionGamePageComponents {
   choices: string[];
-  correctChoice: number;
+  correctIdx: number;
   gif: JSX.Element;
   answerDisplayWords: string[];
   answerDisplayStyles: AnswerDisplayStyles[];

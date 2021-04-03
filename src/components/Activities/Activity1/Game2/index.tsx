@@ -20,25 +20,25 @@ function AmbiguousPhrasingGame(): JSX.Element {
 
   const slides = [
     {
-      correctImg: 1,
+      correctIdx: 1,
       imgs: [Pair1A, Pair1B],
       textDefault: 'I saw her duck',
       textIncorrect: 'I meant I saw her crouch to avoid getting hit!',
     },
     {
-      correctImg: 1,
+      correctIdx: 1,
       imgs: [Pair2A, Pair2B],
       textDefault: 'Look at the couch potato',
       textIncorrect: 'I meant the potato on the couch!',
     },
     {
-      correctImg: 0,
+      correctIdx: 0,
       imgs: [Pair3A, Pair3B],
       textDefault: 'I want to buy 2000 pizza',
       textIncorrect: 'I meant I want to buy 2000 slices of pizza!',
     },
     {
-      correctImg: 0,
+      correctIdx: 0,
       imgs: [Pair4A, Pair4B],
       textDefault: 'Show me a toy hoyse',
       textIncorrect: 'I meant show me a toy horse!',

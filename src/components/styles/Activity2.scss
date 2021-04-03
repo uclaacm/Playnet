@@ -44,25 +44,3 @@ $grid-border-radius: 20px;
     margin-right: 12px;
   }
 }
-
-#outro-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  a {
-    text-decoration: underline;
-    color: inherit;
-  }
-
-  button {
-    background-color: $playnet-orange;
-    border: none;
-    border-radius: 10px;
-    padding: 10px 0;
-    width: 50%;
-    color: white;
-    font: $font-nav;
-    margin: 32px 0;
-  }
-}
