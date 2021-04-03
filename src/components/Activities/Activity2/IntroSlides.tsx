@@ -55,7 +55,7 @@ const IntroSlides = [
     child:
     <>
       <LottieControl animationData={A2Animation7.default} />
-      <h2 id={'body-text'}><b>Decompressing</b> is when your computer uses these instructions to show you the video.</h2>
+      <h2 id={'body-text'}><b>Decompressiong</b> is when your computer uses these instructions to show you the video.</h2>
     </>,
     animationTime: 10.31,
     soundtrack: SoundTrack.Activity2_7,

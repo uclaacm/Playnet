@@ -133,7 +133,7 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
         <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayScrambledText()} />
         <Alien alienState={alienState} />
         <div className={'happiness-bar'}>
-          <ProgressBar percentComplete={happiness} />
+          <ProgressBar percentComplete={100 * happiness / MAX_HAPPINESS} />
           <img src={Star} alt="star points" />
         </div>
         Happiness
