@@ -89,7 +89,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   }, [play, reloadTime]);
 
   useEffect(() => {
-    return () => sound?.unload()
+    return () => sound?.unload();
   }, [sound]);
 
   function goNext(): void {
