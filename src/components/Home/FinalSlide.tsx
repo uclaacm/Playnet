@@ -13,6 +13,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const { chosenVideo } = props;
 
+  // TODO: cleanup
   // very unfortunate hard codings for now
   // scaling [child with set width (1000px) + children w/ absolute locations] to fit carousel same as last animation
   const getCSSStyling = () => {
