@@ -75,12 +75,10 @@ b {
 }
 
 .util-button-container {
-  position: relative;
-  float: right;
   margin: 5px;
-  right: 30px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
+  width: 98%;
 }
 
 .util-button {
