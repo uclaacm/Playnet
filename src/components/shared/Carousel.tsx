@@ -142,12 +142,12 @@ function Carousel(props: CarouselProps): JSX.Element {
                       <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                     </div>
                   </span>}
-            <div className='universal-button'>
               {child.hasSound && !child.animationTime &&
+              <div className='universal-button'>
                 <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
                   <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
-                </Tooltip>}
-            </div>
+                </Tooltip>
+              </div>}
             {child &&
               <>
                 {child.topText && child.bottomText && <h2 id={'body-text'}> {child.topText} </h2>}

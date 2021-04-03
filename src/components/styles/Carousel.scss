@@ -72,16 +72,17 @@ b {
   display: flex;
   flex-wrap: nowrap;
   width: 100%;
-  margin-bottom: 5px;
 }
 
 .util-button-container {
-  position: absolute;
-  top: 10px;
-  right: 20px;
+  position: relative;
+  float: right;
+  margin: 5px;
+  top: 20px;
+  right: 30px;
   display: flex;
-  justify-content: flex-end;
-  padding: 20px;
+  justify-content: center;
+  z-index: 0;
 }
 
 .util-button {
