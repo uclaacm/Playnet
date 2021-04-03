@@ -29,7 +29,7 @@ function Activity2(): JSX.Element {
       hasSound: true,
     },
     {
-      child: <Intro text={'Now let\'s see what it\'s like when we compress a video!'} buttonText={'Compress Video'} />,
+      child: <Intro text={'Now let\'s see what it\'s like when we compress the instructions!'} buttonText={'Play Game'} />,
       showNext: false,
       animationTime: 3.5,
       soundtrack: SoundTrack.Activity2_10,

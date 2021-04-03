@@ -6,6 +6,7 @@ import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
 import { SoundTrack, SoundTrackMapping } from './soundtrack';
 import Tooltip from './Tooltip';
+import { DEFAULT_CONFIGS } from './PlaynetConstants';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -39,8 +40,8 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [child, setChild] = useState(props.children[slideIdx]);
   const [reloadTime, setReloadTime] = useState(Date.now());
-  const [isAutoAdvance, setIsAutoAdvance] = useState(false);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isAutoAdvance, setIsAutoAdvance] = useState(DEFAULT_CONFIGS.AUTOPLAY);
+  const [isMuted, setIsMuted] = useState(DEFAULT_CONFIGS.MUTED);
   const [soundtrack, setSoundtrack] = useState((child.soundtrack !== undefined) ? child.soundtrack : SoundTrack.NONE);
   const [play, { stop, sound }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true });
   const lastTimeout = useRef(null);

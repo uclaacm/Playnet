@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import useSound from 'use-sound';
 
 import CorrectSFX from '../../../../../assets/activity1/game2/correct.mp3';
@@ -49,18 +49,23 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   };
 
   const handleClick = (pos : number) => {
-    let newIncorrect = true;
-
     if (pos === correctIdx) {
       playCorrect();
-      handleAlienState(ALIEN_STATE.HAPPY, advanceGame);
-      newIncorrect = false;
+      handleAlienState(ALIEN_STATE.HAPPY, ()=>{setIncorrect(false); advanceGame();});
     } else if (!incorrect) {
       playIncorrect();
+      setIncorrect(true);
       handleAlienState(ALIEN_STATE.ANGER);
     }
-    setIncorrect(newIncorrect);
   };
+
+  useEffect(() => {
+    const speech = new SpeechSynthesisUtterance(incorrect ? textIncorrect : textDefault);
+    speech.lang = 'en-US';
+    if (!storage.getItem('isMuted')) {speechSynthesis.speak(speech);}
+
+    return () => speechSynthesis.cancel();
+  }, [imgs, incorrect]);
 
   return (
     <div className={'game-content'}>

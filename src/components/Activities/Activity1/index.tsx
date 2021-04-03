@@ -40,7 +40,7 @@ function Activity1(): JSX.Element {
       soundtrack: SoundTrack.Activity1_2,
     },
     {
-      bottomText: 'Computers have to learn just like we do: by trial and error!',
+      bottomText: 'Computers have to learn just like how we do: by trial and error!',
       child: <ComputerConversation timeBtwnWords={timeBtwnWords} />,
       animationTime: Math.max(3 * timeBtwnWords / 1000, 4.5),
       soundtrack: SoundTrack.Activity1_3,
@@ -72,7 +72,7 @@ function Activity1(): JSX.Element {
     {
       child:
         <TransitionSlide buttonText={'Play Game'}>
-          <div>But even if we know what the alien is saying...can you figure out what they mean?</div>
+          <div>But even if we know what the alien is saying... can you figure out what they mean?</div>
           <div>Warning: One sentence can mean two things, so the answer might not be what you expect!</div>
         </TransitionSlide>,
       showNext: false,
