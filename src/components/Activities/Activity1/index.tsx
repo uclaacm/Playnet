@@ -35,7 +35,7 @@ function Activity1(): JSX.Element {
       bottomText: 'So how does it know what you are saying?',
     },
     {
-      topText: 'Computers have to learn just like we do: by trial and error!',
+      bottomText: 'Computers have to learn just like we do: by trial and error!',
       child: <ComputerConversation timeBtwnWords={timeBtwnWords} />,
       animationTime: 3 * timeBtwnWords/1000,
     },
@@ -53,7 +53,7 @@ function Activity1(): JSX.Element {
       hasSound: true,
     },
     {
-      topText: 'Good news, we just found a translator that can help us understand the alien!',
+      bottomText: 'Good news, we just found a translator that can help us understand the alien!',
       child:
         <div>
           <img src={Game1EndScreen}/>
