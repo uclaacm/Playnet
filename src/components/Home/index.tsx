@@ -9,6 +9,7 @@ import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections, VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
+import { SoundTrack } from '../shared/soundtrack';
 
 import '../styles/Home.scss';
 import FinalSlide from './FinalSlide';
@@ -43,60 +44,72 @@ function Home(): JSX.Element {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
+      soundtrack: SoundTrack.Intro_1,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'Servers are like computers. They store information and do math.',
-      animationTime: 2.5,
+      animationTime: 4.5,
+      soundtrack: SoundTrack.Intro_2,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'Your request asks the server for information.',
-      animationTime: 2.5,
+      animationTime: 2.8,
+      soundtrack: SoundTrack.Intro_3,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'It’s like asking a librarian for a book!',
-      animationTime: 2.5,
+      animationTime: 3,
+      soundtrack: SoundTrack.Intro_4,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'Servers live in buildings called data centers.',
       animationTime: 5.5,
+      soundtrack: SoundTrack.Intro_5,
     },
     {
       child: <LottieControl animationData={Intro8Data} />,
       bottomText: 'This is a real-life data center at Google!',
       animationTime: 3.14,
+      soundtrack: SoundTrack.Intro_6,
     },
     {
       child: <LottieControl animationData={Intro9Data} />,
       bottomText: 'And this is the outside of the data center.',
       animationTime: 8.04,
+      soundtrack: SoundTrack.Intro_7,
     },
     {
       child: <LottieControl animationData={Intro10Data} />,
       bottomText: 'There are data centers all over the world.',
       animationTime: 13.26,
+      soundtrack: SoundTrack.Intro_8,
     },
     {
       child: <LottieControl animationData={Intro11Data} />,
       bottomText: 'When you search on the web from your house,',
       animationTime: 4.21,
+      soundtrack: SoundTrack.Intro_9,
     },
     {
       child: <LottieControl animationData={Intro12Data} />,
       bottomText: 'a request gets sent all the way to your nearest data center',
       animationTime: 6.21,
+      soundtrack: SoundTrack.Intro_10,
     },
     {
       child: <FinalSlide chosenVideo={chosenVideo} />,
       bottomText: 'and all the way back to your computer!',
       animationTime: 7,
+      soundtrack: SoundTrack.Intro_11,
     },
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,
       showBackground: false,
+      soundtrack: SoundTrack.Intro_12,
     },
   ];
   return (

@@ -1,8 +1,10 @@
 import React, { CSSProperties, useEffect, useState, useRef } from 'react';
 
 import '../styles/Carousel.scss';
+import useSound from 'use-sound';
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
+import { SoundTrack, SoundTrackMapping } from './soundtrack';
 import Tooltip from './Tooltip';
 
 export const CarouselContext = React.createContext({
@@ -21,6 +23,7 @@ export interface CarouselItemComponents {
   animationTime?: number;
   showBackground?: boolean;
   hasSound?: boolean;
+  soundtrack?: SoundTrack;
 }
 
 interface CarouselProps {
@@ -38,6 +41,8 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [reloadTime, setReloadTime] = useState(Date.now());
   const [isAutoAdvance, setIsAutoAdvance] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [soundtrack, setSoundtrack] = useState((child.soundtrack !== undefined) ? child.soundtrack : SoundTrack.NONE);
+  const [play, { stop, sound }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true });
   const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
 
@@ -67,6 +72,25 @@ function Carousel(props: CarouselProps): JSX.Element {
   useEffect(() => {
     if (isAutoAdvance && child.animationTime) { autoAdvance(child.animationTime); }
   }, [child]);
+
+  useEffect(() => {
+    stop();
+    if (isMuted || child.soundtrack === undefined) {
+      setSoundtrack(SoundTrack.NONE);
+    } else {
+      setSoundtrack(child.soundtrack);
+    }
+  }, [child, isMuted]);
+
+  useEffect(() => {
+    stop();
+    if (!isMuted)
+      play && play();
+  }, [play, reloadTime]);
+
+  useEffect(() => {
+    return () => sound?.unload();
+  }, [sound]);
 
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
@@ -137,12 +161,12 @@ function Carousel(props: CarouselProps): JSX.Element {
           </button>
           <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
             {child.animationTime &&
-                  <span className='time-bar-container'>
-                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
-                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
-                    </div>
-                  </span>}
-            {child.hasSound && !child.animationTime &&
+              <span className='time-bar-container'>
+                <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
+                  <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
+                </div>
+              </span>}
+            {(child.hasSound === true || child.soundtrack !== undefined) && !child.animationTime &&
               <div className='universal-button'>
                 <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
                   <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
@@ -159,7 +183,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                     <Tooltip text='Replay'>
                       <button className='util-button replay-button' onClick={handleReplayButtonClick} />
                     </Tooltip>
-                    {child.hasSound &&
+                    {(child.hasSound === true || child.soundtrack !== undefined) &&
                       <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
                         <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
                       </Tooltip>}
