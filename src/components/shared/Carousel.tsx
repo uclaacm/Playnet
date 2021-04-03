@@ -136,6 +136,12 @@ function Carousel(props: CarouselProps): JSX.Element {
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
+          {child.animationTime &&
+                  <span className='time-bar-container'>
+                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
+                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
+                    </div>
+                  </span>}
             <div className='universal-button'>
               {child.hasSound && !child.animationTime &&
                 <Tooltip text={isMuted ? 'Unmute' : 'Mute'}>
@@ -144,7 +150,7 @@ function Carousel(props: CarouselProps): JSX.Element {
             </div>
             {child &&
               <>
-                {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
+                {child.topText && child.bottomText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.animationTime &&
                   <div className='util-button-container'>
                     <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
@@ -161,12 +167,8 @@ function Carousel(props: CarouselProps): JSX.Element {
 
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
-                {child.animationTime &&
-                  <span className='time-bar-container'>
-                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
-                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
-                    </div>
-                  </span>}
+                {child.topText && !child.bottomText && <h2 id={'body-text'}> {child.topText} </h2>}
+                
               </>
             }
           </div>
