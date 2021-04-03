@@ -1,4 +1,4 @@
-import React, { useRef, useState} from 'react';
+import React, { useEffect, useRef, useState} from 'react';
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
@@ -71,15 +71,18 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     }, 1000);
   };
   // ------------------------
-  const vowelize = (word : string) : string => {
-    const start = 0;
-    let char = word.charCodeAt(start);
-    const vowelcodes = [65, 69, 73, 79, 85];
-    while (vowelcodes.indexOf(char) === -1) {
-      if (char === 90) char = 64;
-      char++;
+  const vowelize = (word : string) : string => { // sets the first character of a word to the nearest vowel
+    let char = word.toUpperCase().charCodeAt(0);
+
+    const vowels = ['A', 'E', 'I', 'O', 'U'];
+    for (let i = 0; i < vowels.length; i++) { // iterate and set 1st letter to a vowel
+      const vowelCode = vowels[i].charCodeAt(0);
+      if (char <= vowelCode || i === vowels.length-1) {
+        char = vowelCode;
+        break;
+      }
     }
-    return String.fromCharCode(char) + word.slice(start+1);
+    return String.fromCharCode(char) + word.slice(1);
   };
 
   const displayScrambledText = () : string => { // split phrase into words and scramble individually
@@ -89,12 +92,15 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
     return correctWord.reduce(reducer, '');
   };
 
+  useEffect(()=> {
+    const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
+    speech.lang = 'de-DE';
+    speechSynthesis.speak(speech);
+  }, [slideIdx]);
+
   const advanceRound = (correct : boolean) => {
     if (clickDisabled) return;
     setClickDisabled(true); // block repeated clicks during alien animation
-
-    const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
-    speechSynthesis.speak(speech);
     if (correct) {
       const newHappiness = Math.min(happiness+CORRECT_PTS, 100); // no overflow
       const handler = newHappiness === MAX_HAPPINESS ? advanceGame : () => nextSlide(); // prevent no-op by finishing animation before scene change
