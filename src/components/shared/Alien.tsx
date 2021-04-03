@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 
 import AngerAlienSvg from '../../assets/alien/alien-anger.svg';
 import HappyAlienSvg from '../../assets/alien/alien-happy.svg';
+import SadAlienSvg from '../../assets/alien/alien-sad.svg';
 import AlienSvg from '../../assets/alien/alien.svg';
 import { animate_happy_alien } from '../../utils/animations/alien';
 
@@ -11,6 +12,7 @@ export enum ALIEN_STATE {
   ANGER,
   BASE,
   HAPPY,
+  SAD,
 }
 
 const ALIEN_STATES: {[key in ALIEN_STATE]: {src: string, alt: string}} = {
@@ -25,6 +27,10 @@ const ALIEN_STATES: {[key in ALIEN_STATE]: {src: string, alt: string}} = {
   [ALIEN_STATE.HAPPY]: {
     alt: 'a happy and friendly alien',
     src: HappyAlienSvg,
+  },
+  [ALIEN_STATE.SAD]: {
+    alt: 'a sad alien',
+    src: SadAlienSvg,
   },
 };
 

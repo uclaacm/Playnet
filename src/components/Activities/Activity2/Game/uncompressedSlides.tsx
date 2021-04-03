@@ -14,7 +14,7 @@ const alienWigGifTime = { path: AlienWigGif, duration: 3500 };
 const uncompressedSlides = [
   {
     choices: ['frog', 'alien', 'pig'],
-    correctChoice: 1,
+    correctIdx: 1,
     gif: <GIFPlayer gifs={[alienGifTime]} alt='Gif of Alien being Drawn' id={'0-0'} />,
     answerDisplayWords: ['blankspot'],
     answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
@@ -22,7 +22,7 @@ const uncompressedSlides = [
   },
   {
     choices: ['shoes', 'wig', 'flower'],
-    correctChoice: 2,
+    correctIdx: 2,
     gif: <GIFPlayer gifs={[
       alienGifTime,
       alienFlowerGifTime,
@@ -34,7 +34,7 @@ const uncompressedSlides = [
   },
   {
     choices: ['wig', 'dress', 'shoes'],
-    correctChoice: 0,
+    correctIdx: 0,
     gif: <GIFPlayer gifs={[
       alienGifTime,
       alienFlowerGifTime,

@@ -2,10 +2,16 @@ import anime, {AnimeTimelineInstance} from 'animejs';
 import React, { useContext, useEffect, useRef} from 'react';
 import { CarouselContext } from '../shared/Carousel';
 
-function Intro(): JSX.Element {
+export interface IntroAnimeProps {
+  rocketWord: string,
+}
+
+function Intro(props: IntroAnimeProps): JSX.Element {
   const {slideIdx, reloadTime} = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const timeout = useRef<NodeJS.Timeout | null>(null);
+
+  const { rocketWord } = props;
 
   useEffect(() => {
     timeline.current = anime.timeline({
@@ -117,7 +123,9 @@ function Intro(): JSX.Element {
           <path id={'path-2'} d="M329 4C447 4 511 18.5 511 61.5C511 104.5 594 123.5 852.5 123.5" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
           <path id={'path-3'} d="M843 124C843 124 1309.38 124 1602 124" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
         </svg>
-        <div id={'rocket'}/>
+        <div id={'rocket'}>
+          {rocketWord}
+        </div>
       </div>
       <div id={'server-container'}>
         <div id={'library'}/>
