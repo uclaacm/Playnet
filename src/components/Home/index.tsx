@@ -43,6 +43,7 @@ function Home(): JSX.Element {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       topText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
+      hasSound: true,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,

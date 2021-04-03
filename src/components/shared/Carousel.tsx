@@ -20,6 +20,7 @@ export interface CarouselItemComponents {
   bottomText?: string;
   animationTime?: number;
   showBackground?: boolean;
+  hasSound?: boolean;
 }
 
 interface CarouselProps {
@@ -137,26 +138,37 @@ function Carousel(props: CarouselProps): JSX.Element {
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'} style={{backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}`}}>
+            <div className='universal-button'>
+              {child.hasSound && !child.animationTime &&
+          <Tooltip text= {isMuted ? 'Unmute' : 'Mute'}>
+            <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
+          </Tooltip>}
+            </div>
             {child &&
               <>
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.animationTime &&
-                  <span className='time-bar-container'>
-                    <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
-                      <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
-                    </div>
-                    <Tooltip text= {isMuted ? 'Unmute' : 'Mute'}>
-                      <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
-                    </Tooltip>
-                    <Tooltip text= {isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
+                  <div className='util-button-container'>
+                    <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
                       <button className={'util-button autoplay-button-' + (isAutoAdvance ? 'autoplaying' : 'not-autoplaying')} onClick={handleAutoplayButtonClick} />
                     </Tooltip>
                     <Tooltip text='Replay'>
-                      <button className='util-button replay-button' onClick={handleReplayButtonClick}  />
+                      <button className='util-button replay-button' onClick={handleReplayButtonClick} />
                     </Tooltip>
-                  </span>}
+                    {child.hasSound &&
+                      <Tooltip text= {isMuted ? 'Unmute' : 'Mute'}>
+                        <button className={'util-button ' + (isMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteButtonClick} />
+                      </Tooltip>}
+                  </div>}
+
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}
+                {child.animationTime &&
+                <span className='time-bar-container'>
+                  <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
+                    <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
+                  </div>
+                </span>}
               </>
             }
           </div>

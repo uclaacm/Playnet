@@ -75,6 +75,15 @@ b {
   margin: auto;
 }
 
+.util-button-container {
+  position: absolute;
+  top: 5px;
+  right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
+
 .util-button {
   background-repeat: no-repeat;
   background-size: contain;
@@ -113,6 +122,12 @@ b {
 
 .unmute-button {
   background-image: url('../../assets//unmute_btn.svg');
+}
+
+.universal-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
 }
 
 // Shared
