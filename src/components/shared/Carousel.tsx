@@ -4,9 +4,9 @@ import '../styles/Carousel.scss';
 import useSound from 'use-sound';
 import NextSvg from '../../assets/next_btn.svg';
 import PrevSvg from '../../assets/prev_btn.svg';
+import { DEFAULT_CONFIGS } from './PlaynetConstants';
 import { SoundTrack, SoundTrackMapping } from './soundtrack';
 import Tooltip from './Tooltip';
-import { DEFAULT_CONFIGS } from './PlaynetConstants';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
