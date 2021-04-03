@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState} from 'react';
-=======
-import React, { useEffect, useRef, useState } from 'react';
->>>>>>> main
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
