@@ -72,16 +72,10 @@ function CipherGameRound(props : CipherGameRoundProps): JSX.Element {
   };
   // ------------------------
   const vowelize = (word : string) : string => { // sets the first character of a word to the nearest vowel
-    let char = word.toUpperCase().charCodeAt(0);
+    let charCode = word.toUpperCase().charCodeAt(0);
 
     const vowels = ['A', 'E', 'I', 'O', 'U'];
-    for (let i = 0; i < vowels.length; i++) { // iterate and set 1st letter to a vowel
-      const vowelCode = vowels[i].charCodeAt(0);
-      if (char <= vowelCode || i === vowels.length-1) {
-        char = vowelCode;
-        break;
-      }
-    }
+       const closestVowel = vowels.find((vowel) => charCode <= vowel.charCodeAt(0)) || 'U';
     return String.fromCharCode(char) + word.slice(1);
   };
 
