@@ -63,10 +63,12 @@ export enum SoundTrack {
   Intro_8,
   Intro_9,
   Intro_10,
-  Intro_11
+  Intro_11,
 
+  NONE,
 }
 export const SoundTrackMapping : Record<SoundTrack, any> = {
+  [SoundTrack.NONE] : undefined,
   [SoundTrack.Activity1_1] : A1_1,
   [SoundTrack.Activity1_2] : A1_2,
   [SoundTrack.Activity1_3] : A1_3,
