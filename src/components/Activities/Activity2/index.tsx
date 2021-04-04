@@ -27,6 +27,7 @@ function Activity2(): JSX.Element {
       child: <CompressionGame slides={uncompressedSlides} tag={'uncompressed'}/>,
       showNext: false,
       hasSound: true,
+      hasGameSound: true,
     },
     {
       child: <Intro text={'Now let\'s see what it\'s like when we compress the instructions!'} buttonText={'Play Game'} />,
@@ -38,6 +39,7 @@ function Activity2(): JSX.Element {
       child: <CompressionGame slides={compressedSlides} tag={'compressed'}/>,
       showNext: false,
       hasSound: true,
+      hasGameSound: true,
     },
     { child: <GameResults />,
       animationTime: 8.5,

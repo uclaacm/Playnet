@@ -65,6 +65,7 @@ function Activity1(): JSX.Element {
       child: <CipherGame ref={ref} numStars={0} showSuccess={false}/>,
       showNext: false,
       hasSound: true,
+      hasGameSound: true,
     },
     {
       child: <CipherGame ref={ref} numStars={1} showSuccess={true}/>,
@@ -77,6 +78,7 @@ function Activity1(): JSX.Element {
       child: <CipherGame ref={ref} numStars={1} showSuccess={false}/>,
       showNext: false,
       hasSound: true,
+      hasGameSound: true,
     },
     {
       child: <CipherGame ref={ref} numStars={2} showSuccess={true}/>,
@@ -89,6 +91,7 @@ function Activity1(): JSX.Element {
       child: <CipherGame ref={ref} numStars={2} showSuccess={false}/>,
       showNext: false,
       hasSound: true,
+      hasGameSound: true,
     },
     {
       bottomText: 'Good news, we just found a translator that can help us understand the alien!',
@@ -113,6 +116,7 @@ function Activity1(): JSX.Element {
       child: <AmbiguousPhrasingGame />,
       showNext: false,
       hasSound: true,
+      hasGameSound: true,
     },
     {
       child:
