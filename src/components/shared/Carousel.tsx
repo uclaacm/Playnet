@@ -197,12 +197,12 @@ function Carousel(props: CarouselProps): JSX.Element {
                     </div>
                   }
                   <div className='util-right-btn-container'>
-                      <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
-                        <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
-                      </Tooltip>
-                      <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
-                        <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
-                      </Tooltip>
+                    <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
+                      <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
+                    </Tooltip>
+                    <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
+                      <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
+                    </Tooltip>
                   </div>
                 </div>
 
