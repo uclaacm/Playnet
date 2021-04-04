@@ -24,8 +24,6 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     const carouselButtonPx = 64;
     const carouselContentMarginPx = 24;
 
-    const utilButtonsOffsetPx = 56;
-
     const totalMarginContentPx = carouselPaddingPx + carouselButtonPx + carouselContentMarginPx;
     const carouselContentPx = viewportToPixels('100vw') - totalMarginContentPx * 2;
 
@@ -33,9 +31,9 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
 
     // these all refer to -> excess/lack of spacing due to animationScaling
     //     ( a bit confusing, might need to draw out)
-    const marginBottomPx = lottieHeightPx / 2 * (animationScale - 1);
-    const marginTopPx = marginBottomPx + utilButtonsOffsetPx ;
+    const marginTopPx = lottieHeightPx / 2 * (animationScale - 1);
     const marginRightPx = 0;
+    const marginBottomPx = marginTopPx;
     const marginLeftPx = lottieWidthPx / 2 * (animationScale - 1) + carouselContentPx * (1 - lottieScaling) / 2;
 
     return {

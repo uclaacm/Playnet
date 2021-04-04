@@ -21,7 +21,7 @@ export default function LottieControl(props: LottieControlProps): JSX.Element {
 
   return (
     <div key={`${reloadTime}`} style={{ width: '90%', margin: 'auto' }}>
-      <Lottie options={defaultOptions} />
+      <Lottie options={defaultOptions} style={{width: '1000px', height: '390px'}} />
     </div>
   );
 }
