@@ -113,12 +113,20 @@ b {
   background-image: url('../../assets/stop_autoplay_btn.svg');
 }
 
-.mute-button {
-  background-image: url('../../assets/mute_btn.svg');
+.game-mute-button {
+  background-image: url('../../assets/game-mute-btn.svg');
 }
 
-.unmute-button {
-  background-image: url('../../assets//unmute_btn.svg');
+.game-unmute-button {
+  background-image: url('../../assets/game-unmute-btn.svg');
+}
+
+.voiceover-mute-button {
+  background-image: url('../../assets/voiceover-mute-btn.svg');
+}
+
+.voiceover-unmute-button {
+  background-image: url('../../assets/voiceover-unmute-btn.svg');
 }
 
 .universal-button {

@@ -99,7 +99,7 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
   useEffect(()=> {
     const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
     speech.lang = 'de-DE';
-    if (!storage.getItem('isMuted')) {speechSynthesis.speak(speech);}
+    if (!storage.getItem('isGameSoundMuted')) {speechSynthesis.speak(speech);}
   }, [slideIdx]);
 
   const advanceRound = (correct : boolean) => {
