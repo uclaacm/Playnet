@@ -43,8 +43,8 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [child, setChild] = useState(props.children[slideIdx]);
   const [reloadTime, setReloadTime] = useState(Date.now());
   const [isAutoAdvance, setIsAutoAdvance] = useState(DEFAULT_CONFIGS.AUTOPLAY);
-  const [isVoiceMuted, setIsVoiceMuted] = useState(DEFAULT_CONFIGS.MUTED);
-  const [isGameSoundMuted, setIsGameSoundMuted] = useState(DEFAULT_CONFIGS.MUTED);
+  const [isVoiceMuted, setIsVoiceMuted] = useState(DEFAULT_CONFIGS.VOICEOVER_MUTED);
+  const [isGameSoundMuted, setIsGameSoundMuted] = useState(DEFAULT_CONFIGS.GAME_SOUNDS_MUTED);
   const [soundtrack, setSoundtrack] = useState((child.soundtrack !== undefined) ? child.soundtrack : SoundTrack.NONE);
   const [play, { stop, sound }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true });
   const lastTimeout = useRef(null);
@@ -181,33 +181,31 @@ function Carousel(props: CarouselProps): JSX.Element {
                 <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                   <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
                 </div>
-              </span>}
-            {(child.hasSound === true || child.soundtrack !== undefined) && !child.animationTime &&
-              <div className='universal-button'>
-                <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
-                  <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
-                </Tooltip>
-                {child.hasGameSound &&      //child only has game sounds when there is no animation time
-                  <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute')+' Game'}>
-                    <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
-                  </Tooltip>
-                }
-              </div>}
+              </span>
+            }
             {child &&
               <>
-                {child.animationTime &&
-                  <div className='util-button-container'>
-                    <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
-                      <button className={'util-button autoplay-button-' + (isAutoAdvance ? 'autoplaying' : 'not-autoplaying')} onClick={handleAutoplayButtonClick} />
-                    </Tooltip>
-                    <Tooltip text='Replay'>
-                      <button className='util-button replay-button' onClick={handleReplayButtonClick} />
-                    </Tooltip>
-                    {(child.hasSound === true || child.soundtrack !== undefined) &&
+                <div className='util-button-container'>
+                  {child.animationTime &&
+                    <div className='util-left-btn-container'>
+                      <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
+                        <button className={'util-button autoplay-button-' + (isAutoAdvance ? 'autoplaying' : 'not-autoplaying')} onClick={handleAutoplayButtonClick} />
+                      </Tooltip>
+                      <Tooltip text='Replay'>
+                        <button className='util-button replay-button' onClick={handleReplayButtonClick} />
+                      </Tooltip>
+                    </div>
+                  }
+                  <div className='util-right-btn-container'>
                       <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
                         <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
-                      </Tooltip>}
-                  </div>}
+                      </Tooltip>
+                      <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
+                        <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
+                      </Tooltip>
+                  </div>
+                </div>
+
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
                 {child.child}
                 {child.bottomText && <h2 id={'body-text'}> {child.bottomText} </h2>}

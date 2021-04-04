@@ -81,6 +81,18 @@ b {
   width: 98%;
 }
 
+.util-left-btn-container {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.util-right-btn-container {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .util-button {
   background-repeat: no-repeat;
   background-size: contain;
