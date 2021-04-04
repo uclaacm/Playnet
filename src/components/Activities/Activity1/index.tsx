@@ -121,12 +121,12 @@ function Activity1(): JSX.Element {
           <h2 id={'body-text'}> now you know what it has to deal with! </h2>
           <Computer>
             <>
-            <p>
+              <p>
               Computers in the real world use artificial intelligence (AI) to remember what they learn
               from trial and error. They can share what they learn with other computers to
               give us a better searching experience.
               </p>
-              
+
               When you&apos;re older, you&apos;ll get the chance to learn how to code you so that you can
               learn how AI works in more detail!
             </>
