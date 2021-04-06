@@ -54,7 +54,7 @@ function Activity1(): JSX.Element {
     {
       child:
         <TransitionSlide buttonText={'Play Game'}>
-          <div>What if you were a computer?</div>
+          <div>Imagine that you are a computer trying to learn what the alien wants.</div>
           <div>Can you figure out what the alien wants and keep it happy?</div>
         </TransitionSlide>,
       showNext: false,
@@ -131,7 +131,7 @@ function Activity1(): JSX.Element {
               give us a better searching experience.
               </p>
 
-              When you&apos;re older, you&apos;ll get the chance to learn how to code you so that you can
+              When you&apos;re older, you&apos;ll get the chance to learn how to code so that you can
               learn how AI works in more detail!
             </>
           </Computer>
