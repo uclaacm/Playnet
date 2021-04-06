@@ -88,13 +88,9 @@
 // FINAL SLIDE
 #final-intro-container {
   width: fit-content;
-  margin: auto;  // transform: scale(100vw / 1000px);
+  margin: auto;
   display: flex;
-  // object-fit: contain;
-
   justify-content: center;
-  // position: relative;
-  // overflow: hidden;
 }
 
 #final-intro-container #lottie-mock-container {
