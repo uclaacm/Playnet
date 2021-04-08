@@ -14,9 +14,7 @@ function ScalingSlide(props: ScalingSlideProps): JSX.Element {
   // very unfortunate hard codings for now
   // scaling [child with set width (1000px) + children w/ absolute locations] to fit carousel same as last animation
   const getCSSStyling = () => {
-    const lottieWidthPx = width;
-    const lottieHeightPx = height;
-    const lottieScaling = .9;
+    const scaling = .9;
 
     const carouselPaddingPx = 64;
     const carouselButtonPx = 64;
@@ -25,14 +23,14 @@ function ScalingSlide(props: ScalingSlideProps): JSX.Element {
     const totalMarginContentPx = carouselPaddingPx + carouselButtonPx + carouselContentMarginPx;
     const carouselContentPx = viewportToPixels('100vw') - totalMarginContentPx * 2;
 
-    const animationScale = lottieScaling * (carouselContentPx) / lottieWidthPx;
+    const animationScale = scaling * (carouselContentPx) / width;
 
     // these all refer to -> excess/lack of spacing due to animationScaling
     //     ( a bit confusing, might need to draw out)
-    const marginTopPx = lottieHeightPx / 2 * (animationScale - 1);
+    const marginTopPx = height / 2 * (animationScale - 1);
     const marginRightPx = 0;
     const marginBottomPx = marginTopPx;
-    const marginLeftPx = lottieWidthPx / 2 * (animationScale - 1) + carouselContentPx * (1 - lottieScaling) / 2;
+    const marginLeftPx = width / 2 * (animationScale - 1) + carouselContentPx * (1 - scaling) / 2;
 
     return {
       transform: `scale(${animationScale})`,
