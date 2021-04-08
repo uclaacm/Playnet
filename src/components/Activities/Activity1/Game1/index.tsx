@@ -62,7 +62,7 @@ function CipherGame(props: CipherGameProps): JSX.Element {
         <div>You got a star! Let&apos;s keep going.</div>
         <img src={Alien} alt='friendly alien'/>
         {starCounter()}
-        <button className="game-intro-button" onClick={context.next}>
+        <button className="playnet-button" onClick={context.next}>
           Next Level
         </button>
       </div>

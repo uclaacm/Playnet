@@ -1,5 +1,9 @@
 @import 'variables';
 
+a {
+  color: #fff;
+}
+
 #intro-wrapper {
   display: flex;
   flex-direction: column;
@@ -71,22 +75,4 @@
   border: solid black 5px;
   border-radius: 10px;
   height: 40%;
-}
-
-#continue-button {
-  border: solid $playnet-orange 5px;
-  border-radius: 10px;
-  font: $font-title;
-  font-size: 26px;
-  color: #fff;
-  background-color: $playnet-orange;
-  transition-duration: 0.4s;
-  cursor: pointer;
-  outline: none;
-  margin: 5px;
-  padding: 3px;
-}
-
-#continue-button:hover {
-  transform: scale(1.1, 1.1);
 }

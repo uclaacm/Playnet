@@ -11,7 +11,7 @@ export default function Intro(props: CompressionGameIntroProps): JSX.Element {
   return (
     <div className='game-intro-content'>
       <div className='center-text'>{props.text}</div>
-      <button className='game-intro-button' onClick={context.next}>{props.buttonText}</button>
+      <button className='playnet-button' onClick={context.next}>{props.buttonText}</button>
     </div>
   );
 }

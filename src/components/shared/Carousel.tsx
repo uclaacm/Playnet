@@ -189,7 +189,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                   {child.animationTime &&
                     <div className='util-left-btn-container'>
                       <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
-                        <button className={'util-button autoplay-button-' + (isAutoAdvance ? 'autoplaying' : 'not-autoplaying')} onClick={handleAutoplayButtonClick} />
+                        <button className={'util-button ' +  (isAutoAdvance ? 'stop-' : '') + 'autoplay-button'} onClick={handleAutoplayButtonClick} />
                       </Tooltip>
                       <Tooltip text='Replay'>
                         <button className='util-button replay-button' onClick={handleReplayButtonClick} />

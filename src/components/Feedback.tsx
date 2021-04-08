@@ -15,9 +15,9 @@ function Feedback(): JSX.Element {
           If you liked the problems in that space, maybe you’d like computer science :)
           <br/>
           <br/>
-          <a href={FEEDBACK_FORM_URL} className='game-intro-button' target='_blank' rel='noreferrer'>
-            Got any feedback? We’d love to improve!
-          </a>
+          <button className='playnet-button'>
+            <a href={FEEDBACK_FORM_URL} target='_blank' rel='noreferrer'>Got any feedback? We’d love to improve!</a>
+          </button>
         </p>
       </div>
     </Base>
