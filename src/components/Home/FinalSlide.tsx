@@ -1,8 +1,8 @@
 import anime, { AnimeTimelineInstance } from 'animejs';
 import React, { useContext, useEffect, useRef } from 'react';
-import { viewportToPixels } from '../../utils/viewport';
 import { CarouselContext } from '../shared/Carousel';
 import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
+import ScalingSlide from '../shared/ScalingSlide';
 
 interface FinalSlideProps {
   chosenVideo: VideoChoices,
@@ -12,35 +12,6 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
   const { reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const { chosenVideo } = props;
-
-  // very unfortunate hard codings for now
-  // scaling [child with set width (1000px) + children w/ absolute locations] to fit carousel same as last animation
-  const getCSSStyling = () => {
-    const lottieWidthPx = 1000;
-    const lottieHeightPx = 390;
-    const lottieScaling = .9;
-
-    const carouselPaddingPx = 64;
-    const carouselButtonPx = 64;
-    const carouselContentMarginPx = 24;
-
-    const totalMarginContentPx = carouselPaddingPx + carouselButtonPx + carouselContentMarginPx;
-    const carouselContentPx = viewportToPixels('100vw') - totalMarginContentPx * 2;
-
-    const animationScale = lottieScaling * (carouselContentPx) / lottieWidthPx;
-
-    // these all refer to -> excess/lack of spacing due to animationScaling
-    //     ( a bit confusing, might need to draw out)
-    const marginTopPx = lottieHeightPx / 2 * (animationScale - 1);
-    const marginRightPx = 0;
-    const marginBottomPx = marginTopPx;
-    const marginLeftPx = lottieWidthPx / 2 * (animationScale - 1) + carouselContentPx * (1 - lottieScaling) / 2;
-
-    return {
-      transform: `scale(${animationScale})`,
-      margin: `${marginTopPx}px ${marginRightPx}px ${marginBottomPx}px ${marginLeftPx}px`,
-    };
-  };
 
   useEffect(() => {
     timeline.current = anime.timeline({
@@ -97,8 +68,8 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     return () => clearTimeout(timeout);
   }, [reloadTime]);
 
-  return <div id={'final-intro-container'} style={getCSSStyling()}>
-    <div id={'lottie-mock-container'}>
+  return <ScalingSlide>
+    <>
       <div id={'final-intro-background'} />
       <div id={'server'} />
       <div id={'computer'} />
@@ -108,7 +79,7 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
         <div id={'video-pulley'} />
       </div>
       <div id={'video'} className={chosenVideo.replace('_', '-')} />
-    </div>
-  </div>;
+    </>
+  </ScalingSlide>;
 }
 export default FinalSlide;

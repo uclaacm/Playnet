@@ -21,6 +21,7 @@ import './styles/Activities.scss';
 const ACTIVITIES: { [key: string]: string } = {
   'lost-in-translation': 'When you use the search bar, how does YouTube know what you’re looking for?',
   'sending-videos': 'Videos hold a lot of information! How can pages load quickly?',
+  'mind-reading': 'Have you ever wondered how YouTube knows what you want to watch next?',
 };
 
 interface ActivityHomeProps {
@@ -40,12 +41,12 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
               description={ACTIVITIES[`${path}`]} />
           </Link>,
         )}
-        <div>
+        {/* <div>
           <ActivityCard
             id={'coming-soon'}
             description='A third activity is on its way! Stay tuned'
             disableHover={true} />
-        </div>
+        </div> */}
       </nav>
       <h4>Done? <Link to={'/feedback'}>Let us know if you liked it!</Link></h4>
     </div>
