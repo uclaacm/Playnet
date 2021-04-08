@@ -17,7 +17,7 @@ function TransitionSlide(props : TransitionSlideProps) : JSX.Element {
   return (
     <div className="game-intro">
       {children}
-      <button className="game-intro-button" onClick={context.next}>
+      <button className="playnet-button" onClick={context.next}>
         {buttonText}
       </button>
     </div>

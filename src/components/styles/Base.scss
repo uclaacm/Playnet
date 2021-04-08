@@ -6,3 +6,31 @@
   margin-top: $head-foot-height;
   background: center/cover url('../../assets/background.svg');
 }
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.7));
+
+  &:hover {
+    filter: brightness(90%);
+  }
+  &:active {
+    transform: scale(0.9, 0.9);
+  }
+}
+
+// Shared
+.playnet-button {
+  max-width: 100%;
+  max-height: 50%;
+  background-color: $playnet-orange;
+  color: white;
+  font: $font-normal;
+  padding: 0.5vw 1vw;
+  border-radius: 10px;
+  outline: 0;
+  white-space: nowrap;
+  margin-bottom: 5px;
+}

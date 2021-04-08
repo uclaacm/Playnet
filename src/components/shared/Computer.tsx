@@ -19,7 +19,7 @@ export default function Computer(props: ComputerProps): JSX.Element {
           {children}
         </div>
       </div>
-      <Link to="/activities"><button className='game-intro-button'>Play another activity</button></Link>
+      <Link to="/activities"><button className='playnet-button'>Play another activity</button></Link>
     </div>
   );
 }
