@@ -59,9 +59,7 @@ function FinalYouTube(props: FinalYouTubeProps): JSX.Element {
     <div id={'intro-wrapper'}>
       <h1 id={'intro-title'} style={{ marginTop: 0 }}>Yay! Your video is ready to be watched!</h1>
       <button className={'playnet-button'}>
-        <Link to="/activities">
-          Now find out what&apos;s going on behind the scenes!
-        </Link>
+        <Link to="/activities">Now find out what&apos;s going on behind the scenes!</Link>
       </button>
       <div id={'youtube-computer'}>
         <iframe id={'youtube-final-video'} src={`${VideoInfo[props.chosenVideo].url}?autoplay=1&mute=1`} />
