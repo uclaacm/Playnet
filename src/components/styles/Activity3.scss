@@ -71,3 +71,49 @@ b {
   margin-top: 350px;
   margin-left: 752px;
 }
+
+#plant-sprout{
+  margin-left: 485px;
+  margin-top: 168px;
+  width: 22px;
+  height: 0px; // max: 197px
+  
+  overflow: hidden;
+  position: absolute;
+  background: no-repeat center;
+  background-size: contain;
+  background-image: url('../../assets/activity3/stem.svg');
+}
+
+#left-leaf {
+  margin-left: 445px;
+  margin-top: 200px;
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/left_leaf.svg');
+}
+
+#right-leaf {
+  margin-left: 530px;
+  margin-top: 142px;
+  width: 52px;
+  height: 52px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/right_leaf.svg');
+}
+
+#bottom-soil {
+  margin-left: -42px;
+  margin-top: 282px;
+  width: 1102px;
+  height: 154px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/soil.svg');
+}
