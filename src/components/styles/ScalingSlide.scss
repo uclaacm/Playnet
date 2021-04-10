@@ -1,0 +1,22 @@
+@import 'variables';
+
+#scaling-container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+
+  $totalMarginContentPx: $carousel_padding_px + $carousel_button_px + $carousel_content_margin_px;
+
+  transform: scale(var(--animation-scale));
+
+  --marginTopPx: calc(var(--heightPx) / 2 * (var(--animation-scale) - 1) * 1px);
+  --marginRightPx: 0;
+  --marginBottomPx: var(--marginTopPx);
+  --marginLeftPx:
+    calc(
+      var(--widthPx) / 2 * (var(--animation-scale) - 1) * 1px
+      + #{$totalMarginContentPx} * (1 - var(--animation-scale)) / 2
+    );
+
+  margin: var(--marginTopPx) var(--marginRightPx) var(--marginBottomPx) var(--marginLeftPx);
+}

@@ -1,22 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+$mobile-width: 768px;
 
+// Fonts
 $font-logo:   normal 800 32px 'Nunito', sans-serif;
 $font-nav:    normal 700 24px 'Nunito', sans-serif;
 $font-footer: normal 600 16px 'Nunito', sans-serif;
 $font-normal: normal 400 24px 'Nunito', sans-serif;
 $font-title:  normal 700 42px 'Nunito', sans-serif;
 
+// Colors
+$playnet-orange: #df3a1f;
+$hover_green: #1cc64b;
+$carousel-background-white: rgba(255, 255, 255, 0.95);
+$progessbar-background-grey: #d3d3d3;
 $bg-footer: #fff;
 
+// Sizes
 $head-foot-height: 64px;
 $foot-height: 55px;
-
-$playnet-orange: #df3a1f;
-$carousel-background-white: rgba(255, 255, 255, 0.95);
-
-$progessbar-background-grey: #d3d3d3;
-
-$mobile-width: 768px;
-$hover_green: #1cc64b;
-
 $min_carousel_height: 60vh;
+
+$carousel_padding_px: 64px;
+$carousel_button_px: 64px;
+$carousel_content_margin_px: 24px;
+$fit_carousel_width_percentage: 90%;
+
+:export {
+  carouselpaddingpx: $carousel_padding_px;
+  carouselbuttonpx: $carousel_button_px;
+  carouselcontentmarginpx: $carousel_content_margin_px;
+  fitcarouselwidthpercentage: $fit_carousel_width_percentage;
+}
