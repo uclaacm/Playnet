@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
-import ManyEmployees from './Animations/ManyEmployees';
 import ComputerRecs from './Animations/ComputerRecs';
+import ManyEmployees from './Animations/ManyEmployees';
 
 import '../../styles/Activity3.scss';
 

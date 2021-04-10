@@ -24,7 +24,8 @@ function ScalingSlide(props: ScalingSlideProps): JSX.Element {
     const carouselContentPx = viewportToPixels('100vw') - totalMarginContentPx * 2;
     const carouselContentHeightPx = viewportToPixels('100vh') - totalMarginContentPx * 2;
 
-    const animationScale = Math.min(scaling * (carouselContentPx) / width, scaling * (carouselContentHeightPx) / height);
+    const animationScale = Math.min(scaling * (carouselContentPx) / width,
+      scaling * (carouselContentHeightPx) / height);
 
     // these all refer to -> excess/lack of spacing due to animationScaling
     //     ( a bit confusing, might need to draw out)
