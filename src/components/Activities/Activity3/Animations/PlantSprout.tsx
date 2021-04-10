@@ -18,16 +18,15 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
     });
 
     timeline.current?.add({
-      targets: '#left-leaf',
-      opacity: [0, 1],
-      duration: 500,
+      targets: '#plant-sprout',
+      translateY: [0, -100],
+      duration: 1000,
     });
 
     timeline.current?.add({
-      targets: '#plant-sprout',
-      width: [22, 22],
-      height: [0, 197],
-      duration: 1000,
+      targets: '#left-leaf',
+      opacity: [0, 1],
+      duration: 500,
     });
 
     timeline.current?.add({
@@ -48,12 +47,14 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
     }
   }, [reloadTime, props.start]);
 
-  return <ScalingSlide widthPx={1102} heightPx={294}>
+  return <ScalingSlide widthPx={1102} heightPx={386}>
     <>
-      <div id={'plant-sprout'} />
-      <div id={'left-leaf'} />
-      <div id={'right-leaf'} />
-      <div id={'bottom-soil'} />
+      <div id={'sprout-container'}>
+        <div id={'plant-sprout'} />
+        <div id={'left-leaf'} />
+        <div id={'right-leaf'} />
+        <div id={'bottom-soil'} />
+      </div>
     </>
   </ScalingSlide>;
 }

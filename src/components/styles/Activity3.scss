@@ -19,6 +19,7 @@ b {
 
 #grouping-teams {
   position: absolute;
+  opacity: 0;
 }
 
 #ellipse-1 {
@@ -72,13 +73,21 @@ b {
   margin-left: 752px;
 }
 
-#plant-sprout{
-  margin-left: 485px;
-  margin-top: 168px;
-  width: 22px;
-  height: 0px; // max: 197px
-  
+#sprout-container {
+  width: inherit;
+  height: inherit;
+
   overflow: hidden;
+  position: relative;
+}
+
+#plant-sprout{
+  margin-left: 535px;
+  margin-top: 182px;
+  width: 22px;
+  height: 197px;
+  top: 100px;
+
   position: absolute;
   background: no-repeat center;
   background-size: contain;
@@ -86,7 +95,7 @@ b {
 }
 
 #left-leaf {
-  margin-left: 445px;
+  margin-left: 490px;
   margin-top: 200px;
   width: 52px;
   height: 52px;
@@ -97,8 +106,8 @@ b {
 }
 
 #right-leaf {
-  margin-left: 530px;
-  margin-top: 142px;
+  margin-left: 535px;
+  margin-top: 152px;
   width: 52px;
   height: 52px;
   position: absolute;
@@ -108,7 +117,7 @@ b {
 }
 
 #bottom-soil {
-  margin-left: -42px;
+  margin-left: 50px;
   margin-top: 282px;
   width: 1102px;
   height: 154px;
