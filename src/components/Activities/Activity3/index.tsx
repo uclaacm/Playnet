@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ManyEmployees from './Animations/ManyEmployees';
+import ComputerRecs from './Animations/ComputerRecs';
 
 import '../../styles/Activity3.scss';
 
@@ -15,6 +16,11 @@ function Activity3(): JSX.Element {
       child: <ManyEmployees start={true} />,
       topText: 'Different teams work on different ways to improve the product.',
       animationTime: 2,
+    },
+    {
+      child: <ComputerRecs />,
+      bottomText: 'When people are done watching a video, what kinds of videos should we recommend to watch next?',
+      animationTime: 4.75,
     },
   ];
 

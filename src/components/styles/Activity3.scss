@@ -71,3 +71,52 @@ b {
   margin-top: 350px;
   margin-left: 752px;
 }
+
+// styles for ComputerRecs
+#computer-rec-screen {
+  background-image: url('../../assets/activity3/computer-recs.svg');
+  width: 498px;
+  height: 333px;
+  position: absolute;
+}
+
+.rec-video {
+  width: 113px;
+  height: 77px;
+  position: absolute;
+  margin-left: 357px;
+}
+
+#red-border-video {
+  opacity: 0;
+}
+
+#video1 {
+  background-image: url('../../assets/activity3/video-rec1.svg');
+  margin-top: 23px;
+}
+
+#video2 {
+  background-image: url('../../assets/activity3/video-rec2.svg');
+  margin-top: 103px;
+}
+
+#video3 {
+  background-image: url('../../assets/activity3/video-rec3.svg');
+  margin-top: 183px;
+}
+
+#video1-red {
+  background-image: url('../../assets/activity3/video-rec1-red.svg');
+  margin-top: 23px;
+}
+
+#video2-red {
+  background-image: url('../../assets/activity3/video-rec2-red.svg');
+  margin-top: 103px;
+}
+
+#video3-red {
+  background-image: url('../../assets/activity3/video-rec3-red.svg');
+  margin-top: 183px;
+}
