@@ -18,12 +18,12 @@ function ComputerRecs(): JSX.Element {
     timeline.current = anime.timeline({
       autoplay: false,
       easing: 'easeInOutSine',
-      delay: 1000,
     });
 
     timeline.current?.add({
-      targets: '#video1 #video2 #video3',
+      targets: '.black-border-video',
       opacity: [1, 0],
+      delay: 1000,
       duration: 1500,
     }).add({
       targets: '#video1-red',
@@ -38,19 +38,13 @@ function ComputerRecs(): JSX.Element {
       opacity: [0, 1],
       duration: 750,
     });
+    timeline.current?.play();
   }, []);
 
   useEffect(() => {
-    // timeline.current?.play();
-    const timeout = setTimeout(() => {
-      timeline.current?.play();
-    }, 250);
     timeline.current?.pause();
     timeline.current?.seek(0);
-    return () => clearTimeout(timeout);
-    // timeline.current?.pause();
-    // timeline.current?.seek(0);
-    // timeline.current?.play();
+    timeline.current?.play();
   }, [reloadTime]);
 
   return (
@@ -58,9 +52,9 @@ function ComputerRecs(): JSX.Element {
     widthPx={498} heightPx={333}
     >
       <div id='computer-rec-screen'>
-        <div id='video1' className='rec-video'/>
-        <div id='video2' className='rec-video'/>
-        <div id='video3' className='rec-video'/>
+        <div id='video1' className='rec-video black-border-video'/>
+        <div id='video2' className='rec-video black-border-video'/>
+        <div id='video3' className='rec-video black-border-video'/>
         <div id='video1-red' className='rec-video red-border-video'/>
         <div id='video2-red' className='rec-video red-border-video'/>
         <div id='video3-red' className='rec-video red-border-video'/>
