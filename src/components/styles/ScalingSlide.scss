@@ -3,10 +3,6 @@
 #scaling-container {
   display: flex;
   justify-content: center;
-  overflow: hidden;
-
-  $totalMarginContentPx: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
-
   transform: scale(var(--animation-scale));
 
   --marginTopPx: calc(var(--heightPx) / 2 * (var(--animation-scale) - 1) * 1px);
