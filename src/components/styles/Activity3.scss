@@ -1,0 +1,73 @@
+@import 'variables';
+
+b {
+  font: $font-title;
+  font-size: 22px;
+  margin: 3px;
+  color: black;
+}
+
+#many-employees {
+  margin-left: 86px;
+  width: 928px;
+  height: 386px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/many_employees.svg');
+}
+
+#grouping-teams {
+  position: absolute;
+}
+
+#ellipse-1 {
+  width: 192px;
+  height: 192px;
+  margin-left: 86px;
+  margin-top: 51px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/ellipse.svg');
+}
+
+#ellipse-2 {
+  width: 242px;
+  height: 242px;
+  margin-left: 278px;
+  margin-top: 24px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/ellipse.svg');
+}
+
+#ellipse-3 {
+  width: 350px;
+  height: 350px;
+  margin-left: 641px;
+  margin-top: 0;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/ellipse.svg');
+}
+
+#ceo-text {
+  position: absolute;
+  margin-top: 304px;
+  margin-left: 154px;
+}
+
+#sales-text {
+  position: absolute;
+  margin-top: 304px;
+  margin-left: 369px;
+}
+
+#dev-text {
+  position: absolute;
+  margin-top: 350px;
+  margin-left: 752px;
+}
