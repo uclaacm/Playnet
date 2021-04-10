@@ -13,9 +13,9 @@ function ScalingSlide(props: ScalingSlideProps): JSX.Element {
   const animationHeight = (props.heightPx === undefined) ? 390 : props.heightPx;
   const animationWidth = (props.widthPx === undefined) ? 1000 : props.widthPx;
 
-  const { carouselPaddingPx, carouselButtonPx, carouselContentMarginPx, fitCarouselWidthPercentage } = variables;
-  const [pad1, pad2, pad3, scaling] = [stripUnits(carouselPaddingPx), stripUnits(carouselButtonPx),
-    stripUnits(carouselContentMarginPx), percentToFloat(fitCarouselWidthPercentage)];
+  const { carousel_padding_px, carousel_button_px, carousel_content_margin_px, fit_carousel_width_percent } = variables;
+  const [pad1, pad2, pad3, scaling] = [stripUnits(carousel_padding_px), stripUnits(carousel_button_px),
+    stripUnits(carousel_content_margin_px), percentToFloat(fit_carousel_width_percent)];
 
   const getCSSStyling = () => {
     const margin = pad1 + pad2 + pad3;

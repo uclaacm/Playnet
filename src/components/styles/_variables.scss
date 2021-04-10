@@ -23,11 +23,11 @@ $min-carousel-height: 60vh;
 $carousel-padding-px: 64px;
 $carousel-button-px: 64px;
 $carousel-content-margin-px: 24px;
-$fit-carousel-width-percentage: 90%;
+$fit-carousel-width-percent: 90%;
 
 :export {
-  carouselpaddingpx: $carousel-padding-px;
-  carouselbuttonpx: $carousel-button-px;
-  carouselcontentmarginpx: $carousel-content-margin-px;
-  fitcarouselwidthpercentage: $fit-carousel-width-percentage;
+  carousel_padding_px: $carousel-padding-px;
+  carousel_button_px: $carousel-button-px;
+  carousel_content_margin_px: $carousel-content-margin-px;
+  fit_carousel_width_percent: $fit-carousel-width-percent;
 }

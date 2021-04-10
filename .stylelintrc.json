@@ -19,10 +19,10 @@
       true,
       {
         "ignoreProperties": [
-          "carouselpaddingpx",
-          "carouselbuttonpx",
-          "carouselcontentmarginpx",
-          "fitcarouselwidthpercentage"
+          "carousel_padding_px",
+          "carousel_button_px",
+          "carousel_content_margin_px",
+          "fit_carousel_width_percent"
         ]
       }
     ]
