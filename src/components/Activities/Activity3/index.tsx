@@ -20,7 +20,7 @@ function Activity3(): JSX.Element {
     {
       child: <ComputerRecs />,
       bottomText: 'When people are done watching a video, what kinds of videos should we recommend to watch next?',
-      animationTime: 4.75,
+      animationTime: 5,
     },
   ];
 

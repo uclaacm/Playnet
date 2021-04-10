@@ -24,19 +24,19 @@ function ComputerRecs(): JSX.Element {
       targets: '.black-border-video',
       opacity: [1, 0],
       delay: 1000,
-      duration: 1500,
+      duration: 1000,
     }).add({
       targets: '#video1-red',
       opacity: [0, 1],
-      duration: 750,
+      duration: 1000,
     }).add({
       targets: '#video2-red',
       opacity: [0, 1],
-      duration: 750,
+      duration: 1000,
     }).add({
       targets: '#video3-red',
       opacity: [0, 1],
-      duration: 750,
+      duration: 1000,
     });
     timeline.current?.play();
   }, []);
