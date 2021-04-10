@@ -37,7 +37,7 @@ b {
 #carousel {
   display: flex;
   align-items: center;
-  margin: 12px $carousel_padding_px 64px;
+  margin: 12px $carousel-padding-px 64px;
 }
 
 #carousel-content {
@@ -45,9 +45,9 @@ b {
   position: relative;
   background-color: $carousel-background-white;
   overflow: hidden;
-  min-height: $min_carousel_height;
+  min-height: $min-carousel-height;
   height: fit-content;
-  margin: 0 $carousel_content_margin_px;
+  margin: 0 $carousel-content-margin-px;
   border-radius: 20px;
 }
 
@@ -55,8 +55,8 @@ b {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: $carousel_button_px;
-  height: $carousel_button_px;
+  width: $carousel-button-px;
+  height: $carousel-button-px;
   background-color: $playnet-orange;
   border-radius: 50%;
 }

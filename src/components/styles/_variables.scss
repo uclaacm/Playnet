@@ -18,16 +18,16 @@ $bg-footer: #fff;
 // Sizes
 $head-foot-height: 64px;
 $foot-height: 55px;
-$min_carousel_height: 60vh;
+$min-carousel-height: 60vh;
 
-$carousel_padding_px: 64px;
-$carousel_button_px: 64px;
-$carousel_content_margin_px: 24px;
-$fit_carousel_width_percentage: 90%;
+$carousel-padding-px: 64px;
+$carousel-button-px: 64px;
+$carousel-content-margin-px: 24px;
+$fit-carousel-width-percentage: 90%;
 
 :export {
-  carouselpaddingpx: $carousel_padding_px;
-  carouselbuttonpx: $carousel_button_px;
-  carouselcontentmarginpx: $carousel_content_margin_px;
-  fitcarouselwidthpercentage: $fit_carousel_width_percentage;
+  carouselpaddingpx: $carousel-padding-px;
+  carouselbuttonpx: $carousel-button-px;
+  carouselcontentmarginpx: $carousel-content-margin-px;
+  fitcarouselwidthpercentage: $fit-carousel-width-percentage;
 }

@@ -5,7 +5,7 @@
   justify-content: center;
   overflow: hidden;
 
-  $totalMarginContentPx: $carousel_padding_px + $carousel_button_px + $carousel_content_margin_px;
+  $totalMarginContentPx: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
 
   transform: scale(var(--animation-scale));
 
