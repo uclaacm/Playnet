@@ -1,4 +1,30 @@
 {
   "extends": "stylelint-config-standard",
-  "ignoreFiles": ["**/*.ts", "**/*.tsx", "dist/*", "node_modules/*"]
+  "ignoreFiles": [
+    "**/*.ts",
+    "**/*.tsx",
+    "dist/*",
+    "node_modules/*"
+  ],
+  "rules": {
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "export"
+        ]
+      }
+    ],
+    "property-no-unknown": [
+      true,
+      {
+        "ignoreProperties": [
+          "carouselpaddingpx",
+          "carouselbuttonpx",
+          "carouselcontentmarginpx",
+          "fitcarouselwidthpercentage"
+        ]
+      }
+    ]
+  }
 }
