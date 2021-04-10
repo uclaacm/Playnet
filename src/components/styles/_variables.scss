@@ -24,7 +24,7 @@ $carousel-padding-px: 64px;
 $carousel-button-px: 64px;
 $carousel-content-margin-px: 24px;
 $fit-carousel-width-percent: 90%;
-$totalMarginContentPx: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
+$total-margin-content-px: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
 
 :export {
   carousel_padding_px: $carousel-padding-px;

@@ -26,6 +26,7 @@ function ScalingSlide(props: ScalingSlideProps): JSX.Element {
     cssProperties['--animation-scale'] = animationScale;
     cssProperties['--widthPx'] = animationWidth;
     cssProperties['--heightPx'] = animationHeight;
+    cssProperties['--carousel-content-px'] = contentSize;
     return cssProperties;
   };
 
