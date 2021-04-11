@@ -25,11 +25,11 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       targets: '#left-leaf',
       opacity: [0, 1],
       duration: 500,
-    }, '-=750').add({
+    }, '-=500').add({
       targets: '#right-leaf',
       opacity: [0, 1],
       duration: 500,
-    }, '-=250');
+    }, '-=200');
   }, []);
 
   useEffect(() => {
