@@ -38,11 +38,11 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
 
   useEffect(() => {
     if (props.start === true) {
+      timeline.current?.pause();
+      timeline.current?.seek(0);
       const timeout = setTimeout(() => {
         timeline.current?.play();
       }, 250);
-      timeline.current?.pause();
-      timeline.current?.seek(0);
       return () => clearTimeout(timeout);
     }
   }, [reloadTime, props.start]);

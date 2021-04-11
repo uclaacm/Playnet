@@ -25,12 +25,12 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
   }, []);
 
   useEffect(() => {
+    timeline.current?.pause();
+    timeline.current?.seek(0);
     if (props.start === true) {
       const timeout = setTimeout(() => {
         timeline.current?.play();
       }, 250);
-      timeline.current?.pause();
-      timeline.current?.seek(0);
       return () => clearTimeout(timeout);
     }
   }, [reloadTime, props.start]);
