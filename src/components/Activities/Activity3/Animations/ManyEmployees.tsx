@@ -15,9 +15,7 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
     timeline.current = anime.timeline({
       autoplay: false,
       easing: 'easeInOutSine',
-    });
-
-    timeline.current?.add({
+    }).add({
       targets: '#grouping-teams',
       opacity: [0, 1],
       duration: 1000,
