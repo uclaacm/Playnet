@@ -17,7 +17,6 @@ function Activity3(): JSX.Element {
       topText: 'Different teams work on different ways to improve the product.',
       animationTime: 2,
     },
-
     {
       child: <PlantSprout start={true} />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
