@@ -3,11 +3,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import ScalingSlide from '../../../shared/ScalingSlide';
 
-interface ManyEmployeesProps {
-  start: boolean,
-}
-
-function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
+function PlantSprout(): JSX.Element {
   const { reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
 
@@ -33,13 +29,11 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
   useEffect(() => {
     timeline.current?.pause();
     timeline.current?.seek(0);
-    if (props.start === true) {
-      const timeout = setTimeout(() => {
-        timeline.current?.play();
-      }, 250);
-      return () => clearTimeout(timeout);
-    }
-  }, [reloadTime, props.start]);
+    const timeout = setTimeout(() => {
+      timeline.current?.play();
+    }, 250);
+    return () => clearTimeout(timeout);
+  }, [reloadTime]);
 
   return <ScalingSlide widthPx={1102} heightPx={386}>
     <>
@@ -52,4 +46,5 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
     </>
   </ScalingSlide>;
 }
-export default ManyEmployees;
+
+export default PlantSprout;

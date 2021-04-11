@@ -18,7 +18,7 @@ function Activity3(): JSX.Element {
       animationTime: 2,
     },
     {
-      child: <PlantSprout start={true} />,
+      child: <PlantSprout />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
     },
   ];
