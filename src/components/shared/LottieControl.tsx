@@ -1,6 +1,7 @@
 import React, { useContext} from 'react';
 import Lottie from 'react-lottie';
 import { CarouselContext } from './Carousel';
+import '../styles/LottieControl.scss';
 
 export interface LottieControlProps {
   animationData: any;
@@ -20,8 +21,8 @@ export default function LottieControl(props: LottieControlProps): JSX.Element {
   };
 
   return (
-    <div key={`${reloadTime}`} style={{ width: '90%', margin: 'auto' }}>
-      <Lottie options={defaultOptions} style={{width: '1000px', height: '390px'}} />
+    <div className='lottie-control' key={`${reloadTime}`}>
+      <Lottie options={defaultOptions} />
     </div>
   );
 }
