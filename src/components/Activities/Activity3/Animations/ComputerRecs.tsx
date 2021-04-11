@@ -38,7 +38,6 @@ function ComputerRecs(): JSX.Element {
       opacity: [0, 1],
       duration: 1000,
     });
-    timeline.current?.play();
   }, []);
 
   useEffect(() => {
@@ -48,7 +47,7 @@ function ComputerRecs(): JSX.Element {
   }, [reloadTime]);
 
   return (
-    <ScalingSlide widthPx={1000} heightPx={333}>
+    <ScalingSlide widthPx={900} heightPx={333}>
       <div id='computer-rec-screen'>
         <div id='video1' className='rec-video black-border-video'/>
         <div id='video2' className='rec-video black-border-video'/>
