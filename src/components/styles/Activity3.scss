@@ -74,14 +74,15 @@ b {
 
 #sprout-container {
   width: inherit;
-  height: inherit;
+  height: 272px;
   overflow: hidden;
-  position: relative;
+  position: absolute;
 }
 
 #plant-sprout {
-  margin-left: 535px;
-  margin-top: 182px;
+  z-index: 19;
+  margin-left: 547px;
+  margin-top: 171px;
   width: 22px;
   height: 197px;
   top: 100px;
@@ -92,8 +93,9 @@ b {
 }
 
 #left-leaf {
-  margin-left: 490px;
-  margin-top: 200px;
+  z-index: 18;
+  margin-left: 510px;
+  margin-top: 130px;
   width: 52px;
   height: 52px;
   position: absolute;
@@ -103,8 +105,9 @@ b {
 }
 
 #right-leaf {
-  margin-left: 535px;
-  margin-top: 152px;
+  z-index: 20;
+  margin-left: 545px;
+  margin-top: 52px;
   width: 52px;
   height: 52px;
   position: absolute;
@@ -115,7 +118,7 @@ b {
 
 #bottom-soil {
   margin-left: 50px;
-  margin-top: 282px;
+  margin-top: 222px;
   width: 1102px;
   height: 154px;
   position: absolute;

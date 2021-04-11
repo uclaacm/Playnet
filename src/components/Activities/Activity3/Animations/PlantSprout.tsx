@@ -19,21 +19,17 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
 
     timeline.current?.add({
       targets: '#plant-sprout',
-      translateY: [0, -100],
+      translateY: [0, -190],
       duration: 1000,
-    });
-
-    timeline.current?.add({
+    }).add({
       targets: '#left-leaf',
       opacity: [0, 1],
       duration: 500,
-    });
-
-    timeline.current?.add({
+    }, '-=750').add({
       targets: '#right-leaf',
       opacity: [0, 1],
       duration: 500,
-    });
+    }, '-=250');
   }, []);
 
   useEffect(() => {
@@ -53,8 +49,8 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
         <div id={'plant-sprout'} />
         <div id={'left-leaf'} />
         <div id={'right-leaf'} />
-        <div id={'bottom-soil'} />
       </div>
+      <div id={'bottom-soil'} />
     </>
   </ScalingSlide>;
 }
