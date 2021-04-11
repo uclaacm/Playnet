@@ -15,9 +15,7 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
     timeline.current = anime.timeline({
       autoplay: false,
       easing: 'easeInOutSine',
-    });
-
-    timeline.current?.add({
+    }).add({
       targets: '#plant-sprout',
       translateY: [0, -190],
       duration: 1000,
