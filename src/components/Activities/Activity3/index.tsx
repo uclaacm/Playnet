@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
+import ComputerRecs from './Animations/ComputerRecs';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
 
@@ -18,8 +19,14 @@ function Activity3(): JSX.Element {
       animationTime: 2,
     },
     {
+      child: <ComputerRecs />,
+      bottomText: 'When people are done watching a video, what kinds of videos should we recommend to watch next?',
+      animationTime: 5,
+    },
+    {
       child: <PlantSprout />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
+      animationTime: 2,
     },
   ];
 
