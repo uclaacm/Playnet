@@ -2,11 +2,6 @@ import anime, { AnimeTimelineInstance } from 'animejs';
 import React, { useContext, useEffect, useRef }from 'react';
 
 import { CarouselContext } from '../../../shared/Carousel';
-// import ComputerRecsSvg from '../../../../assets/activity3/computer-recs.svg';
-// import VideoRec1Svg from '../../../../assets/activity3/video-rec1.svg';
-// import VideoRec2Svg from '../../../../assets/activity3/video-rec2.svg';
-// import VideoRec3Svg from '../../../../assets/activity3/video-rec3.svg';
-// import Video3Image from '../../../../assets/activity3/video3-image.svg';
 
 import ScalingSlide from '../../../shared/ScalingSlide';
 
@@ -18,9 +13,7 @@ function ComputerRecs(): JSX.Element {
     timeline.current = anime.timeline({
       autoplay: false,
       easing: 'easeInOutSine',
-    });
-
-    timeline.current?.add({
+    }).add({
       targets: '.black-border-video',
       opacity: [1, 0],
       delay: 1000,
