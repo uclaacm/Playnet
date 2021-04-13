@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum VARIABLES {
   CREDIBLE = 'Credible',
   RECENT_UPLOAD = 'Recent Upload',
@@ -7,25 +9,27 @@ export enum VARIABLES {
   SUBSCRIBED = 'Subscribed',
 }
 
-export const VARIABLE_CONTENT : Record<VARIABLES, string []> = {
+export const VARIABLE_CONTENT : Record<VARIABLES, JSX.Element []> = {
   [VARIABLES.CREDIBLE]: [
-    'Credibility refers to whether you can trust something. To decide if something is credible, ask: Do I think what they’re saying is true?',
-    'Why is this important? We want to make sure that people aren’t believing false information they found online. Plus, they might get angry at you for letting them get tricked!',
+    <>Credibility refers to whether you can trust something. To decide if something is credible,
+    ask: Do I think what they’re saying is true?</>,
+    <>Why is this important? We want to make sure that people aren’t believing false information
+    they found online. Plus, they might get angry at you for letting them get tricked!</>,
   ],
   [VARIABLES.RECENT_UPLOAD]: [
-    'bleb',
+    <>bleb</>,
   ],
   [VARIABLES.SAME_CONTENT]: [
-    'mlem',
+    <>mlem</>,
   ],
   [VARIABLES.POPULAR]: [
-    'pop',
+    <>pop</>,
   ],
   [VARIABLES.SAME_CREATOR]: [
-    'sameee',
+    <>sameee</>,
   ],
   [VARIABLES.SUBSCRIBED]: [
-    'subs',
+    <>subs</>,
   ],
 };
 
