@@ -1,13 +1,13 @@
 import React from 'react';
+import '../../styles/Activity3.scss';
+import '../../styles/Activity3Game.scss';
+
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ComputerRecs from './Animations/ComputerRecs';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
-
-import '../../styles/Activity3.scss';
-import GameWrapper from './GameWrapper/GameWrapper';
-import '../../styles/Activity3Game.scss';
 import { GameIntroSlide1, GameIntroSlide2 } from './GameIntroSlides';
+import GameWrapper from './GameWrapper/GameWrapper';
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
