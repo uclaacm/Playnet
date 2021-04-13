@@ -76,7 +76,7 @@ function CipherGame(props: CipherGameProps): JSX.Element {
         {starCounter()}
         {showSuccess ?
           displayYouGotStar() :
-          <CipherGameRound advanceGame={advanceGame} round={LEVELS[numStars]} HASH_VAL={hash}/>}
+          <CipherGameRound advanceGame={advanceGame} round={LEVELS[numStars]} HASH_VAL={hash} isGameSoundMuted={context.isGameSoundMuted}/>}
       </div>
     </div>
   );

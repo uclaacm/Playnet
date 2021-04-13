@@ -13,6 +13,8 @@ export const CarouselContext = React.createContext({
   prev: (): void => undefined,
   slideIdx: 0,
   reloadTime: Date.now(),
+  isVoiceMuted: DEFAULT_CONFIGS.VOICEOVER_MUTED,
+  isGameSoundMuted: DEFAULT_CONFIGS.GAME_SOUNDS_MUTED,
 });
 
 export interface CarouselItemComponents {
@@ -162,7 +164,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   }
 
   return (
-    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx, reloadTime }}>
+    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx, reloadTime, isVoiceMuted, isGameSoundMuted }}>
       <div id={'carousel-wrapper'}>
         {props.title && <h1 id={'title'}>{props.title}</h1>}
         {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}

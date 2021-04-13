@@ -59,6 +59,7 @@ function AmbiguousPhrasingGame(): JSX.Element {
       <GameSlide
         {...slides[slideIdx]}
         advanceGame={advanceGame}
+        isGameSoundMuted={context.isGameSoundMuted}
       />
     </div>
   );

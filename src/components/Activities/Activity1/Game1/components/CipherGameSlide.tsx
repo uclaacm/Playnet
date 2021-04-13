@@ -11,14 +11,14 @@ interface CipherGameSlideProps {
   correctIdx: number;
   cards: string[];
   roundNum: number;
+  isGameSoundMuted: boolean;
 }
 
 function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
-  const {correctIdx, advanceRound, setHoverIncorrect, roundNum} = props;
+  const {correctIdx, advanceRound, setHoverIncorrect, roundNum, isGameSoundMuted} = props;
   const [card0, card1] = props.cards;
-  const storage = window.sessionStorage;
 
-  const volume = storage.getItem('isGameSoundMuted') ? 0 : 0.5;
+  const volume = isGameSoundMuted ? 0 : 0.5;
   const [playCorrect] = useSound(CorrectSFX, { volume: volume});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: volume});
 
