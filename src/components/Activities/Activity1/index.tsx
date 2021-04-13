@@ -62,12 +62,14 @@ function Activity1(): JSX.Element {
       soundtrack: SoundTrack.Activity1_4,
     },
     {
+      topText: 'Try to guess what image the alien wants.',
       child: <CipherGame ref={ref} numStars={0} showSuccess={false}/>,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
     },
     {
+      topText: 'Try to guess what image the alien wants.',
       child: <CipherGame ref={ref} numStars={1} showSuccess={true}/>,
       showNext: false,
       hasSound: true,
@@ -75,12 +77,14 @@ function Activity1(): JSX.Element {
       soundtrack: SoundTrack.Activity1_G1_Center,
     },
     {
+      topText: 'Try to guess what image the alien wants.',
       child: <CipherGame ref={ref} numStars={1} showSuccess={false}/>,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
     },
     {
+      topText: 'Try to guess what image the alien wants.',
       child: <CipherGame ref={ref} numStars={2} showSuccess={true}/>,
       showNext: false,
       hasSound: true,
@@ -88,6 +92,7 @@ function Activity1(): JSX.Element {
       soundtrack: SoundTrack.Activity1_G1_Center,
     },
     {
+      topText: 'Try to guess what image the alien wants.',
       child: <CipherGame ref={ref} numStars={2} showSuccess={false}/>,
       showNext: false,
       hasSound: true,
@@ -113,6 +118,7 @@ function Activity1(): JSX.Element {
       soundtrack: SoundTrack.Activity1_G2_Intro,
     },
     {
+      topText: 'Try to guess what the alien is talking about.',
       child: <AmbiguousPhrasingGame />,
       showNext: false,
       hasSound: true,

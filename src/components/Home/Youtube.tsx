@@ -62,7 +62,7 @@ function FinalYouTube(props: FinalYouTubeProps): JSX.Element {
         <Link to="/activities">Now find out what&apos;s going on behind the scenes!</Link>
       </button>
       <div id={'youtube-computer'}>
-        <iframe id={'youtube-final-video'} src={`${VideoInfo[props.chosenVideo].url}?autoplay=1&mute=1`} />
+        <iframe style={{width: '50%', height: '50%'}} id={'youtube-final-video'} src={`${VideoInfo[props.chosenVideo].url}?autoplay=1&mute=1`} />
       </div>
     </div>
   );

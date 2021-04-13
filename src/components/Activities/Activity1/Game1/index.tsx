@@ -71,9 +71,8 @@ function CipherGame(props: CipherGameProps): JSX.Element {
 
   return (
     <div id={'game-wrapper'}>
-      <h3> Try to guess what image the alien wants.</h3>
+      <div id={'fixed-star-counter'}>{starCounter()}</div> 
       <div id={'cipher-game-content'}>
-        {starCounter()}
         {showSuccess ?
           displayYouGotStar() :
           <CipherGameRound advanceGame={advanceGame} round={LEVELS[numStars]} HASH_VAL={hash} isGameSoundMuted={context.isGameSoundMuted}/>}

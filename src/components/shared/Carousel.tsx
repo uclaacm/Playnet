@@ -132,8 +132,7 @@ function Carousel(props: CarouselProps): JSX.Element {
     if (isVoiceMuted) {
       setIsVoiceMuted(false);
       storage.removeItem('isVoiceMuted');
-    }
-    else {
+    } else {
       setIsVoiceMuted(true);
       storage.setItem('isVoiceMuted', 'true');
     }
@@ -152,8 +151,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   function handleAutoplayButtonClick(): void {
     if (isAutoAdvance) {
       disableAutoAdvance();
-    }
-    else {
+    } else {
       enableAutoAdvance();
     }
   }
