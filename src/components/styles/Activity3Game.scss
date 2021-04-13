@@ -10,22 +10,44 @@
   padding: 1.5vw;
 }
 
-$min-width: calc((#{$carousel-content-width} ) / 3 / 2);
-$height: calc(#{$min-width} - 20px);
+$card-min-width: calc((#{$carousel-content-width} ) / 3 / 2);
+$card-height: calc(#{$card-min-width} - 20px);
+
+.not-selected {
+  border-color: $border-black;
+}
+
+.selected {
+  border-color: $playnet-orange;
+}
+
+.checkmark {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 2vw;
+  height: 2vw;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url('../../assets/activity3/game/Selected.svg');
+}
 
 .variable-card {
-  min-width: $min-width;
+  min-width: $card-min-width;
   width: 100%;
-  height: $height;
-  border: 6px;
+  height: $card-height;
+  border-width: 6px;
   border-style: solid;
-  border-color: $border-black;
   border-radius: 25px;
+  background-color: $carousel-background-white;
+  font: $font-normal;
+  font-size: 22px;
 }
 
 .variable-image {
-  width: 50%;
-  height: calc(#{$height} - 40px);
+  width: 100%;
+  height: calc(#{$card-height} - 53px);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
