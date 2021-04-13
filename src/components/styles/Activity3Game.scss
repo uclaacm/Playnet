@@ -1,0 +1,57 @@
+@import 'variables';
+
+#variables-wrapper {
+  display: grid;
+  width: fit-content;
+  margin: auto;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1vw 1.5vw;
+  padding: 1.5vw;
+}
+
+$min-width: calc((#{$carousel-content-width} ) / 3 / 2);
+$height: calc(#{$min-width} - 20px);
+
+.variable-card {
+  min-width: $min-width;
+  width: 100%;
+  height: $height;
+  border: 6px;
+  border-style: solid;
+  border-color: $border-black;
+  border-radius: 25px;
+}
+
+.variable-image {
+  width: 50%;
+  height: calc(#{$height} - 40px);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: auto;
+}
+
+#credible {
+  background-image: url('../../assets/activity3/game/Scales.svg');
+}
+
+#recent-upload {
+  background-image: url('../../assets/activity3/game/Clock.svg');
+}
+
+#same-content {
+  background-image: url('../../assets/activity3/game/Mirror.svg');
+}
+
+#popular {
+  background-image: url('../../assets/activity3/game/Heart.svg');
+}
+
+#same-creator {
+  background-image: url('../../assets/activity3/game/Brush.svg');
+}
+
+#subscribed {
+  background-image: url('../../assets/activity3/game/Subscribe.svg');
+}

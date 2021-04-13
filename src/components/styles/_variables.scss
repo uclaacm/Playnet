@@ -14,6 +14,7 @@ $hover_green: #1cc64b;
 $carousel-background-white: rgba(255, 255, 255, 0.95);
 $progessbar-background-grey: #d3d3d3;
 $bg-footer: #fff;
+$border-black: black;
 
 // Sizes
 $head-foot-height: 64px;
@@ -24,7 +25,10 @@ $carousel-padding-px: 64px;
 $carousel-button-px: 64px;
 $carousel-content-margin-px: 24px;
 $fit-carousel-width-percent: 90%;
-$total-margin-content-px: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
+$total-carousel-margin-px: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
+
+// Carousel Width
+$carousel-content-width: calc((100vw - 2 * #{$total-carousel-margin-px}) * #{$fit-carousel-width-percent / 100%});
 
 :export {
   carousel_padding_px: $carousel-padding-px;
