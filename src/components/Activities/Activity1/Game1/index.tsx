@@ -71,7 +71,13 @@ function CipherGame(props: CipherGameProps): JSX.Element {
 
   return (
     <div id={'game-wrapper'}>
-      <div id={'fixed-star-counter'}> {starCounter()} </div>
+      {/* <div id={'fixed-star-counter'}> {starCounter()} </div> */}
+      <div id={'fixed-star-counter'}> 
+        {!showSuccess && 
+        <button className="playnet-button" onClick={context.next}>
+          Skip
+        </button> }
+      </div>
       <div id={'cipher-game-content'}>
         {showSuccess ?
           displayYouGotStar() :
