@@ -162,7 +162,8 @@ function Carousel(props: CarouselProps): JSX.Element {
   }
 
   return (
-    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx, reloadTime, isVoiceMuted, isGameSoundMuted }}>
+    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx, reloadTime,
+      isVoiceMuted, isGameSoundMuted }}>
       <div id={'carousel-wrapper'}>
         {props.title && <h1 id={'title'}>{props.title}</h1>}
         {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}

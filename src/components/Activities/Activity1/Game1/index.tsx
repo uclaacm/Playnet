@@ -71,11 +71,15 @@ function CipherGame(props: CipherGameProps): JSX.Element {
 
   return (
     <div id={'game-wrapper'}>
-      <div id={'fixed-star-counter'}>{starCounter()}</div> 
+      <div id={'fixed-star-counter'}> {starCounter()} </div>
       <div id={'cipher-game-content'}>
         {showSuccess ?
           displayYouGotStar() :
-          <CipherGameRound advanceGame={advanceGame} round={LEVELS[numStars]} HASH_VAL={hash} isGameSoundMuted={context.isGameSoundMuted}/>}
+          <CipherGameRound
+            advanceGame={advanceGame}
+            round={LEVELS[numStars]}
+            HASH_VAL={hash}
+            isGameSoundMuted={context.isGameSoundMuted}/>}
       </div>
     </div>
   );
