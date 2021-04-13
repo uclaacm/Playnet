@@ -5,6 +5,7 @@ import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
 
 import '../../styles/Activity3.scss';
+import GameWrapper from './GameWrapper';
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
@@ -27,6 +28,10 @@ function Activity3(): JSX.Element {
       child: <PlantSprout />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
       animationTime: 2,
+    },
+    {
+      topText: 'First, let’s decide what to prioritize, or what we care about most.',
+      child: <GameWrapper />,
     },
   ];
 

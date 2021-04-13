@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 
 import AppleSvg from '../../../assets/activity1/apple.svg';
 import CharacterSvg from '../../../assets/activity1/character3.svg';
-import ComputerSvg from '../../../assets/activity1/computer.svg';
 import LemonSvg from '../../../assets/activity1/lemon.svg';
 import PartyConfettiSvg from '../../../assets/activity1/party_confetti.svg';
+import ComputerSvg from '../../../assets/activity1/search-highlighted-computer.svg';
 
 import { CarouselContext } from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
