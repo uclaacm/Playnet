@@ -1,5 +1,15 @@
 @import 'variables';
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+}
+.half {
+  width: calc(#{$carousel-content-width} / 2);
+  margin: auto;
+  padding: 1vw 0px 1vw 0px;
+}
 
+// Selecting variables
 #variables-wrapper {
   display: grid;
   width: fit-content;

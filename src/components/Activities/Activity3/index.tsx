@@ -6,6 +6,8 @@ import PlantSprout from './Animations/PlantSprout';
 
 import '../../styles/Activity3.scss';
 import GameWrapper from './GameWrapper/GameWrapper';
+import '../../styles/Activity3Game.scss';
+import { GameIntroSlide1, GameIntroSlide2 } from './GameIntroSlides';
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
@@ -28,6 +30,13 @@ function Activity3(): JSX.Element {
       child: <PlantSprout />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
       animationTime: 2,
+    },
+    {
+      child: <GameIntroSlide1/>,
+      bottomText: 'Now it’s your turn! Imagine that a YouTube team invited you to help improve video recommendations.',
+    },
+    {
+      child: <GameIntroSlide2/>,
     },
     {
       child: <GameWrapper />,
