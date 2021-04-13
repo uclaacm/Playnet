@@ -100,4 +100,8 @@
 .feedback-link {
   color: lime;
   text-decoration: underline;
+
+  &:hover {
+    filter: brightness(90%);
+  }
 }
