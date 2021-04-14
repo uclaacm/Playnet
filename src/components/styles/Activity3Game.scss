@@ -1,5 +1,34 @@
 @import 'variables';
 
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.half {
+  width: calc(#{$carousel-content-width} / 2 - 2vw);
+  margin: auto;
+  padding: 1vw 0 1vw 0;
+}
+
+#arrow {
+  width: calc(#{$carousel-content-width} / 20);
+  height: calc(#{$carousel-content-width} / 20);
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url('../../assets/activity3/game/Arrow.svg');
+}
+
+#arrow-container {
+  margin-right: 18%;
+  float: right;
+  width: calc(#{$carousel-content-width} / 20);
+  height: calc(#{$carousel-content-width} / 18);
+}
+
+// Selecting variables
 #variables-wrapper {
   display: grid;
   width: fit-content;
