@@ -16,6 +16,11 @@ function Activity3(): JSX.Element {
       topText: 'Different teams work on different ways to improve the product.',
       animationTime: 2,
     },
+    {
+      child: <ManyEmployees start={false} />,
+      topText: 'Each team comes up with new ideas and makes their ideas into reality.',
+      animationTime: 2,
+    }
   ];
 
   return (
