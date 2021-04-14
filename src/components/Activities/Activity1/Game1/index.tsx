@@ -71,11 +71,10 @@ function CipherGame(props: CipherGameProps): JSX.Element {
 
   return (
     <div id={'game-wrapper'}>
-      {/* <div id={'fixed-star-counter'}> {starCounter()} </div> */}
       <div id={'fixed-star-counter'}>
         {!showSuccess &&
-        <button className="playnet-button" onClick={context.next}>
-          Skip
+        <button className="playnet-button playnet-btn-grey" onClick={context.next}>
+          Skip Level
         </button> }
       </div>
       <div id={'cipher-game-content'}>
