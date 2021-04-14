@@ -88,6 +88,12 @@
   align-items: center;
 }
 
+#fixed-star-counter {
+  position: absolute;
+  align-self: flex-end;
+  margin-right: 20px;
+}
+
 .happiness-bar {
   display: flex;
   flex-direction: row;
@@ -125,9 +131,10 @@
 .progress-bar-outer {
   height: 20px;
   width: 100%;
+  max-width: 300px;
   background-color: $progessbar-background-grey;
   border-radius: 50px;
-  margin: 20px;
+  margin: 5px;
 }
 
 .progress-bar-inner {

@@ -19,12 +19,12 @@ interface CipherGameRoundProps {
   round: string[];
   advanceGame: () => void;
   HASH_VAL: number;
+  isGameSoundMuted: boolean;
 }
 
 function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
   const { MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS, THRESHOLD_TO_HELP_PER_GAME } = Activity1Game1Values;
-  const { round, advanceGame, HASH_VAL } = props;
-  const storage = window.sessionStorage;
+  const { round, advanceGame, HASH_VAL, isGameSoundMuted } = props;
 
   const getShuffledCards = () => {
     let cards = [...round];
@@ -99,7 +99,7 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
   useEffect(()=> {
     const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
     speech.lang = 'de-DE';
-    if (!storage.getItem('isGameSoundMuted')) {speechSynthesis.speak(speech);}
+    if (!isGameSoundMuted) {speechSynthesis.speak(speech);}
   }, [slideIdx]);
 
   const advanceRound = (correct : boolean) => {
@@ -139,7 +139,7 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
         Happiness
       </div>
       <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound}
-        setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx} />
+        setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx} isGameSoundMuted={isGameSoundMuted}/>
     </div>
   );
 }

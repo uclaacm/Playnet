@@ -17,14 +17,14 @@ interface FillInBlankGamePageProps {
   advanceGame: () => void;
   pageInfo: CompressionGamePageComponents;
   slideNum: number;
+  isGameSoundMuted: boolean;
 }
 
 function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
-  const {pageInfo, slideNum, addTimeElapsed, advanceGame} = props;
+  const {pageInfo, slideNum, addTimeElapsed, advanceGame, isGameSoundMuted} = props;
   const {choices, correctIdx, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
-  const storage = window.sessionStorage;
 
-  const volume = storage.getItem('isGameSoundMuted') ? 0 : 0.5;
+  const volume = isGameSoundMuted ? 0 : 0.5;
   const [playCorrect] = useSound(CorrectSFX, { volume: volume });
   const [playIncorrect] = useSound(IncorrectSFX, { volume: volume });
 

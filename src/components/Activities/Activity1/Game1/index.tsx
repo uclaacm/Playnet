@@ -11,10 +11,11 @@ import CipherGameRound from './components/CipherGameRound';
 interface CipherGameProps {
   numStars: number,
   showSuccess: boolean,
+  skips: number;
 }
 
 function CipherGame(props: CipherGameProps): JSX.Element {
-  const {numStars, showSuccess} = props;
+  const {numStars, showSuccess, skips} = props;
 
   const items = ['APPLE', 'CAR', 'UFO', 'LEMON'];
   const nums = ['ONE', 'TWO', 'THREE'];
@@ -69,14 +70,28 @@ function CipherGame(props: CipherGameProps): JSX.Element {
     );
   };
 
+  const skipFunc = () => {
+    for (let i = 0; i < skips ? skips : 0; i++) {
+      context.next();
+    }
+  };
+
   return (
     <div id={'game-wrapper'}>
-      <h3> Try to guess what image the alien wants.</h3>
+      <div id={'fixed-star-counter'}>
+        {!showSuccess &&
+        <button className="playnet-button playnet-btn-grey" onClick={skipFunc}>
+          Skip Game :(
+        </button> }
+      </div>
       <div id={'cipher-game-content'}>
-        {starCounter()}
         {showSuccess ?
           displayYouGotStar() :
-          <CipherGameRound advanceGame={advanceGame} round={LEVELS[numStars]} HASH_VAL={hash}/>}
+          <CipherGameRound
+            advanceGame={advanceGame}
+            round={LEVELS[numStars]}
+            HASH_VAL={hash}
+            isGameSoundMuted={context.isGameSoundMuted}/>}
       </div>
     </div>
   );
