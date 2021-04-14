@@ -1,5 +1,5 @@
 import React from 'react';
-import { VARIABLE_POSITIONING } from './GameWrapperConstants';
+import { VARIABLE_POSITIONING } from './GameConstants';
 import VariableCard from './VariableCard';
 
 function GameWrapper(): JSX.Element {

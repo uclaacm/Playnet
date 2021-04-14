@@ -1,5 +1,18 @@
 import React from 'react';
 
+export enum A3_GAME_STATE {
+  PriorityExplanation,
+  PriorityChoices,
+  PriorityWeighing,
+  TimeAllocation,
+  DebuggingResults,
+  ABTestingExplanation,
+  ABTestingReport,
+  FinalReport,
+};
+
+export const ONE_TIME_STATES = [A3_GAME_STATE.PriorityExplanation, A3_GAME_STATE.ABTestingExplanation];
+
 export enum VARIABLES {
   CREDIBLE = 'Credible',
   RECENT_UPLOAD = 'Recent Upload',
@@ -7,7 +20,7 @@ export enum VARIABLES {
   POPULAR = 'Popular',
   SAME_CREATOR = 'Same Creator',
   SUBSCRIBED = 'Subscribed',
-}
+};
 
 export const VARIABLE_CONTENT : Record<VARIABLES, JSX.Element []> = {
   [VARIABLES.CREDIBLE]: [
