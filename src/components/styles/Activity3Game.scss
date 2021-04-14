@@ -1,0 +1,108 @@
+@import 'variables';
+
+.grid {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.half {
+  width: calc(#{$carousel-content-width} / 2 - 2vw);
+  margin: auto;
+  padding: 1vw 0 1vw 0;
+}
+
+#arrow {
+  width: calc(#{$carousel-content-width} / 20);
+  height: calc(#{$carousel-content-width} / 20);
+  background-origin: content-box;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url('../../assets/activity3/game/Arrow.svg');
+}
+
+#arrow-container {
+  margin-right: 18%;
+  float: right;
+  width: calc(#{$carousel-content-width} / 20);
+  height: calc(#{$carousel-content-width} / 18);
+}
+
+// Selecting variables
+#variables-wrapper {
+  display: grid;
+  width: fit-content;
+  margin: auto;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 1vw 1.5vw;
+  padding: 1.5vw;
+}
+
+$card-min-width: calc((#{$carousel-content-width} ) / 3 / 2);
+$card-height: calc(#{$card-min-width} - 20px);
+
+.not-selected {
+  border-color: $border-black;
+}
+
+.selected {
+  border-color: $playnet-orange;
+}
+
+.checkmark {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 2vw;
+  height: 2vw;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  background-image: url('../../assets/activity3/game/Selected.svg');
+}
+
+.variable-card {
+  min-width: $card-min-width;
+  width: 100%;
+  height: $card-height;
+  border-width: 6px;
+  border-style: solid;
+  border-radius: 25px;
+  background-color: $carousel-background-white;
+  font: $font-normal;
+  font-size: 22px;
+}
+
+.variable-image {
+  width: 100%;
+  height: calc(#{$card-height} - 53px);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin: auto;
+}
+
+#credible {
+  background-image: url('../../assets/activity3/game/Scales.svg');
+}
+
+#recent-upload {
+  background-image: url('../../assets/activity3/game/Clock.svg');
+}
+
+#same-content {
+  background-image: url('../../assets/activity3/game/Mirror.svg');
+}
+
+#popular {
+  background-image: url('../../assets/activity3/game/Heart.svg');
+}
+
+#same-creator {
+  background-image: url('../../assets/activity3/game/Brush.svg');
+}
+
+#subscribed {
+  background-image: url('../../assets/activity3/game/Subscribe.svg');
+}

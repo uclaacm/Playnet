@@ -33,7 +33,7 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
     }
   }, [reloadTime, props.start]);
 
-  return <ScalingSlide widthPx={1100} heightPx={386}>
+  return <ScalingSlide widthPx={1100} heightPx={354}>
     <>
       <div id={'many-employees'} />
       <div id={'grouping-teams'}>
