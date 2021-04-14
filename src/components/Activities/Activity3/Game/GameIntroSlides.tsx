@@ -1,7 +1,7 @@
 import React from 'react';
-import CatVideos from '../../../assets/activity3/game/CatVideos.svg';
-import WelcomeToTeam from '../../../assets/activity3/game/WelcomeToTeam.svg';
-import BouncingArrow from './Animations/BouncingArrow';
+import CatVideos from '../../../../assets/activity3/game/CatVideos.svg';
+import WelcomeToTeam from '../../../../assets/activity3/game/WelcomeToTeam.svg';
+import BouncingArrow from '../Animations/BouncingArrow';
 
 export function GameIntroSlide1(): JSX.Element {
   return <img src={WelcomeToTeam} alt='Woman saying welcome to the team!' style={{ maxHeight: '50vh' }} />;
