@@ -6,8 +6,14 @@ import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ComputerRecs from './Animations/ComputerRecs';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
+<<<<<<< HEAD
 import { GameIntroSlide1, GameIntroSlide2 } from './GameIntroSlides';
 import GameWrapper from './GameWrapper/GameWrapper';
+=======
+
+import '../../styles/Activity3.scss';
+import GameWrapper from './GameWrapper';
+>>>>>>> main
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
@@ -39,6 +45,7 @@ function Activity3(): JSX.Element {
       child: <GameIntroSlide2/>,
     },
     {
+      topText: 'First, let’s decide what to prioritize, or what we care about most.',
       child: <GameWrapper />,
     },
   ];
