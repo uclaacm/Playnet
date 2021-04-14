@@ -106,3 +106,33 @@ $card-height: calc(#{$card-min-width} - 20px);
 #subscribed {
   background-image: url('../../assets/activity3/game/Subscribe.svg');
 }
+
+.feature-slidebar {
+  // width: calc(0.8 * #{$carousel-content-width});
+  width: 900px;
+  height: 50px;
+  border-radius: 30px;
+  background-color: orange;
+  position: absolute;
+  margin-top: 24px;
+  margin-left: 50px;
+  // margin-left: calc(0.15 * #{$carousel-content-width});
+}
+
+.slider {
+  position: absolute;
+  width: 56px;
+  height: 98px;
+  margin-top: 0px;
+  background-image: url('../../assets/activity3/game/slider.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#slider1 {
+  margin-left: 350px;
+}
+
+#slider2 {
+  margin-left: 650px;
+}
