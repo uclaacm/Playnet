@@ -21,16 +21,13 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       targets: '#grouping-teams',
       opacity: [0, 1],
       duration: 1000,
-      
     });
 
     timeline.current?.add({
       targets: ['#grouping-teams', '#many-employees'],
       opacity: [1,0],
       duration: 1000,
-    });
-
-    timeline.current?.add({
+    }).add({
       targets: ['#two-employees', '#bubble-1', '#bubble-2'],
       opacity: [0, 1],
       duration: 1000,
@@ -49,12 +46,13 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
   }, []);
 
   useEffect(() => {
+    timeline.current?.pause();
+    timeline.current?.seek(0);
     if (props.start === true) {
       const timeout = setTimeout(() => {
         timeline.current?.play();
       }, 250);
-      timeline.current?.pause();
-      timeline.current?.seek(0);
+      
       return () => clearTimeout(timeout);
     }
   }, [reloadTime, props.start]);
