@@ -8,7 +8,7 @@ interface ManyEmployeesProps {
 }
 
 function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
-  const { reloadTime } = useContext(CarouselContext);
+  const { slideIdx, reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
 
   useEffect(() => {
@@ -21,6 +21,9 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       targets: '#grouping-teams',
       opacity: [0, 1],
       duration: 1000,
+      changeComplete: () => {
+        timeline.current?.pause();
+      },
     });
 
     timeline.current?.add({
@@ -31,6 +34,9 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       targets: ['#two-employees', '#bubble-1', '#bubble-2'],
       opacity: [0, 1],
       duration: 1000,
+      changeComplete: () => {
+        timeline.current?.pause();
+      },
     });
 
     timeline.current?.add({
@@ -41,13 +47,16 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       targets: '#bubble-3',
       opacity: [0, 1],
       duration: 1000,
+      changeComplete: () => {
+        timeline.current?.pause();
+      },
     });
 
   }, []);
 
   useEffect(() => {
     timeline.current?.pause();
-    timeline.current?.seek(0);
+    timeline.current?.seek((slideIdx - 1) * 2000);
     if (props.start === true) {
       const timeout = setTimeout(() => {
         timeline.current?.play();
@@ -55,7 +64,7 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       
       return () => clearTimeout(timeout);
     }
-  }, [reloadTime, props.start]);
+  }, [reloadTime, props.start, slideIdx]);
 
   return <ScalingSlide widthPx={1100} heightPx={386}>
     <>
