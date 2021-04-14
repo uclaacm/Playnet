@@ -19,4 +19,5 @@ function BouncingArrow(): JSX.Element {
   }, []);
   return <div id='arrow-container'><div id='arrow' /></div>;
 }
+
 export default BouncingArrow;

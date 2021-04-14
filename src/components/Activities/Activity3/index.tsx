@@ -24,7 +24,8 @@ function Activity3(): JSX.Element {
     },
     {
       child: <ComputerRecs />,
-      bottomText: 'When people are done watching a video, what kinds of videos should we recommend to watch next?',
+      bottomText: 'When people are done watching a video,',
+      bottomText2: ' what videos should we recommend be watched next?',
       animationTime: 5,
     },
     {
@@ -34,7 +35,8 @@ function Activity3(): JSX.Element {
     },
     {
       child: <GameIntroSlide1/>,
-      bottomText: 'Now it’s your turn! Imagine that a YouTube team invited you to help improve video recommendations.',
+      bottomText: 'Now it’s your turn! Imagine that a YouTube team invited you to',
+      bottomText2: 'help improve video recommendations.',
     },
     {
       child: <GameIntroSlide2/>,
