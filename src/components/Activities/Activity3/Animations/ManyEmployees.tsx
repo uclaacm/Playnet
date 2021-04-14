@@ -61,7 +61,7 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       const timeout = setTimeout(() => {
         timeline.current?.play();
       }, 250);
-      
+
       return () => clearTimeout(timeout);
     }
   }, [reloadTime, props.start, slideIdx]);
