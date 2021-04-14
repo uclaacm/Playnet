@@ -81,7 +81,7 @@ function CipherGame(props: CipherGameProps): JSX.Element {
       <div id={'fixed-star-counter'}>
         {!showSuccess &&
         <button className="playnet-button playnet-btn-grey" onClick={skipFunc}>
-          Skip Game &#58;&#40;
+          Skip Game :(
         </button> }
       </div>
       <div id={'cipher-game-content'}>
