@@ -17,10 +17,15 @@ function Activity3(): JSX.Element {
       animationTime: 2,
     },
     {
-      child: <ManyEmployees start={false} />,
+      child: <ManyEmployees start={true} />,
       topText: 'Each team comes up with new ideas and makes their ideas into reality.',
       animationTime: 2,
-    }
+    },
+    {
+      child: <ManyEmployees start={true} />,
+      topText: 'For example, a development team might ask the question: ',
+      animationTime: 2,
+    },
   ];
 
   return (

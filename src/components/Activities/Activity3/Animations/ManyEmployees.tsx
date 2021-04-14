@@ -21,9 +21,7 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
       targets: '#grouping-teams',
       opacity: [0, 1],
       duration: 1000,
-      // changeComplete: () => {
-      //   timeline.current?.pause();
-      // },
+      
     });
 
     timeline.current?.add({
