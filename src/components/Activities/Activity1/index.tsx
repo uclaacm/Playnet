@@ -63,7 +63,7 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={0} showSuccess={false}/>,
+      child: <CipherGame ref={ref} numStars={0} showSuccess={false} skips={5}/>,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
@@ -78,7 +78,7 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={1} showSuccess={false}/>,
+      child: <CipherGame ref={ref} numStars={1} showSuccess={false} skips={3}/>,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
@@ -93,7 +93,7 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={2} showSuccess={false}/>,
+      child: <CipherGame ref={ref} numStars={2} showSuccess={false} skips={1}/>,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
