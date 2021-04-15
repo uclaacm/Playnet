@@ -3,6 +3,7 @@ import React from 'react';
 // Session Storage
 export const SESSION_SKIP_STATES = 'statesToSkip';
 export const SESSION_CURRENT_STATE = 'gamestate';
+export const SESSION_VARIABLES = 'variables';
 
 // GAME STATES
 export enum A3_GAME_STATE {
@@ -51,6 +52,8 @@ for (let i = 0; i < STATE_ORDERING_LIST.length; i++) {
 export {NEXT_STATE_MAP};
 
 // GAME VARIABLES
+export const NUM_VARIABLES_SELECTED = 3;
+
 export enum VARIABLES {
   CREDIBLE = 'Credible',
   RECENT_UPLOAD = 'Recent Upload',
