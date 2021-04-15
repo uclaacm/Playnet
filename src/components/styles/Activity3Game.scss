@@ -111,10 +111,26 @@ $card-height: calc(#{$card-min-width} - 20px);
   width: 900px;
   height: 50px;
   border-radius: 30px;
-  background-color: orange;
   position: absolute;
   margin-top: 24px;
-  margin-left: 50px;
+
+  #section1 {
+    background-color: #ffba09;
+  }
+  
+  #section2 {
+    background-color: #a1d900;
+  }
+  
+  #section3 {
+    background-color: #04c439;
+  }
+}
+
+.feature-slidebar * {
+  border-radius: 30px;
+  height: 50px;
+  position: absolute;
 }
 
 .slider {
@@ -131,7 +147,7 @@ $card-height: calc(#{$card-min-width} - 20px);
  display: flex;
  flex-direction: row;
  justify-content: space-between; 
- margin: 1vh 1vw;
+ margin: 0 1vw 1vh 1vw;
 }
 
 .input-option {
@@ -145,4 +161,5 @@ $card-height: calc(#{$card-min-width} - 20px);
   width: 30%;
   font: $font-normal;
   outline: 0;
+  text-align: center;
 }
