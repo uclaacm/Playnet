@@ -12,7 +12,7 @@ export enum A3_GAME_STATE {
   PriorityWeighing  = 'PriorityWeighing',
   TimeAllocation  = 'TimeAllocation',
   DebuggingResults  = 'DebuggingResults',
-  ABTestingExplanation  = 'ABTestingExplanation', 
+  ABTestingExplanation  = 'ABTestingExplanation',
   ABTestingReport  = 'ABTestingReport',
   FinalReport  = 'FinalReport',
 }
