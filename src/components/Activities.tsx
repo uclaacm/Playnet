@@ -48,7 +48,7 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
             disableHover={true} />
         </div> */}
       </nav>
-      <h4>Done? <Link to={'/feedback'}>Let us know if you liked it!</Link></h4>
+      <h4>Done? <Link to={'/feedback'} className={'feedback-link'}>Let us know if you liked it!</Link></h4>
     </div>
   );
 }

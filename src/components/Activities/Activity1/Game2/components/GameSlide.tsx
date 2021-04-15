@@ -16,20 +16,18 @@ interface GameSlideProps {
   textDefault: string;
   textIncorrect: string;
   imgs: string[],
+  isGameSoundMuted: boolean;
 }
 
 function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
-  const storage = window.sessionStorage;
+  const {correctIdx, advanceGame, textDefault, textIncorrect, imgs, isGameSoundMuted} = props;
 
-  const volume = storage.getItem('isGameSoundMuted') ? 0 : 0.5;
+  const volume = isGameSoundMuted ? 0 : 0.5;
   const [playCorrect] = useSound(CorrectSFX, { volume: volume});
   const [playIncorrect] = useSound(IncorrectSFX, { volume: volume});
-
-
-  const {correctIdx, advanceGame, textDefault, textIncorrect, imgs} = props;
 
   const [img0, img1] = imgs;
 
@@ -62,7 +60,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   useEffect(() => {
     const speech = new SpeechSynthesisUtterance(incorrect ? textIncorrect : textDefault);
     speech.lang = 'en-US';
-    if (!storage.getItem('isGameSoundMuted')) {speechSynthesis.speak(speech);}
+    if (!isGameSoundMuted) {speechSynthesis.speak(speech);}
 
     return () => speechSynthesis.cancel();
   }, [imgs, incorrect]);
