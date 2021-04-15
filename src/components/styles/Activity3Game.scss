@@ -108,7 +108,6 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 .feature-slidebar {
-  // width: calc(0.8 * #{$carousel-content-width});
   width: 900px;
   height: 50px;
   border-radius: 30px;
@@ -116,7 +115,6 @@ $card-height: calc(#{$card-min-width} - 20px);
   position: absolute;
   margin-top: 24px;
   margin-left: 50px;
-  // margin-left: calc(0.15 * #{$carousel-content-width});
 }
 
 .slider {
@@ -129,10 +127,22 @@ $card-height: calc(#{$card-min-width} - 20px);
   background-size: contain;
 }
 
-#slider1 {
-  margin-left: 350px;
+.slider-input-container {
+ display: flex;
+ flex-direction: row;
+ justify-content: space-between; 
+ margin: 1vh 1vw;
 }
 
-#slider2 {
-  margin-left: 650px;
+.input-option {
+  width: 30%;
+  margin: 1%;
+}
+
+.input-option input {
+  border-radius: 10px;
+  border: 6px solid #A5A5A5;
+  width: 30%;
+  font: $font-normal;
+  outline: 0;
 }
