@@ -54,7 +54,7 @@ function getNextStates(index: number): A3_GAME_STATE[] {
 
 export const NEXT_STATE_MAP = STATE_ORDERING_LIST.reduce((ret, state, index) => {
   return {...ret, [state]: getNextStates(index)};
-}, {});
+}, {}) as {[key in A3_GAME_STATE]: A3_GAME_STATE[]};
 
 // GAME VARIABLES
 export enum VARIABLES {

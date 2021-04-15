@@ -35,7 +35,7 @@ function Game(): JSX.Element {
 
   const goNextState = (): void => {
     // go next state + skipping states that should be skipped
-    const nextPossibleStates = NEXT_STATE_MAP.get(state);
+    const nextPossibleStates = NEXT_STATE_MAP[state];
     const nextState = nextPossibleStates?.find(element => !statesToSkip.includes(element));
     if (!nextState) {
       next();
