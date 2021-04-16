@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: center;
   display: flex;
-  height: calc(100vh - 220px);
+  height: $min-carousel-height;
 
   @media (max-width: $mobile-width) {
     justify-content: flex-start;
@@ -54,7 +54,7 @@
   max-width: 40%;
   max-height: 90%;
   width: 90%;
-  height: fit-content;
+  height: 100%;
   margin: 2%;
   border-radius: 20px;
 
@@ -65,8 +65,9 @@
 }
 
 .gif img {
-  width: 90%;
+  width: auto;
   border-radius: 20px;
+  height: 100%;
 
   @media (max-width: $mobile-width) {
     width: 35%;

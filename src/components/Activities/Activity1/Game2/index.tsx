@@ -55,10 +55,10 @@ function AmbiguousPhrasingGame(): JSX.Element {
 
   return (
     <div id={'game-wrapper'}>
-      <h3> Try to guess what the alien is talking about.</h3>
       <GameSlide
         {...slides[slideIdx]}
         advanceGame={advanceGame}
+        isGameSoundMuted={context.isGameSoundMuted}
       />
     </div>
   );
