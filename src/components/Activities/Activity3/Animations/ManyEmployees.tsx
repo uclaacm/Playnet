@@ -3,11 +3,7 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import ScalingSlide from '../../../shared/ScalingSlide';
 
-interface ManyEmployeesProps {
-  start: boolean,
-}
-
-function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
+function ManyEmployees(): JSX.Element {
   const { slideIdx, reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
 
@@ -59,17 +55,18 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (props.start === true) {
-      timeline.current?.seek((slideIdx - 1)  * 2000);
-      const timeout = setTimeout(() => {
-        timeline.current?.play();
-      }, 250);
-      return () => clearTimeout(timeout);
+    if (slideIdx === 0) { //As there is no animation for slide 1
+      timeline.current?.pause();
     }
     else {
-    timeline.current?.pause();
+    timeline.current?.seek((slideIdx - 1)  * 2000);
+    const timeout = setTimeout(() => {
+      timeline.current?.play();
+    }, 250);
+    return () => clearTimeout(timeout);
     }
-  }, [reloadTime, slideIdx, props.start]);
+
+  }, [reloadTime, slideIdx]);
 
   return <ScalingSlide widthPx={1100} heightPx={386}>
     <>
