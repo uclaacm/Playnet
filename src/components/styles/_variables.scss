@@ -15,6 +15,7 @@ $carousel-background-white: rgba(255, 255, 255, 0.95);
 $progessbar-background-grey: #d3d3d3;
 $bg-footer: #fff;
 $border-black: black;
+$input-border-gray: #a5a5a5;
 
 // Sizes
 $head-foot-height: 64px;
@@ -26,6 +27,9 @@ $carousel-button-px: 64px;
 $carousel-content-margin-px: 24px;
 $fit-carousel-width-percent: 90%;
 $total-carousel-margin-px: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
+
+$slider-height-px: 98px;
+$slider-border-radius: 30px;
 
 // Carousel Width
 $carousel-content-width: calc((100vw - 2 * #{$total-carousel-margin-px}) * #{$fit-carousel-width-percent / 100%});

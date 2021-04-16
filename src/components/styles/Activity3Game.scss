@@ -107,59 +107,94 @@ $card-height: calc(#{$card-min-width} - 20px);
   background-image: url('../../assets/activity3/game/Subscribe.svg');
 }
 
-.feature-slidebar {
-  width: 900px;
-  height: 50px;
-  border-radius: 30px;
-  position: absolute;
-  margin-top: 24px;
+//Text Input for Weighting Features Slider
+.slider-text-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; 
+  margin: 0 1vw 1vh 1vw;
+ }
+ 
+ .input-option {
+   width: 30%;
+   margin: 1%;
+ }
+ 
+ .input-option input {
+   border-radius: 10px;
+   border: 6px solid $input-border-gray;
+   width: 30%;
+   font: $font-normal;
+   outline: 0;
+   text-align: center;
+ }
 
-  #section1 {
-    background-color: #ffba09;
-  }
-  
-  #section2 {
-    background-color: #a1d900;
-  }
-  
-  #section3 {
-    background-color: #04c439;
-  }
+//Click and Drag Input Slider for Weighting Features
+.input-slider-container {
+  display: grid;
+  width: 90%;
+  height: $slider-height-px;
+  grid-template-columns: 100%;
+  margin: 3% 5%;
+  border-radius: $slider-border-radius;
 }
 
-.feature-slidebar * {
-  border-radius: 30px;
+.slider-background-color {
+  grid-row: 1;
+  grid-column: 1;
+  border-radius: $slider-border-radius;
   height: 50px;
-  position: absolute;
+  align-self: center;
+  background: linear-gradient(to right,
+  #ffba09 0%, #ffba09 var(--sec1-percent),
+  #a1d900 var(--sec1-percent), #a1d900 var(--sec2-percent),
+  #04c439 var(--sec2-percent), #04c439 var(--sec3-percent));
 }
 
-.slider {
-  position: absolute;
+// Modified from https://codepen.io/thebabydino/pen/gOYqdEd
+@mixin slider-icon {
   width: 56px;
-  height: 98px;
-  margin-top: 0px;
-  background-image: url('../../assets/activity3/game/slider.svg');
-  background-repeat: no-repeat;
-  background-size: contain;
-}
-
-.slider-input-container {
- display: flex;
- flex-direction: row;
- justify-content: space-between; 
- margin: 0 1vw 1vh 1vw;
-}
-
-.input-option {
-  width: 30%;
-  margin: 1%;
-}
-
-.input-option input {
-  border-radius: 10px;
-  border: 6px solid #A5A5A5;
-  width: 30%;
-  font: $font-normal;
+  height: $slider-height-px;
+  border: 0;
   outline: 0;
-  text-align: center;
+  background: url('../../assets/activity3/game/slider.svg');
+  pointer-events: auto;
+}
+
+@mixin slidebar-track {
+  background: none; /* get rid of Firefox track background */
+  height: 100%;
+  width: 100%;
+  outline: 0;
+}
+
+.input-slidebar {
+  grid-row: 1;
+  grid-column: 1;
+  width: 100%;
+  outline: 0;
+  -webkit-appearance: none;
+  background: none; /* get rid of white Chrome background */
+  margin: 0;
+  pointer-events: none; /* let clicks pass through */
+  
+  &::-webkit-slider-runnable-track, &::-webkit-slider-thumb, & {
+		-webkit-appearance: none
+	}
+
+  &::-webkit-slider-runnable-track {
+    @include slidebar-track;
+  }
+
+  &::-moz-range-track {
+    @include slidebar-track;
+  }
+  
+  &::-webkit-slider-thumb {
+    @include slider-icon;
+  }
+
+  &::-moz-range-thumb {
+    @include slider-icon;
+  }
 }

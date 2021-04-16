@@ -1,22 +1,14 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { VARIABLES } from './GameWrapperConstants';
 import '../../../styles/Activity3Game.scss';
-import ScalingSlide from '../../../shared/ScalingSlide';
 
 interface FeatureSlidebarProps {
   choices: VARIABLES[]
 }
 
 function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
-  const slidebarWidthPx = 1100;
-  const sliderWidthPx = 56;
-  const slidebarMarginAndWidthPx = 1200;
-  const slidebarMarginPx = (slidebarMarginAndWidthPx - slidebarWidthPx) / 2;
-
   const [weight1, setWeight1] = useState(33);
   const [weight2, setWeight2] = useState(66);
-  const prevX = useRef<number>(0);
-  const isDragging = useRef(false);
 
   const handleInputWeight = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const valString: string = e.currentTarget.value.replace('%', '').trim();
@@ -31,6 +23,11 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
       case 3:
         adjustWeights3(val);
     }
+  }
+
+  const handleNetWeight2 = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val: number = e.currentTarget.value.trim() === '' ? 0 : parseInt(e.currentTarget.value);
+    adjustWeights2(val - weight1);
   }
 
   const scrollValue = (index: number) => (e: React.WheelEvent) => {
@@ -60,12 +57,16 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     }
   }
 
-  const adjustWeights2 = (val: number) => {
-    if (val < 0 || val > 100) return;
+  const adjustWeights2 = (val: number) => {//val is percent that weight2 takess, not net position
+    if (val > 100) return;
     let upperBound = val + weight1;
     if (upperBound > 100) {
       setWeight1(weight1 - (upperBound - 100));
       upperBound = 100;
+    } else if (val < 0) {
+      setWeight2(weight1+ val);
+      setWeight1( weight1 + val);
+      return;
     }
     setWeight2(upperBound);
   }
@@ -79,25 +80,6 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     }
   }
 
-  const mouseDownSlider1 = (e: React.MouseEvent<HTMLInputElement>) => {
-    prevX.current = e.pageX;
-    console.log("start x: " + e.pageX);
-    isDragging.current = true;
-  }
-
-  const trackMouse = (e: React.MouseEvent<HTMLElement>) => {
-    if (isDragging.current) {
-      console.log("x: " + e.pageX);
-      const diff: number = e.pageX - prevX.current;
-      prevX.current = e.pageX;
-      adjustWeights1(diff / sliderWidthPx * 100 + weight1);
-    }
-  }
-
-  const mouseUpSlider1 = (e: React.MouseEvent<HTMLElement>) => {
-    console.log("end x: " + e.pageX);
-    isDragging.current = false;
-  }
   return (
     <>
       <p>
@@ -106,7 +88,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
       <p>
         Adjust the slider so that the most important variables take up the most space.
       </p>
-      <div className='slider-input-container'>
+      <div className='slider-text-input-container'>
         <div className='input-option'>
           <div>
             <div className='variable-image' id={props.choices[0].toLowerCase().replace(' ', '-')} />
@@ -114,7 +96,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
           </div>
           <input className='slider-input'
             type='text'
-            value={weight1+'%'}
+            value={weight1 + '%'}
             onWheel={scrollValue(1)}
             onChange={handleInputWeight(1)}
           />
@@ -125,7 +107,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
             {props.choices[1]}
           </div>
           <input className='slider-input'
-            value={(weight2 - weight1)+'%'}
+            value={(weight2 - weight1) + '%'}
             onChange={handleInputWeight(2)}
             onWheel={scrollValue(2)}
           />
@@ -136,45 +118,24 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
             {props.choices[2]}
           </div>
           <input className='slider-input'
-            value={(100 - weight2)+'%'}
+            value={(100 - weight2) + '%'}
             onWheel={scrollValue(3)}
             onChange={handleInputWeight(3)}
           />
         </div>
       </div>
-      <ScalingSlide widthPx={slidebarMarginAndWidthPx} heightPx={113}>
-        <>
-          <div className='feature-slidebar' style={{ marginLeft: slidebarMarginPx }}>
-            <div id='section1'
-              style={{
-                // marginLeft: slidebarMarginPx + 'px',
-                width: (weight1 / 100) * slidebarWidthPx + 'px',
-              }}
-            />
-            <div id='section2'
-              style={{
-                marginLeft: (weight1 / 100 * slidebarWidthPx) + 'px',
-                width: (weight2 - weight1) / 100 * slidebarWidthPx + 'px',
-              }}
-            />
-            <div id='section3'
-              style={{
-                marginLeft: weight2 / 100 * slidebarWidthPx + 'px',
-                width: slidebarWidthPx * (1 - weight2 / 100) + 'px',
-              }}
-            />
-          </div>
-          <div className='slider' id='slider1'
-            onMouseDown={mouseDownSlider1}
-            onMouseMove={trackMouse}
-            onMouseUp={mouseUpSlider1}
-            style={{ marginLeft: (weight1 / 100 * slidebarWidthPx) + slidebarMarginPx - sliderWidthPx / 2 + 'px' }}
-          />
-          <div className='slider' id='slider2'
-            style={{ marginLeft: (weight2) / 100 * slidebarWidthPx + slidebarMarginPx - sliderWidthPx / 2 + 'px' }}
-          />
-        </>
-      </ScalingSlide>
+
+      <div className='input-slider-container'>
+        <div className='slider-background-color'
+          style={{
+            '--sec1-percent': weight1 + '%',
+            '--sec2-percent': weight2-weight1+'%',
+            '--sec3-percent': 100-weight2+'%',
+          }}
+        />
+        <input type="range" className="input-slidebar" min="0" max="100" value={weight1} onChange={handleInputWeight(1)}/>
+        <input type="range" className="input-slidebar" min="0" max="100" value={weight2} onChange={handleNetWeight2}/>
+      </div>
     </>
   );
 }
