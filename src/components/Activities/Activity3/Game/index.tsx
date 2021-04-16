@@ -26,7 +26,7 @@ function Game(): JSX.Element {
 
     // setup statesToSkip from storage
     const tempSkipStates = storedSkipStates?.split(',').map(element => element as A3_GAME_STATE);
-    const curSkipStates = tempSkipStates ? tempSkipStates : [A3_GAME_STATE.EmptyState];
+    const curSkipStates = tempSkipStates ?? [A3_GAME_STATE.EmptyState];
     setStatesToSkip(curSkipStates, () => {
       // setup state after setting up statesToSkip
       const curState = (storedState) ? (storedState as A3_GAME_STATE) : A3_GAME_STATE.PriorityExplanation;
@@ -35,7 +35,7 @@ function Game(): JSX.Element {
 
     // setup variableSelection from storage
     const tempVariables = storedVariables?.split(',').map(element => element as VARIABLES);
-    const curVariables = tempVariables ? tempVariables : [];
+    const curVariables = tempVariables ?? [];
     setVariableSelection(curVariables);
     return () => {
       storage.removeItem(SESSION_CURRENT_STATE);

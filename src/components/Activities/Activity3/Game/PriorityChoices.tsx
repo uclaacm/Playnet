@@ -38,17 +38,15 @@ function PriorityChoices(props: PriorityChoiceProps): JSX.Element {
     <summary>
       Now you’ve seen some variables we can consider when deciding what videos to recommend!
       <br />
-    Which ones do you think lead to the best recommendations? Choose 3 from the list below.
+      Which ones do you think lead to the best recommendations? Choose 3 from the list below.
     </summary>
     <div id='variables-wrapper'>
       {
-                Object.values(VARIABLES).map(variable =>
-                  
-            <VariableCard id={variable} key={variable}
-              select={() => selectVariable(variable)}
-              deselect={() => deselectVariable(variable)}
-              initialSelected={initialVariables.includes(variable)} />
-          
+        Object.values(VARIABLES).map(variable =>
+          <VariableCard id={variable} key={variable}
+            select={() => selectVariable(variable)}
+            deselect={() => deselectVariable(variable)}
+            initialSelected={initialVariables.includes(variable)} />,
         )
       }
     </div>
