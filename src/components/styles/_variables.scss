@@ -32,9 +32,14 @@ $total-carousel-margin-px: $carousel-padding-px + $carousel-button-px + $carouse
 // Carousel Width
 $carousel-content-width: calc((100vw - 2 * #{$total-carousel-margin-px}) * #{$fit-carousel-width-percent / 100%});
 
+/* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 :export {
+  /* stylelint-disable-next-line property-no-unknown */
   carousel_padding_px: $carousel-padding-px;
+  /* stylelint-disable-next-line property-no-unknown */
   carousel_button_px: $carousel-button-px;
+  /* stylelint-disable-next-line property-no-unknown */
   carousel_content_margin_px: $carousel-content-margin-px;
+  /* stylelint-disable-next-line property-no-unknown */
   fit_carousel_width_percent: $fit-carousel-width-percent;
 }
