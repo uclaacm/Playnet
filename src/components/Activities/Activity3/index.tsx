@@ -32,7 +32,7 @@ function Activity3(): JSX.Element {
     {
       child: <List />,
       bottomText: '...the list goes on.',
-      animationTime: 3,
+      animationTime: 5,
     },
     {
       child: <PlantSprout />,

@@ -35,20 +35,20 @@ function List(): JSX.Element {
     'Video Creator',
     'Video Variety',
   ];
-  const MAPPED_PARAMETERS = RECOMMENDATION_PARAMETERS.map((element) => <><p/>{element}</>);
+  const MAPPED_PARAMETERS = RECOMMENDATION_PARAMETERS.map((element) => <p>{element}</p>);
 
   useEffect(() => {
     timeline.current = anime.timeline({
       autoplay: false,
     }).add({
       targets: '#animated-list',
-      translateY: -2000,
-      duration: 3000,
+      translateY: -2500,
+      duration: 2500,
       easing: 'easeInQuad',
     }).add({
       targets: '#animated-list',
       translateY: -4600,
-      duration: 3000,
+      duration: 2500,
       easing: 'easeOutQuad',
     });
   }, []);
