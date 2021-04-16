@@ -32,6 +32,15 @@ const STATE_ORDERING_LIST = [
 
 export const ONE_TIME_STATES = [A3_GAME_STATE.PriorityExplanation, A3_GAME_STATE.ABTestingExplanation];
 
+/**
+ * recursively get next state
+ * if state is in ONE_TIME_STATES, then also try to add in the next state
+ *
+ * @param index - index of state to getNextStates of
+ * @returns - gets array of next possible states
+ * eg: getNextStates(PriorityChoices) = [PriorityWeighing]
+ *     getNextStates(EmptyState) = [PriorityExplanation, PriorityChoices]
+ */
 function getNextStates(index: number): A3_GAME_STATE[] {
   const array: A3_GAME_STATE[] = [];
   if (index < STATE_ORDERING_LIST.length - 1) {
@@ -44,16 +53,12 @@ function getNextStates(index: number): A3_GAME_STATE[] {
   return array;
 }
 
-const NEXT_STATE_MAP = new Map<A3_GAME_STATE, A3_GAME_STATE[]>();
-for (let i = 0; i < STATE_ORDERING_LIST.length; i++) {
-  NEXT_STATE_MAP.set(STATE_ORDERING_LIST[i], getNextStates(i));
-}
-
-export {NEXT_STATE_MAP};
+export const NEXT_STATE_MAP = STATE_ORDERING_LIST.reduce((ret, state, index) => {
+  return {...ret, [state]: getNextStates(index)};
+}, {}) as {[key in A3_GAME_STATE]: A3_GAME_STATE[]};
 
 // GAME VARIABLES
 export const NUM_VARIABLES_SELECTED = 3;
-
 export enum VARIABLES {
   CREDIBLE = 'Credible',
   RECENT_UPLOAD = 'Recent Upload',
@@ -86,8 +91,3 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
     <>subs</>,
   ],
 };
-
-export const VARIABLE_POSITIONING: VARIABLES[][] = [
-  [VARIABLES.CREDIBLE, VARIABLES.RECENT_UPLOAD, VARIABLES.SAME_CONTENT],
-  [VARIABLES.POPULAR, VARIABLES.SAME_CREATOR, VARIABLES.SUBSCRIBED],
-];

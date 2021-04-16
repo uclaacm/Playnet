@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { GameContext } from '.';
-import { NUM_VARIABLES_SELECTED, VARIABLES, VARIABLE_POSITIONING } from './GameConstants';
+import { NUM_VARIABLES_SELECTED, VARIABLES } from './GameConstants';
 import VariableCard from './VariableCard';
 
 interface PriorityChoiceProps {
@@ -42,13 +42,13 @@ function PriorityChoices(props: PriorityChoiceProps): JSX.Element {
     </summary>
     <div id='variables-wrapper'>
       {
-        VARIABLE_POSITIONING.map(rowElements =>
-          rowElements.map(variable =>
+                Object.values(VARIABLES).map(variable =>
+                  
             <VariableCard id={variable} key={variable}
               select={() => selectVariable(variable)}
               deselect={() => deselectVariable(variable)}
-              initialSelected={initialVariables.includes(variable)} />,
-          ),
+              initialSelected={initialVariables.includes(variable)} />
+          
         )
       }
     </div>
