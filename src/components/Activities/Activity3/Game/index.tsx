@@ -5,11 +5,12 @@ import DemoNextButton from './DemoNextButton';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, VARIABLES } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 
-export const GameContext = React.createContext<Partial<{
+interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
   goNextState: () => void,
   variableSelection: VARIABLES[],
-}>>({});
+}
+export const GameContext = React.createContext<Partial<IGameContext>>({});
 
 function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);
@@ -83,7 +84,7 @@ function Game(): JSX.Element {
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
     [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
     [A3_GAME_STATE.PriorityChoices]:
-    <><PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} /></>,
+      <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]: <>2<DemoNextButton /></>,
     [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
     [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
