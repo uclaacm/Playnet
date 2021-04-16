@@ -11,6 +11,15 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
   const { slideIdx, reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
 
+  const fadeIn = {
+    opacity: [0, 1],
+    duration: 1000,
+  };
+  const fadeOut = {
+    opacity: [1, 0],
+    duration: 1000,
+  };
+
   useEffect(() => {
     timeline.current = anime.timeline({
       autoplay: false,
@@ -19,8 +28,7 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
 
     timeline.current?.add({
       targets: '#grouping-teams',
-      opacity: [0, 1],
-      duration: 1000,
+      ...fadeIn,
       changeComplete: () => {
         timeline.current?.pause();
       },
@@ -28,12 +36,10 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
 
     timeline.current?.add({
       targets: ['#grouping-teams', '#many-employees'],
-      opacity: [1,0],
-      duration: 1000,
+      ...fadeOut,
     }).add({
       targets: ['#two-employees', '#bubble-1', '#bubble-2'],
-      opacity: [0, 1],
-      duration: 1000,
+      ...fadeIn,
       changeComplete: () => {
         timeline.current?.pause();
       },
@@ -41,12 +47,10 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
 
     timeline.current?.add({
       targets: ['#bubble-1', '#bubble-2'],
-      opacity: [1, 0],
-      duration: 1000,
+      ...fadeOut,
     }).add({
       targets: '#bubble-3',
-      opacity: [0, 1],
-      duration: 1000,
+      ...fadeIn,
       changeComplete: () => {
         timeline.current?.pause();
       },
@@ -55,16 +59,17 @@ function ManyEmployees(props: ManyEmployeesProps): JSX.Element {
   }, []);
 
   useEffect(() => {
-    timeline.current?.pause();
-    timeline.current?.seek((slideIdx - 1) * 2000);
     if (props.start === true) {
+      timeline.current?.seek((slideIdx - 1)  * 2000);
       const timeout = setTimeout(() => {
         timeline.current?.play();
       }, 250);
-
       return () => clearTimeout(timeout);
     }
-  }, [reloadTime, props.start, slideIdx]);
+    else {
+    timeline.current?.pause();
+    }
+  }, [reloadTime, slideIdx, props.start]);
 
   return <ScalingSlide widthPx={1100} heightPx={386}>
     <>
