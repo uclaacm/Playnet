@@ -35,7 +35,7 @@ function List(): JSX.Element {
     'Video Creator',
     'Video Variety',
   ];
-  const MAPPED_PARAMETERS = RECOMMENDATION_PARAMETERS.map((element) => <p>{element}</p>);
+  const MAPPED_PARAMETERS = RECOMMENDATION_PARAMETERS.map((element) => <p key={element}>{element}</p>);
 
   useEffect(() => {
     timeline.current = anime.timeline({
@@ -59,7 +59,7 @@ function List(): JSX.Element {
     timeline.current?.play();
   }, [reloadTime]);
 
-  return <ScalingSlide>
+  return <ScalingSlide widthPx={1060}>
     <div id={'animated-list-box'}>
       <div id={'animated-list'}>
         {MAPPED_PARAMETERS}
