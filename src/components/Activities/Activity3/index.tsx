@@ -12,14 +12,24 @@ import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
     {
-      child: <ManyEmployees start={false} />,
+      child: <ManyEmployees />,
       bottomText: 'Youtube has around 10,000 employees',
       bottomText2: 'That\'s a lot of people--what are they all doing?',
       animationTime: 2,
     },
     {
-      child: <ManyEmployees start={true} />,
+      child: <ManyEmployees />,
       bottomText2: 'Different teams work on different ways to improve the product.',
+      animationTime: 2,
+    },
+    {
+      child: <ManyEmployees />,
+      topText: 'Each team comes up with new ideas and makes their ideas into reality.',
+      animationTime: 2,
+    },
+    {
+      child: <ManyEmployees />,
+      topText: 'For example, a development team might ask the question: ',
       animationTime: 2,
     },
     {
