@@ -129,8 +129,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
         <div className='slider-background-color'
           style={{
             '--sec1-percent': weight1 + '%',
-            '--sec2-percent': weight2-weight1+'%',
-            '--sec3-percent': 100-weight2+'%',
+            '--sec2-percent': weight2 + '%',
           }}
         />
         <input type="range" className="input-slidebar" min="0" max="100" value={weight1} onChange={handleInputWeight(1)}/>

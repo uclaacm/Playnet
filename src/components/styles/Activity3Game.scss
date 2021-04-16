@@ -148,7 +148,7 @@ $card-height: calc(#{$card-min-width} - 20px);
   background: linear-gradient(to right,
   #ffba09 0%, #ffba09 var(--sec1-percent),
   #a1d900 var(--sec1-percent), #a1d900 var(--sec2-percent),
-  #04c439 var(--sec2-percent), #04c439 var(--sec3-percent));
+  #04c439 var(--sec2-percent), #04c439 100%);
 }
 
 // Modified from https://codepen.io/thebabydino/pen/gOYqdEd
