@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
-import { VARIABLES } from './GameWrapperConstants';
+import React, { useContext, useEffect, useState } from 'react';
 import '../../../styles/Activity3Game.scss';
+import { GameContext } from '.';
 
-interface FeatureSlidebarProps {
-  choices: VARIABLES[]
-}
+function FeatureSlidebar(): JSX.Element {
+  const { goNextState, variableSelection, featureWeights, setFeatureWeights } = useContext(GameContext);
+  const [weight1, setWeight1] = useState(featureWeights[0]);
+  const [weight2, setWeight2] = useState(featureWeights[1] + featureWeights[0]);
 
-function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
-  const [weight1, setWeight1] = useState(33);
-  const [weight2, setWeight2] = useState(66);
+  useEffect(() => {
+    const newWeights = [weight1, weight2 - weight1, 100 - weight2];
+    setFeatureWeights(newWeights);
+  }, [weight1, weight2]);
 
   const handleInputWeight = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const valString: string = e.currentTarget.value.replace('%', '').trim();
@@ -23,12 +25,12 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
       case 3:
         adjustWeights3(val);
     }
-  }
+  };
 
   const handleNetWeight2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val: number = e.currentTarget.value.trim() === '' ? 0 : parseInt(e.currentTarget.value);
     adjustWeights2(val - weight1);
-  }
+  };
 
   const scrollValue = (index: number) => (e: React.WheelEvent) => {
     let adjustment = 0;
@@ -47,7 +49,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
       case 3:
         adjustWeights3(100 - weight2 + adjustment);
     }
-  }
+  };
 
   const adjustWeights1 = (val: number) => {
     if (val < 0 || val > 100) return;
@@ -55,21 +57,23 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     if (val > weight2) {
       setWeight2(val);
     }
-  }
+  };
 
   const adjustWeights2 = (val: number) => {//val is percent that weight2 takess, not net position
     if (val > 100) return;
     let upperBound = val + weight1;
     if (upperBound > 100) {
-      setWeight1(weight1 - (upperBound - 100));
+      const newWeight1 = weight1 - (upperBound - 100);
+      setWeight1(newWeight1);
       upperBound = 100;
     } else if (val < 0) {
-      setWeight2(weight1+ val);
-      setWeight1( weight1 + val);
+      const newWeight1 = weight1 + val;
+      setWeight2(newWeight1);
+      setWeight1(newWeight1);
       return;
     }
     setWeight2(upperBound);
-  }
+  };
 
   const adjustWeights3 = (val: number) => {
     if (val < 0 || val > 100) return;
@@ -78,7 +82,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     if (newWeight2 < weight1) {
       setWeight1(newWeight2);
     }
-  }
+  };
 
   return (
     <>
@@ -90,9 +94,9 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
       </p>
       <div className='slider-text-input-container'>
         <div className='input-option'>
-          <div>
-            <div className='variable-image' id={props.choices[0].toLowerCase().replace(' ', '-')} />
-            {props.choices[0]}
+          <div className='input-text-display-container'>
+            <div className='variable-image' id={variableSelection[0].toLowerCase().replace(' ', '-')} />
+            <div className='feature-text'>{variableSelection[0]}</div>
           </div>
           <input className='slider-input'
             type='text'
@@ -102,9 +106,9 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
           />
         </div>
         <div className='input-option'>
-          <div>
-            <div className='variable-image' id={props.choices[1].toLowerCase().replace(' ', '-')} />
-            {props.choices[1]}
+          <div className='input-text-display-container'>
+            <div className='variable-image' id={variableSelection[1].toLowerCase().replace(' ', '-')} />
+            <div className='feature-text'>{variableSelection[1]}</div>
           </div>
           <input className='slider-input'
             value={(weight2 - weight1) + '%'}
@@ -113,9 +117,9 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
           />
         </div>
         <div className='input-option'>
-          <div>
-            <div className='variable-image' id={props.choices[2].toLowerCase().replace(' ', '-')} />
-            {props.choices[2]}
+          <div className='input-text-display-container'>
+            <div className='variable-image' id={variableSelection[2].toLowerCase().replace(' ', '-')} />
+            <div className='feature-text'>{variableSelection[2]}</div>
           </div>
           <input className='slider-input'
             value={(100 - weight2) + '%'}
@@ -132,9 +136,11 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
             '--sec2-percent': weight2 + '%',
           }}
         />
-        <input type="range" className="input-slidebar" min="0" max="100" value={weight1} onChange={handleInputWeight(1)}/>
-        <input type="range" className="input-slidebar" min="0" max="100" value={weight2} onChange={handleNetWeight2}/>
+        <input type="range" className="input-slidebar" min="0" max="100" value={weight1} onChange={handleInputWeight(1)} />
+        <input type="range" className="input-slidebar" min="0" max="100" value={weight2} onChange={handleNetWeight2} />
       </div>
+      <button className='playnet-button' onClick={goNextState}
+        style={{ width: '40%' }} >Continue</button>
     </>
   );
 }
