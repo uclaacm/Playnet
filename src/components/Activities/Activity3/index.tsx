@@ -4,6 +4,7 @@ import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ComputerRecs from './Animations/ComputerRecs';
+import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
 import Game from './Game';
@@ -36,6 +37,11 @@ function Activity3(): JSX.Element {
       child: <ComputerRecs />,
       bottomText: 'When people are done watching a video,',
       bottomText2: ' what videos should we recommend be watched next?',
+      animationTime: 5,
+    },
+    {
+      child: <List />,
+      bottomText: '...the list goes on.',
       animationTime: 5,
     },
     {
