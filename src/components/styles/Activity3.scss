@@ -210,17 +210,17 @@ b {
   font-weight: 600;
   color: $text-red;
   text-align: right;
-
   border-radius: 15px;
   border-width: 6px;
   border-image: none;
-  border-color: #a5a5a5;
+  border-color: $playnet-grey;
   border-style: solid;
-
   background-image: none;
   box-shadow: none;
+  margin: 10px;
 
-  &:focus, &:active {
+  &:focus,
+  &:active {
     border-color: $playnet-darkgrey;
     outline: none;
   }

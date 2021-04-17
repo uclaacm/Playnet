@@ -16,9 +16,12 @@ function NumberSelection(props: SelectProps): JSX.Element {
     setDaysUsed(!Number.isNaN(newInput) ? newInput : 0);
   };
 
-  return (
-    <div>
-      <input type='number' value={input} onChange={handleChange} className='time-input' />
-    </div>);
+  return <div>
+    {/* <div className={'increment-button-container'}>
+      <button>click me</button>
+      <button>click me</button>
+    </div> */}
+    <input type='number' value={input} onChange={handleChange} className={'time-input'}/>
+  </div>;
 }
 export default NumberSelection;
