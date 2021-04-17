@@ -11,17 +11,14 @@ function NumberSelection(props: SelectProps): JSX.Element {
   const [input, setInput] = useState(daysUsed);
 
   const handleChange = (e : any) => {
-    const newInput = Math.max(Math.min(parseInt(e.target.value), daysLeft), 0);
+    const value = e.target.value !== '' ? parseInt(e.target.value) : 0;
+    const newInput = Math.max(Math.min(value, daysLeft), 0);
     setInput(newInput);
-    setDaysUsed(!Number.isNaN(newInput) ? newInput : 0);
+    setDaysUsed(newInput);
   };
 
   return <div>
-    {/* <div className={'increment-button-container'}>
-      <button>click me</button>
-      <button>click me</button>
-    </div> */}
-    <input type='number' value={input} onChange={handleChange} className={'time-input'}/>
+    <input type='number' value={input} onChange={handleChange} onClick={(e : any)=>e.target.select()} className={'time-input'}/>
   </div>;
 }
 export default NumberSelection;
