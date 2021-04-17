@@ -3,8 +3,13 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import ScalingSlide from '../../../shared/ScalingSlide';
 
-function Debugging(): JSX.Element {
-  const { reloadTime, slideIdx } = useContext(CarouselContext);
+interface DebuggingProps {
+  phase: number;
+}
+
+function Debugging(props: DebuggingProps): JSX.Element {
+  const { phase } = props;
+  const { reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
 
   const fadeIn = {
@@ -58,16 +63,16 @@ function Debugging(): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (slideIdx === 7) { //As there is no animation for slide 1
+    if (phase === 0) { //As there is no animation for slide 1
       timeline.current?.pause();
     } else {
-      timeline.current?.seek((slideIdx - 8) * 3000);
+      timeline.current?.seek((phase - 1) * 3000);
       const timeout = setTimeout(() => {
         timeline.current?.play();
       }, 250);
       return () => clearTimeout(timeout);
     }
-  }, [reloadTime, slideIdx]);
+  }, [reloadTime, phase]);
 
   return <ScalingSlide widthPx={1102} heightPx={386}>
     <>

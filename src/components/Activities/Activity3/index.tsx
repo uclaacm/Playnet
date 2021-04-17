@@ -51,17 +51,17 @@ function Activity3(): JSX.Element {
       animationTime: 3,
     },
     {
-      child: <Debugging />,
+      child: <Debugging phase={0}/>,
       bottomText: 'We do that by writing code.',
       animationTime: 3,
     },
     {
-      child: <Debugging />,
+      child: <Debugging phase={1}/>,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
       animationTime: 4,
     },
     {
-      child: <Debugging />,
+      child: <Debugging phase={2}/>,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
       animationTime: 6,
     },
