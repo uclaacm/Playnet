@@ -12,6 +12,7 @@ import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
 
 function Activity3(): JSX.Element {
   const LectureReference = forwardRef((props, ref) => <Lecture ref={ref} {...props}/>);
+  LectureReference.displayName = 'LectureReference';
   const lectureRef = useRef(null);
 
   const content: CarouselItemComponents[] = [

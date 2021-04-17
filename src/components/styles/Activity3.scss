@@ -283,7 +283,7 @@ b {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 0px;
+  bottom: 0;
   background-image: url('../../assets/activity3/audience.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -323,7 +323,8 @@ b {
   background-image: url('../../assets/activity3/arm-4.svg');
 }
 
-.disagree, .question {
+.disagree,
+.question {
   width: 183px;
   height: 111px;
   position: absolute;
@@ -342,4 +343,3 @@ b {
   top: -10%;
   left: 15%;
 }
-

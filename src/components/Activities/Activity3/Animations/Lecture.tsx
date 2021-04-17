@@ -23,12 +23,12 @@ function Lecture(): JSX.Element {
     timeline.current?.add({
       targets: ['#arm-1', '.disagree'],
       ...fadeIn,
-      changeComplete: () => { timeline.current?.pause()},
+      changeComplete: () => { timeline.current?.pause();},
     });
     timeline.current?.add({
       targets: ['#arm-1', '.disagree'],
       ...fadeOut,
-      changeComplete: () => { timeline.current?.pause()},
+      changeComplete: () => { timeline.current?.pause();},
     });
 
     timeline.current?.add({
