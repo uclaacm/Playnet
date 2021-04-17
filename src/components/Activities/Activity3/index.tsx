@@ -48,22 +48,22 @@ function Activity3(): JSX.Element {
     {
       child: <PlantSprout />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
-      animationTime: 2,
+      animationTime: 3,
     },
     {
       child: <Debugging />,
       bottomText: 'We do that by writing code.',
-      animationTime: 2,
+      animationTime: 3,
     },
     {
       child: <Debugging />,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
-      animationTime: 2,
+      animationTime: 4,
     },
     {
       child: <Debugging />,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
-      animationTime: 2,
+      animationTime: 6,
     },
     {
       child: <GameIntroSlide1/>,
