@@ -78,7 +78,7 @@ function Game(): JSX.Element {
       case A3_GAME_STATE.PriorityWeighing:
         return <>2<DemoNextButton /></>;
       case A3_GAME_STATE.TimeAllocation:
-        return <><TimeAllocation daysLeft={30} setDaysLeft={setDaysLeft}/><DemoNextButton /></>;
+        return <><TimeAllocation /><DemoNextButton /></>;
       case A3_GAME_STATE.DebuggingResults:
         return <>4<DemoNextButton /></>;
       case A3_GAME_STATE.ABTestingExplanation:

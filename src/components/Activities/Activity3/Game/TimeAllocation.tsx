@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
+import { GameContext } from '.';
+
 import Clock from '../../../../assets/activity3/game/Clock.svg';
 import Debug from '../../../../assets/activity3/game/Debug.svg';
 import Graph from '../../../../assets/activity3/game/Graph.svg';
@@ -6,13 +8,8 @@ import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
 import NumberSelection from './NumberSelection';
 
-interface TimeProps {
-  daysLeft: number;
-  setDaysLeft: (_state: number) => void;
-}
-
-function TimeAllocation(props: TimeProps): JSX.Element {
-  const {daysLeft, setDaysLeft} = props;
+function TimeAllocation(): JSX.Element {
+  const {daysLeft, setDaysLeft} = useContext(GameContext);
   const [buildDays, setBuildDays] = useState<number>(0);
   const [debugDays, setDebugDays] = useState<number>(0);
   const [testDays, setTestDays] = useState<number>(0);
