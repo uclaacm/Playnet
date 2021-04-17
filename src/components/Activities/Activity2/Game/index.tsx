@@ -47,6 +47,7 @@ function CompressionGame(props: CompressionGameProps): JSX.Element {
       addTimeElapsed={addTimeElapsed}
       advanceGame={advanceGame}
       slideNum={slide}
+      isGameSoundMuted={context.isGameSoundMuted}
     />
   );
 }

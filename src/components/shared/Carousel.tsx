@@ -11,8 +11,11 @@ import Tooltip from './Tooltip';
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
   prev: (): void => undefined,
+  jumpNumSlides: (_number: number): void=> undefined,
   slideIdx: 0,
   reloadTime: Date.now(),
+  isVoiceMuted: DEFAULT_CONFIGS.VOICEOVER_MUTED,
+  isGameSoundMuted: DEFAULT_CONFIGS.GAME_SOUNDS_MUTED,
 });
 
 export interface CarouselItemComponents {
@@ -108,6 +111,11 @@ function Carousel(props: CarouselProps): JSX.Element {
     props.onPrev && props.onPrev();
   }
 
+  function jumpNumSlides(number: number){
+    const newSlide =  Math.max(Math.min(slideIdx + number, props.children.length - 1), 0);
+    setSlideIdx(newSlide);
+  }
+
   function autoAdvance(animationLength: number): void {
     lastTimeout.current = setTimeout(() => goNext(), animationLength * 1000);
   }
@@ -130,8 +138,7 @@ function Carousel(props: CarouselProps): JSX.Element {
     if (isVoiceMuted) {
       setIsVoiceMuted(false);
       storage.removeItem('isVoiceMuted');
-    }
-    else {
+    } else {
       setIsVoiceMuted(true);
       storage.setItem('isVoiceMuted', 'true');
     }
@@ -150,8 +157,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   function handleAutoplayButtonClick(): void {
     if (isAutoAdvance) {
       disableAutoAdvance();
-    }
-    else {
+    } else {
       enableAutoAdvance();
     }
   }
@@ -162,7 +168,11 @@ function Carousel(props: CarouselProps): JSX.Element {
   }
 
   return (
-    <CarouselContext.Provider value={{ next: goNext, prev: goPrev, slideIdx, reloadTime }}>
+    <CarouselContext.Provider value={{
+      next: goNext, prev: goPrev, slideIdx, reloadTime,
+      isVoiceMuted, isGameSoundMuted,
+      jumpNumSlides: jumpNumSlides,
+    }}>
       <div id={'carousel-wrapper'}>
         {props.title && <h1 id={'title'}>{props.title}</h1>}
         {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}
@@ -189,7 +199,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                   {child.animationTime &&
                     <div className='util-left-btn-container'>
                       <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
-                        <button className={'util-button ' +  (isAutoAdvance ? 'stop-' : '') + 'autoplay-button'} onClick={handleAutoplayButtonClick} />
+                        <button className={'util-button ' + (isAutoAdvance ? 'stop-' : '') + 'autoplay-button'} onClick={handleAutoplayButtonClick} />
                       </Tooltip>
                       <Tooltip text='Replay'>
                         <button className='util-button replay-button' onClick={handleReplayButtonClick} />

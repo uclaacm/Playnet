@@ -72,6 +72,49 @@ b {
   margin-left: 752px;
 }
 
+#two-employees {
+  width: 387px;
+  height: 257px;
+  margin-left: 380px;
+  margin-top: 80px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/two_employees.svg');
+}
+
+#bubble-1 {
+  width: 105px;
+  height: 73px;
+  margin-left: 474px;
+  margin-top: 40px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/bubble_1.svg');
+}
+
+#bubble-2 {
+  width: 101px;
+  height: 73px;
+  margin-left: 585px;
+  margin-top: 60px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/bubble_2.svg');
+}
+
+#bubble-3 {
+  width: 189px;
+  height: 89px;
+  margin-left: 482px;
+  margin-top: 50px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/bubble_3.svg');
+}
 // styles for ComputerRecs
 #computer-rec-screen {
   background-image: url('../../assets/activity3/computer-recs.svg');
@@ -128,6 +171,23 @@ b {
 #video3-red {
   background-image: url('../../assets/activity3/video-rec3-red.svg');
   margin-top: 183px;
+}
+
+// Styles for List Animation
+#animated-list-box {
+  position: absolute;
+  height: 370px;
+  width: 700px;
+  overflow: hidden;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 20px;
+  margin-left: 180px;
+}
+
+#animated-list {
+  width: 700px;
+  position: absolute;
 }
 
 //Styles for Plant Sprout Animation
