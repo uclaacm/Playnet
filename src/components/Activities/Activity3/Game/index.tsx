@@ -2,24 +2,28 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import DemoNextButton from './DemoNextButton';
-import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES } from './GameConstants';
+import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, VARIABLES } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 
-export const GameContext = React.createContext({
-  setState: (_state: A3_GAME_STATE): void => undefined,
-  goNextState: (): void => undefined,
-});
+interface IGameContext {
+  setState: (state: A3_GAME_STATE) => void,
+  goNextState: () => void,
+  variableSelection: VARIABLES[],
+}
+export const GameContext = React.createContext<Partial<IGameContext>>({});
 
 function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
+  const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
   const storage = window.sessionStorage;
 
   useEffect(() => {
     // onMount, get state + skipStates from storage
     const storedSkipStates = storage.getItem(SESSION_SKIP_STATES);
     const storedState = storage.getItem(SESSION_CURRENT_STATE);
+    const storedVariables = storage.getItem(SESSION_VARIABLES);
 
     // setup statesToSkip from storage
     const tempSkipStates = storedSkipStates?.split(',').map(element => element as A3_GAME_STATE);
@@ -30,7 +34,14 @@ function Game(): JSX.Element {
       setState(curState);
     });
 
-    return () => storage.removeItem(SESSION_CURRENT_STATE);
+    // setup variableSelection from storage
+    const tempVariables = storedVariables?.split(',').map(element => element as VARIABLES);
+    const curVariables = tempVariables ?? [];
+    setVariableSelection(curVariables);
+    return () => {
+      storage.removeItem(SESSION_CURRENT_STATE);
+      storage.removeItem(SESSION_VARIABLES);
+    };
   }, []);
 
   const goNextState = (): void => {
@@ -50,6 +61,11 @@ function Game(): JSX.Element {
   }, [statesToSkip]);
 
   useEffect(() => {
+    // add variableSelection to storage
+    storage.setItem(SESSION_VARIABLES, variableSelection.join(','));
+  }, [variableSelection]);
+
+  useEffect(() => {
     // if state in statesToSkip, go to next
     if (statesToSkip.includes(state)) {
       goNextState();
@@ -65,33 +81,24 @@ function Game(): JSX.Element {
     storage.setItem(SESSION_CURRENT_STATE, state.toString());
   }, [state]);
 
-  const getGameElement = (): JSX.Element => {
-    switch (state) {
-      case A3_GAME_STATE.PriorityExplanation:
-        return <>skip1<DemoNextButton /></>;
-      case A3_GAME_STATE.PriorityChoices:
-        return <><PriorityChoices/><DemoNextButton /></>;
-      case A3_GAME_STATE.PriorityWeighing:
-        return <>2<DemoNextButton /></>;
-      case A3_GAME_STATE.TimeAllocation:
-        return <>3<DemoNextButton /></>;
-      case A3_GAME_STATE.DebuggingResults:
-        return <>4<DemoNextButton /></>;
-      case A3_GAME_STATE.ABTestingExplanation:
-        return <>skip5<DemoNextButton /></>;
-      case A3_GAME_STATE.ABTestingReport:
-        return <>5<DemoNextButton /></>;
-      case A3_GAME_STATE.FinalReport:
-        return <>6<DemoNextButton /></>;
-      default:
-        return <>:(</>; // should never reach this
-    }
+  const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
+    [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
+    [A3_GAME_STATE.PriorityChoices]:
+      <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
+    [A3_GAME_STATE.PriorityWeighing]: <>2<DemoNextButton /></>,
+    [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
+    [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
+    [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
+    [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
+    [A3_GAME_STATE.FinalReport]: <>6<DemoNextButton /></>,
+    [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached
   };
 
-  return <GameContext.Provider value={{ setState: setState, goNextState: goNextState }}>
-    {
-      getGameElement()
-    }
+  return <GameContext.Provider value={{
+    setState: setState, goNextState: goNextState,
+    variableSelection: variableSelection,
+  }}>
+    {GAME_ELEMENTS[state]}
   </GameContext.Provider>;
 }
 
