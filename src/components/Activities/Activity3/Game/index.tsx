@@ -4,16 +4,20 @@ import { useStateCallback } from '../../../shared/hooks';
 import DemoNextButton from './DemoNextButton';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
+import TimeAllocation from './TimeAllocation';
 
 export const GameContext = React.createContext({
   setState: (_state: A3_GAME_STATE): void => undefined,
   goNextState: (): void => undefined,
+  daysLeft: 30,
+  setDaysLeft: (_state: number): void => undefined,
 });
 
 function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
+  const [daysLeft, setDaysLeft] = useState<number>(30);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -74,7 +78,7 @@ function Game(): JSX.Element {
       case A3_GAME_STATE.PriorityWeighing:
         return <>2<DemoNextButton /></>;
       case A3_GAME_STATE.TimeAllocation:
-        return <>3<DemoNextButton /></>;
+        return <><TimeAllocation daysLeft={30} setDaysLeft={setDaysLeft}/><DemoNextButton /></>;
       case A3_GAME_STATE.DebuggingResults:
         return <>4<DemoNextButton /></>;
       case A3_GAME_STATE.ABTestingExplanation:
@@ -88,7 +92,8 @@ function Game(): JSX.Element {
     }
   };
 
-  return <GameContext.Provider value={{ setState: setState, goNextState: goNextState }}>
+  return <GameContext.Provider value={{ setState: setState, goNextState: goNextState,
+    daysLeft: daysLeft, setDaysLeft: setDaysLeft }}>
     {
       getGameElement()
     }

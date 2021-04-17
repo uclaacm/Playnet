@@ -185,3 +185,43 @@ b {
   background-size: contain;
   background-image: url('../../assets/activity3/soil.svg');
 }
+
+// styles for TimeAllocation
+.playnet-red {
+  color: $text-red;
+}
+
+.centered-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+#options-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.time-input {
+  height: 45px;
+  width: 78px;
+  font: inherit;
+  font-weight: 600;
+  color: $text-red;
+  text-align: right;
+
+  border-radius: 15px;
+  border-width: 6px;
+  border-image: none;
+  border-color: #a5a5a5;
+  border-style: solid;
+
+  background-image: none;
+  box-shadow: none;
+
+  &:focus, &:active {
+    border-color: $playnet-darkgrey;
+    outline: none;
+  }
+}
