@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react';
+import React from 'react';
 
 import '../../styles/Activity1.scss';
 
@@ -11,18 +11,12 @@ import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import { SoundTrack } from '../../shared/soundtrack';
 import TransitionSlide from '../../shared/TransitionSlide';
 import ComputerConversation from './ComputerConversation';
-import CipherGame from './Game1';
+import CipherGame, { SuccessCipherGameState } from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
-
-  const SplitCipherGame = forwardRef((_, ref: RefObject) => (
-    <CipherGame ref={ref}/>
-  ));
-  SplitCipherGame.displayName = 'SplitCipherGame';
-  const ref = useRef(null);
 
   const content = [
     {
@@ -63,14 +57,14 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={0} showSuccess={false} skips={5}/>,
+      child: <CipherGame numStars={0} skips={5} />,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={1} showSuccess={true}/>,
+      child: <SuccessCipherGameState numStars={1} />,
       showNext: false,
       hasSound: true,
       animationTime: 2.5,
@@ -78,14 +72,14 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={1} showSuccess={false} skips={3}/>,
+      child: <CipherGame numStars={1} skips={3} />,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={2} showSuccess={true}/>,
+      child: <SuccessCipherGameState numStars={2} />,
       showNext: false,
       hasSound: true,
       animationTime: 2.5,
@@ -93,7 +87,7 @@ function Activity1(): JSX.Element {
     },
     {
       topText: 'Try to guess what image the alien wants.',
-      child: <CipherGame ref={ref} numStars={2} showSuccess={false} skips={1}/>,
+      child: <CipherGame numStars={2} skips={1} />,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
@@ -132,9 +126,9 @@ function Activity1(): JSX.Element {
           <Computer>
             <>
               <p>
-              Computers in the real world use artificial intelligence (AI) to remember what they learn
-              from trial and error. They can share what they learn with other computers to
-              give us a better searching experience.
+                Computers in the real world use artificial intelligence (AI) to remember what they learn
+                from trial and error. They can share what they learn with other computers to
+                give us a better searching experience.
               </p>
 
               When you&apos;re older, you&apos;ll get the chance to learn how to code so that you can

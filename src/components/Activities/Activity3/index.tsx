@@ -4,6 +4,7 @@ import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ComputerRecs from './Animations/ComputerRecs';
+import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
 import Game from './Game';
@@ -12,20 +13,35 @@ import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
     {
-      child: <ManyEmployees start={false} />,
+      child: <ManyEmployees />,
       bottomText: 'Youtube has around 10,000 employees',
       bottomText2: 'That\'s a lot of people--what are they all doing?',
       animationTime: 2,
     },
     {
-      child: <ManyEmployees start={true} />,
+      child: <ManyEmployees />,
       bottomText2: 'Different teams work on different ways to improve the product.',
+      animationTime: 2,
+    },
+    {
+      child: <ManyEmployees />,
+      topText: 'Each team comes up with new ideas and makes their ideas into reality.',
+      animationTime: 2,
+    },
+    {
+      child: <ManyEmployees />,
+      topText: 'For example, a development team might ask the question: ',
       animationTime: 2,
     },
     {
       child: <ComputerRecs />,
       bottomText: 'When people are done watching a video,',
       bottomText2: ' what videos should we recommend be watched next?',
+      animationTime: 5,
+    },
+    {
+      child: <List />,
+      bottomText: '...the list goes on.',
       animationTime: 5,
     },
     {
