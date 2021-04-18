@@ -19,21 +19,23 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const { setTaskSelection, initialTasks } = props;
   const { BUILD, DEBUG, ABTEST } = TASKS;
 
-  // initialize allocations based on props
-  const initAllocation = (task : number) => {
-    return initialTasks[task] ? initialTasks[task] : 0;
-  };
-  const [buildDays, setBuildDays] = useState(() => initAllocation(BUILD));
-  const [debugDays, setDebugDays] = useState(() => initAllocation(DEBUG));
-  const [testDays, setTestDays] = useState(() => initAllocation(ABTEST));
+  const [buildDays, setBuildDays] = useState(0);
+  const [debugDays, setDebugDays] = useState(0);
+  const [testDays, setTestDays] = useState(0);
 
   useEffect(() => {
-    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft + buildDays + debugDays + testDays) : 0);
+    const initBuildDays = initialTasks[BUILD] ?? 0;
+    const initDebugDays = initialTasks[DEBUG] ?? 0;
+    const initABTestDays = initialTasks[ABTEST] ?? 0;
+    setBuildDays(initBuildDays);
+    setDebugDays(initDebugDays);
+    setTestDays(initABTestDays);
   }, []);
-
-  const handleGoNext = () => {
-    setTaskSelection([buildDays, debugDays, testDays]);
+  useEffect(() =>{
     setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0);
+    setTaskSelection([buildDays, debugDays, testDays]);
+  }, [buildDays, debugDays, testDays]);
+  const handleGoNext = () => {
     goNextState && goNextState();
   };
 

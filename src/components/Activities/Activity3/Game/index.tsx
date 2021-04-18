@@ -49,17 +49,17 @@ function Game(): JSX.Element {
     setVariableSelection(curVariables);
 
     // setup tasksSelection from storage
-    const tempTasks : number[] = storedTasks ?
-      storedTasks.split(',').map((elem) => {
+    const tempTasks : number[] = storedTasks?.split(',').map((elem) => {
         // elem can be either '' or a number
         return (elem && elem.length > 0) ? parseInt(elem) : 0;
       })
-      : [0,0,0];
+      ?? [0,0,0];
     setTaskSelection(tempTasks);
 
     return () => {
       storage.removeItem(SESSION_CURRENT_STATE);
       storage.removeItem(SESSION_VARIABLES);
+      storage.removeItem(SESSION_TASKS);
     };
   }, []);
 

@@ -9,7 +9,6 @@ interface SelectProps {
 
 function NumberSelection(props: SelectProps): JSX.Element {
   const {daysLeft, daysUsed, setDaysUsed, showWarning} = props;
-  const [input, setInput] = useState(daysUsed);
 
   const handleScroll = (e: React.WheelEvent) => {
     let adjustment = 0;
@@ -33,7 +32,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
   return (
     <input
       type='number'
-      value={input}
+      value={daysUsed}
       onChange={handleChange}
       onWheel={handleScroll}
       onClick={(e : any)=>e.target.select()}
