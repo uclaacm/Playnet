@@ -48,10 +48,6 @@ function Game(): JSX.Element {
     };
   }, []);
 
-  const setFeatureWeightsState = (newWeights: number[]) => {
-    setFeatureWeights(newWeights);
-  };
-
   const goNextState = (): void => {
     // go next state + skipping states that should be skipped
     const nextPossibleStates = NEXT_STATE_MAP[state];
@@ -93,7 +89,8 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
-    [A3_GAME_STATE.PriorityWeighing]: <FeaturesSlidebar featureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+    [A3_GAME_STATE.PriorityWeighing]:
+      <FeaturesSlidebar featureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
     [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
