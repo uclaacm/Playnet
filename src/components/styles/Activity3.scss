@@ -246,6 +246,117 @@ b {
   background-image: url('../../assets/activity3/soil.svg');
 }
 
+#lecture-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  display: flex;
+}
+
+.lecture-content {
+  width: 268px;
+  height: 164px;
+  border-radius: 6px;
+  border: 7px outset black;
+  position: relative;
+  overflow: hidden;
+}
+
+#bad-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-image: url('../../assets/activity3/lecture-content-1.png');
+  background-position: -25px;
+  background-size: cover;
+}
+
+#better-content {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-image: url('../../assets/activity3/new-content.png');
+  background-position: center;
+  background-size: auto;
+}
+
+#lecturer {
+  width: 197px;
+  height: 257px;
+  z-index: 2;
+  position: relative;
+  background-image: url('../../assets/activity3/lecturer.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#audience {
+  width: 749px;
+  height: 211px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  background-image: url('../../assets/activity3/audience.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.arm {
+  width: 26px;
+  height: 153px;
+  bottom: 15%;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+#arm-1 {
+  left: 82.2%;
+  background-image: url('../../assets/activity3/arm-1.svg');
+}
+
+#arm-2 {
+  left: 62.2%;
+  background-image: url('../../assets/activity3/arm-1.svg');
+}
+
+#arm-3 {
+  left: 45.2%;
+  background-image: url('../../assets/activity3/arm-2.svg');
+}
+
+#arm-4 {
+  left: 26%;
+  background-image: url('../../assets/activity3/arm-3.svg');
+}
+
+#arm-5 {
+  left: 23.5%;
+  background-image: url('../../assets/activity3/arm-4.svg');
+}
+
+.disagree,
+.question {
+  width: 183px;
+}
+
+.disagree {
+  background-image: url('../../assets/activity3/disagree.svg');
+  top: 20%;
+  left: 63%;
+}
+
+.question {
+  background-image: url('../../assets/activity3/question.svg');
+  top: -10%;
+  left: 15%;
+}
+
 // styles for Debugging animation
 #debug-person {
   margin-left: 817px;

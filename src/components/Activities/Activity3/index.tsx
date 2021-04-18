@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { forwardRef, useRef } from 'react';
 import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ComputerRecs from './Animations/ComputerRecs';
+import Lecture from './Animations/Lecture';
 import Debugging from './Animations/Debugging';
 import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
@@ -12,6 +13,10 @@ import Game from './Game';
 import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
 
 function Activity3(): JSX.Element {
+  const LectureReference = forwardRef((props, ref) => <Lecture ref={ref} {...props}/>);
+  LectureReference.displayName = 'LectureReference';
+  const lectureRef = useRef(null);
+
   const content: CarouselItemComponents[] = [
     {
       child: <ManyEmployees />,
@@ -64,6 +69,21 @@ function Activity3(): JSX.Element {
       child: <Debugging phase={2}/>,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
       animationTime: 6,
+    },
+    {
+      child: <LectureReference ref={lectureRef}/>,
+      bottomText: 'First, a team discusses ideas.',
+      animationTime: 2,
+    },
+    {
+      child: <LectureReference ref={lectureRef}/>,
+      bottomText: 'Even though there are a lot of good ideas, we have a limited amount of time and money. ',
+      animationTime: 2,
+    },
+    {
+      child: <LectureReference ref={lectureRef}/>,
+      bottomText: 'So, we have to decide which ideas we care the most about. These are the ideas we bring to real life.',
+      animationTime: 2,
     },
     {
       child: <GameIntroSlide1/>,
