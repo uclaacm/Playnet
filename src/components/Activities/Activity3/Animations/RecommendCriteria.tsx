@@ -8,23 +8,28 @@ function RecommendCriteria() : JSX.Element {
     const timeline = useRef<AnimeTimelineInstance | null>(null);
 
     const fadeIn = {
-        opacity: [0, 1],
-        duration: 1000,
+      opacity: [0, 1],
+      duration: 1000,
     };
 
-    const fadeOut = {
+    const fadeInFast = {
+      opacity: [0, 1],
+      duration: 500,
+    };
+
+    const fadeOutFast = {
       opacity: [1, 0],
-      duration: 1000,
+      duration: 500,
     };
 
     const addBorder = {
      borderWidth: ['0px', '5px'],
-     duration: 1000,
+     duration: 500,
     };
 
     const removeBorder = {
       borderWidth: ['5px', '0px'],
-      duration: 1000,
+      duration: 500,
     };
 
     useEffect(() => {
@@ -35,7 +40,8 @@ function RecommendCriteria() : JSX.Element {
 
         timeline.current?.add({
           targets: '#shark-video',
-          ...addBorder,
+          borderWidth: ['0px', '5px'],
+          duration: 1000,
         }).add({
           targets: '#criteria-hearts',
           ...fadeIn,
@@ -48,6 +54,12 @@ function RecommendCriteria() : JSX.Element {
           targets: '#shark-video',
           ...removeBorder,
         }).add({
+          targets: '#criteria-hearts',
+          ...fadeOutFast,
+        }).add({
+          targets: ['#criteria-cross', '#criteria-check'],
+          ...fadeInFast,
+        }).add({
           targets: '#flu-video',
           ...addBorder,
           changeComplete: () => {
@@ -58,6 +70,12 @@ function RecommendCriteria() : JSX.Element {
         timeline.current?.add({
           targets: '#flu-video',
           ...removeBorder,
+        }).add({
+          targets: ['#criteria-cross', '#criteria-check'],
+          ...fadeOutFast,
+        }).add({
+          targets: '#criteria-mirror',
+          ...fadeInFast,
         }).add({
           targets: '#flat-video',
           ...addBorder,
