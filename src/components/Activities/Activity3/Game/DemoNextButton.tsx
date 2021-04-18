@@ -6,9 +6,9 @@ function DemoNextButton() : JSX.Element {
   const {setState, goNextState} = useContext(GameContext);
   return <>
     <br/>
-    <button onClick={()=>goNextState()} >next</button>
+    <button onClick={()=>goNextState && goNextState()} >next</button>
     <br/>
-    <button onClick={()=>setState(A3_GAME_STATE.PriorityExplanation)} >go back to start</button></>;
+    <button onClick={()=>setState && setState(A3_GAME_STATE.PriorityExplanation)} >go back to start</button></>;
 }
 
 export default DemoNextButton;

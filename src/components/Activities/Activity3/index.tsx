@@ -5,6 +5,8 @@ import '../../styles/Activity3Game.scss';
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ComputerRecs from './Animations/ComputerRecs';
 import Lecture from './Animations/Lecture';
+import Debugging from './Animations/Debugging';
+import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
 import Game from './Game';
@@ -44,9 +46,29 @@ function Activity3(): JSX.Element {
       animationTime: 5,
     },
     {
+      child: <List />,
+      bottomText: '...the list goes on.',
+      animationTime: 5,
+    },
+    {
       child: <PlantSprout />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
-      animationTime: 2,
+      animationTime: 3,
+    },
+    {
+      child: <Debugging phase={0}/>,
+      bottomText: 'We do that by writing code.',
+      animationTime: 3,
+    },
+    {
+      child: <Debugging phase={1}/>,
+      bottomText: 'We also have to debug the code, meaning that we fix errors.',
+      animationTime: 4,
+    },
+    {
+      child: <Debugging phase={2}/>,
+      bottomText: 'We also have to debug the code, meaning that we fix errors.',
+      animationTime: 6,
     },
     {
       child: <LectureReference ref={lectureRef}/>,
