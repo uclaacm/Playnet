@@ -4,10 +4,11 @@ interface SelectProps {
   daysLeft: number;
   daysUsed: number;
   setDaysUsed: (_state: number) => void;
+  showWarning: boolean;
 }
 
 function NumberSelection(props: SelectProps): JSX.Element {
-  const {daysLeft, daysUsed, setDaysUsed} = props;
+  const {daysLeft, daysUsed, setDaysUsed, showWarning} = props;
   const [input, setInput] = useState(daysUsed);
 
   const handleScroll = (e: React.WheelEvent) => {
@@ -36,7 +37,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
       onChange={handleChange}
       onWheel={handleScroll}
       onClick={(e : any)=>e.target.select()}
-      className={'time-input'}
+      className={`time-input ${showWarning && 'time-input-warning'}`}
     />
   );
 }

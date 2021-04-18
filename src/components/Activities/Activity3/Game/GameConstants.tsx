@@ -98,3 +98,6 @@ export enum TASKS {
   DEBUG = 1,
   ABTEST = 2,
 }
+export const STARTING_DAYS = 56;
+export const LOW_DAY_THRESHOLD = 14;
+export const HIGH_DAY_THRESHOLD = 21;

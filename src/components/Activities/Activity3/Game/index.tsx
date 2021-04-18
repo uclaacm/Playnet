@@ -4,7 +4,7 @@ import { useStateCallback } from '../../../shared/hooks';
 import DemoNextButton from './DemoNextButton';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TASKS, VARIABLES } from './GameConstants';
+  SESSION_TASKS, VARIABLES, STARTING_DAYS } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 import TimeAllocation from './TimeAllocation';
 
@@ -22,7 +22,7 @@ function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
-  const [daysLeft, setDaysLeft] = useState<number>(30);
+  const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
   const [taskSelection, setTaskSelection] = useState<number[]>([]);
   const storage = window.sessionStorage;

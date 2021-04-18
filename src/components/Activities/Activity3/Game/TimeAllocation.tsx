@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { GameContext } from '.';
 
 import Clock from '../../../../assets/activity3/game/Clock.svg';
@@ -7,7 +7,7 @@ import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
 import NumberSelection from './NumberSelection';
-import { TASKS } from './GameConstants';
+import { TASKS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
 
 interface TimeAllocationProps {
   setTaskSelection: (variables: number[]) => void;
@@ -18,20 +18,46 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState} = useContext(GameContext);
   const { setTaskSelection, initialTasks } = props;
   const { BUILD, DEBUG, ABTEST } = TASKS;
-  const [buildDays, setBuildDays] = useState(initialTasks[BUILD] ?  initialTasks[BUILD] : 0);
-  const [debugDays, setDebugDays] = useState(initialTasks[DEBUG] ?  initialTasks[DEBUG] : 0);
-  const [testDays, setTestDays] = useState(initialTasks[ABTEST] ?  initialTasks[ABTEST] : 0);
+
+  // initialize allocations based on props
+  const initAllocation = (task : number) => {
+    return initialTasks[task] ? initialTasks[task] : 0;
+  };
+  const [buildDays, setBuildDays] = useState(() => initAllocation(BUILD));
+  const [debugDays, setDebugDays] = useState(() => initAllocation(DEBUG));
+  const [testDays, setTestDays] = useState(() => initAllocation(ABTEST));
 
   const handleGoNext = () => {
-    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0);
     setTaskSelection([buildDays, debugDays, testDays]);
+    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0);
     goNextState && goNextState();
+  };
+
+  const displayWarning = () => {
+    const daysUsed = buildDays + debugDays + testDays;
+
+    if (daysUsed < LOW_DAY_THRESHOLD) {
+      return <div className='playnet-red'>
+        If you use too little days in this stage, you might <br/> make something that doesn&#39;t work as you expect!
+      </div>;
+    } else if (daysUsed > HIGH_DAY_THRESHOLD) {
+      return <div className='playnet-red'>
+        If you use too many days in this stage, you might <br/> not have enough time to make fixes later!
+      </div>;
+    }
+    return;
+  };
+
+  // warning color if below or above threshold
+  const showWarning = () => {
+    const daysUsed = buildDays + debugDays + testDays;
+    return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
 
   return <>
     Choose how much time to spend on each part of your project.
     <br/>
-    (We recommend 14 - 21 days total!)
+    (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
 
     <div id={'options-grid'}>
       <div className={'centered-box'}>
@@ -48,24 +74,22 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       </div>
       <div className={'centered-box'}>
         <NumberSelection daysLeft={daysLeft ? (daysLeft - debugDays - testDays) : 0}
-          daysUsed={buildDays} setDaysUsed={setBuildDays}/> days
+          daysUsed={buildDays} setDaysUsed={setBuildDays} showWarning={showWarning()}/> days
       </div>
       <div className={'centered-box'}>
         <NumberSelection daysLeft={daysLeft ? (daysLeft - buildDays - testDays) : 0}
-          daysUsed={debugDays} setDaysUsed={setDebugDays}/> days
+          daysUsed={debugDays} setDaysUsed={setDebugDays} showWarning={showWarning()}/> days
       </div>
       <div className={'centered-box'}>
         <NumberSelection daysLeft={daysLeft ? (daysLeft - buildDays - debugDays) : 0}
-          daysUsed={testDays} setDaysUsed={setTestDays}/> days
+          daysUsed={testDays} setDaysUsed={setTestDays} showWarning={showWarning()}/> days
       </div>
     </div>
     <div className={'centered-box'}>
       <img src={Clock}/>
       Days left: {daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0}
     </div>
-    <div className='playnet-red'>
-      If you use too little days in this stage, you might <br/> make something that doesn&#39;t work as you expect!
-    </div>
+    {displayWarning()}
 
     <button className='playnet-button' onClick={handleGoNext}>Continue</button>
   </>;
