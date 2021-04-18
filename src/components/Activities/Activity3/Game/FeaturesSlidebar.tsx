@@ -31,7 +31,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     }
   };
 
-  const scrollValue = (index: number) => (e: React.WheelEvent) => {
+  const handleScroll = (index: number) => (e: React.WheelEvent) => {
     let adjustment = 0;
     if (e.deltaY < 0) { //scrolling down
       adjustment = -1;
@@ -50,7 +50,8 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     }
   };
 
-  const adjustWeights1 = (val: number) => {
+    // adjusts weights given 1st weight's percentage
+  const adjustWeight1 = (val: number) => {
     if (val < 0 || val > 100) return;
     const newWeight2 = Math.max(weights[0] + weights[1] - val, 0);
     setWeights([val, newWeight2, 100 - val - newWeight2]);
