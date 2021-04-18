@@ -57,7 +57,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     setWeights([val, newWeight1, 100 - val - newWeight1]);
   };
 
-  const adjustWeight1 = (val: number) => {//val is percent that weight2 takes, not net position
+  const adjustWeight1 = (val: number) => {//val is percent that weight1 takes, not net position
     if (val > 100) return;
     const upperBound = val + weights[0];
     let newWeight0 = weights[0];
