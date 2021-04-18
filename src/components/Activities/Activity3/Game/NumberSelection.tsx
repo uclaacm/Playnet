@@ -9,7 +9,17 @@ interface SelectProps {
 function NumberSelection(props: SelectProps): JSX.Element {
   const {daysLeft, daysUsed, setDaysUsed} = props;
   const [input, setInput] = useState(daysUsed);
-
+const handleScroll = (e: React.WheelEvent) => {
+  let adjustment = 0;
+  if (e.deltaY < 0) {
+    adjustment = -1;
+  } else if (e.deltaY > 0 ) {
+    adjustment = 1;
+  }
+  const newInput = Math.max(Math.min(input + adjustment, daysLeft), 0);
+  setInput(newInput);
+  setDaysUsed(newInput);
+}
   const handleChange = (e : any) => {
     const value = e.target.value !== '' ? parseInt(e.target.value) : 0;
     const newInput = Math.max(Math.min(value, daysLeft), 0);
@@ -18,7 +28,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
   };
 
   return <div>
-    <input type='number' value={input} onChange={handleChange} onClick={(e : any)=>e.target.select()} className={'time-input'}/>
+    <input type='number' value={input} onChange={handleChange} onWheel={handleScroll} onClick={(e : any)=>e.target.select()} className={'time-input'}/>
   </div>;
 }
 export default NumberSelection;
