@@ -343,6 +343,20 @@ b {
 .disagree,
 .question {
   width: 183px;
+}
+
+.disagree {
+  background-image: url('../../assets/activity3/disagree.svg');
+  top: 20%;
+  left: 63%;
+}
+
+.question {
+  background-image: url('../../assets/activity3/question.svg');
+  top: -10%;
+  left: 15%;
+}
+
 // styles for Debugging animation
 #debug-person {
   margin-left: 817px;
@@ -435,16 +449,6 @@ b {
   background-size: contain;
 }
 
-.disagree {
-  background-image: url('../../assets/activity3/disagree.svg');
-  top: 20%;
-  left: 63%;
-}
-
-.question {
-  background-image: url('../../assets/activity3/question.svg');
-  top: -10%;
-  left: 15%;
 #speech-hmm {
   background-image: url('../../assets/activity3/speech-hmm.svg');
 }
