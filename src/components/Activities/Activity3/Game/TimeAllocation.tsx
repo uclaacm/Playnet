@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect} from 'react';
+import React, { useState, useContext} from 'react';
 import { GameContext } from '.';
 
 import Clock from '../../../../assets/activity3/game/Clock.svg';
