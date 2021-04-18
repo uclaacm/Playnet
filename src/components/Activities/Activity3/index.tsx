@@ -7,9 +7,9 @@ import ComputerRecs from './Animations/ComputerRecs';
 import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
+import RecommendCriteria from './Animations/RecommendCriteria';
 import Game from './Game';
 import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
-import RecommendCriteria from './Animations/RecommendCriteria';
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
