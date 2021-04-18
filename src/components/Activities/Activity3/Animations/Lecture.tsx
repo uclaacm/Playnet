@@ -15,6 +15,7 @@ function Lecture(): JSX.Element {
     duration: 750,
   };
   useEffect(() => {
+    // First Animation
     timeline.current = anime.timeline({
       autoplay: false,
       easing: 'easeInOutSine',
@@ -25,12 +26,15 @@ function Lecture(): JSX.Element {
       ...fadeIn,
       changeComplete: () => { timeline.current?.pause();},
     });
+
+    // Second Animation
     timeline.current?.add({
       targets: ['#arm-1', '.disagree'],
       ...fadeOut,
       changeComplete: () => { timeline.current?.pause();},
     });
 
+    // Third Animation
     timeline.current?.add({
       targets: ['#bad-content'],
       ...fadeOut,
