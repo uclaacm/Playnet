@@ -3,6 +3,7 @@ import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import DebuggingResults from './DebuggingResults';
 import DemoNextButton from './DemoNextButton';
+import FeaturesSlidebar from './FeaturesSlidebar';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, VARIABLES } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 
@@ -11,6 +12,7 @@ interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
   goNextState: () => void,
   variableSelection: VARIABLES[],
+  featureWeights: number[],
 }
 export const GameContext = React.createContext<Partial<IGameContext>>({});
 
@@ -19,6 +21,7 @@ function Game(): JSX.Element {
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
+  const [featureWeights, setFeatureWeights] = useState([33, 33, 34]);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -87,7 +90,8 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
-    [A3_GAME_STATE.PriorityWeighing]: <>2<DemoNextButton /></>,
+    [A3_GAME_STATE.PriorityWeighing]:
+      <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
     [A3_GAME_STATE.DebuggingResults]: <><DebuggingResults/><DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
@@ -99,6 +103,7 @@ function Game(): JSX.Element {
   return <GameContext.Provider value={{
     setState: setState, goNextState: goNextState,
     variableSelection: variableSelection,
+    featureWeights: featureWeights,
   }}>
     {GAME_ELEMENTS[state]}
   </GameContext.Provider>;

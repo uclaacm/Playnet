@@ -1,11 +1,13 @@
 import React from 'react';
+import { getDebugErrors, getDebugNumErrors } from './gameCalculationsUtil';
 
 const next = () => undefined;
 
+const timeAllocation = [1,1,1];
 function DebuggingResults(): JSX.Element {
-  const reduceDaysLeft = (num: number) => undefined;
-  const numErrors = 24;
-  const errors = ['Image failed to load', 'File not found'];
+  const reduceDaysLeft = (_num: number) => undefined;
+  const numErrors = getDebugNumErrors(timeAllocation[0], timeAllocation[1]);
+  const errors = getDebugErrors(numErrors);
   const debugQuality = 'poor';
   const buttons: { [key: string]: { buttonText: string, onClick: () => void } } = {
     'Reduce errors': {

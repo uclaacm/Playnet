@@ -2,11 +2,11 @@
 $grid-border-radius: 20px;
 
 .game-intro-content {
-  display: flex;
-  height: 100%;
-  flex-flow: column wrap;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  height: 100%;
+  justify-content: center;
 }
 
 .center-text {
@@ -23,21 +23,21 @@ $grid-border-radius: 20px;
 }
 
 #game-results {
-  margin: 32px;
+  background-color: white;
+  border-radius: 20px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  background-color: white;
-  border-radius: 20px;
+  margin: 32px;
 }
 
 .results-container {
   padding-bottom: 1.17em;
 
   div {
-    display: flex;
     align-items: center;
     color: #df3a1f;
+    display: flex;
   }
 
   img {

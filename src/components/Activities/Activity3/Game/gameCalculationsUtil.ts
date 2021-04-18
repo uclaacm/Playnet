@@ -1,3 +1,16 @@
+export function getDebugNumErrors(
+  daysBuilding: number, 
+  daysDebugging: number
+  ) : number{
+    return 24;
+}
+
+export function getDebugErrors(
+  numErrors: number,
+  ) : string [] {
+    return ['Image failed to load', 'File not found'];
+}
+
 /**
  *
  * @returns points between x: [0, 100], y: [0, 100] to graph

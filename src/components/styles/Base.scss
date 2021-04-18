@@ -1,17 +1,17 @@
 @import 'variables';
 
 .body {
-  min-height: calc(100vh - #{$head-foot-height} - #{$foot-height});
+  background: center/cover url('../../assets/background.svg');
   height: fit-content;
   margin-top: $head-foot-height;
-  background: center/cover url('../../assets/background.svg');
+  min-height: calc(100vh - #{$head-foot-height} - #{$foot-height});
 }
 
 button {
-  outline: none;
-  border: none;
+  border-style: none;
   cursor: pointer;
   filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.7));
+  outline: none;
 
   &:hover {
     filter: brightness(90%);
@@ -24,16 +24,16 @@ button {
 
 // Shared
 .playnet-button {
-  max-width: 100%;
-  max-height: 50%;
   background-color: $playnet-orange;
+  border-radius: 10px;
   color: white;
   font: $font-normal;
   font: inherit;
-  padding: 0.5vw 1vw;
-  border-radius: 10px;
-  white-space: nowrap;
   margin-bottom: 5px;
+  max-height: 50%;
+  max-width: 100%;
+  padding: 0.5vw 1vw;
+  white-space: nowrap;
 }
 
 .playnet-button:disabled {
