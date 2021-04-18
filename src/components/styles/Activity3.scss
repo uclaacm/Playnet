@@ -253,7 +253,7 @@ b {
   position: absolute;
   background-repeat: no-repeat;
   background-size: contain;
-  border: solid red 0px;
+  border: solid red 0;
   border-radius: 25px;
   
 }
@@ -271,4 +271,48 @@ b {
 #flat-video {
   margin-left: 715px;
   background-image: url('../../assets/activity3/video-crit3.svg');
+}
+
+#criteria-hearts {
+  width: 380px;
+  height: 260px;
+  margin-left: 323px;
+  margin-top: 113px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/hearts.svg');
+}
+
+#criteria-check {
+  width: 86.37px;
+  height: 63.72px;
+  margin-left: 143.81px;
+  margin-top: 56px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/check.svg');
+}
+
+#criteria-cross {
+  width: 84.96px;
+  height: 84.96px;
+  margin-left: 792.93px;
+  margin-top: 56px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/cross.svg');
+}
+
+#criteria-mirror {
+  width: 212.52px;
+  height: 144.63px;
+  margin-left: 726.48px;
+  margin-top: 12.78px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: url('../../assets/activity3/mirror.svg');
 }

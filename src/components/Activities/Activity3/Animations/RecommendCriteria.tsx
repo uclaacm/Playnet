@@ -34,11 +34,11 @@ function RecommendCriteria() : JSX.Element {
         });
 
         timeline.current?.add({
-          targets: '.criteria-video',
-          ...fadeIn,
-        }).add({
           targets: '#shark-video',
           ...addBorder,
+        }).add({
+          targets: '#criteria-hearts',
+          ...fadeIn,
           changeComplete: () => {
             timeline.current?.pause();
           },
@@ -46,13 +46,32 @@ function RecommendCriteria() : JSX.Element {
 
         timeline.current?.add({
           targets: '#shark-video',
-          border
+          ...removeBorder,
+        }).add({
+          targets: '#flu-video',
+          ...addBorder,
+          changeComplete: () => {
+            timeline.current?.pause();
+          },
+        });
+
+        timeline.current?.add({
+          targets: '#flu-video',
+          ...removeBorder,
+        }).add({
+          targets: '#flat-video',
+          ...addBorder,
+          changeComplete: () => {
+            timeline.current?.pause();
+          },
         })
 
     }, []);
 
     useEffect(() => {
-        timeline.current?.seek(slideIdx  * 2000);
+      console.log(slideIdx)
+        timeline.current?.pause()
+        timeline.current?.seek((slideIdx-5)  * 2000);
         const timeout = setTimeout(() => {
           timeline.current?.play();
         }, 250);
@@ -64,9 +83,6 @@ function RecommendCriteria() : JSX.Element {
           <div id='flu-video' className='criteria-video' />
           <div id='shark-video' className='criteria-video' />
           <div id='flat-video' className='criteria-video' />
-          <div id='flu-select' className='criteria-selector' />
-          <div id='shark-select' className='criteria-selector' />
-          <div id='flat-select' className='criteria-selector' />
           <div id='criteria-hearts' />
           <div id='criteria-check' />
           <div id='criteria-cross' />
