@@ -1,16 +1,16 @@
 @import 'variables';
 
 #footer {
-  position: fixed;
-  bottom: 0;
-  z-index: 99;
-  width: 100%;
-  height: $foot-height;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  font: $font-footer;
   background-color: $bg-footer;
+  bottom: 0;
+  display: flex;
+  font: $font-footer;
+  height: $foot-height;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
 }
 
 #cl-logo {
@@ -23,11 +23,11 @@
 }
 
 #disclaimer {
-  position: fixed;
-  left: 0;
   bottom: 0;
   font: $font-normal;
   font-size: 10px;
-  padding: 0;
+  left: 0;
   margin: 5px 10px;
+  padding: 0;
+  position: fixed;
 }

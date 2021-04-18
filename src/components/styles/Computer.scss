@@ -1,6 +1,6 @@
 #blank-computer {
-  margin-top: 12px;
   display: inline-block;
+  margin-top: 12px;
   position: relative;
   width: 45%;
 }
@@ -10,17 +10,17 @@
 }
 
 #blank-computer-text {
-  position: absolute;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   font-size: 1.3vw;
-  text-align: left;
-  width: 87%;
+  left: 50%;
   max-height: 70%;
+  position: absolute;
+  text-align: left;
+  top: 40%;
+  transform: translate(-50%, -50%);
+  width: 87%;
 }
 
 #blank-computer-title-text {
-  text-align: center;
   color: red;
+  text-align: center;
 }

@@ -1,15 +1,15 @@
 @import 'variables';
 
 .navlink {
-  display: inline-flex;
   align-items: center;
+  display: inline-flex;
   height: $head-foot-height;
   padding: 0 40px;
 }
 
 .navlink a {
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
 }
 
 .navlink a:visited {
@@ -25,17 +25,17 @@
 }
 
 #header {
+  align-items: center;
+  background-color: $bg-footer;
+  display: flex;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  flex-direction: row;
+  height: $head-foot-height;
+  justify-content: space-between;
   position: fixed;
   top: 0;
-  z-index: 99;
   width: 100%;
-  height: $head-foot-height;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  background-color: $bg-footer;
-  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.25));
+  z-index: 99;
 }
 
 #logo {
@@ -44,21 +44,21 @@
 }
 
 #logo h1 {
+  display: inline;
   font: $font-logo;
+  margin: 0;
   padding: 0;
   width: auto;
-  margin: 0;
-  display: inline;
 }
 
 #logo img {
-  vertical-align: text-top; // had to manually align to get it to look right
   padding: 0 5px;
+  vertical-align: text-top; // had to manually align to get it to look right
 }
 
 #logo a {
-  text-decoration: none;
   color: #000;
+  text-decoration: none;
 }
 
 #logo a:visited {

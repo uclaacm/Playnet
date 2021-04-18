@@ -1,34 +1,34 @@
 // Stolen from https://www.w3schools.com/css/css_tooltip.asp
 .tooltip {
-  position: relative;
-  display: inline-block;
   cursor: pointer;
+  display: inline-block;
+  position: relative;
 }
 
 .tooltip .tooltiptext {
-  visibility: hidden;
-  width: 120px;
   background-color: black;
-  color: #fff;
-  text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  top: 100%;
+  color: #fff;
   left: 50%;
   margin-left: -60px;
+  padding: 5px 0;
+  position: absolute;
+  text-align: center;
+  top: 100%;
+  visibility: hidden;
+  width: 120px;
+  z-index: 1;
 }
 
 .tooltip .tooltiptext::after {
-  content: "";
-  position: absolute;
+  border-color: transparent transparent black;
+  border-style: solid;
+  border-width: 5px;
   bottom: 100%;
+  content: '';
   left: 50%;
   margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: transparent transparent black transparent;
+  position: absolute;
 }
 
 .tooltip:hover .tooltiptext {
