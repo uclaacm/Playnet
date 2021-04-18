@@ -4,7 +4,7 @@ import { useStateCallback } from '../../../shared/hooks';
 import DemoNextButton from './DemoNextButton';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TASKS, VARIABLES, STARTING_DAYS } from './GameConstants';
+  SESSION_TIMES, VARIABLES, STARTING_DAYS } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 import TimeAllocation from './TimeAllocation';
 
@@ -12,7 +12,7 @@ interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
   goNextState: () => void,
   variableSelection: VARIABLES[],
-  taskSelection: number[],
+  timeAllocation: number[],
   daysLeft: number,
   setDaysLeft: (state: number) => void,
 }
@@ -24,7 +24,7 @@ function Game(): JSX.Element {
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
-  const [taskSelection, setTaskSelection] = useState<number[]>([]);
+  const [timeAllocation, setTimeAllocation] = useState<number[]>([]);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function Game(): JSX.Element {
     const storedSkipStates = storage.getItem(SESSION_SKIP_STATES);
     const storedState = storage.getItem(SESSION_CURRENT_STATE);
     const storedVariables = storage.getItem(SESSION_VARIABLES);
-    const storedTasks = storage.getItem(SESSION_TASKS);
+    const storedTasks = storage.getItem(SESSION_TIMES);
 
     // setup statesToSkip from storage
     const tempSkipStates = storedSkipStates?.split(',').map(element => element as A3_GAME_STATE);
@@ -50,16 +50,15 @@ function Game(): JSX.Element {
 
     // setup tasksSelection from storage
     const tempTasks : number[] = storedTasks?.split(',').map((elem) => {
-        // elem can be either '' or a number
-        return (elem && elem.length > 0) ? parseInt(elem) : 0;
-      })
-      ?? [0,0,0];
-    setTaskSelection(tempTasks);
+      // elem can be either '' or a number
+      return (elem && elem.length > 0) ? parseInt(elem) : 0;
+    }) ?? [0,0,0];
+    setTimeAllocation(tempTasks);
 
     return () => {
       storage.removeItem(SESSION_CURRENT_STATE);
       storage.removeItem(SESSION_VARIABLES);
-      storage.removeItem(SESSION_TASKS);
+      storage.removeItem(SESSION_TIMES);
     };
   }, []);
 
@@ -86,8 +85,8 @@ function Game(): JSX.Element {
 
   useEffect(() => {
     // add taskSelection to storage
-    storage.setItem(SESSION_TASKS, taskSelection.join(','));
-  }, [taskSelection]);
+    storage.setItem(SESSION_TIMES, timeAllocation.join(','));
+  }, [timeAllocation]);
 
   useEffect(() => {
     // if state in statesToSkip, go to next
@@ -111,7 +110,7 @@ function Game(): JSX.Element {
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]: <>2<DemoNextButton /></>,
     [A3_GAME_STATE.TimeAllocation]:
-      <TimeAllocation setTaskSelection={setTaskSelection} initialTasks={taskSelection}/>,
+      <TimeAllocation setTimeAllocation={setTimeAllocation} initialTimes={timeAllocation}/>,
     [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
@@ -122,7 +121,7 @@ function Game(): JSX.Element {
   return <GameContext.Provider value={{
     setState: setState, goNextState: goNextState,
     variableSelection: variableSelection,
-    taskSelection: taskSelection,
+    timeAllocation: timeAllocation,
     daysLeft: daysLeft, setDaysLeft: setDaysLeft,
   }}>
     {GAME_ELEMENTS[state]}

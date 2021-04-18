@@ -6,17 +6,17 @@ import Debug from '../../../../assets/activity3/game/Debug.svg';
 import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
-import NumberSelection from './NumberSelection';
 import { TASKS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
+import NumberSelection from './NumberSelection';
 
 interface TimeAllocationProps {
-  setTaskSelection: (variables: number[]) => void;
-  initialTasks: number[];
+  setTimeAllocation: (variables: number[]) => void;
+  initialTimes: number[];
 }
 
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState} = useContext(GameContext);
-  const { setTaskSelection, initialTasks } = props;
+  const { setTimeAllocation, initialTimes } = props;
   const { BUILD, DEBUG, ABTEST } = TASKS;
 
   const [buildDays, setBuildDays] = useState(0);
@@ -24,17 +24,19 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const [testDays, setTestDays] = useState(0);
 
   useEffect(() => {
-    const initBuildDays = initialTasks[BUILD] ?? 0;
-    const initDebugDays = initialTasks[DEBUG] ?? 0;
-    const initABTestDays = initialTasks[ABTEST] ?? 0;
+    const initBuildDays = initialTimes[BUILD] ?? 0;
+    const initDebugDays = initialTimes[DEBUG] ?? 0;
+    const initABTestDays = initialTimes[ABTEST] ?? 0;
     setBuildDays(initBuildDays);
     setDebugDays(initDebugDays);
     setTestDays(initABTestDays);
   }, []);
+
   useEffect(() =>{
     setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0);
-    setTaskSelection([buildDays, debugDays, testDays]);
+    setTimeAllocation([buildDays, debugDays, testDays]);
   }, [buildDays, debugDays, testDays]);
+
   const handleGoNext = () => {
     goNextState && goNextState();
   };

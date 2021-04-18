@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 interface SelectProps {
   daysLeft: number;
@@ -17,15 +17,13 @@ function NumberSelection(props: SelectProps): JSX.Element {
     } else if (e.deltaY > 0 ) {
       adjustment = 1;
     }
-    const newInput = Math.max(Math.min(input + adjustment, daysLeft), 0);
-    setInput(newInput);
+    const newInput = Math.max(Math.min(daysUsed + adjustment, daysLeft), 0);
     setDaysUsed(newInput);
   };
 
   const handleChange = (e : any) => {
     const value = e.target.value !== '' ? parseInt(e.target.value) : 0;
     const newInput = Math.max(Math.min(value, daysLeft), 0);
-    setInput(newInput);
     setDaysUsed(newInput);
   };
 
