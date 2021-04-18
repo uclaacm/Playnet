@@ -8,7 +8,6 @@
   ],
   "rules": {
     "selector-max-id": null,
-    "color-named": null,
-    "scss/dollar-variable-pattern": null
+    "color-named": null
   }
 }
