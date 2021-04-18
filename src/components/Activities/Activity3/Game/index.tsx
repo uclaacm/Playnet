@@ -89,7 +89,7 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
-      <FeaturesSlidebar featureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+      <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
     [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
@@ -101,8 +101,7 @@ function Game(): JSX.Element {
   return <GameContext.Provider value={{
     setState: setState, goNextState: goNextState,
     variableSelection: variableSelection,
-    // featureWeights: featureWeights,
-    // setFeatureWeights: setFeatureWeightsState,
+    featureWeights: featureWeights,
   }}>
     {GAME_ELEMENTS[state]}
   </GameContext.Provider>;
