@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import { GameContext } from '.';
 
 import Clock from '../../../../assets/activity3/game/Clock.svg';
@@ -26,6 +26,10 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const [buildDays, setBuildDays] = useState(() => initAllocation(BUILD));
   const [debugDays, setDebugDays] = useState(() => initAllocation(DEBUG));
   const [testDays, setTestDays] = useState(() => initAllocation(ABTEST));
+
+  useEffect(() => {
+    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft + buildDays + debugDays + testDays) : 0);
+  }, []);
 
   const handleGoNext = () => {
     setTaskSelection([buildDays, debugDays, testDays]);
