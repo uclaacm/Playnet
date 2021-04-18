@@ -10,8 +10,7 @@ interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
   goNextState: () => void,
   variableSelection: VARIABLES[],
-  // featureWeights: number[],
-  // setFeatureWeights: (newWeights: number[]) => void;
+  featureWeights: number[],
 }
 export const GameContext = React.createContext<Partial<IGameContext>>({});
 

@@ -3,13 +3,13 @@ import '../../../styles/Activity3Game.scss';
 import { GameContext } from '.';
 
 interface FeatureSlidebarProps {
-  featureWeights: number[],
-  setFeatureWeights: (featureweights: number[]) => void,
+  initialFeatureWeights: number[],
+  setFeatureWeights: (featureWeights: number[]) => void,
 }
 
 function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
   const { goNextState, variableSelection } = useContext(GameContext);
-  const { featureWeights, setFeatureWeights } = props;
+  const { initialFeatureWeights, setFeatureWeights } = props;
   const [weight1, setWeight1] = useState(featureWeights[0]);
   const [weight2, setWeight2] = useState(featureWeights[1]);
 
@@ -22,13 +22,13 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     const valString: string = e.currentTarget.value.replace('%', '').trim();
     const val: number = valString === '' ? 0 : parseInt(valString);
     switch (index) {
-      case 1:
+      case 0:
         adjustWeights1(val);
         break;
-      case 2:
+      case 1:
         adjustWeights2(val);
         break;
-      case 3:
+      case 2:
         adjustWeights3(val);
     }
   };
@@ -99,42 +99,22 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
         Adjust the slider so that the most important variables take up the most space.
       </p>
       <div className='slider-text-input-container'>
-        <div className='input-option'>
-          <div className='input-text-display-container'>
-            <div className='variable-image' id={variableSelection[0].toLowerCase().replace(' ', '-')} />
-            <div className='feature-text'>{variableSelection[0]}</div>
-          </div>
-          <input className='slider-input'
-            type='text'
-            value={weight1 + '%'}
-            onWheel={scrollValue(1)}
-            onChange={handleInputWeight(1)}
-          />
-        </div>
-        <div className='input-option'>
-          <div className='input-text-display-container'>
-            <div className='variable-image' id={variableSelection[1].toLowerCase().replace(' ', '-')} />
-            <div className='feature-text'>{variableSelection[1]}</div>
-          </div>
-          <input className='slider-input'
-            type='text'
-            value={(weight2) + '%'}
-            onChange={handleInputWeight(2)}
-            onWheel={scrollValue(2)}
-          />
-        </div>
-        <div className='input-option'>
-          <div className='input-text-display-container'>
-            <div className='variable-image' id={variableSelection[2].toLowerCase().replace(' ', '-')} />
-            <div className='feature-text'>{variableSelection[2]}</div>
-          </div>
-          <input className='slider-input'
-            type='text'
-            value={(100 - weight2 -weight1) + '%'}
-            onWheel={scrollValue(3)}
-            onChange={handleInputWeight(3)}
-          />
-        </div>
+ {
+          variableSelection.map((variable, index) => {
+            return <div className='input-option'>
+            <div className='input-text-display-container'>
+              <div className='variable-image' id={variable.toLowerCase().replace(' ', '-')} />
+              <div className='feature-text'>{variable}</div>
+            </div>
+            <input className='slider-input'
+              type='text'
+              value={weights[index] + '%'}
+              onWheel={scrollValue(index)}
+              onChange={handleInputWeight(index)}
+            />
+          </div>;
+          })
+        }
       </div>
 
       <div className='input-slider-container'>
