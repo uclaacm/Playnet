@@ -4,8 +4,8 @@ import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import ComputerRecs from './Animations/ComputerRecs';
-import Lecture from './Animations/Lecture';
 import Debugging from './Animations/Debugging';
+import Lecture from './Animations/Lecture';
 import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';

@@ -29,6 +29,7 @@ button {
   background-color: $playnet-orange;
   color: white;
   font: $font-normal;
+  font: inherit;
   padding: 0.5vw 1vw;
   border-radius: 10px;
   white-space: nowrap;

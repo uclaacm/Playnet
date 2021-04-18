@@ -1,5 +1,6 @@
 @import 'variables';
 
+// Game Intro Slides
 .grid {
   display: grid;
   grid-auto-flow: column;
@@ -9,6 +10,7 @@
   width: calc(#{$carousel-content-width} / 2 - 2vw);
   margin: auto;
   padding: 1vw 0 1vw 0;
+  height: 100%;
 }
 
 #arrow {
@@ -105,4 +107,41 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 #subscribed {
   background-image: url('../../assets/activity3/game/Subscribe.svg');
+}
+
+// DebuggingResults
+.debugScreen {
+  background-color: black;
+  border-radius: 25px;
+  height: 100%;
+  margin: auto;
+  display: table;
+  width: 100%;
+}
+
+.debugText {
+  color: $hover_green;
+  font-size: 15px;
+  display: table-cell;
+  vertical-align: middle;
+  line-height: 28px;
+}
+
+.vertical-grid {
+  display: grid;
+  grid-auto-flow: row;
+  row-gap: 30px;
+  height: 100%;
+}
+
+.button-group {
+  font: $font-footer;
+  font-size: 20px;
+}
+
+.smaller {
+  font: $font-footer;
+  font-size: 20px;
+  min-width: 60%;
+  min-height: 50px;
 }

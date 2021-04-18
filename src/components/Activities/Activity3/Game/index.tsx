@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
+import DebuggingResults from './DebuggingResults';
 import DemoNextButton from './DemoNextButton';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, VARIABLES } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
+
 
 interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
@@ -87,7 +89,7 @@ function Game(): JSX.Element {
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]: <>2<DemoNextButton /></>,
     [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
-    [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
+    [A3_GAME_STATE.DebuggingResults]: <><DebuggingResults/><DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
     [A3_GAME_STATE.FinalReport]: <>6<DemoNextButton /></>,
