@@ -31,11 +31,6 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     }
   };
 
-  const handleNetWeight2 = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val: number = e.currentTarget.value.trim() === '' ? 0 : parseInt(e.currentTarget.value);
-    adjustWeights2(val - weights[0]);
-  };
-
   const scrollValue = (index: number) => (e: React.WheelEvent) => {
     let adjustment = 0;
     if (e.deltaY < 0) { //scrolling down
@@ -68,7 +63,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     if (upperBound > 100) {
       newWeight1 -= (upperBound - 100);
     } else if (val < 0) {
-      const newWeight1 = Math.max(weights[0] + val, 0);
+      newWeight1 = Math.max(weights[0] + val, 0);
       setWeights([newWeight1, 0, 100 - newWeight1]);
       return;
     }
@@ -96,18 +91,19 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
       </p>
       <div className='slider-text-input-container'>
         {variableSelection.map((variable, index) => {
-          return <div className='input-option'>
-            <div className='input-text-display-container'>
-              <div className='variable-image' id={variable.toLowerCase().replace(' ', '-')} />
-              <div className='feature-text'>{variable}</div>
-            </div>
-            <input className='slider-input'
-              type='text'
-              value={weights[index] + '%'}
-              onWheel={scrollValue(index)}
-              onChange={handleInputWeight(index)}
-            />
-          </div>;
+          return (
+            <div className='input-option' key={variable+'-'+index}>
+              <div className='input-text-display-container'>
+                <div className='variable-image' id={variable.toLowerCase().replace(' ', '-')} />
+                <div className='feature-text'>{variable}</div>
+              </div>
+              <input className='slider-input'
+                type='text'
+                value={weights[index] + '%'}
+                onWheel={scrollValue(index)}
+                onChange={handleInputWeight(index)}
+              />
+            </div>);
         })
         }
       </div>
@@ -119,8 +115,10 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
             '--sec2-percent': weights[0] + weights[1] + '%',
           }}
         />
-        <input type="range" className="input-slidebar" min="0" max="100" value={weights[0]} onChange={handleInputWeight(0)} />
-        <input type="range" className="input-slidebar" min="0" max="100" value={weights[0] + weights[1]} onChange={handleNetWeight2} />
+        <input type="range" className="input-slidebar" min="0" max="100" value={weights[0]}
+          onChange={(e) => adjustWeights1(parseInt(e.currentTarget.value))} />
+        <input type="range" className="input-slidebar" min="0" max="100" value={weights[0] + weights[1]}
+          onChange={(e) => adjustWeights2(parseInt(e.currentTarget.value) - weights[0])} />
       </div>
       <button className='playnet-button' onClick={goNextState}
         style={{ width: '40%' }} >Continue</button>
