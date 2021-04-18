@@ -245,3 +245,30 @@ b {
   background-size: contain;
   background-image: url('../../assets/activity3/soil.svg');
 }
+
+.criteria-video {
+  width: 224px;
+  height: 182px;
+  margin-top: 165px;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: solid red 0px;
+  border-radius: 25px;
+  
+}
+
+#flu-video {
+  background-image: url('../../assets/activity3/videocrit1.svg');
+  margin-left: 67px;
+}
+
+#shark-video {
+  margin-left: 391px;
+  background-image: url('../../assets/activity3/video-crit2.svg');
+}
+
+#flat-video {
+  margin-left: 715px;
+  background-image: url('../../assets/activity3/video-crit3.svg');
+}

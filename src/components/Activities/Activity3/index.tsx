@@ -9,6 +9,7 @@ import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
 import Game from './Game';
 import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
+import RecommendCriteria from './Animations/RecommendCriteria';
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
@@ -38,6 +39,21 @@ function Activity3(): JSX.Element {
       bottomText: 'When people are done watching a video,',
       bottomText2: ' what videos should we recommend be watched next?',
       animationTime: 5,
+    },
+    {
+      child: <RecommendCriteria />,
+      bottomText: 'We could recommend the most popular videos,',
+      animationTime: 2,
+    },
+    {
+      child: <RecommendCriteria />,
+      bottomText: 'the most credible videos,',
+      animationTime: 2,
+    },
+    {
+      child: <RecommendCriteria />,
+      bottomText: 'the most relevant videos...',
+      animationTime: 2,
     },
     {
       child: <List />,
