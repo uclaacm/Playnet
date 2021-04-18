@@ -4,6 +4,7 @@ import React from 'react';
 export const SESSION_SKIP_STATES = 'statesToSkip';
 export const SESSION_CURRENT_STATE = 'gamestate';
 export const SESSION_VARIABLES = 'variables';
+export const SESSION_TASKS = 'tasks';
 
 // GAME STATES
 export enum A3_GAME_STATE {
@@ -91,3 +92,9 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
     <>subs</>,
   ],
 };
+
+export enum TASKS {
+  BUILD = 0,
+  DEBUG = 1,
+  ABTEST = 2,
+}

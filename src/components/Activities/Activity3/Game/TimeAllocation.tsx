@@ -7,15 +7,24 @@ import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
 import NumberSelection from './NumberSelection';
+import { TASKS } from './GameConstants';
 
-function TimeAllocation(): JSX.Element {
+interface TimeAllocationProps {
+  setTaskSelection: (variables: number[]) => void;
+  initialTasks: number[];
+}
+
+function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState} = useContext(GameContext);
-  const [buildDays, setBuildDays] = useState<number>(0);
-  const [debugDays, setDebugDays] = useState<number>(0);
-  const [testDays, setTestDays] = useState<number>(0);
+  const { setTaskSelection, initialTasks } = props;
+  const { BUILD, DEBUG, ABTEST } = TASKS;
+  const [buildDays, setBuildDays] = useState(initialTasks[BUILD] ?  initialTasks[BUILD] : 0);
+  const [debugDays, setDebugDays] = useState(initialTasks[DEBUG] ?  initialTasks[DEBUG] : 0);
+  const [testDays, setTestDays] = useState(initialTasks[ABTEST] ?  initialTasks[ABTEST] : 0);
 
   const handleGoNext = () => {
     setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0);
+    setTaskSelection([buildDays, debugDays, testDays]);
     goNextState && goNextState();
   };
 
