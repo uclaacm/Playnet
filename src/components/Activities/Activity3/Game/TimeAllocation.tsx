@@ -23,6 +23,21 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const [debugDays, setDebugDays] = useState(0);
   const [testDays, setTestDays] = useState(0);
 
+  const OPTIONS = [
+    {
+      src: Hammer,
+      text: 'Build',
+    },
+    {
+      src: Debug,
+      text: 'Debug',
+    },
+    {
+      src: Graph,
+      text: 'A/B Test',
+    },
+  ];
+
   useEffect(() => {
     const initBuildDays = initialTimes[BUILD] ?? 0;
     const initDebugDays = initialTimes[DEBUG] ?? 0;
@@ -68,18 +83,14 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
 
     <div id={'options-grid'}>
-      <div className={'centered-box'}>
-        <img src={Hammer}/>
-        Build
-      </div>
-      <div className={'centered-box'}>
-        <img src={Debug}/>
-        Debug
-      </div>
-      <div className={'centered-box'}>
-        <img src={Graph}/>
-        A/B Test
-      </div>
+      {OPTIONS.map((option) => {
+        return (
+          <div key={option.text} className={'centered-box'}>
+            <img src={option.src}/>
+            {option.text}
+          </div>
+        );
+      })}
       <div className={'centered-box'}>
         <NumberSelection daysLeft={daysLeft ? (daysLeft - debugDays - testDays) : 0}
           daysUsed={buildDays} setDaysUsed={setBuildDays} showWarning={showWarning()}/> days
