@@ -1,53 +1,53 @@
 @import 'variables';
 
 #game-wrapper {
+  align-items: center;
   display: flex;
   flex-flow: column;
-  align-items: center;
   height: 100%;
 }
 
 .game-content {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  width: 100%;
   height: 100%;
+  justify-content: space-around;
+  width: 100%;
 }
 
 .gamebox {
-  width: 50%;
-  height: 100%;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: center;
-  align-items: center;
   text-align: center;
+  width: 50%;
 }
 
 .gamebox #translator {
-  max-height: 25%;
-  width: auto;
-  position: absolute;
   margin-left: 300px;
+  max-height: 25%;
+  position: absolute;
+  width: auto;
 }
 
 .choice-container {
+  align-items: center;
+  background: white;
+  border-color: black;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   height: 30%;
-  width: 50%;
+  justify-content: center;
   margin: 10px;
-  border-style: solid;
-  border-radius: 20px;
-  border-width: 8px;
-  border-color: black;
   overflow: hidden;
   transition: 0.1s;
-  background: white;
+  width: 50%;
 
   &:hover {
     cursor: pointer;
@@ -55,73 +55,73 @@
 }
 
 .choice-container img {
-  max-height: 100%;
   height: 100%;
+  max-height: 100%;
   max-width: 100%;
   width: auto;
 }
 
 #cipher-game-content {
+  align-items: flex-start;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   height: inherit;
+  justify-content: center;
   width: 75%;
 }
 
 .cipher-game-cards {
-  width: 50%;
-  height: 400px;
+  align-items: center;
   display: flex;
   flex-direction: row;
+  height: 400px;
   justify-content: center;
-  align-items: center;
+  width: 50%;
 }
 
 .cipher-game-success {
-  width: 100%;
-  height: 100%;
+  align-items: center;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: center;
-  align-items: center;
+  width: 100%;
 }
 
 #fixed-star-counter {
-  position: absolute;
   align-self: flex-end;
   margin-right: 20px;
+  position: absolute;
 }
 
 .happiness-bar {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
   width: 75%;
 }
 
 .star-counter {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
 .px-choice-container {
+  align-items: center;
+  border-color: black;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 8px;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
   height: 86px;
-  width: 150px;
+  justify-content: center;
   margin: 10px;
-  border-style: solid;
-  border-radius: 20px;
-  border-width: 8px;
-  border-color: black;
   transition: 0.1s;
+  width: 150px;
 
   &:hover {
     cursor: pointer;
@@ -129,18 +129,18 @@
 }
 
 .progress-bar-outer {
-  height: 20px;
-  width: 100%;
-  max-width: 300px;
   background-color: $progessbar-background-grey;
   border-radius: 50px;
+  height: 20px;
   margin: 5px;
+  max-width: 300px;
+  width: 100%;
 }
 
 .progress-bar-inner {
-  height: inherit;
   background-color: $playnet-orange;
   border-radius: inherit;
+  height: inherit;
   transition: width 0.5s ease-in-out;
 }
 

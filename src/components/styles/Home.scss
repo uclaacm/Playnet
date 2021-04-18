@@ -1,43 +1,43 @@
 @import 'variables';
 
 #intro-container {
+  display: flex;
+  left: -400px;
   margin-top: 50px;
+  overflow: hidden;
   transform: translateX(-300px);
   width: 300vw;
-  overflow: hidden;
-  left: -400px;
-  display: flex;
 }
 
 #computer {
-  width: 636px;
-  height: 418px;
-  margin-right: 100px;
+  background-image: url('../../assets/computer.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/computer.svg');
+  height: 418px;
+  margin-right: 100px;
+  width: 636px;
 }
 
 #rocket-path {
-  position: absolute;
-  margin-top: 160px;
-  width: 1606px;
-  height: 128px;
+  background-image: url('../../assets/rocket-path.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/rocket-path.svg');
+  height: 128px;
+  margin-top: 160px;
+  position: absolute;
+  width: 1606px;
 }
 
 #rocket {
-  transform-origin: 10% 50%;
-  margin-top: 100px;
-  width: 254px;
-  height: 125px;
+  background-image: url('../../assets/rocket.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/rocket.svg');
   display: grid;
+  height: 125px;
+  margin-top: 100px;
   place-content: center;
+  transform-origin: 10% 50%;
+  width: 254px;
 }
 
 #server-container {
@@ -45,131 +45,131 @@
 }
 
 #server {
-  margin-top: 100px;
-  width: 281px;
-  height: 234px;
+  background-image: url('../../assets/server.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/server.svg');
+  height: 234px;
+  margin-top: 100px;
+  width: 281px;
 }
 
 #bg-trajectory {
-  opacity: 0;
-  position: absolute;
+  height: 128px;
   left: 750px;
   margin-top: 160px;
+  opacity: 0;
+  position: absolute;
   width: 1606px;
-  height: 128px;
 }
 
 #library {
-  position: absolute;
-  opacity: 0;
-  left: 1350px;
-  width: 466px;
-  height: 372px;
+  background-image: url('../../assets/library.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/library.svg');
+  height: 372px;
+  left: 1350px;
+  opacity: 0;
+  position: absolute;
+  width: 466px;
 }
 
 #servers {
-  position: absolute;
-  opacity: 0;
-  top: -50px;
-  left: 1550px;
-  width: 600px;
-  height: 600px;
+  background-image: url('../../assets/servers.svg');
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('../../assets/servers.svg');
+  height: 600px;
+  left: 1550px;
+  opacity: 0;
+  position: absolute;
+  top: -50px;
+  width: 600px;
 }
 
 // FINAL SLIDE
 #scaling-container #final-intro-background {
-  width: 1000px;
-  height: 390px;
-  position: absolute;
-  margin: auto;
-  left: 0;
-  right: 0;
+  background-image: url('../../assets/Intro12.png');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/Intro12.png');
+  height: 390px;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  width: 1000px;
 }
 
 #scaling-container #server {
-  position: absolute;
-  margin-top: 78px;
-  margin-left: 669px;
-  width: 88px;
-  height: 74px;
+  background-image: url('../../assets/server.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/server.svg');
+  height: 74px;
+  margin-left: 669px;
+  margin-top: 78px;
+  position: absolute;
+  width: 88px;
 }
 
 #scaling-container #final-rocket {
-  position: absolute;
-  margin-top: 175px;
-  margin-left: 620px;
-  width: 60px;
   height: 30px;
+  margin-left: 620px;
+  margin-top: 175px;
+  position: absolute;
+  width: 60px;
 }
 
 #rocket-image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  margin-left: 46px;
-  transform-origin: 10% 50%;
-  transform: rotate(180deg);
+  background-image: url('../../assets/rocket.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/rocket.svg');
+  height: 100%;
+  margin-left: 46px;
+  position: absolute;
+  transform: rotate(180deg);
+  transform-origin: 10% 50%;
+  width: 100%;
 }
 
 #rocket-text {
-  position: absolute;
   font-size: 10px;
-  width: 100%;
-  margin-top: 6px;
   justify-self: center;
+  margin-top: 6px;
+  position: absolute;
+  width: 100%;
   z-index: 1;
 }
 
 #scaling-container #computer {
-  position: absolute;
-  margin-top: 140px;
-  margin-left: -286px;
-  width: 160px;
-  height: 107px;
+  background-image: url('../../assets/computer.svg');
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url('../../assets/computer.svg');
+  height: 107px;
+  margin-left: -286px;
+  margin-top: 140px;
+  position: absolute;
   transform-origin: 50% 45%;
+  width: 160px;
 }
 
 #scaling-container #video-pulley {
-  position: absolute;
-  width: 80px;
-  height: 5px;
-  margin-top: 14px;
-  margin-left: 44px;
+  background-image: url('../../assets/video-pulley.svg');
   background-repeat: no-repeat;
   background-size: contain;
-  background-image: url('../../assets/video-pulley.svg');
+  height: 5px;
+  margin-left: 44px;
+  margin-top: 14px;
+  position: absolute;
+  width: 80px;
 }
 
 #scaling-container #video {
-  position: absolute;
-  margin-top: 168px;
-  margin-left: 709px;
-  width: 70px;
-  height: 40px;
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 3px;
+  height: 40px;
+  margin-left: 709px;
+  margin-top: 168px;
+  position: absolute;
+  width: 70px;
 }
 
 #video.none-chosen,

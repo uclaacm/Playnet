@@ -1,9 +1,14 @@
 {
-  "extends": "stylelint-config-standard",
+  "extends": "stylelint-config-sass-guidelines",
   "ignoreFiles": [
     "**/*.ts",
     "**/*.tsx",
     "dist/*",
     "node_modules/*"
-  ]
+  ],
+  "rules": {
+    "selector-max-id": null,
+    "color-named": null,
+    "scss/dollar-variable-pattern": null
+  }
 }

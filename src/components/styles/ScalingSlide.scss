@@ -1,15 +1,6 @@
-@import "variables";
+@import 'variables';
 
 #scaling-container {
-  $fit-carousel-width-decimal: $fit-carousel-width-percent / 100%;
-
-  display: flex;
-  justify-content: center;
-  transform: scale(var(--animation-scale));
-  width: fit-content;
-
-  // eg if 90% width of carousel should be content, this padding equate to 5% carousel width
-  --content-padding: calc((var(--carousel-content-px) * (1 - #{$fit-carousel-width-decimal}) / 2) * 1px);
 
   // since scaling only scales the items inside,
   // the other divs and this div will overlap if we don't manually calculate margins
@@ -17,6 +8,15 @@
   --marginRightPx: 0;
   --marginBottomPx: var(--marginTopPx);
   --marginLeftPx: calc(var(--widthPx) / 2 * (var(--animation-scale) - 1) * 1px + var(--content-padding));
+  $fit-carousel-width-decimal: $fit-carousel-width-percent / 100%;
+
+  // eg if 90% width of carousel should be content, this padding equate to 5% carousel width
+  --content-padding: calc((var(--carousel-content-px) * (1 - #{$fit-carousel-width-decimal}) / 2) * 1px);
+  
+  display: flex;
+  justify-content: center;
 
   margin: var(--marginTopPx) var(--marginRightPx) var(--marginBottomPx) var(--marginLeftPx);
+  transform: scale(var(--animation-scale));
+  width: fit-content;
 }

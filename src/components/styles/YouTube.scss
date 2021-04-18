@@ -5,59 +5,59 @@ a {
 }
 
 #intro-wrapper {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 100%;
   width: auto;
 }
 
 #intro-title {
+  color: #fff;
   font: $font-title;
   margin-bottom: 0;
-  color: #fff;
 }
 
 #intro-subtitle {
+  color: #fff;
   font: $font-title;
   font-size: 26px;
   margin: 5px;
-  color: #fff;
 }
 
 #youtube-computer {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: calc(45vw * 15 / 23);
-  width: 45vw;
-  background-image: url("../../assets/computer-youtube.svg");
+  background-image: url('../../assets/computer-youtube.svg');
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  display: flex;
+  height: calc(45vw * 15 / 23);
+  justify-content: center;
+  width: 45vw;
 }
 
 #youtube-wrapper {
+  align-items: center;
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  height: auto;
   margin-left: 3vw;
   margin-right: 3vw;
   width: 100%;
-  height: auto;
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  align-items: center;
 }
 
 .youtube-video {
   border: solid black 5px;
   border-radius: 10px;
-  width: auto;
-  height: 100%;
-  display: grid;
-  margin: 5px;
-  transition-duration: 0.4s;
-  font: $font-footer;
   cursor: pointer;
+  display: grid;
+  font: $font-footer;
+  height: 100%;
+  margin: 5px;
   outline: none;
+  transition-duration: 0.4s;
+  width: auto;
 }
 
 .youtube-video:hover {
@@ -65,10 +65,10 @@ a {
 }
 
 .youtube-thumbnail {
-  margin: 5px;
-  justify-self: center;
-  width: 100%;
   height: auto;
+  justify-self: center;
+  margin: 5px;
+  width: 100%;
 }
 
 #youtube-final-video {

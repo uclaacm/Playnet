@@ -2,11 +2,11 @@
 $mobile-width: 768px;
 
 // Fonts
-$font-logo:   normal 800 32px 'Nunito', sans-serif;
-$font-nav:    normal 700 24px 'Nunito', sans-serif;
+$font-logo: normal 800 32px 'Nunito', sans-serif;
+$font-nav: normal 700 24px 'Nunito', sans-serif;
 $font-footer: normal 600 16px 'Nunito', sans-serif;
 $font-normal: normal 400 24px 'Nunito', sans-serif;
-$font-title:  normal 700 42px 'Nunito', sans-serif;
+$font-title: normal 700 42px 'Nunito', sans-serif;
 
 // Colors
 $playnet-orange: #df3a1f;
@@ -39,11 +39,11 @@ $carousel-content-width: calc((100vw - 2 * #{$total-carousel-margin-px}) * #{$fi
 /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 :export {
   /* stylelint-disable-next-line property-no-unknown */
-  carousel_padding_px: $carousel-padding-px;
-  /* stylelint-disable-next-line property-no-unknown */
   carousel_button_px: $carousel-button-px;
   /* stylelint-disable-next-line property-no-unknown */
   carousel_content_margin_px: $carousel-content-margin-px;
+  /* stylelint-disable-next-line property-no-unknown */
+  carousel_padding_px: $carousel-padding-px;
   /* stylelint-disable-next-line property-no-unknown */
   fit_carousel_width_percent: $fit-carousel-width-percent;
 }

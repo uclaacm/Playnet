@@ -16,9 +16,10 @@
     "react": "^16.13.1",
     "react-anime": "^3.0.3",
     "react-dom": "^16.13.1",
-    "use-sound": "^2.0.1",
     "react-lottie": "^1.2.3",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "stylelint-config-sass-guidelines": "^8.0.0",
+    "use-sound": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",

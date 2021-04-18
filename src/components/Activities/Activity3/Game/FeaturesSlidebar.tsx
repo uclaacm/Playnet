@@ -2,8 +2,14 @@ import React, { useContext, useEffect, useState } from 'react';
 import '../../../styles/Activity3Game.scss';
 import { GameContext } from '.';
 
-function FeatureSlidebar(): JSX.Element {
-  const { goNextState, variableSelection, featureWeights, setFeatureWeights } = useContext(GameContext);
+interface FeatureSlidebarProps {
+  featureWeights: number[],
+  setFeatureWeights: (featureweights: number[]) => void,
+}
+
+function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
+  const { goNextState, variableSelection } = useContext(GameContext);
+  const { featureWeights, setFeatureWeights } = props;
   const [weight1, setWeight1] = useState(featureWeights[0]);
   const [weight2, setWeight2] = useState(featureWeights[1] + featureWeights[0]);
 
@@ -111,6 +117,7 @@ function FeatureSlidebar(): JSX.Element {
             <div className='feature-text'>{variableSelection[1]}</div>
           </div>
           <input className='slider-input'
+            type='text'
             value={(weight2 - weight1) + '%'}
             onChange={handleInputWeight(2)}
             onWheel={scrollValue(2)}
@@ -122,6 +129,7 @@ function FeatureSlidebar(): JSX.Element {
             <div className='feature-text'>{variableSelection[2]}</div>
           </div>
           <input className='slider-input'
+            type='text'
             value={(100 - weight2) + '%'}
             onWheel={scrollValue(3)}
             onChange={handleInputWeight(3)}
