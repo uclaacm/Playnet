@@ -12,10 +12,6 @@ function ABTestDesc(): JSX.Element {
     opacity: [0, 1],
     duration: 1000,
   };
-  const longFadeIn = {
-    opacity: [0, 1],
-    duration: 1500,
-  };
   const fadeOut = {
     opacity: [1, 0],
     duration: 1000,
@@ -33,13 +29,14 @@ function ABTestDesc(): JSX.Element {
     }).add({
       targets: '#abtest-computer2',
       ...fadeIn,
+      duration: 1500,
     }).add({
       targets: '#love-response',
-      ...longFadeIn,
+      ...fadeIn,
       translateY: -20,
     }).add({
       targets: '#dislike-response',
-      ...longFadeIn,
+      ...fadeIn,
       translateY: -20,
     }, '-=750').add({
       targets: '#abtest-text2',
