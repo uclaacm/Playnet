@@ -141,7 +141,7 @@ function Activity1(): JSX.Element {
     },
   ];
   return (
-    <Carousel title={'Lost in Translation'}>
+    <Carousel title={'Lost in Translation'} hasSound={true}>
       {content}
     </Carousel>
   );

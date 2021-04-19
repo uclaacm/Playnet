@@ -5,6 +5,7 @@ export const SESSION_SKIP_STATES = 'statesToSkip';
 export const SESSION_CURRENT_STATE = 'gamestate';
 export const SESSION_VARIABLES = 'variables';
 export const SESSION_TIMES = 'times';
+export const SESSION_TARGET_WEIGHTS = 'weights';
 
 // GAME STATES
 export enum A3_GAME_STATE {

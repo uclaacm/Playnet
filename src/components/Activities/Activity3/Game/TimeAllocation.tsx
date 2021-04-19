@@ -10,13 +10,12 @@ import { STARTING_DAYS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameCons
 import NumberSelection from './NumberSelection';
 
 interface TimeAllocationProps {
-  setTimeAllocation: (variables: number[]) => void;
   initialTimes: number[];
 }
 
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {
-  const {daysLeft, setDaysLeft, goNextState} = useContext(GameContext);
-  const { initialTimes, setTimeAllocation } = props;
+  const {daysLeft, setDaysLeft, goNextState, setTimeAllocation} = useContext(GameContext);
+  const { initialTimes } = props;
   const [daysAllocation, setDaysAllocation] = useState<number[]>([0,0,0]);
 
   const DISPLAY_OPTIONS = [
@@ -40,7 +39,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     setDaysAllocation(initAllocation);
 
     // reset daysLeft to maximum
-    setDaysLeft && setDaysLeft(STARTING_DAYS);
+    setDaysLeft(STARTING_DAYS);
   }, []);
 
   const handleGoNext = () => {
@@ -48,8 +47,8 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     setTimeAllocation(daysAllocation);
 
     // update the number of remaining days
-    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - sumDaysUsed()) : 0);
-    goNextState && goNextState();
+    setDaysLeft(daysLeft ? (daysLeft - sumDaysUsed()) : 0);
+    goNextState();
   };
 
   const sumDaysUsed = () : number => {

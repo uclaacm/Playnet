@@ -1,9 +1,9 @@
 import { Gaussian } from 'ts-gaussian';
 import { DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS, 
-  EXP_CONSTANT, MIN_ALLOCATION, NUMBER_TO_QUALITY_MAP, VARIABLE_WEIGHTS_STD } from 
+  EXP_CONSTANT, MAX_NUM_ERRORS, MIN_ALLOCATION, NUMBER_TO_QUALITY_MAP, QUALITY_DEFAULT, QUALITY_DEFAULT_KEY, VARIABLE_WEIGHTS_STD } from 
   './GameConstantsToMessWith';
 
-export function generateVariableTargets(): [number, number, number] {
+export function generateVariableTargetWeights(): [number, number, number] {
   const NUMBER_TARGETS = 3;
   const percentageToAllocate = 100 - 3 * MIN_ALLOCATION;
   const allocation1 = 2 * Math.random() * percentageToAllocate / NUMBER_TARGETS;
@@ -18,7 +18,9 @@ export function getDebugNumErrors(
   daysDebugging: number,
 ): number {
   const t = daysBuilding * DAY_VALUE_FOR_BUILD * (1 + daysDebugging * DAY_VALUE_PERCENT_FOR_DEBUG);
-  return Math.exp(-1 * EXP_CONSTANT * t);
+  const numErrors = Math.floor(MAX_NUM_ERRORS * Math.exp(-1 * EXP_CONSTANT * t));
+  console.log("numerrors: " + numErrors)
+  return numErrors;
 }
 
 export function getDebugErrors(
@@ -39,12 +41,13 @@ export function getRecommendationQuality(
   const distribution = new Gaussian(0, VARIABLE_WEIGHTS_STD ** 2); // normal distribution
 
   // value between 0-3 about how accurate the recommendation was
-  const numericQuality = expectedWeights.reduce((prev, weight, i) => prev + distribution.pdf(featureWeights[i] - weight), 0);
-
-  const qualityEntry = Object.entries(NUMBER_TO_QUALITY_MAP).find(
-    ([key, _]) => numericQuality > parseInt(key),
-  ) ?? [0, NUMBER_TO_QUALITY_MAP[0]];
-  return qualityEntry[1];
+  const numericQuality = expectedWeights.reduce((prev, weight, i) => prev + distribution.cdf(featureWeights[i] - weight), 0);
+  console.log("numericQuality " + numericQuality);
+  console.log(expectedWeights)
+  const qualityKey = Object.keys(NUMBER_TO_QUALITY_MAP).find(
+    (key) => {const bracket = key.split(',').map(Number);  return numericQuality > bracket[0] && numericQuality < bracket[1]},
+  ) ?? QUALITY_DEFAULT_KEY;
+  return NUMBER_TO_QUALITY_MAP[qualityKey];
 }
 
 /**

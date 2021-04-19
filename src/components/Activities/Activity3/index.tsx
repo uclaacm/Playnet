@@ -121,11 +121,12 @@ function Activity3(): JSX.Element {
     },
     {
       child: <Game />,
+      showPrev: false,
     },
   ];
 
   return (
-    <Carousel title='Mind Reading'>
+    <Carousel title='Mind Reading' hasSound={false}>
       {content}
     </Carousel>
   );

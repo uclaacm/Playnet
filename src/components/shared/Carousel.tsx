@@ -11,7 +11,7 @@ import Tooltip from './Tooltip';
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
   prev: (): void => undefined,
-  jumpNumSlides: (_number: number): void=> undefined,
+  jumpNumSlides: (_number: number): void => undefined,
   slideIdx: 0,
   reloadTime: Date.now(),
   isVoiceMuted: DEFAULT_CONFIGS.VOICEOVER_MUTED,
@@ -39,6 +39,7 @@ interface CarouselProps {
   subtitle?: string;
   onNext?: () => void;
   onPrev?: () => void;
+  hasSound: boolean;
 }
 
 function Carousel(props: CarouselProps): JSX.Element {
@@ -111,8 +112,8 @@ function Carousel(props: CarouselProps): JSX.Element {
     props.onPrev && props.onPrev();
   }
 
-  function jumpNumSlides(number: number){
-    const newSlide =  Math.max(Math.min(slideIdx + number, props.children.length - 1), 0);
+  function jumpNumSlides(number: number) {
+    const newSlide = Math.max(Math.min(slideIdx + number, props.children.length - 1), 0);
     setSlideIdx(newSlide);
   }
 
@@ -206,14 +207,16 @@ function Carousel(props: CarouselProps): JSX.Element {
                       </Tooltip>
                     </div>
                   }
-                  <div className='util-right-btn-container'>
-                    <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
-                      <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
-                    </Tooltip>
-                    <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
-                      <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
-                    </Tooltip>
-                  </div>
+                  {
+                    props.hasSound && <div className='util-right-btn-container'>
+                      <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
+                        <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
+                      </Tooltip>
+                      <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
+                        <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
+                      </Tooltip>
+                    </div>
+                  }
                 </div>
 
                 {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
