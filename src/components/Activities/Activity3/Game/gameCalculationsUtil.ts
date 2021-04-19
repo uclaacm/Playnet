@@ -86,7 +86,7 @@ export function getBetaGraphForABTesting(
   _expectedVariableValues: number[],
   _actualVariableValues: number[],
   _controlGraph: [number, number][],
-  _timeAllocations: [number, number, number],
+  _timeAllocations: number[],
 ): [number, number][] {
   return [];
 }

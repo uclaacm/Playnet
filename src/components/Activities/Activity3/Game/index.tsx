@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import ABTestDesc from './ABTestDesc';
+import ABTestingReport from './ABTestingReport';
 import DebuggingResults from './DebuggingResults';
 import DemoNextButton from './DemoNextButton';
 import FeaturesSlidebar from './FeaturesSlidebar';
@@ -144,8 +145,8 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.TimeAllocation]:
       <TimeAllocation initialTimes={timeAllocation} isTutorial={false}/>,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults/>,
-    [A3_GAME_STATE.ABTestingExplanation]: <><ABTestDesc /></>,
-    [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
+    [A3_GAME_STATE.ABTestingExplanation]: <ABTestDesc />,
+    [A3_GAME_STATE.ABTestingReport]: <ABTestingReport/>,
     [A3_GAME_STATE.FinalReport]: <>6<DemoNextButton /></>,
     [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached
   };
