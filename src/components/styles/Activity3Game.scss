@@ -288,7 +288,17 @@ $card-height: calc(#{$card-min-width} - 20px);
   align-items: center;
   display: flex;
   flex-direction: row;
+  height: 50%;
   justify-content: center;
+}
+
+.option-container {
+  border-radius: 25px;
+  border-width: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 5px;
 }
 
 #options-grid {
@@ -322,6 +332,59 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 .time-input-warning {
   color: $text-red;
+}
+
+#time-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+// TimeAllocation Tutorial styles
+#time-tutorial-overlay {
+  // padding: 4% 4%;
+  display: flex;
+  filter: blur(0);
+  flex-direction: column;
+  height: $min-carousel-height;
+  position: absolute;
+  width: 80%;
+  z-index: 40;
+}
+
+#time-tutorial-bubble {
+  background-color: white;
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 7px;
+  font-size: 20px;
+  height: fit-content;
+  // float: right; // @TREVOR: add this in for float right
+  margin: auto;
+  max-height: $min-carousel-height;
+  min-width: 350px;
+  position: absolute;
+  width: 25%;
+  z-index: 50;
+}
+
+#time-tutorial-bubble p {
+  margin: 20px;
+}
+
+.enable-blur>* {
+  filter: blur(1.5px) grayscale(0.6);
+}
+
+.disable-blur {
+  filter: blur(0);
+}
+
+.highlight-border {
+  border-color: $playnet-orange;
+  border-style: solid;
+  padding: 0 !important;
 }
 
 // styles for ab testing description
@@ -404,50 +467,4 @@ $card-height: calc(#{$card-min-width} - 20px);
 #abtest-text2 {
   opacity: 0;
   position: absolute;
-}
-
-#time-container {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-}
-
-#time-tutorial-overlay {
-  // padding: 4% 4%;
-  display: flex;
-  flex-direction: column;
-  filter: blur(0);
-  height: $min-carousel-height;
-  position: absolute;
-  width: 80%;
-  z-index: 40;
-}
-
-#time-tutorial-bubble {
-  background-color: white;
-  border-color: black;
-  border-radius: 10px;
-  border-style: solid;
-  border-width: 7px;
-  font-size: 20px;
-  height: fit-content;
-  // float: right; // @TREVOR: add this in for float right
-  margin: auto;
-  max-height: $min-carousel-height;
-  min-width: 350px;
-  position: absolute;
-  width: 25%;
-  z-index: 50;
-}
-
-#time-tutorial-bubble p {
-  margin: 20px;
-}
-
-.enable-blur>* {
-  filter: blur(1.5px) grayscale(0.6);
-}
-
-.disable-blur {
-  filter: blur(0);
 }

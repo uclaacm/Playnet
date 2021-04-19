@@ -29,14 +29,13 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     { src: Graph, text: 'A/B Test' },
   ];
 
-  const displayOptionIcons = () => {
-    return DISPLAY_OPTIONS.map((option) => (
-      <div key={option.text} className={'centered-box'}>
-        <img src={option.src}/>
-        {option.text}
-      </div>
-    ));
-  };
+  const optionIcons = DISPLAY_OPTIONS.map((option) => (
+    <div key={option.text}
+      className={'centered-box'}>
+      <img src={option.src}/>
+      {option.text}
+    </div>
+  ));
 
   useEffect(() => {
     // reallocate task distribution
@@ -140,14 +139,17 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       <br/>
       (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
     </div>
-    <div id={'options-grid'}>
-      {displayOptionIcons()}
+    <div id={'options-grid'} className={'disable-blur'}>
       {daysAllocation.map((curAlloc : number, index : number) => {
         const usableDays = daysLeft ? (daysLeft - sumDaysUsed() + curAlloc) : 0;
         return (
-          <div key={index} className={'centered-box'}>
-            <NumberSelection daysLeft={usableDays} itemType={index}
-              daysAllocation={daysAllocation} setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
+          <div key={index}
+            className={`option-container ${tutorialStage !== TUTORIAL_END && (tutorialStage === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
+            {optionIcons[index]}
+            <div className={'centered-box'}>
+              <NumberSelection daysLeft={usableDays} itemType={index} daysAllocation={daysAllocation}
+                setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
+            </div>
           </div>
         );
       })}
