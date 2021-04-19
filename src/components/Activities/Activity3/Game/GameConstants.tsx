@@ -35,7 +35,7 @@ const STATE_ORDERING_LIST = [
 ];
 
 export const ONE_TIME_STATES = [A3_GAME_STATE.PriorityExplanation, A3_GAME_STATE.TimeAllocationExplanation,
-   A3_GAME_STATE.ABTestingExplanation];
+  A3_GAME_STATE.ABTestingExplanation];
 
 /**
  * recursively get next state

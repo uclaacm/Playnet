@@ -50,7 +50,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   useEffect(() => {
     setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
-  }, [isTutorial])
+  }, [isTutorial]);
 
   const handleGoNext = () => {
     // update the new task distribution
