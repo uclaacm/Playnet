@@ -6,37 +6,37 @@
 }
 
 .half {
-  width: calc(#{$carousel-content-width} / 2 - 2vw);
   margin: auto;
-  padding: 1vw 0 1vw 0;
+  padding: 1vw 0;
+  width: calc(#{$carousel-content-width} / 2 - 2vw);
 }
 
 #arrow {
-  width: calc(#{$carousel-content-width} / 20);
-  height: calc(#{$carousel-content-width} / 20);
+  background-image: url('../../assets/activity3/game/Arrow.svg');
   background-origin: content-box;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
-  background-image: url('../../assets/activity3/game/Arrow.svg');
+  height: calc(#{$carousel-content-width} / 20);
+  width: calc(#{$carousel-content-width} / 20);
 }
 
 #arrow-container {
-  margin-right: 18%;
   float: right;
-  width: calc(#{$carousel-content-width} / 20);
   height: calc(#{$carousel-content-width} / 18);
+  margin-right: 18%;
+  width: calc(#{$carousel-content-width} / 20);
 }
 
 // Selecting variables
 #variables-wrapper {
   display: grid;
-  width: fit-content;
-  margin: auto;
-  grid-template-rows: repeat(2, 1fr);
-  grid-template-columns: repeat(3, 1fr);
   grid-gap: 1vw 1.5vw;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin: auto;
   padding: 1.5vw;
+  width: fit-content;
 }
 
 $card-min-width: calc((#{$carousel-content-width} ) / 3 / 2);
@@ -51,36 +51,36 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 .checkmark {
+  background-image: url('../../assets/activity3/game/Selected.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 2vw;
   position: absolute;
   right: 5px;
   top: 5px;
   width: 2vw;
-  height: 2vw;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  background-image: url('../../assets/activity3/game/Selected.svg');
 }
 
 .variable-card {
-  min-width: $card-min-width;
-  width: 100%;
-  height: $card-height;
-  border-width: 6px;
-  border-style: solid;
-  border-radius: 25px;
   background-color: $carousel-background-white;
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 6px;
   font: $font-normal;
   font-size: 22px;
+  height: $card-height;
+  min-width: $card-min-width;
+  width: 100%;
 }
 
 .variable-image {
-  width: 100%;
-  height: calc(#{$card-height} - 53px);
+  background-position: center;
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  height: calc(#{$card-height} - 53px);
   margin: auto;
+  width: 100%;
 }
 
 #credible {
@@ -88,7 +88,7 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 #recent-upload {
-  background-image: url('../../assets/activity3/game/Clock.svg');
+  background-image: url('../../assets/activity3/game/Clock-big.svg');
 }
 
 #same-content {
@@ -105,6 +105,116 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 #subscribed {
   background-image: url('../../assets/activity3/game/Subscribe.svg');
+}
+
+//Text Input for Weighting Features Slider
+.slider-text-input-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0 1vw 1vh;
+}
+
+.input-text-display-container {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  .variable-image {
+    margin: 0 3%;
+    width: 30%;
+  }
+}
+
+.input-option {
+  width: 30%;
+}
+
+.input-option input {
+  border: 6px solid $input-border-gray;
+  border-radius: 10px;
+  font: $font-normal;
+  outline: 0;
+  text-align: center;
+  width: 30%;
+}
+
+//Click and Drag Input Slider for Weighting Features
+.input-slider-container {
+  border-radius: $slider-border-radius;
+  display: grid;
+  grid-template-columns: 100%;
+  height: $slider-height-px;
+  margin: 2% 5%;
+  width: 90%;
+}
+
+.slider-background-color {
+  align-self: center;
+  background:
+    linear-gradient(to right,
+    #ffba09 0%,
+    #ffba09 var(--sec1-percent),
+    #a1d900 var(--sec1-percent),
+    #a1d900 var(--sec2-percent),
+    #04c439 var(--sec2-percent),
+    #04c439 100%);
+  border-radius: $slider-border-radius;
+  grid-column: 1;
+  grid-row: 1;
+  height: 50px;
+}
+
+// Modified from https://codepen.io/thebabydino/pen/gOYqdEd
+@mixin slider-icon {
+  background: url('../../assets/activity3/game/slider.svg');
+  border: 0;
+  cursor: pointer;
+  height: $slider-height-px;
+  outline: 0;
+  pointer-events: auto;
+  width: 56px;
+}
+
+@mixin slidebar-track {
+  background: none; /* get rid of Firefox track background */
+  height: 100%;
+  outline: 0;
+  width: 100%;
+}
+
+.input-slidebar {
+  appearance: none;
+  background: none; /* get rid of white Chrome background */
+  grid-column: 1;
+  grid-row: 1;
+  margin: 0;
+  outline: 0;
+  pointer-events: none; /* let clicks pass through */
+  width: 100%;
+
+  &::-webkit-slider-runnable-track,
+  &::-webkit-slider-thumb,
+  & {
+    appearance: none;
+  }
+
+  &::-webkit-slider-runnable-track {
+    @include slidebar-track;
+  }
+
+  &::-moz-range-track {
+    @include slidebar-track;
+  }
+
+  &::-webkit-slider-thumb {
+    @include slider-icon;
+  }
+
+  &::-moz-range-thumb {
+    @include slider-icon;
+  }
 }
 
 // styles for TimeAllocation

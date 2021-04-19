@@ -93,6 +93,7 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
   ],
 };
 
+// Time Allocation Info
 export const STARTING_DAYS = 56;
 export const LOW_DAY_THRESHOLD = 14;
 export const HIGH_DAY_THRESHOLD = 21;

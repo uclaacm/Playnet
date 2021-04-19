@@ -2,11 +2,11 @@
 $mobile-width: 768px;
 
 // Fonts
-$font-logo:   normal 800 32px 'Nunito', sans-serif;
-$font-nav:    normal 700 24px 'Nunito', sans-serif;
+$font-logo: normal 800 32px 'Nunito', sans-serif;
+$font-nav: normal 700 24px 'Nunito', sans-serif;
 $font-footer: normal 600 16px 'Nunito', sans-serif;
 $font-normal: normal 400 24px 'Nunito', sans-serif;
-$font-title:  normal 700 42px 'Nunito', sans-serif;
+$font-title: normal 700 42px 'Nunito', sans-serif;
 
 // Colors
 $text-red: #f00;
@@ -14,11 +14,12 @@ $playnet-orange: #df3a1f;
 $playnet-skyblue: #00e0ff;
 $playnet-grey: #a5a5a5;
 $playnet-darkgrey: #6b6e70;
-$hover_green: #1cc64b;
+$hover-green: #1cc64b;
 $carousel-background-white: rgba(255, 255, 255, 0.95);
 $progessbar-background-grey: #d3d3d3;
 $bg-footer: #fff;
 $border-black: black;
+$input-border-gray: #a5a5a5;
 
 // Sizes
 $head-foot-height: 64px;
@@ -31,17 +32,20 @@ $carousel-content-margin-px: 24px;
 $fit-carousel-width-percent: 90%;
 $total-carousel-margin-px: $carousel-padding-px + $carousel-button-px + $carousel-content-margin-px;
 
+$slider-height-px: 98px;
+$slider-border-radius: 30px;
+
 // Carousel Width
 $carousel-content-width: calc((100vw - 2 * #{$total-carousel-margin-px}) * #{$fit-carousel-width-percent / 100%});
 
 /* stylelint-disable-next-line selector-pseudo-class-no-unknown */
 :export {
   /* stylelint-disable-next-line property-no-unknown */
-  carousel_padding_px: $carousel-padding-px;
-  /* stylelint-disable-next-line property-no-unknown */
   carousel_button_px: $carousel-button-px;
   /* stylelint-disable-next-line property-no-unknown */
   carousel_content_margin_px: $carousel-content-margin-px;
+  /* stylelint-disable-next-line property-no-unknown */
+  carousel_padding_px: $carousel-padding-px;
   /* stylelint-disable-next-line property-no-unknown */
   fit_carousel_width_percent: $fit-carousel-width-percent;
 }

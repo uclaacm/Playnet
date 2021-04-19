@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect} from 'react';
 import { GameContext } from '.';
 
-import Clock from '../../../../assets/activity3/game/Clock.svg';
+import Clock from '../../../../assets/activity3/game/Clock-big.svg';
 import Debug from '../../../../assets/activity3/game/Debug.svg';
 import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
@@ -56,7 +56,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     return daysAllocation.reduce((acc : number, cur : number) => acc + cur);
   };
 
-  const displayWarning = () => {
+  const getDisplayWarning = (): JSX.Element => {
     const daysUsed = sumDaysUsed();
 
     if (daysUsed < LOW_DAY_THRESHOLD) {
@@ -68,11 +68,11 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         If you use too many days in this stage, you might <br/> not have enough time to make fixes later!
       </div>;
     }
-    return;
+    return <></>;
   };
 
   // warning color if below or above threshold
-  const showWarning = () => {
+  const isShowWarning = () => {
     const daysUsed = sumDaysUsed();
     return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
@@ -81,7 +81,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     Choose how much time to spend on each part of your project.
     <br/>
     (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
-
     <div id={'options-grid'}>
       {displayOptionIcons()}
       {daysAllocation.map((curAlloc : number, index : number) => {
@@ -89,7 +88,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         return (
           <div key={index} className={'centered-box'}>
             <NumberSelection daysLeft={usableDays} itemType={index}
-              daysAllocation={daysAllocation} setDaysAllocation={setDaysAllocation} showWarning={showWarning()}/> days
+              daysAllocation={daysAllocation} setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
           </div>
         );
       })}
@@ -98,8 +97,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       <img src={Clock}/>
       Days left: {daysLeft ? (daysLeft - sumDaysUsed()) : 0}
     </div>
-    {displayWarning()}
-
+    {getDisplayWarning()}
     <button className='playnet-button' onClick={handleGoNext}>Continue</button>
   </>;
 }

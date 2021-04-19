@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import DemoNextButton from './DemoNextButton';
+import FeaturesSlidebar from './FeaturesSlidebar';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
   SESSION_TIMES, VARIABLES, STARTING_DAYS } from './GameConstants';
@@ -15,6 +16,7 @@ interface IGameContext {
   timeAllocation: number[],
   daysLeft: number,
   setDaysLeft: (state: number) => void,
+  featureWeights: number[],
 }
 export const GameContext = React.createContext<Partial<IGameContext>>({});
 
@@ -25,6 +27,7 @@ function Game(): JSX.Element {
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
   const [timeAllocation, setTimeAllocation] = useState<number[]>([]);
+  const [featureWeights, setFeatureWeights] = useState([33, 33, 34]);
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -111,6 +114,9 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityWeighing]: <>2<DemoNextButton /></>,
     [A3_GAME_STATE.TimeAllocation]:
       <TimeAllocation setTimeAllocation={setTimeAllocation} initialTimes={timeAllocation}/>,
+    [A3_GAME_STATE.PriorityWeighing]:
+      <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+    [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
     [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
@@ -123,6 +129,7 @@ function Game(): JSX.Element {
     variableSelection: variableSelection,
     timeAllocation: timeAllocation,
     daysLeft: daysLeft, setDaysLeft: setDaysLeft,
+    featureWeights: featureWeights,
   }}>
     {GAME_ELEMENTS[state]}
   </GameContext.Provider>;
