@@ -2,13 +2,14 @@ import React from 'react';
 
 interface SelectProps {
   daysLeft: number;
-  daysUsed: number;
-  setDaysUsed: (_state: number) => void;
+  itemType: number
+  daysAllocation: number[];
+  setDaysAllocation: (_state: number[]) => void;
   showWarning: boolean;
 }
 
 function NumberSelection(props: SelectProps): JSX.Element {
-  const {daysLeft, daysUsed, setDaysUsed, showWarning} = props;
+  const {daysLeft, itemType, daysAllocation, setDaysAllocation, showWarning} = props;
 
   const handleScroll = (e: React.WheelEvent) => {
     let adjustment = 0;
@@ -17,20 +18,26 @@ function NumberSelection(props: SelectProps): JSX.Element {
     } else if (e.deltaY > 0 ) {
       adjustment = 1;
     }
-    const newInput = Math.max(Math.min(daysUsed + adjustment, daysLeft), 0);
-    setDaysUsed(newInput);
+    const newInput = Math.max(Math.min(daysAllocation[itemType] + adjustment, daysLeft), 0);
+    setNewAllocation(newInput);
   };
 
   const handleChange = (e : any) => {
     const value = e.target.value !== '' ? parseInt(e.target.value) : 0;
     const newInput = Math.max(Math.min(value, daysLeft), 0);
-    setDaysUsed(newInput);
+    setNewAllocation(newInput);
+  };
+
+  const setNewAllocation = (newInput : number) => {
+    const newAllocation = [...daysAllocation];
+    newAllocation[itemType] = newInput;
+    setDaysAllocation(newAllocation);
   };
 
   return (
     <input
       type='number'
-      value={daysUsed}
+      value={daysAllocation[itemType]}
       onChange={handleChange}
       onWheel={handleScroll}
       onClick={(e : any)=>e.target.select()}

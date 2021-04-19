@@ -6,7 +6,7 @@ import Debug from '../../../../assets/activity3/game/Debug.svg';
 import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
-import { TASKS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
+import { STARTING_DAYS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
 import NumberSelection from './NumberSelection';
 
 interface TimeAllocationProps {
@@ -16,48 +16,48 @@ interface TimeAllocationProps {
 
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState} = useContext(GameContext);
-  const { setTimeAllocation, initialTimes } = props;
-  const { BUILD, DEBUG, ABTEST } = TASKS;
+  const { initialTimes, setTimeAllocation } = props;
+  const [daysAllocation, setDaysAllocation] = useState<number[]>([0,0,0]);
 
-  const [buildDays, setBuildDays] = useState(0);
-  const [debugDays, setDebugDays] = useState(0);
-  const [testDays, setTestDays] = useState(0);
-
-  const OPTIONS = [
-    {
-      src: Hammer,
-      text: 'Build',
-    },
-    {
-      src: Debug,
-      text: 'Debug',
-    },
-    {
-      src: Graph,
-      text: 'A/B Test',
-    },
+  const DISPLAY_OPTIONS = [
+    { src: Hammer, text: 'Build' },
+    { src: Debug, text: 'Debug' },
+    { src: Graph, text: 'A/B Test' },
   ];
 
+  const displayOptionIcons = () => {
+    return DISPLAY_OPTIONS.map((option) => (
+      <div key={option.text} className={'centered-box'}>
+        <img src={option.src}/>
+        {option.text}
+      </div>
+    ));
+  };
+
   useEffect(() => {
-    const initBuildDays = initialTimes[BUILD] ?? 0;
-    const initDebugDays = initialTimes[DEBUG] ?? 0;
-    const initABTestDays = initialTimes[ABTEST] ?? 0;
-    setBuildDays(initBuildDays);
-    setDebugDays(initDebugDays);
-    setTestDays(initABTestDays);
+    // reallocate task distribution
+    const initAllocation = initialTimes ?? [0,0,0];
+    setDaysAllocation(initAllocation);
+
+    // reset daysLeft to maximum
+    setDaysLeft && setDaysLeft(STARTING_DAYS);
   }, []);
 
-  useEffect(() =>{
-    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0);
-    setTimeAllocation([buildDays, debugDays, testDays]);
-  }, [buildDays, debugDays, testDays]);
-
   const handleGoNext = () => {
+    // update the new task distribution
+    setTimeAllocation(daysAllocation);
+
+    // update the number of remaining days
+    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - sumDaysUsed()) : 0);
     goNextState && goNextState();
   };
 
+  const sumDaysUsed = () : number => {
+    return daysAllocation.reduce((acc : number, cur : number) => acc + cur);
+  };
+
   const displayWarning = () => {
-    const daysUsed = buildDays + debugDays + testDays;
+    const daysUsed = sumDaysUsed();
 
     if (daysUsed < LOW_DAY_THRESHOLD) {
       return <div className='playnet-red'>
@@ -73,7 +73,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   // warning color if below or above threshold
   const showWarning = () => {
-    const daysUsed = buildDays + debugDays + testDays;
+    const daysUsed = sumDaysUsed();
     return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
 
@@ -83,30 +83,20 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
 
     <div id={'options-grid'}>
-      {OPTIONS.map((option) => {
+      {displayOptionIcons()}
+      {daysAllocation.map((curAlloc : number, index : number) => {
+        const usableDays = daysLeft ? (daysLeft - sumDaysUsed() + curAlloc) : 0;
         return (
-          <div key={option.text} className={'centered-box'}>
-            <img src={option.src}/>
-            {option.text}
+          <div key={index} className={'centered-box'}>
+            <NumberSelection daysLeft={usableDays} itemType={index}
+              daysAllocation={daysAllocation} setDaysAllocation={setDaysAllocation} showWarning={showWarning()}/> days
           </div>
         );
       })}
-      <div className={'centered-box'}>
-        <NumberSelection daysLeft={daysLeft ? (daysLeft - debugDays - testDays) : 0}
-          daysUsed={buildDays} setDaysUsed={setBuildDays} showWarning={showWarning()}/> days
-      </div>
-      <div className={'centered-box'}>
-        <NumberSelection daysLeft={daysLeft ? (daysLeft - buildDays - testDays) : 0}
-          daysUsed={debugDays} setDaysUsed={setDebugDays} showWarning={showWarning()}/> days
-      </div>
-      <div className={'centered-box'}>
-        <NumberSelection daysLeft={daysLeft ? (daysLeft - buildDays - debugDays) : 0}
-          daysUsed={testDays} setDaysUsed={setTestDays} showWarning={showWarning()}/> days
-      </div>
     </div>
     <div className={'centered-box'}>
       <img src={Clock}/>
-      Days left: {daysLeft ? (daysLeft - buildDays - debugDays - testDays) : 0}
+      Days left: {daysLeft ? (daysLeft - sumDaysUsed()) : 0}
     </div>
     {displayWarning()}
 
