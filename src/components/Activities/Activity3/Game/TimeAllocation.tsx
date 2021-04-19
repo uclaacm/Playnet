@@ -112,6 +112,11 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     );
   };
 
+  const advanceTutorial = () => {
+    if (tutorialStage === TUTORIAL_END - 1) goNextState(); // skip to the actual timeAllocation slide
+    setTutorialStage(tutorialStage+1);
+  };
+
   return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enable-blur' : ''}>
     <div id={'time-tutorial-overlay'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}/>
     {
@@ -123,7 +128,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
               alignSelf: 'flex-center',
             }}>
             {displayTutorialText()}
-            <button className='playnet-button' style={{zIndex: 50}} onClick={() => {setTutorialStage(tutorialStage+1);}}>Continue</button>
+            <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
           </div>
         );
       })
