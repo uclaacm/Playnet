@@ -21,7 +21,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   const [tutorialStage, setTutorialStage] = useState(0);
   const TUTORIAL_END = 3;
-  const tutorial = false;
 
   const DISPLAY_OPTIONS = [
     { src: Hammer, text: 'Build' },
@@ -44,7 +43,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     setDaysAllocation(initAllocation);
 
     // skip tutorial if already allocated tasks
-    if (sumDaysUsed() !== 0) setTutorialStage(TUTORIAL_END);
+    if (daysLeft && daysLeft !== STARTING_DAYS) setTutorialStage(TUTORIAL_END);
 
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
@@ -113,19 +112,20 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     );
   };
 
-  return <div id={'time-container'} className={tutorialStage  ? 'enableBlur' : ''}>
+  return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enableBlur' : ''}>
+    <div id={'time-tutorial-overlay'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}/>
     {
       Object.values([0, 1, 2]).map((index) => {
-        return <div key={index} id={'time-tutorial-overlay'}>
-          <div id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disableBlur' : ''}
+        return (
+          <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disableBlur' : ''}
             style={{
               display: `${(tutorialStage === index) ? '' : 'none'}`,
-              alignSelf: 'flex-start',
+              alignSelf: 'flex-center',
             }}>
             {displayTutorialText()}
             <button className='playnet-button' style={{zIndex: 50}} onClick={() => {setTutorialStage(tutorialStage+1);}}>Continue</button>
           </div>
-        </div>;
+        );
       })
     }
     <div>
@@ -149,8 +149,8 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       <img src={Clock}/>
       Days left: {daysLeft ? (daysLeft - sumDaysUsed()) : 0}
     </div>
-    {getDisplayWarning()}
-    <button className='playnet-button' style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
+    {tutorialStage >= TUTORIAL_END && getDisplayWarning()}
+    <button className='playnet-button' disabled={sumDaysUsed() === 0} style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
   </div>;
 }
 export default TimeAllocation;

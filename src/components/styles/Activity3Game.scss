@@ -465,17 +465,20 @@ $card-height: calc(#{$card-min-width} - 20px);
 #time-tutorial-overlay {
   position: absolute;
   width: 90%;
-  z-index: 50;
+  height: $min-carousel-height;
+  z-index: 40;
   filter: blur(0);
-  padding: 4% 4%;
+  // padding: 4% 4%;
   align-items: flex-end;
 }
 
 #time-tutorial-bubble {
   font-size: 20px;
   background-color: white;
-  height: 70%;
+  height: fit-content;
+  max-height: $min-carousel-height;
   width: 25%;
+  min-width: 350px;
 
   border-color: black;
   border-width: 7px;
@@ -483,6 +486,7 @@ $card-height: calc(#{$card-min-width} - 20px);
   border-style: solid;
   // float: right; // @TREVOR: add this in for float right
   margin: auto;
+  z-index: 50;
 }
 
 #time-tutorial-bubble p {
