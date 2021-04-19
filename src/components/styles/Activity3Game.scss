@@ -372,6 +372,8 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 .disableBlur {
   filter: blur(0);
+}
+
 // styles for ab testing description
 #love-response {
   background: no-repeat center;

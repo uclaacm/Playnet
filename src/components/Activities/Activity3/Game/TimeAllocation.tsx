@@ -158,10 +158,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     </div>
     {getDisplayWarning()}
     <button className='playnet-button' style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
-<<<<<<< HEAD
   </div>;
-=======
-  </>;
->>>>>>> main
 }
 export default TimeAllocation;
