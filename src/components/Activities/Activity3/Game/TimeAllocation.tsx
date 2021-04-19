@@ -10,12 +10,13 @@ import { STARTING_DAYS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameCons
 import NumberSelection from './NumberSelection';
 
 interface TimeAllocationProps {
+  isTutorial: boolean,
   initialTimes: number[];
 }
 
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState, setTimeAllocation} = useContext(GameContext);
-  const { initialTimes } = props;
+  const {isTutorial, initialTimes } = props;
   const [daysAllocation, setDaysAllocation] = useState<number[]>([0,0,0]);
 
   const [tutorialStage, setTutorialStage] = useState(0);
@@ -41,12 +42,15 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     const initAllocation = initialTimes ?? [0,0,0];
     setDaysAllocation(initAllocation);
 
-    // skip tutorial if already allocated tasks
-    if (daysLeft && daysLeft !== STARTING_DAYS) setTutorialStage(TUTORIAL_END);
+    setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
 
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
   }, []);
+
+  useEffect(() => {
+    setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
+  }, [isTutorial])
 
   const handleGoNext = () => {
     // update the new task distribution
@@ -63,7 +67,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   const getDisplayWarning = (): JSX.Element => {
     const daysUsed = sumDaysUsed();
-
     if (daysUsed < LOW_DAY_THRESHOLD) {
       return <div className='playnet-red'>
         If you use too little days in this stage, you might <br/> make something that doesn&#39;t work as you expect!
@@ -76,13 +79,12 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     return <></>;
   };
 
-  // warning color if below or above threshold
-  const isShowWarning = () => {
+  const isShowWarning = () : boolean => {
     const daysUsed = sumDaysUsed();
     return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
 
-  const displayTutorialText = () => {
+  const displayTutorialText = () : JSX.Element => {
     if (tutorialStage === 0) {
       return (
         <p>
@@ -100,7 +102,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         </p>
       );
     }
-
     return (
       <p>
         Finally, we AB test to see how effective our changes were! We  test some users  on our new feature,

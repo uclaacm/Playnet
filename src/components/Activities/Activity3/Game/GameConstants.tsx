@@ -13,6 +13,7 @@ export enum A3_GAME_STATE {
   PriorityExplanation  = 'PriorityExplanation',
   PriorityChoices  = 'PriorityChoices',
   PriorityWeighing  = 'PriorityWeighing',
+  TimeAllocationExplanation  = 'TimeAllocationExplanation',
   TimeAllocation  = 'TimeAllocation',
   DebuggingResults  = 'DebuggingResults',
   ABTestingExplanation  = 'ABTestingExplanation',
@@ -25,6 +26,7 @@ const STATE_ORDERING_LIST = [
   A3_GAME_STATE.PriorityExplanation,
   A3_GAME_STATE.PriorityChoices,
   A3_GAME_STATE.PriorityWeighing,
+  A3_GAME_STATE.TimeAllocationExplanation,
   A3_GAME_STATE.TimeAllocation,
   A3_GAME_STATE.DebuggingResults,
   A3_GAME_STATE.ABTestingExplanation,
@@ -32,7 +34,8 @@ const STATE_ORDERING_LIST = [
   A3_GAME_STATE.FinalReport,
 ];
 
-export const ONE_TIME_STATES = [A3_GAME_STATE.PriorityExplanation, A3_GAME_STATE.ABTestingExplanation];
+export const ONE_TIME_STATES = [A3_GAME_STATE.PriorityExplanation, A3_GAME_STATE.TimeAllocationExplanation,
+   A3_GAME_STATE.ABTestingExplanation];
 
 /**
  * recursively get next state
