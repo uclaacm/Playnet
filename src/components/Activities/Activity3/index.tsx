@@ -99,7 +99,7 @@ function Activity3(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Mind Reading'>
+    <Carousel title='Mind Reading' hasSound={false}>
       {content}
     </Carousel>
   );

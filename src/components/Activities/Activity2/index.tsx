@@ -49,7 +49,7 @@ function Activity2(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Sending Videos'>
+    <Carousel title='Sending Videos' hasSound={true}>
       {content}
     </Carousel>
   );

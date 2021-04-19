@@ -14,7 +14,12 @@ interface IGameContext {
   variableSelection: VARIABLES[],
   featureWeights: number[],
 }
-export const GameContext = React.createContext<Partial<IGameContext>>({});
+export const GameContext = React.createContext<IGameContext>({
+  setState: (_state: A3_GAME_STATE) => undefined,
+  goNextState: () => undefined,
+  variableSelection: [],
+  featureWeights: [],
+});
 
 function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);

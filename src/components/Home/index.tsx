@@ -117,6 +117,7 @@ function Home(): JSX.Element {
       <Base section={HeaderSections.INTRO}>
         {(chosenVideo !== VideoChoices.NONE_CHOSEN) ?
           <Carousel
+            hasSound={true}
             onNext={() => { /* Run function along with transition on next button press */
               // console.log('next');
             }}

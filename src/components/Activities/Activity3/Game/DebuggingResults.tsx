@@ -1,60 +1,71 @@
-import React from 'react';
-import { getDebugErrors, getDebugNumErrors } from './gameCalculationsUtil';
+import React, { useContext } from 'react';
+import { GameContext } from '.';
+import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './gameCalculationsUtil';
+import Clock from '../../../../assets/clock.svg';
 
-const next = () => undefined;
-
-const timeAllocation = [1,1,1];
+const timeAllocation = [1, 1, 1]; // TODO: CHANGE
+const reduceDaysLeft = (_num: number) => undefined; // TODO: CHANGE
+const daysLeft = 24; // TODO: CHANGE
 function DebuggingResults(): JSX.Element {
-  const reduceDaysLeft = (_num: number) => undefined;
+  const { featureWeights, goNextState } = useContext(GameContext);
+
   const numErrors = getDebugNumErrors(timeAllocation[0], timeAllocation[1]);
   const errors = getDebugErrors(numErrors);
-  const debugQuality = 'poor';
+  const debugQuality = getRecommendationQuality(numErrors, featureWeights);
   const buttons: { [key: string]: { buttonText: string, onClick: () => void } } = {
     'Reduce errors': {
       buttonText: 'Debug (-1 day)',
       onClick: () => reduceDaysLeft(1),
     },
-    'Improve recommendations': {
-      buttonText: 'Change priorities (-3 day)',
+    'Go Back and Improve recommendations': {
+      buttonText: 'Change Priorities (-3 day)',
       onClick: () => reduceDaysLeft(3),
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',
-      onClick: () => next(),
+      onClick: goNextState,
     },
   };
-  return <div className='grid'>
-    <div className='half'>
-      <div className='debugScreen'>
-        <div className='debugText'>
-        Debugging Report
+  return <>
+  <div className='go-right'>
+    <div className='float-right'>
+      <div id='top-bar-clock'/>
+      <div className='vertically-centered'>Days Left: {daysLeft}</div>
+    </div>
+    </div>
+    <div className='grid'>
+      <div className='half' style={{ height: "100%" }}>
+        <div className='debugScreen'>
+          <div className='debugText'>
+            Debugging Report
           <br />
         ---
           <br />
-          {numErrors} errors detected:
+            {numErrors} errors detected:
           <br />
-          {
-            errors.map((element) => <>{element}<br /></>)
-          }
+            {
+              errors.map((element) => <>{element}<br /></>)
+            }
         ---
           <br />
         Recommendations: {debugQuality}
+          </div>
+        </div>
+      </div>
+      <div className='half'>
+        <div className='vertical-grid'>
+          {
+            Object.entries(buttons).map(([name, { buttonText, onClick }]) => <div className='button-group'>
+              {name}
+              <br />
+              <button className='smaller playnet-button' onClick={onClick}>
+                {buttonText}
+              </button>
+            </div>)
+          }
         </div>
       </div>
     </div>
-    <div className='half'>
-      <div className='vertical-grid'>
-        {
-          Object.entries(buttons).map(([name, { buttonText, onClick }]) => <div className='button-group'>
-            {name}
-            <br />
-            <button className='smaller playnet-button' onClick={onClick}>
-              {buttonText}
-            </button>
-          </div>)
-        }
-      </div>
-    </div>
-  </div>;
+  </>;
 }
 export default DebuggingResults;
