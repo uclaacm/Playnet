@@ -104,7 +104,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
     return (
       <p>
-        Finally, we AB test to see how effective our changes were! We  test some users  on our new feature, 
+        Finally, we AB test to see how effective our changes were! We  test some users  on our new feature,
         and see how the users react to it compared with the other users!
         <br/><br/>
         This could be a bit random, and what the beta testers like may not represent what most people actually like!
@@ -112,12 +112,12 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     );
   };
 
-  return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enableBlur' : ''}>
+  return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enable-blur' : ''}>
     <div id={'time-tutorial-overlay'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}/>
     {
       Object.values([0, 1, 2]).map((index) => {
         return (
-          <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disableBlur' : ''}
+          <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disable-blur' : ''}
             style={{
               display: `${(tutorialStage === index) ? '' : 'none'}`,
               alignSelf: 'flex-center',

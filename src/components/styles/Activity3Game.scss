@@ -323,57 +323,6 @@ $card-height: calc(#{$card-min-width} - 20px);
   color: $text-red;
 }
 
-#time-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#time-overlay {
-  background-color: black;
-  opacity: 0.3;
-  margin-top: -10px;
-  position: absolute;
-  height: $min-carousel-height;
-  width: 100%;
-  z-index: 20;
-}
-
-#time-tutorial-bubble {
-  background-color: white;
-  height: fit-content;
-  width: 400px;
-
-  z-index: 50;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 1;
-  position: absolute;
-  margin-top: 20vh;
-  border-color: black;
-  border-width: 7px;
-  border-radius: 10px;
-  border-style: solid;
-  
-  margin-left: 100px;
-  margin-right: 100px;
-}
-
-#time-tutorial-bubble p {
-  margin: 20px;
-}
-
-.enableBlur>* {
-  filter: blur(1.5px) grayscale(.6);
-}
-
-.disableBlur {
-  filter: blur(0);
-}
-
 // styles for ab testing description
 #love-response {
   background: no-repeat center;
@@ -457,35 +406,35 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 #time-container {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 #time-tutorial-overlay {
-  position: absolute;
-  width: 90%;
-  height: $min-carousel-height;
-  z-index: 40;
-  filter: blur(0);
   // padding: 4% 4%;
   align-items: flex-end;
+  filter: blur(0);
+  height: $min-carousel-height;
+  position: absolute;
+  width: 90%;
+  z-index: 40;
 }
 
 #time-tutorial-bubble {
-  font-size: 20px;
   background-color: white;
-  height: fit-content;
-  max-height: $min-carousel-height;
-  width: 25%;
-  min-width: 350px;
-
   border-color: black;
-  border-width: 7px;
   border-radius: 10px;
   border-style: solid;
+  border-width: 7px;
+  font-size: 20px;
+  height: fit-content;
   // float: right; // @TREVOR: add this in for float right
   margin: auto;
+  max-height: $min-carousel-height;
+  min-width: 350px;
+  position: absolute;
+  width: 25%;
   z-index: 50;
 }
 
@@ -493,10 +442,10 @@ $card-height: calc(#{$card-min-width} - 20px);
   margin: 20px;
 }
 
-.enableBlur>* {
-  filter: blur(1.5px) grayscale(.6);
+.enable-blur>* {
+  filter: blur(1.5px) grayscale(0.6);
 }
 
-.disableBlur {
+.disable-blur {
   filter: blur(0);
 }
