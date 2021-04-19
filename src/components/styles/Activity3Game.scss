@@ -277,4 +277,47 @@ $card-height: calc(#{$card-min-width} - 20px);
   font-size: 20px;
   min-height: 50px;
   min-width: 60%;
+
+// styles for TimeAllocation
+.playnet-red {
+  color: $text-red;
+}
+
+.centered-box {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#options-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.time-input {
+  background-image: none;
+  border-color: $playnet-grey;
+  border-image: none;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 6px;
+  box-shadow: none;
+  color: $border-black;
+  font: inherit;
+  font-weight: 600;
+  height: 45px;
+  margin: 10px;
+  text-align: right;
+  width: 78px;
+
+  &:focus,
+  &:active {
+    border-color: $playnet-darkgrey;
+    outline: none;
+  }
+}
+
+.time-input-warning {
+  color: $text-red;
 }

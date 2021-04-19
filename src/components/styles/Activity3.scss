@@ -246,6 +246,76 @@ b {
   width: 1102px;
 }
 
+.criteria-video {
+  background-repeat: no-repeat;
+  background-size: contain;
+  border: solid red 0;
+  border-radius: 25px;
+  height: 182px;
+  margin-top: 165px;
+  position: absolute;
+  width: 224px;
+}
+
+#flu-video {
+  background-image: url('../../assets/activity3/videocrit1.svg');
+  margin-left: 97px;
+}
+
+#shark-video {
+  background-image: url('../../assets/activity3/video-crit2.svg');
+  margin-left: 421px;
+}
+
+#flat-video {
+  background-image: url('../../assets/activity3/video-crit3.svg');
+  margin-left: 745px;
+}
+
+#criteria-hearts {
+  background-image: url('../../assets/activity3/hearts.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 260px;
+  margin-left: 353px;
+  margin-top: 113px;
+  position: absolute;
+  width: 380px;
+}
+
+#criteria-check {
+  background-image: url('../../assets/activity3/check.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 63.72px;
+  margin-left: 173.81px;
+  margin-top: 56px;
+  position: absolute;
+  width: 86.37px;
+}
+
+#criteria-cross {
+  background-image: url('../../assets/activity3/cross.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 84.96px;
+  margin-left: 822.93px;
+  margin-top: 56px;
+  position: absolute;
+  width: 84.96px;
+}
+
+#criteria-mirror {
+  background-image: url('../../assets/activity3/mirror.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 144.63px;
+  margin-left: 756.48px;
+  margin-top: 12.78px;
+  position: absolute;
+  width: 212.52px;
+}
+
 #lecture-container {
   display: flex;
   left: 50%;
