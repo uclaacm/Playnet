@@ -16,7 +16,7 @@ function DebuggingResults(): JSX.Element {
       buttonText: 'Debug (-1 day)',
       onClick: () => reduceDaysLeft(1),
     },
-    'Go Back and Improve recommendations': {
+    'Go back and improve recommendations': {
       buttonText: 'Change Priorities (-3 day)',
       onClick: () => reduceDaysLeft(3),
     },
