@@ -3,6 +3,7 @@ import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
+import { ABTestSlide1, ABTestSlide2 } from './ABTestExample';
 import ComputerRecs from './Animations/ComputerRecs';
 import Debugging from './Animations/Debugging';
 import Lecture from './Animations/Lecture';
@@ -100,6 +101,15 @@ function Activity3(): JSX.Element {
       child: <LectureReference ref={lectureRef}/>,
       bottomText: 'So, we have to decide which ideas we care the most about. These are the ideas we bring to real life.',
       animationTime: 2,
+    },
+    {
+      child: <ABTestSlide1/>,
+      bottomText: 'Finally, the idea is AB tested, which means that we give',
+      bottomText2: 'both the new and old versions to users.',
+    },
+    {
+      child: <ABTestSlide2/>,
+      bottomText: 'These users give their opinions on which version is better',
     },
     {
       child: <GameIntroSlide1/>,
