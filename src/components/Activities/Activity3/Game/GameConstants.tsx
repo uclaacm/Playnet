@@ -5,6 +5,10 @@ export const SESSION_SKIP_STATES = 'statesToSkip';
 export const SESSION_CURRENT_STATE = 'gamestate';
 export const SESSION_VARIABLES = 'variables';
 
+// Variable Allocations
+export const MIN_ALLOCATION = 7;
+
+
 // GAME STATES
 export enum A3_GAME_STATE {
   EmptyState = '',

@@ -10,7 +10,7 @@ function DebuggingResults(): JSX.Element {
 
   const numErrors = getDebugNumErrors(timeAllocation[0], timeAllocation[1]);
   const errors = getDebugErrors(numErrors);
-  const debugQuality = getRecommendationQuality(numErrors, featureWeights);
+  const debugQuality = getRecommendationQuality(featureWeights);
   const buttons: { [key: string]: { buttonText: string, onClick: () => void } } = {
     'Reduce errors': {
       buttonText: 'Debug (-1 day)',

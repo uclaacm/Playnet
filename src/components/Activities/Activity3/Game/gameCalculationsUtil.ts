@@ -1,3 +1,18 @@
+import {MIN_ALLOCATION} from './GameConstants';
+
+const DAYS_BUILDING = 10; // (counts for 1.5x debugging?) number
+const DAYS_DEBUGGING = 5; // percentage
+
+export function generateVariableTargets() : [number, number, number]{
+  const NUMBER_TARGETS = 3;
+  const percentageToAllocate = 100 - 3 * MIN_ALLOCATION;
+  const allocation1 = 2 * Math.random() * percentageToAllocate / NUMBER_TARGETS;
+  const allocation2 = Math.random() * (percentageToAllocate - allocation1);
+  const allocation3 = percentageToAllocate - allocation1 - allocation2;
+
+  return [allocation1 + MIN_ALLOCATION, allocation2 + MIN_ALLOCATION, allocation3 + MIN_ALLOCATION];
+}
+
 export function getDebugNumErrors(
   _daysBuilding: number,
   _daysDebugging: number,
@@ -12,7 +27,6 @@ export function getDebugErrors(
 }
 
 export function getRecommendationQuality(
-  _numErrors: number,
   _featureWeights: number[],
 ) : string {
   return 'poor';
