@@ -12,6 +12,10 @@ function ABTestDesc(): JSX.Element {
     opacity: [0, 1],
     duration: 1000,
   };
+  const longFadeIn = {
+    opacity: [0, 1],
+    duration: 1500,
+  };
   const fadeOut = {
     opacity: [1, 0],
     duration: 1000,
@@ -27,14 +31,17 @@ function ABTestDesc(): JSX.Element {
       targets: '#abtest-text1',
       ...fadeOut,
     }).add({
-      targets: '#love-response',
+      targets: '#abtest-computer2',
       ...fadeIn,
+    }).add({
+      targets: '#love-response',
+      ...longFadeIn,
       translateY: -20,
     }).add({
       targets: '#dislike-response',
-      ...fadeIn,
+      ...longFadeIn,
       translateY: -20,
-    }, '-=500').add({
+    }, '-=750').add({
       targets: '#abtest-text2',
       ...fadeIn,
     });
@@ -59,7 +66,7 @@ function ABTestDesc(): JSX.Element {
   };
 
   return <>
-    <ScalingSlide widthPx={1100} heightPx={386}>
+    <ScalingSlide widthPx={1100} heightPx={540}>
       <>
         <div id={'abtest-toptext'}>
           <div id={'abtest-text1'}>
@@ -72,6 +79,8 @@ function ABTestDesc(): JSX.Element {
         </div>
         <div id={'love-response'} />
         <div id={'abtest-group'} />
+        <div id={'abtest-computer1'} />
+        <div id={'abtest-computer2'} />
         <div id={'dislike-response'} />
         <button id={'abtest-explain-button'} className='playnet-button' onClick={goNextPhase}
           style={{ width: '50%' }}>Continue</button>

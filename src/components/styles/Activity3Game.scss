@@ -355,8 +355,33 @@ $card-height: calc(#{$card-min-width} - 20px);
   margin-left: 106px;
   margin-top: 150px;
   position: absolute;
+  width: 350px;
+  z-index: 1;
+}
+
+#abtest-computer1{
+  background-image: url('../../assets/activity3/game/abtest-computer1.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 272px;
+  margin-left: 640px;
+  margin-top: 150px;
+  position: absolute;
   width: 818px;
   z-index: 1;
+}
+
+#abtest-computer2{
+  background-image: url('../../assets/activity3/game/abtest-computer2.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 272px;
+  margin-left: 640px;
+  margin-top: 150px;
+  opacity: 0;
+  position: absolute;
+  width: 818px;
+  z-index: 2;
 }
 
 #abtest-explain-button{
