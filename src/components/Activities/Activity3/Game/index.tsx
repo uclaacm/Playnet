@@ -97,7 +97,7 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityWeighing]:
       <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
-    [A3_GAME_STATE.DebuggingResults]: <><DebuggingResults/><DemoNextButton /></>,
+    [A3_GAME_STATE.DebuggingResults]: <DebuggingResults/>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
     [A3_GAME_STATE.FinalReport]: <>6<DemoNextButton /></>,

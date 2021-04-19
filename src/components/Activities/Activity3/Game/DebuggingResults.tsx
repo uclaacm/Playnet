@@ -47,7 +47,7 @@ function DebuggingResults(): JSX.Element {
             }
         ---
             <br />
-        Recommendations: {debugQuality}
+        Recommendation Quality: {debugQuality}
           </div>
         </div>
       </div>
