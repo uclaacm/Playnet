@@ -1,5 +1,6 @@
 @import 'variables';
 
+// Game Intro Slides
 .grid {
   display: grid;
   grid-auto-flow: column;
@@ -39,7 +40,7 @@
   width: fit-content;
 }
 
-$card-min-width: calc((#{$carousel-content-width} ) / 3 / 2);
+$card-min-width: calc((#{$carousel-content-width}) / 3 / 2);
 $card-height: calc(#{$card-min-width} - 20px);
 
 .not-selected {
@@ -152,14 +153,13 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 .slider-background-color {
   align-self: center;
-  background:
-    linear-gradient(to right,
-    #ffba09 0%,
-    #ffba09 var(--sec1-percent),
-    #a1d900 var(--sec1-percent),
-    #a1d900 var(--sec2-percent),
-    #04c439 var(--sec2-percent),
-    #04c439 100%);
+  background: linear-gradient(to right,
+  #ffba09 0%,
+  #ffba09 var(--sec1-percent),
+  #a1d900 var(--sec1-percent),
+  #a1d900 var(--sec2-percent),
+  #04c439 var(--sec2-percent),
+  #04c439 100%);
   border-radius: $slider-border-radius;
   grid-column: 1;
   grid-row: 1;
@@ -215,6 +215,67 @@ $card-height: calc(#{$card-min-width} - 20px);
   &::-moz-range-thumb {
     @include slider-icon;
   }
+}
+
+// DebuggingResults
+.inline {
+  display: inline-flex;
+}
+
+#top-bar-align-right {
+  margin-right: 20px;
+  text-align: end;
+}
+
+#top-bar-clock {
+  background-image: url('../../assets/clock.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 35px;
+  margin: 0;
+  margin: auto;
+  padding-right: 10px;
+  width: 35px;
+}
+
+.vertically-centered {
+  margin: auto;
+}
+
+.debug-screen {
+  background-color: black;
+  border-radius: 25px;
+  display: table;
+  height: 100%;
+  margin: auto;
+  width: 100%;
+}
+
+.debug-text {
+  color: $hover_green;
+  display: table-cell;
+  font-size: 15px;
+  line-height: 28px;
+  vertical-align: middle;
+}
+
+.vertical-grid {
+  display: grid;
+  grid-auto-flow: row;
+  height: 100%;
+  row-gap: 30px;
+}
+
+.button-group {
+  font: $font-footer;
+  font-size: 20px;
+}
+
+.smaller {
+  font: $font-footer;
+  font-size: 20px;
+  min-height: 50px;
+  min-width: 60%;
 }
 
 // styles for TimeAllocation

@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
+import DebuggingResults from './DebuggingResults';
 import DemoNextButton from './DemoNextButton';
 import FeaturesSlidebar from './FeaturesSlidebar';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
@@ -18,7 +19,15 @@ interface IGameContext {
   setDaysLeft: (state: number) => void,
   featureWeights: number[],
 }
-export const GameContext = React.createContext<Partial<IGameContext>>({});
+export const GameContext = React.createContext<IGameContext>({
+  setState: (_state: A3_GAME_STATE) => undefined,
+  goNextState: () => undefined,
+  variableSelection: [],
+  timeAllocation: [],
+  daysLeft: 0,
+  setDaysLeft: (_state: number) => undefined,
+  featureWeights: [],
+});
 
 function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);
@@ -115,7 +124,7 @@ function Game(): JSX.Element {
       <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocation]:
       <TimeAllocation setTimeAllocation={setTimeAllocation} initialTimes={timeAllocation}/>,
-    [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
+    [A3_GAME_STATE.DebuggingResults]: <DebuggingResults/>,
     [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
     [A3_GAME_STATE.FinalReport]: <>6<DemoNextButton /></>,

@@ -40,7 +40,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     setDaysAllocation(initAllocation);
 
     // reset daysLeft to maximum
-    setDaysLeft && setDaysLeft(STARTING_DAYS);
+    setDaysLeft(STARTING_DAYS);
   }, []);
 
   const handleGoNext = () => {
@@ -48,8 +48,8 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     setTimeAllocation(daysAllocation);
 
     // update the number of remaining days
-    setDaysLeft && setDaysLeft(daysLeft ? (daysLeft - sumDaysUsed()) : 0);
-    goNextState && goNextState();
+    setDaysLeft(daysLeft ? (daysLeft - sumDaysUsed()) : 0);
+    goNextState();
   };
 
   const sumDaysUsed = () : number => {
