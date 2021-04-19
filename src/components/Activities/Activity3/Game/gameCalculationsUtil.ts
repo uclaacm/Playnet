@@ -54,8 +54,10 @@ export function getRecommendationQuality(
   const distribution = new Gaussian(0, VARIABLE_WEIGHTS_STD ** 2); // normal distribution
 
   // value between 0-3 about how accurate the recommendation was
-  const numericQuality = expectedWeights.reduce((prev, weight, i) => prev +
+  const distResults = expectedWeights.reduce((prev, weight, i) => prev +
     distribution.cdf(featureWeights[i] - weight), 0);
+
+  const numericQuality = 2 * distResults * Math.random();
 
   // get the name mapping related with how accurate the recommendation was
   // (eg: good / poor)
