@@ -323,7 +323,7 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 // styles for ab testing description
-#love-response{
+#love-response {
   background: no-repeat center;
   background-image: url('../../assets/activity3/love-response.svg');
   background-size: contain;
@@ -335,7 +335,7 @@ $card-height: calc(#{$card-min-width} - 20px);
   z-index: 5;
 }
 
-#dislike-response{
+#dislike-response {
   background-image: url('../../assets/activity3/dislike-response.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -347,7 +347,7 @@ $card-height: calc(#{$card-min-width} - 20px);
   z-index: 5;
 }
 
-#abtest-group{
+#abtest-group {
   background-image: url('../../assets/activity3/game/abtest-group.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -359,7 +359,7 @@ $card-height: calc(#{$card-min-width} - 20px);
   z-index: 1;
 }
 
-#abtest-computer1{
+#abtest-computer1 {
   background-image: url('../../assets/activity3/game/abtest-computer1.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -371,7 +371,7 @@ $card-height: calc(#{$card-min-width} - 20px);
   z-index: 1;
 }
 
-#abtest-computer2{
+#abtest-computer2 {
   background-image: url('../../assets/activity3/game/abtest-computer2.svg');
   background-repeat: no-repeat;
   background-size: contain;
@@ -384,7 +384,7 @@ $card-height: calc(#{$card-min-width} - 20px);
   z-index: 2;
 }
 
-#abtest-explain-button{
+#abtest-explain-button {
   margin-left: -250px;
   margin-top: 450px;
   position: absolute;
@@ -400,6 +400,6 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 #abtest-text2 {
-  position: absolute;
   opacity: 0;
+  position: absolute;
 }
