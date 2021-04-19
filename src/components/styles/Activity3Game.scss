@@ -1,5 +1,13 @@
 @import 'variables';
 
+.enableBlur>* {
+  filter: blur(1.5px) grayscale(.6);
+}
+
+.disableBlur {
+  filter: blur(0);
+}
+
 .grid {
   display: grid;
   grid-auto-flow: column;

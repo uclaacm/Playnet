@@ -34,13 +34,13 @@ function PriorityChoices(props: PriorityChoiceProps): JSX.Element {
     setLocalVariables(localVariables.filter(element => element !== variable));
   };
 
-  return <>
+  return <div className='enableBlur'>
     <summary>
       Now you’ve seen some variables we can consider when deciding what videos to recommend!
       <br />
       Which ones do you think lead to the best recommendations? Choose 3 from the list below.
     </summary>
-    <div id='variables-wrapper'>
+    <div id='variables-wrapper' className='disableBlur'>
       {
         Object.values(VARIABLES).map(variable =>
           <VariableCard id={variable} key={variable}
@@ -52,6 +52,6 @@ function PriorityChoices(props: PriorityChoiceProps): JSX.Element {
     </div>
     <button className='playnet-button' onClick={goNextState}
       disabled={localVariables.length !== 3} style={{ width: '50%' }}>Continue</button>
-  </>;
+  </div>;
 }
 export default PriorityChoices;
