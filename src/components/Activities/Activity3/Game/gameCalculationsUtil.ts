@@ -25,7 +25,6 @@ export function getRecommendationQuality(
 export function getControlGraphForABTesting(
   _numABTestingDays: number,
 ): [number, number][] {
-
   return [];
 }
 
@@ -39,7 +38,6 @@ export function getBetaGraphForABTesting(
   _controlGraph: [number, number][],
   _timeAllocations: [number, number, number],
 ): [number, number][] {
-
   return [];
 }
 

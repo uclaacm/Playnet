@@ -7,7 +7,6 @@ import FeaturesSlidebar from './FeaturesSlidebar';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, VARIABLES } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 
-
 interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
   goNextState: () => void,
