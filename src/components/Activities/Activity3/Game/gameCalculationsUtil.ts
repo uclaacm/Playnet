@@ -1,9 +1,9 @@
-import {MIN_ALLOCATION} from './GameConstants';
+import { Gaussian } from 'ts-gaussian';
+import { DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS, 
+  EXP_CONSTANT, MIN_ALLOCATION, NUMBER_TO_QUALITY_MAP, VARIABLE_WEIGHTS_STD } from 
+  './GameConstantsToMessWith';
 
-const DAYS_BUILDING = 10; // (counts for 1.5x debugging?) number
-const DAYS_DEBUGGING = 5; // percentage
-
-export function generateVariableTargets() : [number, number, number]{
+export function generateVariableTargets(): [number, number, number] {
   const NUMBER_TARGETS = 3;
   const percentageToAllocate = 100 - 3 * MIN_ALLOCATION;
   const allocation1 = 2 * Math.random() * percentageToAllocate / NUMBER_TARGETS;
@@ -14,22 +14,37 @@ export function generateVariableTargets() : [number, number, number]{
 }
 
 export function getDebugNumErrors(
-  _daysBuilding: number,
-  _daysDebugging: number,
-) : number{
-  return 24;
+  daysBuilding: number,
+  daysDebugging: number,
+): number {
+  const t = daysBuilding * DAY_VALUE_FOR_BUILD * (1 + daysDebugging * DAY_VALUE_PERCENT_FOR_DEBUG);
+  return Math.exp(-1 * EXP_CONSTANT * t);
 }
 
 export function getDebugErrors(
-  _numErrors: number,
-) : string [] {
-  return ['Image failed to load', 'File not found'];
+  numErrors: number,
+): string[] {
+  const errors = [];
+  const len = DEBUG_ERROR_OPTIONS.length;
+  for (let i = 0; i < numErrors; i++) {
+    errors.push(DEBUG_ERROR_OPTIONS[Math.floor(Math.random() * len)]);
+  }
+  return errors;
 }
 
 export function getRecommendationQuality(
-  _featureWeights: number[],
-) : string {
-  return 'poor';
+  featureWeights: number[], // [0, 100]
+  expectedWeights: number[], // [0, 100]
+): string {
+  const distribution = new Gaussian(0, VARIABLE_WEIGHTS_STD ** 2); // normal distribution
+
+  // value between 0-3 about how accurate the recommendation was
+  const numericQuality = expectedWeights.reduce((prev, weight, i) => prev + distribution.pdf(featureWeights[i] - weight), 0);
+
+  const qualityEntry = Object.entries(NUMBER_TO_QUALITY_MAP).find(
+    ([key, _]) => numericQuality > parseInt(key),
+  ) ?? [0, NUMBER_TO_QUALITY_MAP[0]];
+  return qualityEntry[1];
 }
 
 /**
