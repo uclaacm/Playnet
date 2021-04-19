@@ -21,6 +21,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   const [tutorialStage, setTutorialStage] = useState(0);
   const TUTORIAL_END = 3;
+  const tutorialStyles = ['center', 'flex-end', 'center'];
 
   const DISPLAY_OPTIONS = [
     { src: Hammer, text: 'Build' },
@@ -118,21 +119,22 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   };
 
   return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enable-blur' : ''}>
-    <div id={'time-tutorial-overlay'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}/>
-    {
-      Object.values([0, 1, 2]).map((index) => {
-        return (
-          <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disable-blur' : ''}
-            style={{
-              display: `${(tutorialStage === index) ? '' : 'none'}`,
-              alignSelf: 'flex-center',
-            }}>
-            {displayTutorialText()}
-            <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
-          </div>
-        );
-      })
-    }
+    <div id={'time-tutorial-overlay'} className={'disable-blur'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}>
+      {
+        Object.values([0, 1, 2]).map((index) => {
+          return (
+            <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disable-blur' : ''}
+              style={{
+                display: `${(tutorialStage === index) ? '' : 'none'}`,
+                alignSelf: tutorialStyles[index],
+              }}>
+              {displayTutorialText()}
+              <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
+            </div>
+          );
+        })
+      }
+    </div>
     <div>
       Choose how much time to spend on each part of your project.
       <br/>
