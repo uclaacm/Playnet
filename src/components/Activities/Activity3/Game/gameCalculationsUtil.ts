@@ -17,11 +17,19 @@ export function getDebugNumErrors(
   daysBuilding: number,
   daysDebugging: number,
 ): number {
+  // find some point value regarding how much the kid developped their product with BUILD and DEBUG
   const t = daysBuilding * DAY_VALUE_FOR_BUILD * (1 + daysDebugging * DAY_VALUE_PERCENT_FOR_DEBUG);
+  // Use negative exponential to see how many bugs they have. [0, 1] * MAX_NUM_ERRORS
+  // e^-x has been chosen because it ranges from [1 - 0]
   const numErrors = Math.floor(MAX_NUM_ERRORS * Math.exp(-1 * EXP_CONSTANT * t));
   return numErrors;
 }
 
+/**
+ * gets a list of debug errors
+ * @param numErrors length of array to find
+ * @returns array of random errors
+ */
 export function getDebugErrors(
   numErrors: number,
 ): string[] {
@@ -32,7 +40,13 @@ export function getDebugErrors(
   }
   return errors;
 }
-
+/**
+ * returns the recommendation quality string.
+ * this is calculated from how far the weights are from the expected & a normal distribution
+ * @param featureWeights
+ * @param expectedWeights
+ * @returns
+ */
 export function getRecommendationQuality(
   featureWeights: number[], // [0, 100]
   expectedWeights: number[], // [0, 100]
@@ -42,6 +56,9 @@ export function getRecommendationQuality(
   // value between 0-3 about how accurate the recommendation was
   const numericQuality = expectedWeights.reduce((prev, weight, i) => prev +
     distribution.cdf(featureWeights[i] - weight), 0);
+
+  // get the name mapping related with how accurate the recommendation was
+  // (eg: good / poor)
   const qualityKey = Object.keys(NUMBER_TO_QUALITY_MAP).find(
     (key) => {const bracket = key.split(',').map(Number);  return numericQuality > bracket[0] && numericQuality < bracket[1];},
   ) ?? QUALITY_DEFAULT_KEY;
