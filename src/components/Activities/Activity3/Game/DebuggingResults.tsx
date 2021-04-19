@@ -1,7 +1,6 @@
 import React, { useContext } from 'react';
 import { GameContext } from '.';
 import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './gameCalculationsUtil';
-import Clock from '../../../../assets/clock.svg';
 
 const timeAllocation = [1, 1, 1]; // TODO: CHANGE
 const reduceDaysLeft = (_num: number) => undefined; // TODO: CHANGE
@@ -27,27 +26,27 @@ function DebuggingResults(): JSX.Element {
     },
   };
   return <>
-  <div className='go-right'>
-    <div className='float-right'>
-      <div id='top-bar-clock'/>
-      <div className='vertically-centered'>Days Left: {daysLeft}</div>
-    </div>
+    <div id='top-bar-align-right'>
+      <div className='inline'>
+        <div id='top-bar-clock' />
+        <div className='vertically-centered'>Days Left: {daysLeft}</div>
+      </div>
     </div>
     <div className='grid'>
-      <div className='half' style={{ height: "100%" }}>
-        <div className='debugScreen'>
-          <div className='debugText'>
+      <div className='half' style={{ height: '100%' }}>
+        <div className='debug-screen'>
+          <div className='debug-text'>
             Debugging Report
-          <br />
+            <br />
         ---
-          <br />
+            <br />
             {numErrors} errors detected:
-          <br />
+            <br />
             {
               errors.map((element) => <>{element}<br /></>)
             }
         ---
-          <br />
+            <br />
         Recommendations: {debugQuality}
           </div>
         </div>
@@ -55,13 +54,14 @@ function DebuggingResults(): JSX.Element {
       <div className='half'>
         <div className='vertical-grid'>
           {
-            Object.entries(buttons).map(([name, { buttonText, onClick }]) => <div className='button-group'>
-              {name}
-              <br />
-              <button className='smaller playnet-button' onClick={onClick}>
-                {buttonText}
-              </button>
-            </div>)
+            Object.entries(buttons).map(([name, { buttonText, onClick }]) =>
+              <div className='button-group' key={name}>
+                {name}
+                <br />
+                <button className='smaller playnet-button' onClick={onClick}>
+                  {buttonText}
+                </button>
+              </div>)
           }
         </div>
       </div>
