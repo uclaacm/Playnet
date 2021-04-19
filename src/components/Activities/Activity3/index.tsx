@@ -121,6 +121,7 @@ function Activity3(): JSX.Element {
     },
     {
       child: <Game />,
+      showPrev: false,
     },
   ];
 
