@@ -293,6 +293,7 @@ $card-height: calc(#{$card-min-width} - 20px);
 #options-grid {
   display: grid;
   grid-template-columns: auto auto auto;
+  width: 80%;
 }
 
 .time-input {
@@ -320,4 +321,55 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 .time-input-warning {
   color: $text-red;
+}
+
+#time-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#time-overlay {
+  background-color: black;
+  opacity: 0.3;
+  margin-top: -10px;
+  position: absolute;
+  height: $min-carousel-height;
+  width: 100%;
+  z-index: 20;
+}
+
+#time-tutorial-bubble {
+  background-color: white;
+  height: fit-content;
+  width: 400px;
+
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 1;
+  position: absolute;
+  margin-top: 20vh;
+  border-color: black;
+  border-width: 7px;
+  border-radius: 10px;
+  border-style: solid;
+  
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+#time-tutorial-bubble p {
+  margin: 20px;
+}
+
+.enableBlur>* {
+  filter: blur(1.5px) grayscale(.6);
+}
+
+.disableBlur {
+  filter: blur(0);
 }
