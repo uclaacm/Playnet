@@ -21,6 +21,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   const [tutorialStage, setTutorialStage] = useState(0);
   const TUTORIAL_END = 3;
+  const tutorial = false;
 
   const DISPLAY_OPTIONS = [
     { src: Hammer, text: 'Build' },
@@ -112,35 +113,27 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     );
   };
 
-  return <div id={'time-container'}>
-    <div id={'time-overlay'} style={{display: `${tutorialStage === TUTORIAL_END && 'none'}`}}/>
-    <div id={'time-tutorial-bubble'}
-      style={{
-        display: `${(tutorialStage === 0) ? '' : 'none'}`,
-        alignSelf: 'flex-start',
-      }}>
-      {displayTutorialText()}
-      <button className='playnet-button' style={{zIndex: 50}} onClick={() => {setTutorialStage(tutorialStage+1);}}>Continue</button>
+  return <div id={'time-container'} className={tutorialStage  ? 'enableBlur' : ''}>
+    {
+      Object.values([0, 1, 2]).map((index) => {
+        return <div key={index} id={'time-tutorial-overlay'}>
+          <div id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disableBlur' : ''}
+            style={{
+              display: `${(tutorialStage === index) ? '' : 'none'}`,
+              alignSelf: 'flex-start',
+            }}>
+            {displayTutorialText()}
+            <button className='playnet-button' style={{zIndex: 50}} onClick={() => {setTutorialStage(tutorialStage+1);}}>Continue</button>
+          </div>
+        </div>;
+      })
+    }
+    <div>
+      Choose how much time to spend on each part of your project.
+      <br/>
+      (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
     </div>
-    <div id={'time-tutorial-bubble'}
-      style={{
-        display: `${(tutorialStage === 1) ? '' : 'none'}`,
-      }}>
-      {displayTutorialText()}
-      <button className='playnet-button' style={{zIndex: 50}} onClick={() => {setTutorialStage(tutorialStage+1);}}>Continue</button>
-    </div>
-    <div id={'time-tutorial-bubble'}
-      style={{
-        display: `${(tutorialStage === 2) ? '' : 'none'}`,
-        alignSelf: 'flex-end',
-      }}>
-      {displayTutorialText()}
-      <button className='playnet-button' style={{zIndex: 50}} onClick={() => {setTutorialStage(tutorialStage+1);}}>Continue</button>
-    </div>
-    Choose how much time to spend on each part of your project.
-    <br/>
-    (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
-    <div id={'options-grid'} className={'disableBlur'}>
+    <div id={'options-grid'}>
       {displayOptionIcons()}
       {daysAllocation.map((curAlloc : number, index : number) => {
         const usableDays = daysLeft ? (daysLeft - sumDaysUsed() + curAlloc) : 0;
