@@ -23,6 +23,9 @@ export const GameContext = React.createContext<IGameContext>({
   setState: (_state: A3_GAME_STATE) => undefined,
   goNextState: () => undefined,
   variableSelection: [],
+  timeAllocation: [],
+  daysLeft: 0,
+  setDaysLeft: (_state: number) => undefined,
   featureWeights: [],
 });
 
