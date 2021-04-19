@@ -11,6 +11,7 @@ import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 import TimeAllocation from './TimeAllocation';
+import { TimeAllocations } from './typings';
 
 interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
@@ -18,7 +19,7 @@ interface IGameContext {
   variableSelection: VARIABLES[],
   featureWeights: number[],
   targetWeights: number[],
-  timeAllocation: number[], // BUILD, DEBUG, ABTEST
+  timeAllocation: TimeAllocations, // BUILD, DEBUG, ABTEST
   setTimeAllocation: (allocations: number[]) => void,
   daysLeft: number,
   setDaysLeft: (state: number) => void,
@@ -29,7 +30,7 @@ export const GameContext = React.createContext<IGameContext>({
   variableSelection: [],
   featureWeights: [],
   targetWeights: [],
-  timeAllocation: [],
+  timeAllocation: {build: 0, debug: 0, abTest: 0},
   setTimeAllocation: (_allocations: number[]) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
@@ -42,7 +43,7 @@ function Game(): JSX.Element {
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
   const [featureWeights, setFeatureWeights] = useState([33, 33, 34]);
   const [targetWeights, setTargetWeights] = useState<number[]>([]);
-  const [timeAllocation, setTimeAllocation] = useState<number[]>([]);
+  const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>({build: 0, debug: 0, abTest: 0});
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const storage = window.sessionStorage;
 

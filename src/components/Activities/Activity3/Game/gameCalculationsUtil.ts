@@ -1,5 +1,5 @@
 import { Gaussian } from 'ts-gaussian';
-import { squeeze } from '../../../../utils';
+import { clamp } from '../../../../utils';
 import {
   DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
   EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
@@ -7,6 +7,7 @@ import {
   QUALITY_DEFAULT_KEY, SINGLE_AB_CHANGE_MAX, SINGLE_CONTROL_CHANGE_MAX,
   VARIABLE_WEIGHTS_STD,
 } from './GameConstantsToMessWith';
+import { Point } from './typings';
 
 export function generateVariableTargetWeights(): [number, number, number] {
   const NUMBER_TARGETS = 3;
@@ -16,17 +17,23 @@ export function generateVariableTargetWeights(): [number, number, number] {
   const allocation3 = percentageToAllocate - allocation1 - allocation2;
 
   return [allocation1 + MIN_EXPECTED_ALLOCATION, allocation2 + MIN_EXPECTED_ALLOCATION,
-    allocation3 + MIN_EXPECTED_ALLOCATION];
+  allocation3 + MIN_EXPECTED_ALLOCATION];
 }
 
 // EQUATIONS TO POSSIBLY MODIFY
 /**
- * this is calculated from how far the weights are from the expected w/ a normal distribution
- * this ranges from [0 - 3]
+ * Given the input weights and expected weights, return some number between [0 - 3] representing how 
+ * accurate the input weights are. 
+ * 3 is highest quality, and 0 is lowest
+ * 
+ * this is calculated by how far the weights are from the expected w/ a normal distribution
+ * @param featureWeights 
+ * @param expectedWeights 
+ * @returns number ranging from 0-3 (3 is highest quality)
  */
 export function accuracyOfWeights(
-  featureWeights: number[], // [0, 100]
-  expectedWeights: number[], // [0, 100]
+  featureWeights: number[],
+  expectedWeights: number[],
 ): number {
   const distribution = new Gaussian(0, VARIABLE_WEIGHTS_STD ** 2); // normal distribution
 
@@ -37,7 +44,7 @@ export function accuracyOfWeights(
 }
 
 /**
- * find some point value regarding the product is developed with BUILD and DEBUG
+ * find some point value regarding how developed the product (with BUILD and DEBUG info)
  * @param daysBuilding
  * @param daysDebugging
  * @returns [0 - 1] where 0 is high quality
@@ -51,8 +58,10 @@ export function debugQuality(
   // e^-x has been chosen because it ranges from [1 - 0]
   return Math.exp(-1 * EXP_CONSTANT * t);
 }
+
 /**
- * ranges from [0 - 1] * [1 - 3] => larger is better
+ * Given expected + actual weights and time allocations, return a number between [0 - 3]
+ * The larger the number, the higher the quality!
  * @param featureWeights
  * @param expectedWeights
  * @param timeAllocations
@@ -63,12 +72,17 @@ export function overallQuality(
   timeAllocations: [number, number, number],
 ): number {
   const weightAccuracy = accuracyOfWeights(featureWeights, expectedWeights);
+  // debug's accuracy is such that 0 is highest quality, and ranges from 0 - 1
+  // as such, we get 1 - debugQuality so that 1 can be the highest quality!
   const debugAccuracy = 1 - debugQuality(timeAllocations[0], timeAllocations[1]);
 
   return weightAccuracy * debugAccuracy;
 }
 
 // SPECIFICS
+/**
+ * Given number of building days and number of debugging days, return the number of errors 
+ */
 export function getDebugNumErrors(
   daysBuilding: number,
   daysDebugging: number,
@@ -79,7 +93,7 @@ export function getDebugNumErrors(
 }
 
 /**
- * gets a list of debug errors
+ * Given a number of errors we want, this returns a list of debug errors (length numErrors)
  * @param numErrors length of array to find
  * @returns array of random errors
  */
@@ -95,8 +109,11 @@ export function getDebugErrors(
 }
 
 /**
- * returns the recommendation quality string.
- * this is based on accuracy of the feature weights with the expected
+ * Given the expected and actual weights, find a string that represents how close the given weights
+ * are from the expected
+ * @param featureWeights given weights
+ * @param expectedWeights expected weights (this is the standard)
+ * @returns a string representing the quality of the given product (from the given weights)
  */
 export function getRecommendationQuality(
   featureWeights: number[], // [0, 100]
@@ -116,58 +133,97 @@ export function getRecommendationQuality(
 }
 
 /**
- * @returns points between x: [0, 100], y: [0, 100] to graph
+ * Given the number of days we are AB testing, return a list of points to graph for the control group!
+ * The points are random and build off of the last point.
+ * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
  */
 export function getControlGraphForABTesting(
   numABTestingDays: number,
-): { xyMap: [number, number][]; dxyMap: [number, number][]; } {
-  const changeInX = 100 / numABTestingDays;
-  const xyMapping: [number, number][] = [];
-  const dxyMapping: [number, number][] = [];
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  const dX = 100 / numABTestingDays; // x distance in between 2 points
+  const xyMapping: Point[] = [];
+  const dxyMapping: Point[] = [];
+
+  // start at some random point between [MIN_GRAPH_START, MAX_GRAPH_START]
   let lastX = MIN_GRAPH_START + (MAX_GRAPH_START - MIN_GRAPH_START) * Math.random();
   let lastY = 0;
-  let change, changeInY;
-  xyMapping.push([lastX, lastY]);
-  for (let i = 0; i < numABTestingDays; i++) {
-    lastX += changeInX;
+  let tempDy, dY;
+  xyMapping.push({
+    x: lastX,
+    y: lastY,
+  });
 
-    change = SINGLE_CONTROL_CHANGE_MAX * Math.random() - (SINGLE_CONTROL_CHANGE_MAX / 2);
-    [lastY, changeInY] = squeeze(lastY + change, 0, 100);
-    xyMapping.push([lastX, lastY]);
-    dxyMapping.push([changeInX, changeInY]);
+  // add numABTestingDays # of points!
+  for (let i = 0; i < numABTestingDays; i++) {
+    lastX += dX;
+
+    // find a random change in Y between [-SINGLE_CONTROL_CHANGE_MAX / 2, SINGLE_CONTROL_CHANGE_MAX / 2]
+    tempDy = SINGLE_CONTROL_CHANGE_MAX * Math.random() - (SINGLE_CONTROL_CHANGE_MAX / 2);
+    let temp = clamp(lastY + tempDy, 0, 100);
+    lastY = temp.num;
+    dY = temp.dNum;
+
+    // add x&y to map + add dx&dy to map
+    xyMapping.push({
+      x: lastX,
+      y: lastY,
+    });
+    dxyMapping.push({
+      x: dX,
+      y: dY,
+    });
   }
   return { xyMap: xyMapping, dxyMap: dxyMapping };
 }
 
 /**
+ * Given the number of days we are AB testing, return a list of points to graph for the beta version!
+ * 
+ * This takes in all game information, in addition to the control list of points + chnage between each
+ * control point.
  * @returns points between x: [0, 100], y: [0, 100] to graph
  */
 export function getBetaGraphForABTesting(
   featureWeights: number[],
   expectedWeights: number[],
-  controlGraph: [number, number][],
-  dControlGraph: [number, number][],
+  controlGraph: Point[],
+  dControlGraph: Point[],
   timeAllocations: [number, number, number],
-): { xyMap: [number, number][]; dxyMap: [number, number][]; } {
-  const xyMapping: [number, number][] = [];
-  const dxyMapping: [number, number][] = [];
-  let random, changeYFromControl,changeY;
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  // initialize and add in first control point, so that beta graph starts at same spot
+  const xyMapping: Point[] = [];
+  const dxyMapping: Point[] = [];
+  let random, tempDy, dy;
 
-  let lastX = controlGraph[0][0];
-  let lastY = controlGraph[0][1];
-  xyMapping.push([lastX, lastY]);
+  let lastX = controlGraph[0].x;
+  let lastY = controlGraph[0].y;
+  xyMapping.push({
+    x: lastX,
+    y: lastY,
+  });  
+  
+  // find out how well the person made their product
   const quality = overallQuality(featureWeights, expectedWeights, timeAllocations);
 
-  dControlGraph.forEach(([dx, dy]) => {
+  // add numABTestingDays # of points!
+  dControlGraph.forEach(({x: controlDx, y: controlDy}) => {
+    // find a random change in y based on the quality of the product + control's dy
     random = Math.random() * SINGLE_AB_CHANGE_MAX - (SINGLE_AB_CHANGE_MAX / 2);
-    changeYFromControl = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + random;
-    changeY = changeYFromControl + dy;
+    tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + random;
+    dy = tempDy + controlDy;
 
-    lastX += dx;
-    lastY += changeY;
+    lastX += controlDx;
+    lastY += dy;
 
-    xyMapping.push([lastX, lastY]);
-    dxyMapping.push([dx, changeY]);
+    // add x&y to map + add dx&dy to map
+    xyMapping.push({
+      x: lastX,
+      y: lastY,
+    });  
+    dxyMapping.push({
+      x: controlDx,
+      y: dy,
+    });  
   });
   return { xyMap: xyMapping, dxyMap: dxyMapping };
 }
