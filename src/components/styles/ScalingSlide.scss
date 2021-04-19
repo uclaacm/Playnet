@@ -1,13 +1,8 @@
-@import "variables";
+@import 'variables';
+
+$fit-carousel-width-decimal: $fit-carousel-width-percent / 100%;
 
 #scaling-container {
-  $fit-carousel-width-decimal: $fit-carousel-width-percent / 100%;
-
-  display: flex;
-  justify-content: center;
-  transform: scale(var(--animation-scale));
-  width: fit-content;
-
   // eg if 90% width of carousel should be content, this padding equate to 5% carousel width
   --content-padding: calc((var(--carousel-content-px) * (1 - #{$fit-carousel-width-decimal}) / 2) * 1px);
 
@@ -18,5 +13,10 @@
   --marginBottomPx: var(--marginTopPx);
   --marginLeftPx: calc(var(--widthPx) / 2 * (var(--animation-scale) - 1) * 1px + var(--content-padding));
 
+  display: flex;
+  justify-content: center;
+
   margin: var(--marginTopPx) var(--marginRightPx) var(--marginBottomPx) var(--marginLeftPx);
+  transform: scale(var(--animation-scale));
+  width: fit-content;
 }

@@ -1,30 +1,31 @@
 @import 'variables';
 
 .content {
+  display: inline-block;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+
+  width: fit-content;
+
   * {
     display: block;
   }
-
-  width: fit-content;
-  margin: auto;
-  display: inline-block;
-  padding: 10px;
-  position: relative;
 }
 
 #binary-text-bubble {
-  padding-left: 80px;
   padding-bottom: 25px;
+  padding-left: 80px;
 }
 
 #cartoon-person-speech {
-  padding-left: 100px;
   margin-bottom: -40px;
+  padding-left: 100px;
 }
 
 #computer-slide-3 {
-  padding-top: 50px;
   padding-left: 100px;
+  padding-top: 50px;
 }
 
 .hidden {
@@ -32,8 +33,8 @@
 }
 
 .fade {
-  animation-name: fade-in-n-out;
   animation-duration: 2s;
+  animation-name: fade-in-n-out;
   animation-timing-function: ease;
   opacity: 1;
 }
@@ -44,8 +45,8 @@
   }
 
   50% {
-    transform: scale(1.03);
     opacity: 1;
+    transform: scale(1.03);
   }
 
   100% {
@@ -69,19 +70,19 @@
 }
 
 #party-confetti {
-  animation-name: fade-in-n-out-bigger;
   animation-duration: 3s;
-  position: absolute;
-  top: 50%;
+  animation-name: fade-in-n-out-bigger;
   left: 50%;
   opacity: 0;
+  position: absolute;
+  top: 50%;
 }
 
 .game-intro {
-  display: flex;
-  min-height: $min-carousel-height;
-  height: auto;
-  flex-flow: column wrap;
-  justify-content: center;
   align-items: center;
+  display: flex;
+  flex-flow: column wrap;
+  height: auto;
+  justify-content: center;
+  min-height: $min-carousel-height;
 }
