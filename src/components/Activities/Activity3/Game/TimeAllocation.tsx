@@ -21,7 +21,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   const [tutorialStage, setTutorialStage] = useState(0);
   const TUTORIAL_END = 3;
-  const tutorialStyles = ['center', 'flex-end', 'center'];
+  const tutorialStyles = ['time-tutorial-center', 'time-tutorial-right', 'time-tutorial-center'];
 
   const DISPLAY_OPTIONS = [
     { src: Hammer, text: 'Build' },
@@ -122,11 +122,9 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       {
         Object.values([0, 1, 2]).map((index) => {
           return (
-            <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disable-blur' : ''}
-              style={{
-                display: `${(tutorialStage === index) ? '' : 'none'}`,
-                alignSelf: tutorialStyles[index],
-              }}>
+            <div key={index} id={'time-tutorial-bubble'}
+              className={`${tutorialStyles[index]} ${tutorialStage === index ? 'disable-blur' : ''}`}
+              style={{ display: `${(tutorialStage === index) ? '' : 'none'}` }}>
               {displayTutorialText()}
               <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
             </div>

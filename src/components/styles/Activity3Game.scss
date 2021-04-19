@@ -342,7 +342,6 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 // TimeAllocation Tutorial styles
 #time-tutorial-overlay {
-  // padding: 4% 4%;
   display: flex;
   filter: blur(0);
   flex-direction: column;
@@ -360,13 +359,20 @@ $card-height: calc(#{$card-min-width} - 20px);
   border-width: 7px;
   font-size: 20px;
   height: fit-content;
-  // float: right; // @TREVOR: add this in for float right
   margin: auto;
   max-height: $min-carousel-height;
   min-width: 350px;
   position: absolute;
   width: 25%;
   z-index: 50;
+}
+
+.time-tutorial-center {
+  align-self: center;
+}
+
+.time-tutorial-right {
+  align-self: flex-end;
 }
 
 #time-tutorial-bubble p {
