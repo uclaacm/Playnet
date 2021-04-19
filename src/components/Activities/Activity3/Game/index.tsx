@@ -139,8 +139,10 @@ function Game(): JSX.Element {
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
       <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+    [A3_GAME_STATE.TimeAllocationExplanation]:
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={true}/>,
     [A3_GAME_STATE.TimeAllocation]:
-      <TimeAllocation initialTimes={timeAllocation}/>,
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={false}/>,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults/>,
     [A3_GAME_STATE.ABTestingExplanation]: <><ABTestDesc /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,

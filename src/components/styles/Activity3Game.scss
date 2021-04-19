@@ -294,6 +294,7 @@ $card-height: calc(#{$card-min-width} - 20px);
 #options-grid {
   display: grid;
   grid-template-columns: auto auto auto;
+  width: 80%;
 }
 
 .time-input {
@@ -403,4 +404,49 @@ $card-height: calc(#{$card-min-width} - 20px);
 #abtest-text2 {
   opacity: 0;
   position: absolute;
+}
+
+#time-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#time-tutorial-overlay {
+  // padding: 4% 4%;
+  align-items: flex-end;
+  filter: blur(0);
+  height: $min-carousel-height;
+  position: absolute;
+  width: 90%;
+  z-index: 40;
+}
+
+#time-tutorial-bubble {
+  background-color: white;
+  border-color: black;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 7px;
+  font-size: 20px;
+  height: fit-content;
+  // float: right; // @TREVOR: add this in for float right
+  margin: auto;
+  max-height: $min-carousel-height;
+  min-width: 350px;
+  position: absolute;
+  width: 25%;
+  z-index: 50;
+}
+
+#time-tutorial-bubble p {
+  margin: 20px;
+}
+
+.enable-blur>* {
+  filter: blur(1.5px) grayscale(0.6);
+}
+
+.disable-blur {
+  filter: blur(0);
 }

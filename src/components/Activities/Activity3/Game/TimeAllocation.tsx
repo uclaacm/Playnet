@@ -10,13 +10,17 @@ import { STARTING_DAYS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameCons
 import NumberSelection from './NumberSelection';
 
 interface TimeAllocationProps {
+  isTutorial: boolean,
   initialTimes: number[];
 }
 
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState, setTimeAllocation} = useContext(GameContext);
-  const { initialTimes } = props;
+  const {isTutorial, initialTimes } = props;
   const [daysAllocation, setDaysAllocation] = useState<number[]>([0,0,0]);
+
+  const [tutorialStage, setTutorialStage] = useState(0);
+  const TUTORIAL_END = 3;
 
   const DISPLAY_OPTIONS = [
     { src: Hammer, text: 'Build' },
@@ -38,9 +42,15 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     const initAllocation = initialTimes ?? [0,0,0];
     setDaysAllocation(initAllocation);
 
+    setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
+
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
   }, []);
+
+  useEffect(() => {
+    setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
+  }, [isTutorial]);
 
   const handleGoNext = () => {
     // update the new task distribution
@@ -57,7 +67,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   const getDisplayWarning = (): JSX.Element => {
     const daysUsed = sumDaysUsed();
-
     if (daysUsed < LOW_DAY_THRESHOLD) {
       return <div className='playnet-red'>
         If you use too little days in this stage, you might <br/> make something that doesn&#39;t work as you expect!
@@ -70,16 +79,65 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     return <></>;
   };
 
-  // warning color if below or above threshold
-  const isShowWarning = () => {
+  const isShowWarning = () : boolean => {
     const daysUsed = sumDaysUsed();
     return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
 
-  return <>
-    Choose how much time to spend on each part of your project.
-    <br/>
-    (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
+  const displayTutorialText = () : JSX.Element => {
+    if (tutorialStage === 0) {
+      return (
+        <p>
+          We first have to build the feature by writing code.
+          <br/> <br/>
+          If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).
+        </p>
+      );
+    } else if (tutorialStage === 1) {
+      return (
+        <p>
+          Then, we make sure that our code doesn’t make weird things happen, or have bugs.
+          <br/> <br/>
+          It may take a bit more time to make sure that everything works as it should!
+        </p>
+      );
+    }
+    return (
+      <p>
+        Finally, we AB test to see how effective our changes were! We  test some users  on our new feature,
+        and see how the users react to it compared with the other users!
+        <br/><br/>
+        This could be a bit random, and what the beta testers like may not represent what most people actually like!
+      </p>
+    );
+  };
+
+  const advanceTutorial = () => {
+    if (tutorialStage === TUTORIAL_END - 1) goNextState(); // skip to the actual timeAllocation slide
+    setTutorialStage(tutorialStage+1);
+  };
+
+  return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enable-blur' : ''}>
+    <div id={'time-tutorial-overlay'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}/>
+    {
+      Object.values([0, 1, 2]).map((index) => {
+        return (
+          <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disable-blur' : ''}
+            style={{
+              display: `${(tutorialStage === index) ? '' : 'none'}`,
+              alignSelf: 'flex-center',
+            }}>
+            {displayTutorialText()}
+            <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
+          </div>
+        );
+      })
+    }
+    <div>
+      Choose how much time to spend on each part of your project.
+      <br/>
+      (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
+    </div>
     <div id={'options-grid'}>
       {displayOptionIcons()}
       {daysAllocation.map((curAlloc : number, index : number) => {
@@ -96,8 +154,8 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       <img src={Clock}/>
       Days left: {daysLeft ? (daysLeft - sumDaysUsed()) : 0}
     </div>
-    {getDisplayWarning()}
-    <button className='playnet-button' style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
-  </>;
+    {tutorialStage >= TUTORIAL_END && getDisplayWarning()}
+    <button className='playnet-button' disabled={sumDaysUsed() === 0} style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
+  </div>;
 }
 export default TimeAllocation;
