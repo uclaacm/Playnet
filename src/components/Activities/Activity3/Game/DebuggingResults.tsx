@@ -4,7 +4,8 @@ import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './g
 import { A3_GAME_STATE } from './GameConstants';
 
 function DebuggingResults(): JSX.Element {
-  const { setState, goNextState, featureWeights, targetWeights, timeAllocation, setTimeAllocation, daysLeft, setDaysLeft } = useContext(GameContext);
+  const { setState, goNextState, featureWeights, targetWeights, timeAllocation,
+    setTimeAllocation, daysLeft, setDaysLeft } = useContext(GameContext);
 
   const numErrors = getDebugNumErrors(timeAllocation[0], timeAllocation[1]);
   const errors = getDebugErrors(numErrors);
@@ -15,14 +16,14 @@ function DebuggingResults(): JSX.Element {
       setDaysLeft(daysLeft - 1);
       setTimeAllocation([timeAllocation[0], timeAllocation[1] + 1, timeAllocation[2]]);
     }
-  }
+  };
 
   const improveRecs = () => {
     if (daysLeft >= 3) {
       setDaysLeft(daysLeft - 3);
       setState(A3_GAME_STATE.PriorityExplanation);
     }
-  }
+  };
 
   const buttons: { [key: string]: { buttonText: string, onClick: () => void, dayCost: number } } = {
     'Reduce errors': {
@@ -74,7 +75,7 @@ function DebuggingResults(): JSX.Element {
               <div className='button-group' key={name}>
                 {name}
                 <br />
-                <button className='smaller playnet-button' onClick={onClick} disabled={dayCost >= daysLeft}>
+                <button className='smaller playnet-button' onClick={onClick} disabled={dayCost > daysLeft}>
                   {buttonText}
                 </button>
               </div>)

@@ -129,7 +129,7 @@ function Game(): JSX.Element {
     const tempTargetWeights = generateVariableTargetWeights();
     storage.setItem(SESSION_TARGET_WEIGHTS, tempTargetWeights.join(','));
     setTargetWeights(tempTargetWeights);
-  }
+  };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
     [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
