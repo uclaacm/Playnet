@@ -19,6 +19,11 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const { initialTimes, setTimeAllocation } = props;
   const [daysAllocation, setDaysAllocation] = useState<number[]>([0,0,0]);
 
+  const [tutorialStage, setTutorialStage] = useState(0);
+  const TUTORIAL_END = 3;
+  const tutorial = true;
+  // const tutorialStage = 1;
+
   const DISPLAY_OPTIONS = [
     { src: Hammer, text: 'Build' },
     { src: Debug, text: 'Debug' },
@@ -38,6 +43,9 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     // reallocate task distribution
     const initAllocation = initialTimes ?? [0,0,0];
     setDaysAllocation(initAllocation);
+
+    // skip tutorial if already allocated tasks
+    if (sumDaysUsed() !== 0) setTutorialStage(TUTORIAL_END);
 
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
@@ -77,10 +85,56 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
 
-  return <>
+  const displayTutorialText = () => {
+    if (tutorialStage === 0) {
+      return (
+        <p>
+          We first have to build the feature by writing code.
+          <br/> <br/>
+          If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).
+        </p>
+      );
+    } else if (tutorialStage === 1) {
+      return (
+        <p>
+          Then, we make sure that our code doesn’t make weird things happen, or have bugs.
+          <br/> <br/>
+          It may take a bit more time to make sure that everything works as it should!
+        </p>
+      );
+    }
+
+    return (
+      <p>
+        Finally, we AB test to see how effective our changes were! We  test some users  on our new feature, 
+        and see how the users react to it compared with the other users!
+        <br/><br/>
+        This could be a bit random, and what the beta testers like may not represent what most people actually like!
+      </p>
+    );
+  };
+
+  return <div id={'time-container'} className={tutorial ? 'enableBlur' : ''}>
+    {/* <div id={'time-overlay'} style={{display: `${tutorialStage === TUTORIAL_END && 'none'}`}}/> */}
+    {
+      Object.values([0, 1, 2]).map((index) => {
+        return <div id={"time-tutorial-overlay"}>
+        <div id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disableBlur' : ''}
+        style={{
+          display: `${(tutorialStage === index) ? '' : 'none'}`,
+          alignSelf: 'flex-start',
+        }}>
+        {displayTutorialText()}
+        <button className='playnet-button' style={{zIndex: 50}} onClick={() => {setTutorialStage(tutorialStage+1);}}>Continue</button>
+      </div>
+      </div>
+      })
+    }
+    <div>
     Choose how much time to spend on each part of your project.
     <br/>
     (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
+    </div>
     <div id={'options-grid'}>
       {displayOptionIcons()}
       {daysAllocation.map((curAlloc : number, index : number) => {
@@ -99,6 +153,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     </div>
     {getDisplayWarning()}
     <button className='playnet-button' style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
-  </>;
+  </div>;
 }
 export default TimeAllocation;
