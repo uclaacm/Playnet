@@ -19,6 +19,7 @@
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.2.0",
     "stylelint-config-sass-guidelines": "^8.0.0",
+    "ts-gaussian": "^2.0.2",
     "use-sound": "^2.0.1"
   },
   "devDependencies": {
