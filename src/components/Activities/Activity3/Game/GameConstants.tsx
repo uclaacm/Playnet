@@ -4,6 +4,7 @@ import React from 'react';
 export const SESSION_SKIP_STATES = 'statesToSkip';
 export const SESSION_CURRENT_STATE = 'gamestate';
 export const SESSION_VARIABLES = 'variables';
+export const SESSION_TIMES = 'times';
 
 // GAME STATES
 export enum A3_GAME_STATE {
@@ -91,3 +92,8 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
     <>subs</>,
   ],
 };
+
+// Time Allocation Info
+export const STARTING_DAYS = 56;
+export const LOW_DAY_THRESHOLD = 14;
+export const HIGH_DAY_THRESHOLD = 21;
