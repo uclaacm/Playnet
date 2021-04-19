@@ -223,10 +223,10 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 .centered-box {
+  align-items: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 
 #options-grid {
@@ -235,20 +235,20 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 .time-input {
-  height: 45px;
-  width: 78px;
+  background-image: none;
+  border-color: $playnet-grey;
+  border-image: none;
+  border-radius: 15px;
+  border-style: solid;
+  border-width: 6px;
+  box-shadow: none;
+  color: $border-black;
   font: inherit;
   font-weight: 600;
-  color: $border-black;
-  text-align: right;
-  border-radius: 15px;
-  border-width: 6px;
-  border-image: none;
-  border-color: $playnet-grey;
-  border-style: solid;
-  background-image: none;
-  box-shadow: none;
+  height: 45px;
   margin: 10px;
+  text-align: right;
+  width: 78px;
 
   &:focus,
   &:active {
