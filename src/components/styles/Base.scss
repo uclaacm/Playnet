@@ -28,6 +28,7 @@ button {
   border-radius: 10px;
   color: white;
   font: $font-normal;
+  font: inherit;
   margin-bottom: 5px;
   max-height: 50%;
   max-width: 100%;

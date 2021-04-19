@@ -77,7 +77,6 @@ function ABTestDesc(): JSX.Element {
           style={{ width: '50%' }}>Continue</button>
       </>
     </ScalingSlide>
-
   </>;
 }
 export default ABTestDesc;

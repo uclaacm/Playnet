@@ -3,6 +3,7 @@ import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
+import { ABTestSlide1, ABTestSlide2 } from './ABTestExample';
 import ComputerRecs from './Animations/ComputerRecs';
 import Debugging from './Animations/Debugging';
 import Lecture from './Animations/Lecture';
@@ -102,6 +103,15 @@ function Activity3(): JSX.Element {
       animationTime: 2,
     },
     {
+      child: <ABTestSlide1/>,
+      bottomText: 'Finally, the idea is AB tested, which means that we give',
+      bottomText2: 'both the new and old versions to users.',
+    },
+    {
+      child: <ABTestSlide2/>,
+      bottomText: 'These users give their opinions on which version is better',
+    },
+    {
       child: <GameIntroSlide1/>,
       bottomText: 'Now it’s your turn! Imagine that a YouTube team invited you to',
       bottomText2: 'help improve video recommendations.',
@@ -115,7 +125,7 @@ function Activity3(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Mind Reading'>
+    <Carousel title='Mind Reading' hasSound={false}>
       {content}
     </Carousel>
   );
