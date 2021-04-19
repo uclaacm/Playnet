@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
+import ABTestDesc from './ABTestDesc';
 import DemoNextButton from './DemoNextButton';
 import FeaturesSlidebar from './FeaturesSlidebar';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES, SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, VARIABLES } from './GameConstants';
@@ -42,6 +43,7 @@ function Game(): JSX.Element {
     const curVariables = tempVariables ?? [];
     setVariableSelection(curVariables);
     return () => {
+      storage.removeItem(SESSION_SKIP_STATES);
       storage.removeItem(SESSION_CURRENT_STATE);
       storage.removeItem(SESSION_VARIABLES);
     };
@@ -92,7 +94,7 @@ function Game(): JSX.Element {
       <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocation]: <>3<DemoNextButton /></>,
     [A3_GAME_STATE.DebuggingResults]: <>4<DemoNextButton /></>,
-    [A3_GAME_STATE.ABTestingExplanation]: <>skip5<DemoNextButton /></>,
+    [A3_GAME_STATE.ABTestingExplanation]: <><ABTestDesc /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
     [A3_GAME_STATE.FinalReport]: <>6<DemoNextButton /></>,
     [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached

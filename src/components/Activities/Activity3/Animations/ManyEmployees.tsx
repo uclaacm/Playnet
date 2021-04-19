@@ -59,11 +59,11 @@ function ManyEmployees(): JSX.Element {
       timeline.current?.pause();
     }
     else {
-    timeline.current?.seek((slideIdx - 1)  * 2000);
-    const timeout = setTimeout(() => {
-      timeline.current?.play();
-    }, 250);
-    return () => clearTimeout(timeout);
+      timeline.current?.seek((slideIdx - 1)  * 2000);
+      const timeout = setTimeout(() => {
+        timeline.current?.play();
+      }, 250);
+      return () => clearTimeout(timeout);
     }
 
   }, [reloadTime, slideIdx]);
