@@ -7,14 +7,18 @@ function DebuggingResults(): JSX.Element {
   const { setState, goNextState, featureWeights, targetWeights, timeAllocation,
     setTimeAllocation, daysLeft, setDaysLeft } = useContext(GameContext);
 
-  const numErrors = getDebugNumErrors(timeAllocation[0], timeAllocation[1]);
+  const numErrors = getDebugNumErrors(timeAllocation.build, timeAllocation.debug);
   const errors = getDebugErrors(numErrors);
   const debugQuality = getRecommendationQuality(featureWeights, targetWeights);
 
   const debugADay = () => {
     if (daysLeft > 0) {
       setDaysLeft(daysLeft - 1);
-      setTimeAllocation([timeAllocation[0], timeAllocation[1] + 1, timeAllocation[2]]);
+
+      // increment debug by one
+      const newAllocation = {...timeAllocation};
+      newAllocation.debug++;
+      setTimeAllocation(newAllocation);
     }
   };
 
