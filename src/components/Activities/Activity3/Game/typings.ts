@@ -3,6 +3,7 @@ export type Point = {
   y: number,
 }
 
+export type TimeAllocationKey = keyof TimeAllocations;
 export type TimeAllocations = {
   build: number,
   debug: number,

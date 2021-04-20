@@ -1,10 +1,11 @@
 import React from 'react';
+import { TimeAllocationKey, TimeAllocations } from './typings';
 
 interface SelectProps {
   daysLeft: number;
-  itemType: number
-  daysAllocation: number[];
-  setDaysAllocation: (_state: number[]) => void;
+  itemType: TimeAllocationKey;
+  daysAllocation: TimeAllocations;
+  setDaysAllocation: (_state: TimeAllocations) => void;
   showWarning: boolean;
 }
 
@@ -29,7 +30,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
   };
 
   const setNewAllocation = (newInput : number) => {
-    const newAllocation = [...daysAllocation];
+    const newAllocation = daysAllocation;
     newAllocation[itemType] = newInput;
     setDaysAllocation(newAllocation);
   };

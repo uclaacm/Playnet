@@ -129,6 +129,9 @@ function Game(): JSX.Element {
     const tempTargetWeights = generateVariableTargetWeights();
     storage.setItem(SESSION_TARGET_WEIGHTS, tempTargetWeights.join(','));
     setTargetWeights(tempTargetWeights);
+    
+    // reset daysLeft to maximum
+    setDaysLeft(STARTING_DAYS);
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
@@ -137,8 +140,10 @@ function Game(): JSX.Element {
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
       <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+    [A3_GAME_STATE.TimeAllocationExplanation]:
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={true}/>,
     [A3_GAME_STATE.TimeAllocation]:
-      <TimeAllocation initialTimes={timeAllocation}/>,
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={false}/>,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults/>,
     [A3_GAME_STATE.ABTestingExplanation]: <><ABTestDesc /></>,
     [A3_GAME_STATE.ABTestingReport]: <>5<DemoNextButton /></>,
