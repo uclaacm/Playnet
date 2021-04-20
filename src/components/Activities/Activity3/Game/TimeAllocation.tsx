@@ -6,21 +6,22 @@ import Debug from '../../../../assets/activity3/game/Debug.svg';
 import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
-import { STARTING_DAYS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
+import { LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
 import NumberSelection from './NumberSelection';
+import { TimeAllocations } from './typings';
 
 interface TimeAllocationProps {
+  initialTimes: TimeAllocations,
   isTutorial: boolean,
-  initialTimes: number[];
 }
 
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {
+  const TUTORIAL_END = 3;
   const {daysLeft, setDaysLeft, goNextState, setTimeAllocation} = useContext(GameContext);
   const {isTutorial, initialTimes } = props;
-  const [daysAllocation, setDaysAllocation] = useState<number[]>([0,0,0]);
+  const [daysAllocation, setDaysAllocation] = useState<TimeAllocations>(initialTimes);
 
-  const [tutorialStage, setTutorialStage] = useState(0);
-  const TUTORIAL_END = 3;
+  const [tutorialStage, setTutorialStage] = useState(isTutorial ? 0 : TUTORIAL_END);
 
   const DISPLAY_OPTIONS = [
     { src: Hammer, text: 'Build' },
@@ -38,17 +39,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   };
 
   useEffect(() => {
-    // reallocate task distribution
-    const initAllocation = initialTimes ?? [0,0,0];
-    setDaysAllocation(initAllocation);
-
-    setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
-
-    // reset daysLeft to maximum
-    setDaysLeft(STARTING_DAYS);
-  }, []);
-
-  useEffect(() => {
     setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
   }, [isTutorial]);
 
@@ -62,7 +52,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   };
 
   const sumDaysUsed = () : number => {
-    return daysAllocation.reduce((acc : number, cur : number) => acc + cur);
+    return Object.values(daysAllocation).reduce((acc : number, cur : number) => acc + cur);
   };
 
   const getDisplayWarning = (): JSX.Element => {
@@ -140,11 +130,11 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     </div>
     <div id={'options-grid'}>
       {displayOptionIcons()}
-      {daysAllocation.map((curAlloc : number, index : number) => {
+      {Object.entries(daysAllocation).map(([key, curAlloc]) => {
         const usableDays = daysLeft ? (daysLeft - sumDaysUsed() + curAlloc) : 0;
         return (
-          <div key={index} className={'centered-box'}>
-            <NumberSelection daysLeft={usableDays} itemType={index}
+          <div key={key} className={'centered-box'}>
+            <NumberSelection daysLeft={usableDays} itemType={key}
               daysAllocation={daysAllocation} setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
           </div>
         );
