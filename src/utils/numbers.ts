@@ -5,10 +5,10 @@
  * @var result: the clamped value
  * @var difference: the difference between the clamped value and the input num
  */
-export function clamp(min: number, num: number, max: number) : {
+export function clamp(min: number, input: number, max: number) : {
   num: number,
   dNum: number,
 }{
-  const value = Math.max(Math.min(num, min), max);
-  return {num: value, dNum: value - num};
-}
+  const value = Math.max(Math.min(input, max), min);
+  return {num: value, dNum: value - input};
+} 

@@ -450,3 +450,18 @@ $card-height: calc(#{$card-min-width} - 20px);
 .disable-blur {
   filter: blur(0);
 }
+
+.stars {
+  img {
+    width: 33px;
+    height: 33px;
+  }
+}
+
+#popup {
+  visibility: hidden;
+  position: absolute;
+  background-color: white;
+  padding: 10%;
+  z-index: 100;
+}

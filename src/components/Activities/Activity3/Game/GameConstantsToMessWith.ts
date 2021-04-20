@@ -1,9 +1,11 @@
 export const MIN_GRAPH_START = 45;
 export const MAX_GRAPH_START = 70;
-export const SINGLE_CONTROL_CHANGE_MAX = 10;
-export const SINGLE_AB_CHANGE_MAX = 6;
+export const SINGLE_CONTROL_CHANGE_MAX = 20;
+export const RANDOM_BETA_TEST_CHANGE = 7;
 
-export const MULTIPLE_FOR_CHANGE_OF_AB_GRAPH = 3;
+export const MULTIPLE_FOR_CHANGE_OF_AB_GRAPH = 5;
+
+export const STABILITY_OF_FINAL = 3; // how many times more stable the final is than the control
 
 // Variable Allocations
 export const MIN_EXPECTED_ALLOCATION = 7;

@@ -4,8 +4,8 @@ import {
   DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
   EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
-  QUALITY_DEFAULT_KEY, SINGLE_AB_CHANGE_MAX, SINGLE_CONTROL_CHANGE_MAX,
-  VARIABLE_WEIGHTS_STD,
+  QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
+  VARIABLE_WEIGHTS_STD, STABILITY_OF_FINAL,
 } from './GameConstantsToMessWith';
 import { Point, TimeAllocations } from './typings';
 
@@ -137,16 +137,17 @@ export function getRecommendationQuality(
  * The points are random and build off of the last point.
  * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
  */
-export function getControlGraphForABTesting(
-  numABTestingDays: number,
+export function getControlGraph(
+  numPoints: number,
+  maxChange: number,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
-  const dX = 100 / numABTestingDays; // x distance in between 2 points
+  const dX = 100 / numPoints; // x distance in between 2 points
   const xyMapping: Point[] = [];
   const dxyMapping: Point[] = [];
 
-  // start at some random point between [MIN_GRAPH_START, MAX_GRAPH_START]
-  let lastX = MIN_GRAPH_START + (MAX_GRAPH_START - MIN_GRAPH_START) * Math.random();
-  let lastY = 0;
+  // start at some random point between [MIN_GRAPH_START, MAX_GRAPH_START]  
+  let lastX = 0;
+  let lastY = MIN_GRAPH_START + (MAX_GRAPH_START - MIN_GRAPH_START) * Math.random();
   let tempDy, dY;
   xyMapping.push({
     x: lastX,
@@ -154,14 +155,14 @@ export function getControlGraphForABTesting(
   });
 
   // add numABTestingDays # of points!
-  for (let i = 0; i < numABTestingDays; i++) {
+  for (let i = 0; i < numPoints; i++) {
     lastX += dX;
 
-    // find a random change in Y between [-SINGLE_CONTROL_CHANGE_MAX / 2, SINGLE_CONTROL_CHANGE_MAX / 2]
-    tempDy = SINGLE_CONTROL_CHANGE_MAX * Math.random() - (SINGLE_CONTROL_CHANGE_MAX / 2);
-    const temp = clamp(lastY + tempDy, 0, 100);
+    // find a random change in Y between [-maxChange / 2, maxChange / 2]
+    tempDy = maxChange * Math.random() - (maxChange / 2);
+    const temp = clamp(0, lastY + tempDy, 100);
     lastY = temp.num;
-    dY = temp.dNum;
+    dY = temp.dNum + tempDy;
 
     // add x&y to map + add dx&dy to map
     xyMapping.push({
@@ -183,17 +184,18 @@ export function getControlGraphForABTesting(
  * control point.
  * @returns points between x: [0, 100], y: [0, 100] to graph
  */
-export function getBetaGraphForABTesting(
+export function getBetaGraph(
   featureWeights: number[],
   expectedWeights: number[],
   controlGraph: Point[],
   dControlGraph: Point[],
   timeAllocations: TimeAllocations,
+  maxChange: number,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
   // initialize and add in first control point, so that beta graph starts at same spot
   const xyMapping: Point[] = [];
   const dxyMapping: Point[] = [];
-  let random, tempDy, dy;
+  let random, tempDy, tempDyWithControl, dY;
 
   let lastX = controlGraph[0].x;
   let lastY = controlGraph[0].y;
@@ -208,12 +210,15 @@ export function getBetaGraphForABTesting(
   // add numABTestingDays # of points!
   dControlGraph.forEach(({x: controlDx, y: controlDy}) => {
     // find a random change in y based on the quality of the product + control's dy
-    random = Math.random() * SINGLE_AB_CHANGE_MAX - (SINGLE_AB_CHANGE_MAX / 2);
+    random = Math.random() * maxChange - (maxChange / 2);
     tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + random;
-    dy = tempDy + controlDy;
+    tempDyWithControl = tempDy + controlDy;
+
+    const temp = clamp(0, lastY + tempDyWithControl, 100);
+    lastY = temp.num;
+    dY = temp.dNum + tempDyWithControl;
 
     lastX += controlDx;
-    lastY += dy;
 
     // add x&y to map + add dx&dy to map
     xyMapping.push({
@@ -222,9 +227,75 @@ export function getBetaGraphForABTesting(
     });
     dxyMapping.push({
       x: controlDx,
-      y: dy,
+      y: dY,
     });
   });
   return { xyMap: xyMapping, dxyMap: dxyMapping };
 }
 
+/**
+ * Given the number of days we are AB testing, return a list of points to graph for the control group!
+ * The points are random and build off of the last point.
+ * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
+ */
+ export function getABTestingControlGraph(
+  numABTestingDays: number,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getControlGraph(numABTestingDays, SINGLE_CONTROL_CHANGE_MAX);
+}
+
+/** TODO FIX
+ * Given the number of days we are AB testing, return a list of points to graph for the control group!
+ * The points are random and build off of the last point.
+ * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
+ */
+ export function getFinalControlGraph(
+  numABTestingDays: number,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getControlGraph(numABTestingDays, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
+}
+
+/**
+ * Given the number of days we are AB testing, return a list of points to graph for the beta version!
+ *
+ * This takes in all game information, in addition to the control list of points + chnage between each
+ * control point.
+ * @returns points between x: [0, 100], y: [0, 100] to graph
+ */
+ export function getABTestingProductGraph(
+  featureWeights: number[],
+  expectedWeights: number[],
+  controlGraph: Point[],
+  dControlGraph: Point[],
+  timeAllocations: TimeAllocations,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getBetaGraph(featureWeights, expectedWeights, controlGraph, dControlGraph, timeAllocations, RANDOM_BETA_TEST_CHANGE)
+}
+
+/** TODO FIX
+ * Given the number of days we are AB testing, return a list of points to graph for the beta version!
+ *
+ * This takes in all game information, in addition to the control list of points + chnage between each
+ * control point.
+ * @returns points between x: [0, 100], y: [0, 100] to graph
+ */
+ export function getFinalProductGraph(
+  featureWeights: number[],
+  expectedWeights: number[],
+  controlGraph: Point[],
+  dControlGraph: Point[],
+  timeAllocations: TimeAllocations,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getBetaGraph(featureWeights, expectedWeights, controlGraph, dControlGraph, timeAllocations, RANDOM_BETA_TEST_CHANGE / STABILITY_OF_FINAL)
+}
+
+/** TODO comment
+ */
+ export function numFinalStars(
+  featureWeights: number[],
+  expectedWeights: number[],
+  timeAllocations: TimeAllocations,
+): number {
+  const numStars = 4 / 3 * overallQuality(featureWeights, expectedWeights, timeAllocations) + 1;
+  return numStars;
+}
