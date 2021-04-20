@@ -21,7 +21,9 @@ const InfoCard = (props: InfoCardProps) => {
       <div className='info-card disable-blur'
         style={{ '--info-card-col': getCol() }}
       >
-        {phrases[index]}
+        <div className='info-card-content'>
+          {phrases[index]}
+        </div>
         <div className='info-card-btn-container'>
           {
             (index < phrases.length - 1) ?

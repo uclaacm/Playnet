@@ -33,7 +33,7 @@ function FeaturesTutorial(): JSX.Element {
       <p>
         First, let&apos;s decide what to prioritize, or what we care about most.
     </p>
-      <div id='variables-wrapper tutorial-container' className='enable-blur'>
+      <div id='variables-wrapper' className='enable-blur tutorial-container'>
         {
           Object.values(VARIABLES).map((variable, i) => {
             return (
