@@ -2,25 +2,16 @@ import React, { useState } from 'react';
 
 interface InfoCardProps {
   phrases: JSX.Element[],
-  parentIndex: number,
+  col: number,
   goNextParentState: () => void,
 }
 const InfoCard = (props: InfoCardProps): JSX.Element => {
-  const { phrases, parentIndex, goNextParentState } = props;
+  const { phrases, col, goNextParentState } = props;
   const [index, setIndex] = useState(0);
-
-  const getCol = () => {
-    if (parentIndex == 2 || parentIndex == 3) {
-      return 1;
-    }
-    return 2;
-  };
 
   return (
     <>
-      <div className='info-card disable-blur'
-        style={{ '--info-card-col': getCol() }}
-      >
+      <div className='info-card disable-blur' style={{ gridColumn: col }} >
         <div className='info-card-content'>
           {phrases[index]}
         </div>
