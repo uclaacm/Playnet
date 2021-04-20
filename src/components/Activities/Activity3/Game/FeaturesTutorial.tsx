@@ -10,19 +10,14 @@ function FeaturesTutorial(): JSX.Element {
   const descriptionNames = [VARIABLES.CREDIBLE, VARIABLES.POPULAR, VARIABLES.RECENT_UPLOAD,
     VARIABLES.SAME_CREATOR, VARIABLES.SAME_CONTENT, VARIABLES.SUBSCRIBED];
 
-  const moveNext = () => {
-    if (index < descriptionNames.length - 1) {
-      setIndex(index + 1);
-    } else {
+    useEffect(() => {
+    if (index >= descriptionNames.length){
       goNextState();
     }
-  };
+  }, [index]);
 
   const isMatchingIndex = (variableCardIndex: number) => {
-    if (index === variableIndexToSlideIndex[variableCardIndex]) {
-      return true;
-    }
-    return false;
+    return index === variableIndexToSlideIndex[variableCardIndex];
   };
 
   return (
