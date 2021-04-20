@@ -1,15 +1,12 @@
-import { set } from 'animejs';
 import React, { useContext, useState } from 'react';
 import { GameContext } from '.';
 import InfoCard from './InfoCard';
 import { VARIABLE_CONTENT, VARIABLES } from './GameConstants';
-import PriorityChoices from './PriorityChoices';
-import VariableCard from './VariableCard';
 
 function FeaturesTutorial(): JSX.Element {
   const { goNextState } = useContext(GameContext);
   const [index, setIndex] = useState(0);
-  const correspondingVariableCardIndex = [0, 0, 3, 1, 4, 2, 5]; //maps index from the list of strings to the index in the VARIABLES array
+  const variableIndexToSlideIndex = [0, 2, 4, 1, 3, 5];
   const descriptionNames = [VARIABLES.CREDIBLE, VARIABLES.POPULAR, VARIABLES.RECENT_UPLOAD, VARIABLES.SAME_CREATOR, VARIABLES.SAME_CONTENT, VARIABLES.SUBSCRIBED];
 
   const moveNext = () => {
@@ -21,7 +18,6 @@ function FeaturesTutorial(): JSX.Element {
   };
 
   const isMatchingIndex = (variableCardIndex: number) => {
-    const variableIndexToSlideIndex = [0, 2, 4, 1, 3, 5];
     if (index === variableIndexToSlideIndex[variableCardIndex]) {
       return true;
     }
@@ -50,7 +46,6 @@ function FeaturesTutorial(): JSX.Element {
         }
         <InfoCard phrases={VARIABLE_CONTENT[descriptionNames[index]]} parentIndex={index} goNextParentState={moveNext} key={descriptionNames[index][0]+index}/>
       </div>
-      {/* <button className='playnet-button' onClick={goNextState}>Continue</button> */}
     </>
   );
 }

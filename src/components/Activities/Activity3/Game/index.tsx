@@ -161,7 +161,6 @@ function Game(): JSX.Element {
     daysLeft: daysLeft, setDaysLeft: setDaysLeft,
   }}>
     {GAME_ELEMENTS[state]}
-    {/* <FeaturesTutorial /> */}
   </GameContext.Provider>;
 }
 
