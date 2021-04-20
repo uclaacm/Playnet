@@ -5,7 +5,7 @@ interface InfoCardProps {
   parentIndex: number,
   goNextParentState: () => void,
 }
-const InfoCard = (props: InfoCardProps) => {
+const InfoCard = (props: InfoCardProps): JSX.Element => {
   const { phrases, parentIndex, goNextParentState } = props;
   const [index, setIndex] = useState(0);
 
@@ -14,7 +14,7 @@ const InfoCard = (props: InfoCardProps) => {
       return 1;
     }
     return 2;
-  }
+  };
 
   return (
     <>
@@ -40,6 +40,6 @@ const InfoCard = (props: InfoCardProps) => {
       </div>
     </>
   );
-}
+};
 
 export default InfoCard;

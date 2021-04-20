@@ -86,11 +86,12 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
   ],
   [VARIABLES.SAME_CONTENT]: [
     <>Or, do you think that users don’t really care about who makes the videos?</>,
-    <>Maybe users would want to see more videos about the same topic, but they don’t mind who the creator is.</>
+    <>Maybe users would want to see more videos about the same topic, but they don’t mind who the creator is.</>,
   ],
   [VARIABLES.POPULAR]: [
     <>Popular videos are the ones that get the most likes.</>,
-    <>If a lot of people like a certain video, we can predict that it would be a good recommendation since new users would probably like it as well.</>,
+    <>If a lot of people like a certain video, we can predict that it would be a good recommendation
+      since new users would probably like it as well.</>,
   ],
   [VARIABLES.SAME_CREATOR]: [
     <>Videos made by the same creator usually have similar topics or styles.</>,
@@ -98,7 +99,8 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
   ],
   [VARIABLES.SUBSCRIBED]: [
     <>If you’re asking whether users would get bored seeing the same videos all the time, you might be right!</>,
-    <>Maybe users should be in control of what they get recommended. Should we give users videos from people they already follow?</>,
+    <>Maybe users should be in control of what they get recommended.
+      Should we give users videos from people they already follow?</>,
   ],
 };
 
