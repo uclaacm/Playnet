@@ -38,7 +38,7 @@
   grid-template-rows: repeat(2, 1fr);
   margin: auto;
   padding: 1.5vw;
-  width: fit-content;
+  width: 75%;
 }
 
 $card-min-width: calc((#{$carousel-content-width}) / 3 / 2);
@@ -74,6 +74,8 @@ $card-height: calc(#{$card-min-width} - 20px);
   height: $card-height;
   min-width: $card-min-width;
   width: 100%;
+  grid-row: var(--row);
+  grid-column: var(--col);
 }
 
 .variable-image {
@@ -83,6 +85,39 @@ $card-height: calc(#{$card-min-width} - 20px);
   height: calc(#{$card-height} - 53px);
   margin: auto;
   width: 100%;
+}
+
+//Selecting variables Tutorial
+.tutorial-container {
+  height: 70%;
+}
+
+.info-card {
+  background-color: $carousel-background-white;
+  border-radius: 25px;
+  border-style: solid;
+  border-width: 6px;
+  font: $font-normal;
+  font-size: 22px;
+  height: 100%;
+  min-width: $card-min-width;
+  width: 100%;
+  grid-column: var(--info-card-col);
+  grid-row: 1/3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.info-card-btn-container {
+  // margin-top: calc(95% - 1rem - 1vw);
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+  .page-num {
+    color: $playnet-darkgrey;
+  }
 }
 
 #credible {
@@ -444,7 +479,7 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 .enable-blur>* {
-  filter: blur(1.5px) grayscale(0.6);
+  filter: blur(1.5px) grayscale(0.6) brightness(85%);
 }
 
 .disable-blur {

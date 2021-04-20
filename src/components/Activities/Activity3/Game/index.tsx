@@ -4,6 +4,7 @@ import { useStateCallback } from '../../../shared/hooks';
 import ABTestDesc from './ABTestDesc';
 import DebuggingResults from './DebuggingResults';
 import DemoNextButton from './DemoNextButton';
+import FeaturesTutorial from './FeaturesTutorial';
 import FeaturesSlidebar from './FeaturesSlidebar';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
@@ -134,7 +135,7 @@ function Game(): JSX.Element {
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
-    [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
+    [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
@@ -160,6 +161,7 @@ function Game(): JSX.Element {
     daysLeft: daysLeft, setDaysLeft: setDaysLeft,
   }}>
     {GAME_ELEMENTS[state]}
+    {/* <FeaturesTutorial /> */}
   </GameContext.Provider>;
 }
 

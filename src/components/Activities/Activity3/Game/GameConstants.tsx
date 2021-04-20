@@ -81,19 +81,24 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
     they found online. Plus, they might get angry at you for letting them get tricked!</>,
   ],
   [VARIABLES.RECENT_UPLOAD]: [
-    <>bleb</>,
+    <>Recently uploaded videos are the ones that just got posted to YouTube.</>,
+    <>When we think about what videos to recommend, do you think that older videos or newer videos would be better?</>,
   ],
   [VARIABLES.SAME_CONTENT]: [
-    <>mlem</>,
+    <>Or, do you think that users don’t really care about who makes the videos?</>,
+    <>Maybe users would want to see more videos about the same topic, but they don’t mind who the creator is.</>
   ],
   [VARIABLES.POPULAR]: [
-    <>pop</>,
+    <>Popular videos are the ones that get the most likes.</>,
+    <>If a lot of people like a certain video, we can predict that it would be a good recommendation since new users would probably like it as well.</>,
   ],
   [VARIABLES.SAME_CREATOR]: [
-    <>sameee</>,
+    <>Videos made by the same creator usually have similar topics or styles.</>,
+    <>When a user is done watching a video, maybe they’d like to see more videos made by the same person!</>,
   ],
   [VARIABLES.SUBSCRIBED]: [
-    <>subs</>,
+    <>If you’re asking whether users would get bored seeing the same videos all the time, you might be right!</>,
+    <>Maybe users should be in control of what they get recommended. Should we give users videos from people they already follow?</>,
   ],
 };
 
