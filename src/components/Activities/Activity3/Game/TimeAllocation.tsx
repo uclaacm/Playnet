@@ -117,20 +117,18 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     setTutorialStage(tutorialStage+1);
   };
 
-  return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enable-blur' : ''}>
-    <div id={'time-tutorial-overlay'} className={'disable-blur'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}>
-      {
-        Object.values([0, 1, 2]).map((index) => {
-          return (
-            <div key={index} id={'time-tutorial-bubble'}
-              className={`${tutorialStyles[index]} ${tutorialStage === index ? 'disable-blur' : ''}`}
-              style={{ display: `${(tutorialStage === index) ? '' : 'none'}` }}>
-              {displayTutorialText()}
-              <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
-            </div>
-          );
-        })
-      }
+  return <div id={'time-container'} className={isTutorial ? 'enable-blur' : ''}>
+    {
+     isTutorial && <div id={'time-tutorial-overlay'} className={'disable-blur'}>```
+
+  return <div id={'time-container'} className={isTutorial ? 'enable-blur' : ''}>
+    {
+     isTutorial && <div id={'time-tutorial-overlay'} className={'disable-blur'}>
+      <div id={'time-tutorial-bubble'}
+        className={`${tutorialStyles[tutorialStage]} disable-blur`}>
+        {displayTutorialText()}
+        <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
+      </div>
     </div>
     <div>
       Choose how much time to spend on each part of your project.
