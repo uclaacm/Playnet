@@ -8,9 +8,10 @@ import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
 import { STARTING_DAYS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
 import NumberSelection from './NumberSelection';
+import { TimeAllocations } from './typings';
 
 interface TimeAllocationProps {
-  initialTimes: number[];
+  initialTimes: TimeAllocations;
 }
 
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {

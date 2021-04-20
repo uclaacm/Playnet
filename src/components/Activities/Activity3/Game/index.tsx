@@ -20,7 +20,7 @@ interface IGameContext {
   featureWeights: number[],
   targetWeights: number[],
   timeAllocation: TimeAllocations, // BUILD, DEBUG, ABTEST
-  setTimeAllocation: (allocations: number[]) => void,
+  setTimeAllocation: (allocations: TimeAllocations) => void,
   daysLeft: number,
   setDaysLeft: (state: number) => void,
 }
@@ -31,7 +31,7 @@ export const GameContext = React.createContext<IGameContext>({
   featureWeights: [],
   targetWeights: [],
   timeAllocation: {build: 0, debug: 0, abTest: 0},
-  setTimeAllocation: (_allocations: number[]) => undefined,
+  setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
 });
@@ -69,10 +69,7 @@ function Game(): JSX.Element {
     setVariableSelection(curVariables);
 
     // setup tasksSelection from storage
-    const tempTasks : number[] = storedTasks?.split(',').map((elem) => {
-      // elem can be either '' or a number
-      return (elem && elem.length > 0) ? parseInt(elem) : 0;
-    }) ?? [0,0,0];
+    const tempTasks : TimeAllocations = storedTasks ? JSON.parse(storedTasks) : timeAllocation;
     setTimeAllocation(tempTasks);
 
     startNewGame();
@@ -109,7 +106,7 @@ function Game(): JSX.Element {
 
   useEffect(() => {
     // add taskSelection to storage
-    storage.setItem(SESSION_TIMES, timeAllocation.join(','));
+    storage.setItem(SESSION_TIMES, JSON.stringify(timeAllocation));
   }, [timeAllocation]);
 
   useEffect(() => {
