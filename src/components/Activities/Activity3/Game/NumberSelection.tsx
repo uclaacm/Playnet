@@ -30,7 +30,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
   };
 
   const setNewAllocation = (newInput : number) => {
-    const newAllocation = daysAllocation;
+    const newAllocation = {...daysAllocation};
     newAllocation[itemType] = newInput;
     setDaysAllocation(newAllocation);
   };

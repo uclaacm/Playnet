@@ -129,7 +129,7 @@ function Game(): JSX.Element {
     const tempTargetWeights = generateVariableTargetWeights();
     storage.setItem(SESSION_TARGET_WEIGHTS, tempTargetWeights.join(','));
     setTargetWeights(tempTargetWeights);
-    
+
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
   };

@@ -7,7 +7,7 @@ import {
   QUALITY_DEFAULT_KEY, SINGLE_AB_CHANGE_MAX, SINGLE_CONTROL_CHANGE_MAX,
   VARIABLE_WEIGHTS_STD,
 } from './GameConstantsToMessWith';
-import { Point } from './typings';
+import { Point, TimeAllocations } from './typings';
 
 export function generateVariableTargetWeights(): [number, number, number] {
   const NUMBER_TARGETS = 3;
@@ -17,18 +17,18 @@ export function generateVariableTargetWeights(): [number, number, number] {
   const allocation3 = percentageToAllocate - allocation1 - allocation2;
 
   return [allocation1 + MIN_EXPECTED_ALLOCATION, allocation2 + MIN_EXPECTED_ALLOCATION,
-  allocation3 + MIN_EXPECTED_ALLOCATION];
+    allocation3 + MIN_EXPECTED_ALLOCATION];
 }
 
 // EQUATIONS TO POSSIBLY MODIFY
 /**
- * Given the input weights and expected weights, return some number between [0 - 3] representing how 
- * accurate the input weights are. 
+ * Given the input weights and expected weights, return some number between [0 - 3] representing how
+ * accurate the input weights are.
  * 3 is highest quality, and 0 is lowest
- * 
+ *
  * this is calculated by how far the weights are from the expected w/ a normal distribution
- * @param featureWeights 
- * @param expectedWeights 
+ * @param featureWeights
+ * @param expectedWeights
  * @returns number ranging from 0-3 (3 is highest quality)
  */
 export function accuracyOfWeights(
@@ -69,19 +69,19 @@ export function debugQuality(
 export function overallQuality(
   featureWeights: number[],
   expectedWeights: number[],
-  timeAllocations: [number, number, number],
+  timeAllocations: TimeAllocations,
 ): number {
   const weightAccuracy = accuracyOfWeights(featureWeights, expectedWeights);
   // debug's accuracy is such that 0 is highest quality, and ranges from 0 - 1
   // as such, we get 1 - debugQuality so that 1 can be the highest quality!
-  const debugAccuracy = 1 - debugQuality(timeAllocations[0], timeAllocations[1]);
+  const debugAccuracy = 1 - debugQuality(timeAllocations.build, timeAllocations.debug);
 
   return weightAccuracy * debugAccuracy;
 }
 
 // SPECIFICS
 /**
- * Given number of building days and number of debugging days, return the number of errors 
+ * Given number of building days and number of debugging days, return the number of errors
  */
 export function getDebugNumErrors(
   daysBuilding: number,
@@ -159,7 +159,7 @@ export function getControlGraphForABTesting(
 
     // find a random change in Y between [-SINGLE_CONTROL_CHANGE_MAX / 2, SINGLE_CONTROL_CHANGE_MAX / 2]
     tempDy = SINGLE_CONTROL_CHANGE_MAX * Math.random() - (SINGLE_CONTROL_CHANGE_MAX / 2);
-    let temp = clamp(lastY + tempDy, 0, 100);
+    const temp = clamp(lastY + tempDy, 0, 100);
     lastY = temp.num;
     dY = temp.dNum;
 
@@ -178,7 +178,7 @@ export function getControlGraphForABTesting(
 
 /**
  * Given the number of days we are AB testing, return a list of points to graph for the beta version!
- * 
+ *
  * This takes in all game information, in addition to the control list of points + chnage between each
  * control point.
  * @returns points between x: [0, 100], y: [0, 100] to graph
@@ -188,7 +188,7 @@ export function getBetaGraphForABTesting(
   expectedWeights: number[],
   controlGraph: Point[],
   dControlGraph: Point[],
-  timeAllocations: [number, number, number],
+  timeAllocations: TimeAllocations,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
   // initialize and add in first control point, so that beta graph starts at same spot
   const xyMapping: Point[] = [];
@@ -200,8 +200,8 @@ export function getBetaGraphForABTesting(
   xyMapping.push({
     x: lastX,
     y: lastY,
-  });  
-  
+  });
+
   // find out how well the person made their product
   const quality = overallQuality(featureWeights, expectedWeights, timeAllocations);
 
@@ -219,11 +219,11 @@ export function getBetaGraphForABTesting(
     xyMapping.push({
       x: lastX,
       y: lastY,
-    });  
+    });
     dxyMapping.push({
       x: controlDx,
       y: dy,
-    });  
+    });
   });
   return { xyMap: xyMapping, dxyMap: dxyMapping };
 }

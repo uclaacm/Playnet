@@ -6,7 +6,7 @@ import Debug from '../../../../assets/activity3/game/Debug.svg';
 import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
-import { STARTING_DAYS, LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
+import { LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
 import NumberSelection from './NumberSelection';
 import { TimeAllocations } from './typings';
 
