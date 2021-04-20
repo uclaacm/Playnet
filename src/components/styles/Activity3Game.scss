@@ -368,11 +368,11 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 .time-tutorial-center {
-  align-self: center;
+  align-items: center;
 }
 
 .time-tutorial-right {
-  align-self: flex-end;
+  align-items: flex-end;
 }
 
 #time-tutorial-bubble p {

@@ -119,17 +119,14 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   return <div id={'time-container'} className={isTutorial ? 'enable-blur' : ''}>
     {
-     isTutorial && <div id={'time-tutorial-overlay'} className={'disable-blur'}>```
-
-  return <div id={'time-container'} className={isTutorial ? 'enable-blur' : ''}>
-    {
-     isTutorial && <div id={'time-tutorial-overlay'} className={'disable-blur'}>
-      <div id={'time-tutorial-bubble'}
-        className={`${tutorialStyles[tutorialStage]} disable-blur`}>
-        {displayTutorialText()}
-        <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
+      isTutorial && <div id={'time-tutorial-overlay'} className={`${tutorialStyles[tutorialStage]} disable-blur`}>
+        <div id={'time-tutorial-bubble'}
+          className={'disable-blur'}>
+          {displayTutorialText()}
+          <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
+        </div>
       </div>
-    </div>
+    }
     <div>
       Choose how much time to spend on each part of your project.
       <br/>
@@ -140,7 +137,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         const usableDays = daysLeft ? (daysLeft - sumDaysUsed() + curAlloc) : 0;
         return (
           <div key={index}
-            className={`option-container ${tutorialStage !== TUTORIAL_END && (tutorialStage === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
+            className={`option-container ${isTutorial && (tutorialStage === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
             {optionIcons[index]}
             <div className={'centered-box'}>
               <NumberSelection daysLeft={usableDays} itemType={index} daysAllocation={daysAllocation}
@@ -154,7 +151,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       <img src={Clock}/>
       Days left: {daysLeft ? (daysLeft - sumDaysUsed()) : 0}
     </div>
-    {tutorialStage >= TUTORIAL_END && getDisplayWarning()}
+    {!isTutorial && getDisplayWarning()}
     <button className='playnet-button' disabled={sumDaysUsed() === 0} style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
   </div>;
 }
