@@ -3,8 +3,13 @@ import React, { useContext, useEffect, useRef } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import ScalingSlide from '../../../shared/ScalingSlide';
 
-function Lecture(): JSX.Element {
-  const { slideIdx, reloadTime } = useContext(CarouselContext);
+interface LectureProps {
+  phase: number;
+}
+
+function Lecture(props: LectureProps): JSX.Element {
+  const { phase } = props;
+  const { reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const fadeIn = {
     opacity: [0, 1],
@@ -51,12 +56,12 @@ function Lecture(): JSX.Element {
 
   useEffect(() => {
     timeline.current?.pause();
-    timeline.current?.seek((slideIdx - 6) * 1000);
+    timeline.current?.seek((phase) * 1000);
     const timeout = setTimeout(() => {
       timeline.current?.play();
     }, 250);
     return () => clearTimeout(timeout);
-  }, [slideIdx, reloadTime]);
+  }, [phase, reloadTime]);
 
   return <ScalingSlide widthPx={1102} heightPx={386}>
     <>
