@@ -5,12 +5,14 @@ import ABTestDesc from './ABTestDesc';
 import DebuggingResults from './DebuggingResults';
 import DemoNextButton from './DemoNextButton';
 import FeaturesSlidebar from './FeaturesSlidebar';
+import FeaturesTutorial from './FeaturesTutorial';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
   SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 import TimeAllocation from './TimeAllocation';
+import { TimeAllocations } from './typings';
 
 interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
@@ -18,8 +20,8 @@ interface IGameContext {
   variableSelection: VARIABLES[],
   featureWeights: number[],
   targetWeights: number[],
-  timeAllocation: number[], // BUILD, DEBUG, ABTEST
-  setTimeAllocation: (allocations: number[]) => void,
+  timeAllocation: TimeAllocations, // BUILD, DEBUG, ABTEST
+  setTimeAllocation: (allocations: TimeAllocations) => void,
   daysLeft: number,
   setDaysLeft: (state: number) => void,
 }
@@ -29,8 +31,8 @@ export const GameContext = React.createContext<IGameContext>({
   variableSelection: [],
   featureWeights: [],
   targetWeights: [],
-  timeAllocation: [],
-  setTimeAllocation: (_allocations: number[]) => undefined,
+  timeAllocation: {build: 0, debug: 0, abTest: 0},
+  setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
 });
@@ -42,7 +44,7 @@ function Game(): JSX.Element {
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
   const [featureWeights, setFeatureWeights] = useState([33, 33, 34]);
   const [targetWeights, setTargetWeights] = useState<number[]>([]);
-  const [timeAllocation, setTimeAllocation] = useState<number[]>([]);
+  const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>({build: 0, debug: 0, abTest: 0});
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const storage = window.sessionStorage;
 
@@ -68,10 +70,7 @@ function Game(): JSX.Element {
     setVariableSelection(curVariables);
 
     // setup tasksSelection from storage
-    const tempTasks : number[] = storedTasks?.split(',').map((elem) => {
-      // elem can be either '' or a number
-      return (elem && elem.length > 0) ? parseInt(elem) : 0;
-    }) ?? [0,0,0];
+    const tempTasks : TimeAllocations = storedTasks ? JSON.parse(storedTasks) : timeAllocation;
     setTimeAllocation(tempTasks);
 
     startNewGame();
@@ -108,7 +107,7 @@ function Game(): JSX.Element {
 
   useEffect(() => {
     // add taskSelection to storage
-    storage.setItem(SESSION_TIMES, timeAllocation.join(','));
+    storage.setItem(SESSION_TIMES, JSON.stringify(timeAllocation));
   }, [timeAllocation]);
 
   useEffect(() => {
@@ -131,10 +130,13 @@ function Game(): JSX.Element {
     const tempTargetWeights = generateVariableTargetWeights();
     storage.setItem(SESSION_TARGET_WEIGHTS, tempTargetWeights.join(','));
     setTargetWeights(tempTargetWeights);
+
+    // reset daysLeft to maximum
+    setDaysLeft(STARTING_DAYS);
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
-    [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
+    [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
