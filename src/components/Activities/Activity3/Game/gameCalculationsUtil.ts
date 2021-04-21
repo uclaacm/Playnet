@@ -196,7 +196,7 @@ export function getBetaGraph(
   // initialize and add in first control point, so that beta graph starts at same spot
   const xyMapping: Point[] = [];
   const dxyMapping: Point[] = [];
-  let random, tempDy, tempDyWithControl, dY;
+  let rand, tempDy, tempDyWithControl, dY;
 
   let lastX = controlGraph[0].x;
   let lastY = controlGraph[0].y;
@@ -211,8 +211,8 @@ export function getBetaGraph(
   // add numABTestingDays # of points!
   dControlGraph.forEach(({x: controlDx, y: controlDy}) => {
     // find a random change in y based on the quality of the product + control's dy
-    random = Math.random() * maxChange - (maxChange / 2);
-    tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + random;
+    rand = Math.random() * maxChange - (maxChange / 2);
+    tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + rand;
     tempDyWithControl = tempDy + controlDy;
 
     const temp = clamp(0, lastY + tempDyWithControl, 100);
