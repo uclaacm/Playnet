@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { GameContext } from '.';
 import { VARIABLE_CONTENT, VARIABLES } from './GameConstants';
 import InfoCard from './InfoCard';
@@ -51,7 +51,7 @@ function FeaturesTutorial(): JSX.Element {
     } else {
       goNextState();
     }
-  }
+  };
 
   return (
     <>
