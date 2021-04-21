@@ -12,7 +12,6 @@ function DayOfCode(): JSX.Element {
         <p>
           The code for this event is:
           <h1><i>C O D</i></h1>
-
           <button className='playnet-button'>
             <a href={link_to_checklist} target='_blank' rel='noreferrer'>Add it to your passport!</a>
           </button>

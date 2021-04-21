@@ -34,7 +34,6 @@ export const TAB_INFO: { [key in HeaderSections]: { link: string, text: string }
 };
 
 // Internal Constants
-
 export enum TextBubbleStyles {
   EXTRA_LARGE = 'x-large',
   LARGE = 'large',
