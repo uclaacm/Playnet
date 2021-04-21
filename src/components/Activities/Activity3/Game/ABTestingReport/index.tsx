@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useRef } from 'react';
 import { GameContext } from '..';
 import { getABTestingControlGraph, getABTestingProductGraph } from '../gameCalculationsUtil';
 import { A3_GAME_STATE } from '../GameConstants';
@@ -24,7 +24,9 @@ function ABTestingReport(): JSX.Element {
   const handleSubmit = () => {
     const popup = document.getElementById('popup');
     popup && (popup.style.visibility = 'visible');
-  };
+  }
+
+  const graph = useRef(<Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/>);
 
   return <>
     <PopUp />
@@ -44,7 +46,7 @@ function ABTestingReport(): JSX.Element {
         </div>
       </div>
       <div className='half'>
-        <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/>
+        {graph.current}
       </div>
     </div>
     <div>
