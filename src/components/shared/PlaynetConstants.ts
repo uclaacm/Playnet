@@ -7,13 +7,33 @@ export const DEFAULT_CONFIGS = {
   GAME_SOUNDS_MUTED: false,
   AUTOPLAY: false,
 };
-
-// Internal Constants
 export enum HeaderSections {
   INTRO = 'intro',
   ACTIVITIES = 'activities',
   FEEDBACK = 'feedback',
+  DAY_OF_CODE = 'day_of_code',
 }
+
+export const TAB_INFO = {
+  [HeaderSections.INTRO]: {
+    link: '/',
+    text: 'Intro',
+  },
+  [HeaderSections.ACTIVITIES]: {
+    link: '/activities',
+    text: 'Activities',
+  },
+  [HeaderSections.FEEDBACK]: {
+    link: '/feedback',
+    text: 'Feedback',
+  },
+  [HeaderSections.DAY_OF_CODE]: {
+    link: '/day-of-code',
+    text: 'Day of Code',
+  },
+};
+
+// Internal Constants
 
 export enum TextBubbleStyles {
   EXTRA_LARGE = 'x-large',
