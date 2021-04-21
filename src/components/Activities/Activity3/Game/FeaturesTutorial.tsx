@@ -45,11 +45,13 @@ function FeaturesTutorial(): JSX.Element {
     },
   ];
 
-  useEffect(() => {
-    if (index >= descriptions.length) {
+  const moveNext = () => {
+    if (index < descriptions.length -1) {
+      setIndex(index + 1);
+    } else {
       goNextState();
     }
-  }, [index]);
+  }
 
   return (
     <>
@@ -70,7 +72,7 @@ function FeaturesTutorial(): JSX.Element {
           );
         })}
         <InfoCard phrases={VARIABLE_CONTENT[descriptions[index].name]} col={descriptions[index].col}
-          key={descriptions[index].name + index} goNextParentState={() => setIndex(index + 1)} />
+          key={descriptions[index].name + index} goNextParentState={moveNext} />
       </div>
     </>
   );
