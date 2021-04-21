@@ -8,7 +8,7 @@ import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 
 import { LOW_DAY_THRESHOLD, HIGH_DAY_THRESHOLD } from './GameConstants';
 import NumberSelection from './NumberSelection';
-import { TimeAllocations, TimeAllocationKey } from './typings';
+import { TimeAllocations } from './typings';
 
 interface TimeAllocationProps {
   initialTimes: TimeAllocations,
@@ -20,7 +20,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState, setTimeAllocation} = useContext(GameContext);
   const {isTutorial, initialTimes } = props;
   const [daysAllocation, setDaysAllocation] = useState<TimeAllocations>(initialTimes);
-
   const [tutorialStage, setTutorialStage] = useState(0);
   const tutorialStyles = ['time-tutorial-center', 'time-tutorial-right', 'time-tutorial-center'];
 
