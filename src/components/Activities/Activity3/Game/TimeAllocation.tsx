@@ -29,13 +29,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     { src: Graph, text: 'A/B Test' },
   ];
 
-  const optionIcons = DISPLAY_OPTIONS.map((option) => (
-    <div key={option.text}
-      className={'centered-box'}>
-      <img src={option.src}/>
-      {option.text}
-    </div>
-  ));
 
   useEffect(() => {
     // reallocate task distribution
@@ -138,7 +131,11 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         return (
           <div key={index}
             className={`option-container ${isTutorial && (tutorialStage === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
-            {optionIcons[index]}
+          <div key={DISPLAY_OPTIONS[index].text}
+              className={'centered-box'}>
+              <img src={DISPLAY_OPTIONS[index].src} />
+              {DISPLAY_OPTIONS[index].text}
+            </div>```
             <div className={'centered-box'}>
               <NumberSelection daysLeft={usableDays} itemType={index} daysAllocation={daysAllocation}
                 setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
