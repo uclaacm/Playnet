@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import ReactToolTip from 'react-tooltip';
 import { Link } from 'react-router-dom';
 import { GameContext } from '.';
 import Graph from './ABTestingReport/Graph';
@@ -55,7 +56,10 @@ function ABFinalReport(): JSX.Element {
               </div>
               <div className='bar' style={{ background: getGradient(featureWeights) }}>
                 {featureWeights.map((t, i) =>
-                  <div key={i} style={{ width: `${t}%`}}>{t}%</div>,
+                  <>
+                    <div data-tip data-for={`variable-${i}`} key={i} style={{ width: `${t}%`, height: '30px'}}></div>
+                    <ReactToolTip id={`variable-${i}`}>{t}%</ReactToolTip>
+                  </>                
                 )}
               </div>
             </div>
@@ -73,7 +77,10 @@ function ABFinalReport(): JSX.Element {
               </div>
               <div className='bar' style={{ background: getGradient(timePercentages) }}>
                 {Object.values(timeAllocation).map((t, i) =>
-                  <div key={i} style={{ width: `${timePercentages[i]}%`}}>{t} days</div>,
+                  <>
+                    <div data-tip data-for={`time-${i}`} key={i} style={{ width: `${timePercentages[i]}%`, height: '30px'}}></div>
+                    <ReactToolTip id={`time-${i}`}>{t} days</ReactToolTip>
+                  </>
                 )}
               </div>
             </div>
