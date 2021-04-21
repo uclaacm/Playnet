@@ -13,7 +13,6 @@ import PlantSprout from './Animations/PlantSprout';
 import RecommendCriteria from './Animations/RecommendCriteria';
 import Game from './Game';
 import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
-import Test from './Test';
 
 function Activity3(): JSX.Element {
   const LectureReference = forwardRef((props, ref) => <Lecture ref={ref} {...props}/>);
@@ -21,12 +20,6 @@ function Activity3(): JSX.Element {
   const lectureRef = useRef(null);
 
   const content: CarouselItemComponents[] = [
-    // {
-    //   child: <Test />
-    // },
-    {
-      child: <Game />,
-    },
     {
       child: <ManyEmployees />,
       bottomText: 'Youtube has around 10,000 employees',

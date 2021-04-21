@@ -13,7 +13,8 @@ function ABFinalReport(): JSX.Element {
   const {xyMap: beta_xyMap} = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
 
   const {xyMap: final_xyMap , dxyMap: final_dxyMap} = getFinalControlGraph(timeAllocation.abTest);
-  const {xyMap: final_beta_xyMap} = getFinalProductGraph(targetWeights, featureWeights, final_xyMap, final_dxyMap, timeAllocation);
+  const {xyMap: final_beta_xyMap} = getFinalProductGraph(
+    targetWeights, featureWeights, final_xyMap, final_dxyMap, timeAllocation);
 
   const finalX = final_xyMap[final_xyMap.length - 1].x;
   const finalBetaX = final_beta_xyMap[final_beta_xyMap.length - 1].x;
@@ -23,7 +24,7 @@ function ABFinalReport(): JSX.Element {
     const [first, second, third] = Object.values(timeAllocation);
     const total = first + second + third;
     return Object.values(timeAllocation).map(v => v * 100 / total);
-  }
+  };
 
   const timePercentages = getTimePercentages();
 
@@ -31,8 +32,10 @@ function ABFinalReport(): JSX.Element {
     const [first, second] = split;
     const t1 = first;
     const t2 = second + t1;
-    return `linear-gradient(to right, #FFBA09 0%, #FFBA09 ${t1}%, #A1D900 ${t1}%, #A1D900 ${t2}%, #04C439 ${t2}%, #04C439 100%)`;
-  }
+    return 'linear-gradient(to right, #FFBA09 0%, #FFBA09 ' +
+           `${t1}%, #A1D900 ${t1}%, #A1D900 ${t2}%,` +
+           `#04C439 ${t2}%, #04C439 100%)`;
+  };
 
   return (
     <>
@@ -44,16 +47,15 @@ function ABFinalReport(): JSX.Element {
             <div>
               <div id='variable-summary'>
                 {variableSelection.map((val) =>
-                    <div>
-                      <div className='variable-image' id={val.toLowerCase().replace(' ', '-')} />
-                      <span>{val}</span>
-                    </div>
+                  <div key={val}>
+                    <div className='variable-image' id={val.toLowerCase().replace(' ', '-')} />
+                    <span>{val}</span>
+                  </div>,
                 )}
-
               </div>
               <div className='bar' style={{ background: getGradient(featureWeights) }}>
                 {featureWeights.map((t, i) =>
-                  <div style={{ width: `${t}%`}}>{t}%</div>
+                  <div key={i} style={{ width: `${t}%`}}>{t}%</div>,
                 )}
               </div>
             </div>
@@ -66,12 +68,12 @@ function ABFinalReport(): JSX.Element {
                   <div key={text} className={'centered-box'}>
                     <img src={src}/>
                     {text}
-                  </div>
+                  </div>,
                 )}
               </div>
               <div className='bar' style={{ background: getGradient(timePercentages) }}>
                 {Object.values(timeAllocation).map((t, i) =>
-                  <div style={{ width: `${timePercentages[i]}%`}}>{t} days</div>
+                  <div key={i} style={{ width: `${timePercentages[i]}%`}}>{t} days</div>,
                 )}
               </div>
             </div>

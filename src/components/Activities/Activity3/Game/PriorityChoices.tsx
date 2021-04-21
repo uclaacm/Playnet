@@ -14,7 +14,7 @@ function PriorityChoices(props: PriorityChoiceProps): JSX.Element {
   const { goNextState } = useContext(GameContext);
 
   useEffect(() => {
-    let variables : VARIABLES[] = [];
+    const variables : VARIABLES[] = [];
     initialVariables.forEach((variable) => {
       if (variable && localVariables.length < NUM_VARIABLES_SELECTED && !variables.includes(variable))
         variables.push(variable);
@@ -23,7 +23,6 @@ function PriorityChoices(props: PriorityChoiceProps): JSX.Element {
   }, []);
 
   useEffect(() => {
-    console.log(localVariables);
     if (localVariables.length === NUM_VARIABLES_SELECTED) {
       setVariableSelection(localVariables);
     }

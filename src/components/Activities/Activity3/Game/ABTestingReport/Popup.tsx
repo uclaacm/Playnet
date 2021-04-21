@@ -7,7 +7,7 @@ function PopUp(): JSX.Element {
   const closePopup = () => {
     const popup = document.getElementById('popup');
     popup && (popup.style.visibility = 'hidden');
-  }
+  };
   return (
     <div id={'popup'}>
       <h4>Are you sure?</h4>
@@ -21,7 +21,7 @@ function PopUp(): JSX.Element {
       </p>
       <div>
         <button className="playnet-button playnet-btn-blue" onClick={closePopup}>No, go back</button>
-        <button className="playnet-button" onClick={() => setState(A3_GAME_STATE.FinalReport)}>Yes, I'm sure</button>
+        <button className="playnet-button" onClick={() => setState(A3_GAME_STATE.FinalReport)}>Yes, I&apos;m sure</button>
       </div>
     </div>
   );

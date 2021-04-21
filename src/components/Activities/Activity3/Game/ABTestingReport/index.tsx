@@ -13,7 +13,7 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
   }, 0);
   const convertToStars = () => Math.floor((100 - offBy + (Math.random() * 20 - 10)) / 20) + 1;
   return Array(num).fill(0).map(() => convertToStars());
-}
+};
 
 function ABTestingReport(): JSX.Element {
   const { setState, featureWeights, targetWeights, timeAllocation, daysLeft } = useContext(GameContext);
@@ -24,7 +24,7 @@ function ABTestingReport(): JSX.Element {
   const handleSubmit = () => {
     const popup = document.getElementById('popup');
     popup && (popup.style.visibility = 'visible');
-  }
+  };
 
   return <>
     <PopUp />
@@ -37,11 +37,10 @@ function ABTestingReport(): JSX.Element {
     <h3>A/B Testing: Report</h3>
     <div className='inline'>
       <div className='half'>
-        <div style={{height: "100%"}}>
+        <div style={{height: '100%'}}>
         Reviews
-        {
-          generateReviews(featureWeights, targetWeights, 2).map((stars) => <Review stars={stars} />) ?? <>No Reviews</>
-        }
+          {generateReviews(featureWeights, targetWeights, 2).map((stars, i) =>
+            <Review key={i} stars={stars}/>)}
         </div>
       </div>
       <div className='half'>

@@ -76,23 +76,22 @@ function Game(): JSX.Element {
 
     // setup tasksSelection from storage
     const tempTasks : TimeAllocations = storedTasks ? JSON.parse(storedTasks) : timeAllocation;
-    console.log("TEMPTIME ALLOCATION: " + tempTasks);
 
     setTimeAllocation(tempTasks);
 
     // setup featureWeights from storage
-    const featureWeights = storedFeatureWeights?.split(',').map(element => parseInt(element));
-    const curFeatureWeights = featureWeights ?? [33, 33, 34];
-    setFeatureWeights(curFeatureWeights);
+    const weights = storedFeatureWeights?.split(',').map(element => parseInt(element));
+    const curWeights = weights ?? [33, 33, 34];
+    setFeatureWeights(curWeights);
 
     // setup targetWeights from storage
-    const targetWeights = storedTargetWeights?.split(',').map(element => parseInt(element));
-    const curTargetWeights = targetWeights ?? [33, 33, 34];
-    setTargetWeights(curTargetWeights);
+    const tWeights = storedTargetWeights?.split(',').map(element => parseInt(element));
+    const curTWeights = tWeights ?? [33, 33, 34];
+    setTargetWeights(curTWeights);
 
     // if target weights aren't stored, start a new game
     if(!storedTargetWeights){
-      startNewGame(); 
+      startNewGame();
     }
 
     return () => {
@@ -172,8 +171,6 @@ function Game(): JSX.Element {
     setFeatureWeights([33,33,34]);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
   };
-
-  const restartGame = () => {}
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
     [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,

@@ -453,22 +453,22 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 .stars {
   img {
-    width: 33px;
     height: 33px;
+    width: 33px;
   }
 }
 
 #popup {
-  visibility: hidden;
-  position: absolute;
   background-color: white;
   padding: 10%;
+  position: absolute;
+  visibility: hidden;
   z-index: 100;
 }
 
 .final-result {
-  border-radius: 20px;
   border: 4px solid black;
+  border-radius: 20px;
 }
 
 h3 {
@@ -477,8 +477,8 @@ h3 {
 
 .result {
   display: grid;
-  margin-top: 1rem;
   grid-template-columns: 25% auto;
+  margin-top: 1rem;
 
   h4 {
     margin-top: 0;
@@ -487,48 +487,43 @@ h3 {
 }
 
 #variable-summary {
-  & > div {
+  > div {
     display: flex;
   }
 
   .variable-image {
-    width: 30px;
     height: 30px;
     margin: 0;
+    width: 30px;
   }
 }
 
-#timeline-summary, #variable-summary {
+#timeline-summary,
+#variable-summary {
   display: flex;
-  justify-content: space-around;
-  font-weight: bold;
   font-size: 16px;
+  font-weight: bold;
+  justify-content: space-around;
 
-  & > div {
+  > div {
     height: fit-content;
   }
 }
 
 #timeline-summary {
   img {
-    width: 30px;
     height: 30px;
     margin-right: 5px;
+    width: 30px;
   }
 }
 
 .bar {
-  width: 95%;
-  height: 30px;
-  border-radius: 30px;
-  margin: 0 2.5%;
-  font-size: 16px;
-  display: flex;
   align-items: center;
-}
-
-.__react_component_tooltip.show {
-  opacity: 1 !important;        // have to override the library styles
-  border-radius: 0;
-  padding: 8px 32px;
+  border-radius: 30px;
+  display: flex;
+  font-size: 16px;
+  height: 30px;
+  margin: 0 2.5%;
+  width: 95%;
 }

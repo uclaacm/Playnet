@@ -11,4 +11,4 @@ export function clamp(min: number, input: number, max: number) : {
 }{
   const value = Math.max(Math.min(input, max), min);
   return {num: value, dNum: value - input};
-} 
+}

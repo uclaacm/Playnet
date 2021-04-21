@@ -135,7 +135,7 @@ export function getRecommendationQuality(
 /**
  * Given the number of points we want and max change between every two points,
  * return a list of points to graph for the control group!
- * 
+ *
  * The points are random and build off of the last point.
  * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
  */
@@ -147,7 +147,7 @@ export function getControlGraph(
   const xyMapping: Point[] = [];
   const dxyMapping: Point[] = [];
 
-  // start at some random point between [MIN_GRAPH_START, MAX_GRAPH_START]  
+  // start at some random point between [MIN_GRAPH_START, MAX_GRAPH_START]
   let lastX = 0;
   let lastY = MIN_GRAPH_START + (MAX_GRAPH_START - MIN_GRAPH_START) * Math.random();
   let tempDy, dY;
@@ -239,17 +239,17 @@ export function getBetaGraph(
  * Given the number of days we are AB testing, return a list of points to graph for the control group!
  * @returns num points between x: [0, 100], y: [0, 100] to graph
  */
- export function getABTestingControlGraph(
+export function getABTestingControlGraph(
   numABTestingDays: number,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
   return getControlGraph(numABTestingDays, SINGLE_CONTROL_CHANGE_MAX);
 }
 
-/** 
+/**
  * Given the number of points to plot, return a list of points to graph for the control group!
  * @returns num points between x: [0, 100], y: [0, 100] to graph
  */
- export function getFinalControlGraph(
+export function getFinalControlGraph(
   numPoints: number,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
   return getControlGraph(numPoints, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
@@ -262,14 +262,20 @@ export function getBetaGraph(
  * control point.
  * @returns points between x: [0, 100], y: [0, 100] to graph
  */
- export function getABTestingProductGraph(
+export function getABTestingProductGraph(
   featureWeights: number[],
   expectedWeights: number[],
   controlGraph: Point[],
   dControlGraph: Point[],
   timeAllocations: TimeAllocations,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
-  return getBetaGraph(featureWeights, expectedWeights, controlGraph, dControlGraph, timeAllocations, RANDOM_BETA_TEST_CHANGE)
+  return getBetaGraph(
+    featureWeights,
+    expectedWeights,
+    controlGraph,
+    dControlGraph,
+    timeAllocations,
+    RANDOM_BETA_TEST_CHANGE);
 }
 
 /**
@@ -279,22 +285,28 @@ export function getBetaGraph(
  * control point.
  * @returns points between x: [0, 100], y: [0, 100] to graph
  */
- export function getFinalProductGraph(
+export function getFinalProductGraph(
   featureWeights: number[],
   expectedWeights: number[],
   controlGraph: Point[],
   dControlGraph: Point[],
   timeAllocations: TimeAllocations,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
-  return getBetaGraph(featureWeights, expectedWeights, controlGraph, dControlGraph, timeAllocations, RANDOM_BETA_TEST_CHANGE / STABILITY_OF_FINAL)
+  return getBetaGraph(
+    featureWeights,
+    expectedWeights,
+    controlGraph,
+    dControlGraph,
+    timeAllocations,
+    RANDOM_BETA_TEST_CHANGE / STABILITY_OF_FINAL);
 }
 
-/** 
- * Given the control's final result (point) and the product's final result (point), 
+/**
+ * Given the control's final result (point) and the product's final result (point),
  * return a number of stars correspondingly to the quality of the product.
  * @returns number between [1 - 5] where 1 is worst quality
  */
- export function numFinalStars(
+export function numFinalStars(
   finalX: number,
   finalBetaX: number,
 ): number {
