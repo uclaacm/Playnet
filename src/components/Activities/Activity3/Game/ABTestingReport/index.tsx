@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
 import { clamp } from '../../../../../utils';
 import { getABTestingControlGraph, getABTestingProductGraph } from '../gameCalculationsUtil';
@@ -26,8 +26,6 @@ function ABTestingReport(): JSX.Element {
   const {xyMap, dxyMap} = getABTestingControlGraph(timeAllocation.abTest);
   const {xyMap: beta_xyMap} = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
 
-  const graph = useRef(<Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/>);
-
   return <>
     {popup && <PopUp close={() => setPopup(false)}/>}
     <div id='top-bar-align-right'>
@@ -39,14 +37,12 @@ function ABTestingReport(): JSX.Element {
     <h3>A/B Testing: Report</h3>
     <div className='inline'>
       <div className='half'>
-        <div style={{height: '100%'}}>
         Reviews
-          {generateReviews(featureWeights, targetWeights, 2).map((stars, i) =>
-            <Review key={i} stars={stars}/>)}
-        </div>
+        {generateReviews(featureWeights, targetWeights, 2).map((stars, i) =>
+          <Review key={i} stars={stars}/>)}
       </div>
       <div className='half'>
-        {graph.current}
+        <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/>
       </div>
     </div>
     <div>

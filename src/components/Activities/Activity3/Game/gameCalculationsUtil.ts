@@ -1,5 +1,5 @@
 import { Gaussian } from 'ts-gaussian';
-import { clamp } from '../../../../utils';
+import { clamp, random } from '../../../../utils';
 import {
   DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
   EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
@@ -101,9 +101,8 @@ export function getDebugErrors(
   numErrors: number,
 ): string[] {
   const errors = [];
-  const len = DEBUG_ERROR_OPTIONS.length;
   for (let i = 0; i < numErrors; i++) {
-    errors.push(DEBUG_ERROR_OPTIONS[Math.floor(Math.random() * len)]);
+    errors.push(random(DEBUG_ERROR_OPTIONS));
   }
   return errors;
 }
