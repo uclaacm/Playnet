@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { GameContext } from '..';
 import { A3_GAME_STATE } from '../GameConstants';
 
-function PopUp(): JSX.Element {
+interface PopUpProps {
+  close: () => void;
+}
+
+function PopUp(props: PopUpProps): JSX.Element {
   const { setState } = useContext(GameContext);
-  const closePopup = () => {
-    const popup = document.getElementById('popup');
-    popup && (popup.style.visibility = 'hidden');
-  };
   return (
     <div id={'popup'}>
       <h4>Are you sure?</h4>
@@ -20,7 +20,7 @@ function PopUp(): JSX.Element {
         The final reactions might be different than you expect!
       </p>
       <div>
-        <button className="playnet-button playnet-btn-blue" onClick={closePopup}>No, go back</button>
+        <button className="playnet-button playnet-btn-blue" onClick={props.close}>No, go back</button>
         <button className="playnet-button" onClick={() => setState(A3_GAME_STATE.FinalReport)}>Yes, I&apos;m sure</button>
       </div>
     </div>

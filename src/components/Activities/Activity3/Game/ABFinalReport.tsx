@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import ReactToolTip from 'react-tooltip';
 import { Link } from 'react-router-dom';
+import ReactToolTip from 'react-tooltip';
 import { GameContext } from '.';
 import Graph from './ABTestingReport/Graph';
 import Review from './ABTestingReport/Review';
@@ -59,7 +59,7 @@ function ABFinalReport(): JSX.Element {
                   <>
                     <div data-tip data-for={`variable-${i}`} key={i} style={{ width: `${t}%`, height: '30px'}}></div>
                     <ReactToolTip id={`variable-${i}`}>{t}%</ReactToolTip>
-                  </>                
+                  </>,
                 )}
               </div>
             </div>
@@ -80,7 +80,7 @@ function ABFinalReport(): JSX.Element {
                   <>
                     <div data-tip data-for={`time-${i}`} key={i} style={{ width: `${timePercentages[i]}%`, height: '30px'}}></div>
                     <ReactToolTip id={`time-${i}`}>{t} days</ReactToolTip>
-                  </>
+                  </>,
                 )}
               </div>
             </div>
@@ -101,7 +101,6 @@ function ABFinalReport(): JSX.Element {
         <button className="playnet-button" onClick={startNewGame}>Replay</button>
       </div>
     </>
-
   );
 }
 export default ABFinalReport;
