@@ -5,8 +5,8 @@ import ABFinalReport from './ABFinalReport';
 import ABTestDesc from './ABTestDesc';
 import ABTestingReport from './ABTestingReport';
 import DebuggingResults from './DebuggingResults';
-import DemoNextButton from './DemoNextButton';
 import FeatureSlidebar from './FeatureSlidebar';
+import FeaturesTutorial from './FeaturesTutorial';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
@@ -173,7 +173,7 @@ function Game(): JSX.Element {
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
-    [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
+    [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
