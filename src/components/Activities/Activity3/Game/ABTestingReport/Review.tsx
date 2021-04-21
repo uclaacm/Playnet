@@ -49,14 +49,15 @@ const reviews: {[key: number]: string[]} = {
 
 interface ReviewProps {
   stars: number;
+  noText?: boolean;
 }
 
 function Review(props: ReviewProps): JSX.Element {
-  const {stars} = props;
+  const {noText, stars} = props;
   const star = Array(5).fill(undefined).map((_v, i) => i < stars ? true : false);
   return (
     <div>
-      <p>{random(reviewer_names)}: {random(reviews[props.stars])}</p>
+      {!noText && <p>{random(reviewer_names)}: {random(reviews[props.stars])}</p>}
       <div className={'stars'}>
         {Array(5).fill(false).map((_v, i) => 
           <img src={Star} style={star[i] ? {} : {filter: 'grayscale(100%)'}}/>

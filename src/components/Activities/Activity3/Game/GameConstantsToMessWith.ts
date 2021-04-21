@@ -1,7 +1,7 @@
 export const MIN_GRAPH_START = 45;
 export const MAX_GRAPH_START = 70;
 export const SINGLE_CONTROL_CHANGE_MAX = 20;
-export const RANDOM_BETA_TEST_CHANGE = 7;
+export const RANDOM_BETA_TEST_CHANGE = 20;
 
 export const MULTIPLE_FOR_CHANGE_OF_AB_GRAPH = 5;
 

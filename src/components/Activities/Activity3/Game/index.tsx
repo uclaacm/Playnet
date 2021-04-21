@@ -1,15 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
+import ABFinalReport from './ABFinalReport';
 import ABTestDesc from './ABTestDesc';
 import ABTestingReport from './ABTestingReport';
 import DebuggingResults from './DebuggingResults';
 import DemoNextButton from './DemoNextButton';
-import FeaturesSlidebar from './FeaturesSlidebar';
+import FeatureSlidebar from './FeatureSlidebar';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import { A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS } from './GameConstants';
+  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 import TimeAllocation from './TimeAllocation';
 import { TimeAllocations } from './typings';
@@ -17,6 +18,7 @@ import { TimeAllocations } from './typings';
 interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
   goNextState: () => void,
+  startNewGame: () => void,
   variableSelection: VARIABLES[],
   featureWeights: number[],
   targetWeights: number[],
@@ -28,10 +30,11 @@ interface IGameContext {
 export const GameContext = React.createContext<IGameContext>({
   setState: (_state: A3_GAME_STATE) => undefined,
   goNextState: () => undefined,
+  startNewGame: () => undefined,
   variableSelection: [],
   featureWeights: [],
   targetWeights: [],
-  timeAllocation: {build: 0, debug: 0, abTest: 0},
+  timeAllocation: DEFAULT_TIME_ALLOCATION,
   setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
@@ -43,8 +46,8 @@ function Game(): JSX.Element {
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
   const [featureWeights, setFeatureWeights] = useState([33, 33, 34]);
-  const [targetWeights, setTargetWeights] = useState<number[]>([]);
-  const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>({build: 0, debug: 0, abTest: 0});
+  const [targetWeights, setTargetWeights] = useState<number[]>([33, 33, 34]);
+  const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>(DEFAULT_TIME_ALLOCATION);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const storage = window.sessionStorage;
 
@@ -54,6 +57,8 @@ function Game(): JSX.Element {
     const storedState = storage.getItem(SESSION_CURRENT_STATE);
     const storedVariables = storage.getItem(SESSION_VARIABLES);
     const storedTasks = storage.getItem(SESSION_TIMES);
+    const storedFeatureWeights = storage.getItem(SESSION_FEATURE_WEIGHTS);
+    const storedTargetWeights = storage.getItem(SESSION_TARGET_WEIGHTS);
 
     // setup statesToSkip from storage
     const tempSkipStates = storedSkipStates?.split(',').map(element => element as A3_GAME_STATE);
@@ -71,16 +76,32 @@ function Game(): JSX.Element {
 
     // setup tasksSelection from storage
     const tempTasks : TimeAllocations = storedTasks ? JSON.parse(storedTasks) : timeAllocation;
+    console.log("TEMPTIME ALLOCATION: " + tempTasks);
+
     setTimeAllocation(tempTasks);
 
-    startNewGame();
+    // setup featureWeights from storage
+    const featureWeights = storedFeatureWeights?.split(',').map(element => parseInt(element));
+    const curFeatureWeights = featureWeights ?? [33, 33, 34];
+    setFeatureWeights(curFeatureWeights);
+
+    // setup targetWeights from storage
+    const targetWeights = storedTargetWeights?.split(',').map(element => parseInt(element));
+    const curTargetWeights = targetWeights ?? [33, 33, 34];
+    setTargetWeights(curTargetWeights);
+
+    // if target weights aren't stored, start a new game
+    if(!storedTargetWeights){
+      startNewGame(); 
+    }
 
     return () => {
-      storage.removeItem(SESSION_SKIP_STATES);
+      // storage.removeItem(SESSION_SKIP_STATES);
       storage.removeItem(SESSION_CURRENT_STATE);
       storage.removeItem(SESSION_VARIABLES);
       storage.removeItem(SESSION_TIMES);
       storage.removeItem(SESSION_TARGET_WEIGHTS);
+      storage.removeItem(SESSION_FEATURE_WEIGHTS);
     };
   }, []);
 
@@ -111,6 +132,11 @@ function Game(): JSX.Element {
   }, [timeAllocation]);
 
   useEffect(() => {
+    // add feature weights to storage
+    storage.setItem(SESSION_FEATURE_WEIGHTS, featureWeights.join(','));
+  }, [featureWeights]);
+
+  useEffect(() => {
     // if state in statesToSkip, go to next
     if (statesToSkip.includes(state)) {
       goNextState();
@@ -127,20 +153,34 @@ function Game(): JSX.Element {
   }, [state]);
 
   const startNewGame = () => {
+    // remove past game info
+    storage.removeItem(SESSION_CURRENT_STATE);
+    storage.removeItem(SESSION_VARIABLES);
+    storage.removeItem(SESSION_TIMES);
+    storage.removeItem(SESSION_TARGET_WEIGHTS);
+    storage.removeItem(SESSION_FEATURE_WEIGHTS);
+
+    // generate new targets
     const tempTargetWeights = generateVariableTargetWeights();
     storage.setItem(SESSION_TARGET_WEIGHTS, tempTargetWeights.join(','));
     setTargetWeights(tempTargetWeights);
 
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
+    setState(A3_GAME_STATE.EmptyState);
+    setVariableSelection([]);
+    setFeatureWeights([33,33,34]);
+    setTimeAllocation(DEFAULT_TIME_ALLOCATION);
   };
+
+  const restartGame = () => {}
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
     [A3_GAME_STATE.PriorityExplanation]: <>skip1<DemoNextButton /></>,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
-      <FeaturesSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+      <FeatureSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocationExplanation]:
       <TimeAllocation initialTimes={timeAllocation} isTutorial={true}/>,
     [A3_GAME_STATE.TimeAllocation]:
@@ -148,12 +188,13 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults/>,
     [A3_GAME_STATE.ABTestingExplanation]: <ABTestDesc />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport/>,
-    [A3_GAME_STATE.FinalReport]: <>6<DemoNextButton /></>,
+    [A3_GAME_STATE.FinalReport]: <ABFinalReport />,
     [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached
   };
 
   return <GameContext.Provider value={{
     setState: setState, goNextState: goNextState,
+    startNewGame: startNewGame,
     variableSelection: variableSelection,
     featureWeights: featureWeights,
     targetWeights: targetWeights,

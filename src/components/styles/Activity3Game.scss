@@ -465,3 +465,70 @@ $card-height: calc(#{$card-min-width} - 20px);
   padding: 10%;
   z-index: 100;
 }
+
+.final-result {
+  border-radius: 20px;
+  border: 4px solid black;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+.result {
+  display: grid;
+  margin-top: 1rem;
+  grid-template-columns: 25% auto;
+
+  h4 {
+    margin-top: 0;
+    text-align: left;
+  }
+}
+
+#variable-summary {
+  & > div {
+    display: flex;
+  }
+
+  .variable-image {
+    width: 30px;
+    height: 30px;
+    margin: 0;
+  }
+}
+
+#timeline-summary, #variable-summary {
+  display: flex;
+  justify-content: space-around;
+  font-weight: bold;
+  font-size: 16px;
+
+  & > div {
+    height: fit-content;
+  }
+}
+
+#timeline-summary {
+  img {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+  }
+}
+
+.bar {
+  width: 95%;
+  height: 30px;
+  border-radius: 30px;
+  margin: 0 2.5%;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.__react_component_tooltip.show {
+  opacity: 1 !important;        // have to override the library styles
+  border-radius: 0;
+  padding: 8px 32px;
+}

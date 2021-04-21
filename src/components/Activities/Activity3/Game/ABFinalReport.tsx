@@ -1,105 +1,98 @@
 import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { GameContext } from '.';
-import Star from '../../../../assets/activity1/game1/star.svg';
-import { random } from '../../../../utils';
-import { getABTestingControlGraph, getABTestingProductGraph } from './gameCalculationsUtil';
-import { A3_GAME_STATE } from './GameConstants';
-import { Point } from './typings';
+import Graph from './ABTestingReport/Graph';
+import Review from './ABTestingReport/Review';
+import { getABTestingControlGraph, getABTestingProductGraph, getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gameCalculationsUtil';
+import { DISPLAY_OPTIONS } from './TimeAllocation';
 
-const AColor = "#FF0000";
-const BColor = "#0094FF";
+function ABFinalReport(): JSX.Element {
+  const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation } = useContext(GameContext);
 
-const scaleDimensions = (xyMap: Point[], width: number, height: number): Point[] => {
-  return xyMap.map(({x, y}) => {
-    return {
-       x: x*width / 100,
-       y: y*height / 100,
-     }
-    }
-  )
-};
-
-const writePath = (xyMap: Point[], height: number, offset: number): string => {
-  return xyMap.slice(1).reduce((acc: string, {x, y}: Point): string => {
-    return `${acc} L ${x + offset}, ${height - y + 2 * offset}`;
-  }, `M ${xyMap[0].x + offset},${height - xyMap[0].y + 2 * offset}`);
-};
-
-
-interface ReviewProps {
-  stars: number;
-}
-
-function Review(props: ReviewProps): JSX.Element {
-  const {stars} = props;
-  const star = Array(5).fill(undefined).map((_v, i) => i < stars ? true : false);
-  return (
-    <div>
-      <p>{random(reviewer_names)}: {random(reviews[props.stars])}</p>
-      <div className={'stars'}>
-        {Array(5).fill(false).map((_v, i) => 
-          <img src={Star} style={star[i] ? {} : {filter: 'grayscale(100%)'}}/>
-        )}
-      </div>
-    </div>
-  );
-}
-
-function ABTestingReport(): JSX.Element {
-  const { setState, featureWeights, targetWeights, timeAllocation, daysLeft } = useContext(GameContext);
-
-  const {xyMap, dxyMap} = getABTestingControlGraph(timeAllocation.abTest);
+  const {xyMap: xyMap , dxyMap: dxyMap} = getABTestingControlGraph(timeAllocation.abTest);
   const {xyMap: beta_xyMap} = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
 
-  const [width, height] = [400, 300];
-  const offset = 20;
-  const aPath = writePath(scaleDimensions(xyMap, width, height), height, offset);
-  const bPath = writePath(scaleDimensions(beta_xyMap, width, height), height , offset);
+  const {xyMap: final_xyMap , dxyMap: final_dxyMap} = getFinalControlGraph(timeAllocation.abTest);
+  const {xyMap: final_beta_xyMap} = getFinalProductGraph(targetWeights, featureWeights, final_xyMap, final_dxyMap, timeAllocation);
 
-  const generateReviews = (featureWeights: number[], targetWeights: number[]): number[] => {
-    const offBy = targetWeights.reduce((acc: number, value: number, index: number) => {
-      return acc + Math.abs(featureWeights[index] - value);
-    }, 0);
-    const convertToStars = () => Math.floor((100 - offBy + (Math.random() * 20 - 10)) / 20) + 1;
-    return [
-      convertToStars(),
-      convertToStars(),
-    ];
+  const finalX = final_xyMap[final_xyMap.length - 1].x;
+  const finalBetaX = final_beta_xyMap[final_beta_xyMap.length - 1].x;
+  const stars = numFinalStars(finalX, finalBetaX);
+
+  const getTimePercentages = () => {
+    const [first, second, third] = Object.values(timeAllocation);
+    const total = first + second + third;
+    return Object.values(timeAllocation).map(v => v * 100 / total);
   }
 
-  const handleSubmit = () => {
-    const popup = document.getElementById('popup');
-    popup && (popup.style.visibility = 'visible');
+  const timePercentages = getTimePercentages();
+
+  const getGradient = (split: number[]) => {
+    const [first, second] = split;
+    const t1 = first;
+    const t2 = second + t1;
+    return `linear-gradient(to right, #FFBA09 0%, #FFBA09 ${t1}%, #A1D900 ${t1}%, #A1D900 ${t2}%, #04C439 ${t2}%, #04C439 100%)`;
   }
 
-  return <>
-    <PopUp />
-    <div id='top-bar-align-right'>
+  return (
+    <>
       <div className='inline'>
-        <div id='top-bar-clock' />
-        <div className='vertically-centered'>Days Left: {daysLeft}</div>
+        <div className='half'>
+          <h3>Development Summary</h3>
+          <div className='result'>
+            <h4>Variables</h4>
+            <div>
+              <div id='variable-summary'>
+                {variableSelection.map((val) =>
+                    <div>
+                      <div className='variable-image' id={val.toLowerCase().replace(' ', '-')} />
+                      <span>{val}</span>
+                    </div>
+                )}
+
+              </div>
+              <div className='bar' style={{ background: getGradient(featureWeights) }}>
+                {featureWeights.map((t, i) =>
+                  <div style={{ width: `${t}%`}}>{t}%</div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className='result'>
+            <h4>Timeline</h4>
+            <div>
+              <div id='timeline-summary'>
+                {DISPLAY_OPTIONS.map(({src, text}) =>
+                  <div key={text} className={'centered-box'}>
+                    <img src={src}/>
+                    {text}
+                  </div>
+                )}
+              </div>
+              <div className='bar' style={{ background: getGradient(timePercentages) }}>
+                {Object.values(timeAllocation).map((t, i) =>
+                  <div style={{ width: `${timePercentages[i]}%`}}>{t} days</div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className='result'>
+            <h4>A/B Test</h4>
+            <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={200} height={150} offset={5}/>
+          </div>
+        </div>
+        <div className='half final-result'>
+          <h3>Final Result</h3>
+          <Graph xyMap={final_xyMap} beta_xyMap={final_beta_xyMap} width={300} height={225} offset={8}/>
+          <Review stars={stars} noText={true}/>
+        </div>
       </div>
-    </div>
-    <h3>A/B Testing: Report</h3>
-    <div className='inline'>
-      <div className='half'>
-        Reviews
-        {
-          generateReviews(featureWeights, targetWeights).map((stars) => <Review stars={stars} />)
-        }
+      <div>
+        <Link to="/activities"><button className='playnet-button playnet-btn-blue'>Play another activity</button></Link>
+        <button className="playnet-button" onClick={startNewGame}>Replay</button>
       </div>
-      <div className='half'>
-        <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-          <path d={`M ${width-offset}, ${height-offset} L ${offset}, ${height-offset} L ${offset}, ${offset}`} stroke={'#000'} strokeWidth={8} fill={'none'}/>
-          <path d={aPath} stroke={AColor} strokeWidth={6} fill={'none'}/>
-          <path d={bPath} stroke={BColor} strokeWidth={6} fill={'none'}/>
-        </svg>
-      </div>
-    </div>
-    <div>
-      <button className="playnet-button playnet-btn-blue" onClick={() => setState(A3_GAME_STATE.PriorityChoices)}>Go back to variables</button>
-      <button className="playnet-button" onClick={handleSubmit}>Submit final product</button>
-    </div>
-  </>;
+    </>
+
+  );
 }
-export default ABTestingReport;
+export default ABFinalReport;

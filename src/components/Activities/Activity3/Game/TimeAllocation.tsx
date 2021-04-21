@@ -15,6 +15,12 @@ interface TimeAllocationProps {
   isTutorial: boolean,
 }
 
+export const DISPLAY_OPTIONS = [
+  { src: Hammer, text: 'Build' },
+  { src: Debug, text: 'Debug' },
+  { src: Graph, text: 'A/B Test' },
+];
+
 function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const TUTORIAL_END = 3;
   const {daysLeft, setDaysLeft, goNextState, setTimeAllocation} = useContext(GameContext);
@@ -23,11 +29,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   const [tutorialStage, setTutorialStage] = useState(isTutorial ? 0 : TUTORIAL_END);
 
-  const DISPLAY_OPTIONS = [
-    { src: Hammer, text: 'Build' },
-    { src: Debug, text: 'Debug' },
-    { src: Graph, text: 'A/B Test' },
-  ];
 
   const displayOptionIcons = () => {
     return DISPLAY_OPTIONS.map((option) => (

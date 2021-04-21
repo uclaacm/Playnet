@@ -133,7 +133,9 @@ export function getRecommendationQuality(
 }
 
 /**
- * Given the number of days we are AB testing, return a list of points to graph for the control group!
+ * Given the number of points we want and max change between every two points,
+ * return a list of points to graph for the control group!
+ * 
  * The points are random and build off of the last point.
  * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
  */
@@ -180,7 +182,7 @@ export function getControlGraph(
 /**
  * Given the number of days we are AB testing, return a list of points to graph for the beta version!
  *
- * This takes in all game information, in addition to the control list of points + chnage between each
+ * This takes in all game information, in addition to the control list of points + max change between each
  * control point.
  * @returns points between x: [0, 100], y: [0, 100] to graph
  */
@@ -235,8 +237,7 @@ export function getBetaGraph(
 
 /**
  * Given the number of days we are AB testing, return a list of points to graph for the control group!
- * The points are random and build off of the last point.
- * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
+ * @returns num points between x: [0, 100], y: [0, 100] to graph
  */
  export function getABTestingControlGraph(
   numABTestingDays: number,
@@ -244,19 +245,18 @@ export function getBetaGraph(
   return getControlGraph(numABTestingDays, SINGLE_CONTROL_CHANGE_MAX);
 }
 
-/** TODO FIX
- * Given the number of days we are AB testing, return a list of points to graph for the control group!
- * The points are random and build off of the last point.
- * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
+/** 
+ * Given the number of points to plot, return a list of points to graph for the control group!
+ * @returns num points between x: [0, 100], y: [0, 100] to graph
  */
  export function getFinalControlGraph(
-  numABTestingDays: number,
+  numPoints: number,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
-  return getControlGraph(numABTestingDays, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
+  return getControlGraph(numPoints, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
 }
 
 /**
- * Given the number of days we are AB testing, return a list of points to graph for the beta version!
+ * Return a list of points to graph for the beta version!
  *
  * This takes in all game information, in addition to the control list of points + chnage between each
  * control point.
@@ -272,8 +272,8 @@ export function getBetaGraph(
   return getBetaGraph(featureWeights, expectedWeights, controlGraph, dControlGraph, timeAllocations, RANDOM_BETA_TEST_CHANGE)
 }
 
-/** TODO FIX
- * Given the number of days we are AB testing, return a list of points to graph for the beta version!
+/**
+ * Return a list of points to graph for the final product.
  *
  * This takes in all game information, in addition to the control list of points + chnage between each
  * control point.
@@ -289,13 +289,15 @@ export function getBetaGraph(
   return getBetaGraph(featureWeights, expectedWeights, controlGraph, dControlGraph, timeAllocations, RANDOM_BETA_TEST_CHANGE / STABILITY_OF_FINAL)
 }
 
-/** TODO comment
+/** 
+ * Given the control's final result (point) and the product's final result (point), 
+ * return a number of stars correspondingly to the quality of the product.
+ * @returns number between [1 - 5] where 1 is worst quality
  */
  export function numFinalStars(
-  featureWeights: number[],
-  expectedWeights: number[],
-  timeAllocations: TimeAllocations,
+  finalX: number,
+  finalBetaX: number,
 ): number {
-  const numStars = 4 / 3 * overallQuality(featureWeights, expectedWeights, timeAllocations) + 1;
-  return numStars;
+  const numStars = Math.floor((finalBetaX - finalX) / 20 + 2.5) ;
+  return clamp(1, numStars, 5).num;
 }

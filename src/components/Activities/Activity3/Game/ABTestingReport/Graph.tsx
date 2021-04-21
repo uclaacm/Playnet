@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 import { Point } from '../typings';
 
 const AColor = "#FF0000";
@@ -24,21 +25,30 @@ const writePath = (xyMap: Point[], height: number, offset: number): string => {
 export interface GraphProps {
   xyMap: Point[];
   beta_xyMap: Point[];
+  width: number;
+  height: number;
+  offset: number
 }
 
 function Graph(props: GraphProps): JSX.Element {
-  const {xyMap, beta_xyMap} = props;
-  const [width, height] = [400, 300];
-  const offset = 20;
+  const {xyMap, beta_xyMap, width, height, offset} = props;
   const aPath = writePath(scaleDimensions(xyMap, width, height), height, offset);
   const bPath = writePath(scaleDimensions(beta_xyMap, width, height), height , offset);
 
   return (
-    <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
-      <path d={`M ${width-offset}, ${height-offset} L ${offset}, ${height-offset} L ${offset}, ${offset}`} stroke={'#000'} strokeWidth={8} fill={'none'}/>
-      <path d={aPath} stroke={AColor} strokeWidth={6} fill={'none'}/>
-      <path d={bPath} stroke={BColor} strokeWidth={6} fill={'none'}/>
-    </svg>
+    <div>
+      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+        <path d={`M ${width-offset}, ${height-offset} L ${offset}, ${height-offset} L ${offset}, ${offset}`} stroke={'#000'} strokeWidth={offset/1.5} fill={'none'}/>
+        <path data-tip
+              data-for={'A'}
+              d={aPath} stroke={AColor} strokeWidth={offset/1.5} fill={'none'}/>
+        <path data-tip
+              data-for={'B'}
+              d={bPath} stroke={BColor} strokeWidth={offset/1.5} fill={'none'}/>
+      </svg>
+      <ReactTooltip id={'A'}>Version A (old version)</ReactTooltip>
+      <ReactTooltip id={'B'}>Version B (your version)</ReactTooltip>
+    </div>
   );
 }
 
