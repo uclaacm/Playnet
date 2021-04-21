@@ -1,11 +1,11 @@
 import { Gaussian } from 'ts-gaussian';
-import { clamp } from '../../../../utils';
+import { clamp, random } from '../../../../utils';
 import {
   DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
   EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
-  QUALITY_DEFAULT_KEY, SINGLE_AB_CHANGE_MAX, SINGLE_CONTROL_CHANGE_MAX,
-  VARIABLE_WEIGHTS_STD,
+  QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
+  VARIABLE_WEIGHTS_STD, STABILITY_OF_FINAL,
 } from './GameConstantsToMessWith';
 import { Point, TimeAllocations } from './typings';
 
@@ -101,9 +101,8 @@ export function getDebugErrors(
   numErrors: number,
 ): string[] {
   const errors = [];
-  const len = DEBUG_ERROR_OPTIONS.length;
   for (let i = 0; i < numErrors; i++) {
-    errors.push(DEBUG_ERROR_OPTIONS[Math.floor(Math.random() * len)]);
+    errors.push(random(DEBUG_ERROR_OPTIONS));
   }
   return errors;
 }
@@ -133,20 +132,23 @@ export function getRecommendationQuality(
 }
 
 /**
- * Given the number of days we are AB testing, return a list of points to graph for the control group!
+ * Given the number of points we want and max change between every two points,
+ * return a list of points to graph for the control group!
+ *
  * The points are random and build off of the last point.
  * @returns numABTestingDays points between x: [0, 100], y: [0, 100] to graph
  */
-export function getControlGraphForABTesting(
-  numABTestingDays: number,
+export function getControlGraph(
+  numPoints: number,
+  maxChange: number,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
-  const dX = 100 / numABTestingDays; // x distance in between 2 points
+  const dX = 100 / numPoints; // x distance in between 2 points
   const xyMapping: Point[] = [];
   const dxyMapping: Point[] = [];
 
   // start at some random point between [MIN_GRAPH_START, MAX_GRAPH_START]
-  let lastX = MIN_GRAPH_START + (MAX_GRAPH_START - MIN_GRAPH_START) * Math.random();
-  let lastY = 0;
+  let lastX = 0;
+  let lastY = MIN_GRAPH_START + (MAX_GRAPH_START - MIN_GRAPH_START) * Math.random();
   let tempDy, dY;
   xyMapping.push({
     x: lastX,
@@ -154,14 +156,14 @@ export function getControlGraphForABTesting(
   });
 
   // add numABTestingDays # of points!
-  for (let i = 0; i < numABTestingDays; i++) {
+  for (let i = 0; i < numPoints; i++) {
     lastX += dX;
 
-    // find a random change in Y between [-SINGLE_CONTROL_CHANGE_MAX / 2, SINGLE_CONTROL_CHANGE_MAX / 2]
-    tempDy = SINGLE_CONTROL_CHANGE_MAX * Math.random() - (SINGLE_CONTROL_CHANGE_MAX / 2);
-    const temp = clamp(lastY + tempDy, 0, 100);
+    // find a random change in Y between [-maxChange / 2, maxChange / 2]
+    tempDy = maxChange * Math.random() - (maxChange / 2);
+    const temp = clamp(0, lastY + tempDy, 100);
     lastY = temp.num;
-    dY = temp.dNum;
+    dY = temp.dNum + tempDy;
 
     // add x&y to map + add dx&dy to map
     xyMapping.push({
@@ -179,21 +181,22 @@ export function getControlGraphForABTesting(
 /**
  * Given the number of days we are AB testing, return a list of points to graph for the beta version!
  *
- * This takes in all game information, in addition to the control list of points + chnage between each
+ * This takes in all game information, in addition to the control list of points + max change between each
  * control point.
  * @returns points between x: [0, 100], y: [0, 100] to graph
  */
-export function getBetaGraphForABTesting(
+export function getBetaGraph(
   featureWeights: number[],
   expectedWeights: number[],
   controlGraph: Point[],
   dControlGraph: Point[],
   timeAllocations: TimeAllocations,
+  maxChange: number,
 ): { xyMap: Point[]; dxyMap: Point[]; } {
   // initialize and add in first control point, so that beta graph starts at same spot
   const xyMapping: Point[] = [];
   const dxyMapping: Point[] = [];
-  let random, tempDy, dy;
+  let rand, tempDy, tempDyWithControl, dY;
 
   let lastX = controlGraph[0].x;
   let lastY = controlGraph[0].y;
@@ -208,12 +211,15 @@ export function getBetaGraphForABTesting(
   // add numABTestingDays # of points!
   dControlGraph.forEach(({x: controlDx, y: controlDy}) => {
     // find a random change in y based on the quality of the product + control's dy
-    random = Math.random() * SINGLE_AB_CHANGE_MAX - (SINGLE_AB_CHANGE_MAX / 2);
-    tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + random;
-    dy = tempDy + controlDy;
+    rand = Math.random() * maxChange - (maxChange / 2);
+    tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + rand;
+    tempDyWithControl = tempDy + controlDy;
+
+    const temp = clamp(0, lastY + tempDyWithControl, 100);
+    lastY = temp.num;
+    dY = temp.dNum + tempDyWithControl;
 
     lastX += controlDx;
-    lastY += dy;
 
     // add x&y to map + add dx&dy to map
     xyMapping.push({
@@ -222,9 +228,87 @@ export function getBetaGraphForABTesting(
     });
     dxyMapping.push({
       x: controlDx,
-      y: dy,
+      y: dY,
     });
   });
   return { xyMap: xyMapping, dxyMap: dxyMapping };
 }
 
+/**
+ * Given the number of days we are AB testing, return a list of points to graph for the control group!
+ * @returns num points between x: [0, 100], y: [0, 100] to graph
+ */
+export function getABTestingControlGraph(
+  numABTestingDays: number,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getControlGraph(numABTestingDays, SINGLE_CONTROL_CHANGE_MAX);
+}
+
+/**
+ * Given the number of points to plot, return a list of points to graph for the control group!
+ * @returns num points between x: [0, 100], y: [0, 100] to graph
+ */
+export function getFinalControlGraph(
+  numPoints: number,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getControlGraph(numPoints, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
+}
+
+/**
+ * Return a list of points to graph for the beta version!
+ *
+ * This takes in all game information, in addition to the control list of points + chnage between each
+ * control point.
+ * @returns points between x: [0, 100], y: [0, 100] to graph
+ */
+export function getABTestingProductGraph(
+  featureWeights: number[],
+  expectedWeights: number[],
+  controlGraph: Point[],
+  dControlGraph: Point[],
+  timeAllocations: TimeAllocations,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getBetaGraph(
+    featureWeights,
+    expectedWeights,
+    controlGraph,
+    dControlGraph,
+    timeAllocations,
+    RANDOM_BETA_TEST_CHANGE);
+}
+
+/**
+ * Return a list of points to graph for the final product.
+ *
+ * This takes in all game information, in addition to the control list of points + chnage between each
+ * control point.
+ * @returns points between x: [0, 100], y: [0, 100] to graph
+ */
+export function getFinalProductGraph(
+  featureWeights: number[],
+  expectedWeights: number[],
+  controlGraph: Point[],
+  dControlGraph: Point[],
+  timeAllocations: TimeAllocations,
+): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getBetaGraph(
+    featureWeights,
+    expectedWeights,
+    controlGraph,
+    dControlGraph,
+    timeAllocations,
+    RANDOM_BETA_TEST_CHANGE / STABILITY_OF_FINAL);
+}
+
+/**
+ * Given the control's final result (point) and the product's final result (point),
+ * return a number of stars correspondingly to the quality of the product.
+ * @returns number between [1 - 5] where 1 is worst quality
+ */
+export function numFinalStars(
+  finalX: number,
+  finalBetaX: number,
+): number {
+  const numStars = Math.floor((finalBetaX - finalX) / 20 + 2.5) ;
+  return clamp(1, numStars, 5).num;
+}
