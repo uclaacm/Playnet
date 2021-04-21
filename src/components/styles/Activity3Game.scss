@@ -390,7 +390,7 @@ $card-height: calc(#{$card-min-width} - 20px);
 .highlight-border {
   border-color: $playnet-orange;
   border-style: solid;
-  padding: 0 !important;
+  padding: 0;
 }
 
 // styles for ab testing description

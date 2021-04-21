@@ -29,6 +29,20 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     { src: Graph, text: 'A/B Test' },
   ];
 
+  const TUTORIAL_TEXT = [
+    {
+      first: 'We first have to build the feature by writing code.',
+      second: 'If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).',
+    },
+    {
+      first: 'Then, we make sure that our code doesn’t make weird things happen, or have bugs.',
+      second: 'It may take a bit more time to make sure that everything works as it should!',
+    },
+    {
+      first: 'Finally, we AB test to see how effective our changes were! We test some users on our new feature, and see how the users react to it compared with the other users!',
+      second: 'This could be a bit random, and what the beta testers like may not represent what most people actually like!',
+    },
+  ];
 
   useEffect(() => {
     // reallocate task distribution
@@ -77,34 +91,6 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
 
-  const displayTutorialText = () : JSX.Element => {
-    if (tutorialStage === 0) {
-      return (
-        <p>
-          We first have to build the feature by writing code.
-          <br/> <br/>
-          If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).
-        </p>
-      );
-    } else if (tutorialStage === 1) {
-      return (
-        <p>
-          Then, we make sure that our code doesn’t make weird things happen, or have bugs.
-          <br/> <br/>
-          It may take a bit more time to make sure that everything works as it should!
-        </p>
-      );
-    }
-    return (
-      <p>
-        Finally, we AB test to see how effective our changes were! We  test some users  on our new feature,
-        and see how the users react to it compared with the other users!
-        <br/><br/>
-        This could be a bit random, and what the beta testers like may not represent what most people actually like!
-      </p>
-    );
-  };
-
   const advanceTutorial = () => {
     if (tutorialStage === TUTORIAL_END - 1) goNextState(); // skip to the actual timeAllocation slide
     setTutorialStage(tutorialStage+1);
@@ -115,7 +101,11 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       isTutorial && <div id={'time-tutorial-overlay'} className={`${tutorialStyles[tutorialStage]} disable-blur`}>
         <div id={'time-tutorial-bubble'}
           className={'disable-blur'}>
-          {displayTutorialText()}
+          <p>
+            {TUTORIAL_TEXT[tutorialStage].first}
+            <br/> <br/>
+            {TUTORIAL_TEXT[tutorialStage].second}
+          </p>
           <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
         </div>
       </div>
@@ -131,11 +121,11 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         return (
           <div key={index}
             className={`option-container ${isTutorial && (tutorialStage === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
-          <div key={DISPLAY_OPTIONS[index].text}
+            <div key={DISPLAY_OPTIONS[index].text}
               className={'centered-box'}>
               <img src={DISPLAY_OPTIONS[index].src} />
               {DISPLAY_OPTIONS[index].text}
-            </div>```
+            </div>
             <div className={'centered-box'}>
               <NumberSelection daysLeft={usableDays} itemType={index} daysAllocation={daysAllocation}
                 setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
