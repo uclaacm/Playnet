@@ -26,18 +26,24 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {daysLeft, setDaysLeft, goNextState, setTimeAllocation} = useContext(GameContext);
   const {isTutorial, initialTimes } = props;
   const [daysAllocation, setDaysAllocation] = useState<TimeAllocations>(initialTimes);
+  const [tutorialStage, setTutorialStage] = useState(0);
+  const tutorialStyles = ['time-tutorial-center', 'time-tutorial-right', 'time-tutorial-center'];
 
-  const [tutorialStage, setTutorialStage] = useState(isTutorial ? 0 : TUTORIAL_END);
 
-
-  const displayOptionIcons = () => {
-    return DISPLAY_OPTIONS.map((option) => (
-      <div key={option.text} className={'centered-box'}>
-        <img src={option.src}/>
-        {option.text}
-      </div>
-    ));
-  };
+  const TUTORIAL_TEXT = [
+    {
+      first: 'We first have to build the feature by writing code.',
+      second: 'If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).',
+    },
+    {
+      first: 'Then, we make sure that our code doesn’t make weird things happen, or have bugs.',
+      second: 'It may take a bit more time to make sure that everything works as it should!',
+    },
+    {
+      first: 'Finally, we AB test to see how effective our changes were! We test some users on our new feature, and see how the users react to it compared with the other users!',
+      second: 'This could be a bit random, and what the beta testers like may not represent what most people actually like!',
+    },
+  ];
 
   useEffect(() => {
     setTutorialStage(isTutorial ? 0 : TUTORIAL_END);
@@ -75,68 +81,45 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
     return (daysUsed < LOW_DAY_THRESHOLD || daysUsed > HIGH_DAY_THRESHOLD);
   };
 
-  const displayTutorialText = () : JSX.Element => {
-    if (tutorialStage === 0) {
-      return (
-        <p>
-          We first have to build the feature by writing code.
-          <br/> <br/>
-          If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).
-        </p>
-      );
-    } else if (tutorialStage === 1) {
-      return (
-        <p>
-          Then, we make sure that our code doesn’t make weird things happen, or have bugs.
-          <br/> <br/>
-          It may take a bit more time to make sure that everything works as it should!
-        </p>
-      );
-    }
-    return (
-      <p>
-        Finally, we AB test to see how effective our changes were! We  test some users  on our new feature,
-        and see how the users react to it compared with the other users!
-        <br/><br/>
-        This could be a bit random, and what the beta testers like may not represent what most people actually like!
-      </p>
-    );
-  };
-
   const advanceTutorial = () => {
     if (tutorialStage === TUTORIAL_END - 1) goNextState(); // skip to the actual timeAllocation slide
     setTutorialStage(tutorialStage+1);
   };
 
-  return <div id={'time-container'} className={tutorialStage < TUTORIAL_END ? 'enable-blur' : ''}>
-    <div id={'time-tutorial-overlay'} style={{display: `${tutorialStage >= TUTORIAL_END ? 'none' : ''}`}}/>
+  return <div id={'time-container'} className={isTutorial ? 'enable-blur' : ''}>
     {
-      Object.values([0, 1, 2]).map((index) => {
-        return (
-          <div key={index} id={'time-tutorial-bubble'} className={tutorialStage === index ? 'disable-blur' : ''}
-            style={{
-              display: `${(tutorialStage === index) ? '' : 'none'}`,
-              alignSelf: 'flex-center',
-            }}>
-            {displayTutorialText()}
-            <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
-          </div>
-        );
-      })
+      isTutorial && <div id={'time-tutorial-overlay'} className={`${tutorialStyles[tutorialStage]} disable-blur`}>
+        <div id={'time-tutorial-bubble'}
+          className={'disable-blur'}>
+          <p>
+            {TUTORIAL_TEXT[tutorialStage].first}
+            <br/> <br/>
+            {TUTORIAL_TEXT[tutorialStage].second}
+          </p>
+          <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
+        </div>
+      </div>
     }
     <div>
       Choose how much time to spend on each part of your project.
       <br/>
       (We recommend {LOW_DAY_THRESHOLD} - {HIGH_DAY_THRESHOLD} days total!)
     </div>
-    <div id={'options-grid'}>
-      {displayOptionIcons()}
-      {Object.entries(daysAllocation).map(([key, curAlloc]) => {
+    <div id={'options-grid'} className={'disable-blur'}>
+      {Object.entries(daysAllocation).map(([key, curAlloc], index : number) => {
         const usableDays = daysLeft ? (daysLeft - sumDaysUsed() + curAlloc) : 0;
         return (
-          <div key={key} className={'centered-box'}>
-            <NumberSelection daysLeft={usableDays} itemType={key}
-              daysAllocation={daysAllocation} setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
+          <div key={key}
+            className={`option-container ${isTutorial && (tutorialStage === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
+            <div key={DISPLAY_OPTIONS[index].text}
+              className={'centered-box'}>
+              <img src={DISPLAY_OPTIONS[index].src} />
+              {DISPLAY_OPTIONS[index].text}
+            </div>
+            <div className={'centered-box'}>
+              <NumberSelection daysLeft={usableDays} itemType={key} daysAllocation={daysAllocation}
+                setDaysAllocation={setDaysAllocation} showWarning={isShowWarning()}/> days
+            </div>
           </div>
         );
       })}
@@ -145,7 +128,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       <img src={Clock}/>
       Days left: {daysLeft ? (daysLeft - sumDaysUsed()) : 0}
     </div>
-    {tutorialStage >= TUTORIAL_END && getDisplayWarning()}
+    {!isTutorial && getDisplayWarning()}
     <button className='playnet-button' disabled={sumDaysUsed() === 0} style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
   </div>;
 }
