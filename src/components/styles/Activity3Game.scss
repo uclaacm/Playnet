@@ -423,14 +423,6 @@ $card-height: calc(#{$card-min-width} - 20px);
   margin: 20px;
 }
 
-.enable-blur>* {
-  filter: blur(1.5px) grayscale(0.6);
-}
-
-.disable-blur {
-  filter: blur(0);
-}
-
 .highlight-border {
   border-color: $playnet-orange;
   border-style: solid;
@@ -517,4 +509,88 @@ $card-height: calc(#{$card-min-width} - 20px);
 #abtest-text2 {
   opacity: 0;
   position: absolute;
+}
+
+.enable-blur>* {
+  filter: blur(1.5px) grayscale(0.6) brightness(85%);
+}
+
+.disable-blur {
+  filter: blur(0);
+}
+
+.stars {
+  img {
+    height: 33px;
+    width: 33px;
+  }
+}
+
+#popup {
+  background-color: white;
+  padding: 10%;
+  position: absolute;
+  z-index: 100;
+}
+
+.final-result {
+  border: 4px solid black;
+  border-radius: 20px;
+}
+
+h3 {
+  margin-bottom: 0;
+}
+
+.result {
+  display: grid;
+  grid-template-columns: 25% auto;
+  margin-top: 1rem;
+
+  h4 {
+    margin-top: 0;
+    text-align: left;
+  }
+}
+
+#variable-summary {
+  > div {
+    display: flex;
+  }
+
+  .variable-image {
+    height: 30px;
+    margin: 0;
+    width: 30px;
+  }
+}
+
+#timeline-summary,
+#variable-summary {
+  display: flex;
+  font-size: 16px;
+  font-weight: bold;
+  justify-content: space-around;
+
+  > div {
+    height: fit-content;
+  }
+}
+
+#timeline-summary {
+  img {
+    height: 30px;
+    margin-right: 5px;
+    width: 30px;
+  }
+}
+
+.bar {
+  align-items: center;
+  border-radius: 30px;
+  display: flex;
+  font-size: 16px;
+  height: 30px;
+  margin: 0 2.5%;
+  width: 95%;
 }

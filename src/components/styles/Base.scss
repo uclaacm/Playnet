@@ -29,6 +29,7 @@ button {
   color: white;
   font: $font-normal;
   font: inherit;
+  margin: 0.5vw 1vw;
   margin-bottom: 5px;
   max-height: 50%;
   max-width: 100%;
@@ -43,4 +44,8 @@ button {
 
 .playnet-btn-grey {
   background-color: $playnet-darkgrey;
+}
+
+.playnet-btn-blue {
+  background-color: $playnet-darkblue;
 }

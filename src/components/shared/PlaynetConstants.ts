@@ -28,6 +28,7 @@ export enum PlaynetColors {
   BLACK = 'black',
   HOVER_GREEN = '#1CC64B',
   INCORRECT_RED = '#FF0000',
+  LIGHT_BLUE = '#0094FF',
 }
 
 export enum AnswerChoiceBoxStyles {
