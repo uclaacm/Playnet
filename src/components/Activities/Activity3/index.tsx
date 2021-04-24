@@ -29,12 +29,12 @@ function Activity3(): JSX.Element {
     },
     {
       child: <ManyEmployees />,
-      topText: 'Each team comes up with new ideas and makes their ideas into reality.',
+      bottomText: 'Each team comes up with new ideas and makes their ideas into reality.',
       animationTime: 2,
     },
     {
       child: <ManyEmployees />,
-      topText: 'For example, a development team might ask the question: ',
+      bottomText: 'For example, a development team might ask the question: ',
       animationTime: 2,
     },
     {
@@ -96,7 +96,7 @@ function Activity3(): JSX.Element {
     {
       child: <Lecture phase={2} />,
       bottomText: 'So, we have to decide which ideas we care the most about. These are the ideas we bring to real life.',
-      animationTime: 3,
+      animationTime: 4,
     },
     {
       child: <ABTestSlide1/>,

@@ -79,7 +79,7 @@ function DebuggingResults(): JSX.Element {
               <div className='button-group' key={name}>
                 {name}
                 <br />
-                <button className='smaller playnet-button' onClick={onClick} disabled={dayCost > daysLeft}>
+                <button className='smaller playnet-button' onClick={onClick} disabled={dayCost > daysLeft && dayCost > 0}>
                   {buttonText}
                 </button>
               </div>)

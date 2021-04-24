@@ -17,9 +17,9 @@ function ABFinalReport(): JSX.Element {
   const {xyMap: final_beta_xyMap} = getFinalProductGraph(
     targetWeights, featureWeights, final_xyMap, final_dxyMap, timeAllocation);
 
-  const finalX = final_xyMap[final_xyMap.length - 1].x;
-  const finalBetaX = final_beta_xyMap[final_beta_xyMap.length - 1].x;
-  const stars = numFinalStars(finalX, finalBetaX);
+  const finalY = final_xyMap[final_xyMap.length - 1].y;
+  const finalBetaY = final_beta_xyMap[final_beta_xyMap.length - 1].y;
+  const stars = numFinalStars(finalY, finalBetaY);
 
   const getTimePercentages = () => {
     const [first, second, third] = Object.values(timeAllocation);
