@@ -23,27 +23,25 @@ function DebuggingResults(): JSX.Element {
   };
 
   const improveRecs = () => {
-    if (daysLeft >= 3) {
-      setDaysLeft(daysLeft - 3);
-      setState(A3_GAME_STATE.PriorityExplanation);
-    }
+    setDaysLeft(daysLeft + timeAllocation.abTest);
+    setState(A3_GAME_STATE.PriorityWeighing);
   };
 
-  const buttons: { [key: string]: { buttonText: string, onClick: () => void, dayCost: number } } = {
+  const buttons: { [key: string]: { buttonText: string, onClick: () => void, daysMin: number } } = {
     'Reduce errors': {
       buttonText: 'Debug (-1 day)',
       onClick: debugADay,
-      dayCost: 1,
+      daysMin: 1,
     },
     'Go back and improve recommendations': {
-      buttonText: 'Change Priorities (-3 day)',
+      buttonText: 'Change Priorities',
       onClick: improveRecs,
-      dayCost: 3,
+      daysMin: 3,
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',
       onClick: goNextState,
-      dayCost: 0,
+      daysMin: -10,
     },
   };
   return <>
@@ -75,11 +73,12 @@ function DebuggingResults(): JSX.Element {
       <div className='half'>
         <div className='vertical-grid'>
           {
-            Object.entries(buttons).map(([name, { buttonText, onClick, dayCost }]) =>
+            Object.entries(buttons).map(([name, { buttonText, onClick, daysMin }]) =>
               <div className='button-group' key={name}>
                 {name}
                 <br />
-                <button className='smaller playnet-button' onClick={onClick} disabled={dayCost > daysLeft}>
+                <button className='smaller playnet-button' onClick={onClick}
+                  disabled={daysMin > daysLeft && daysMin > 0}>
                   {buttonText}
                 </button>
               </div>)

@@ -1,11 +1,11 @@
-import { Gaussian } from 'ts-gaussian';
 import { clamp, random } from '../../../../utils';
 import {
   DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
   EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
   QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
-  VARIABLE_WEIGHTS_STD, STABILITY_OF_FINAL,
+  STABILITY_OF_FINAL,
+  WEIGHT_CONSTANT,
 } from './GameConstantsToMessWith';
 import { Point, TimeAllocations } from './typings';
 
@@ -22,25 +22,23 @@ export function generateVariableTargetWeights(): [number, number, number] {
 
 // EQUATIONS TO POSSIBLY MODIFY
 /**
- * Given the input weights and expected weights, return some number between [0 - 3] representing how
+ * Given the input weights and expected weights, return some number between [1 - 5] representing how
  * accurate the input weights are.
- * 3 is highest quality, and 0 is lowest
+ * 5 is highest quality, and 1 is lowest
  *
- * this is calculated by how far the weights are from the expected w/ a normal distribution
+ * this is calculated by how far the weights are from the expected
  * @param featureWeights
  * @param expectedWeights
- * @returns number ranging from 0-3 (3 is highest quality)
+ * @returns number ranging from 1-5 (5 is highest quality)
  */
 export function accuracyOfWeights(
   featureWeights: number[],
   expectedWeights: number[],
 ): number {
-  const distribution = new Gaussian(0, VARIABLE_WEIGHTS_STD ** 2); // normal distribution
-
-  // value between 0-3 about how accurate the recommendation was
-  const distResults = expectedWeights.reduce((prev, weight, i) => prev +
-    distribution.cdf(featureWeights[i] - weight), 0);
-  return distResults;
+  // value between 1-5 about how accurate the recommendation was
+  const raw = 5 - (expectedWeights.reduce((prev, weight, i) => prev +
+    Math.abs(featureWeights[i] - weight), 0) / WEIGHT_CONSTANT) + 1;
+  return  clamp(1, raw, 5).num;
 }
 
 /**
@@ -60,7 +58,7 @@ export function debugQuality(
 }
 
 /**
- * Given expected + actual weights and time allocations, return a number between [0 - 3]
+ * Given expected + actual weights and time allocations, return a number between [1 - 5]
  * The larger the number, the higher the quality!
  * @param featureWeights
  * @param expectedWeights
@@ -75,7 +73,6 @@ export function overallQuality(
   // debug's accuracy is such that 0 is highest quality, and ranges from 0 - 1
   // as such, we get 1 - debugQuality so that 1 can be the highest quality!
   const debugAccuracy = 1 - debugQuality(timeAllocations.build, timeAllocations.debug);
-
   return weightAccuracy * debugAccuracy;
 }
 
@@ -120,12 +117,10 @@ export function getRecommendationQuality(
 ): string {
   const accuracyWithExpected = accuracyOfWeights(featureWeights, expectedWeights);
 
-  const numericQuality = 2 * accuracyWithExpected * Math.random();
-
   // get the name mapping related with how accurate the recommendation was
-  // (eg: good / poor)
+  // (eg: good / poor
   const qualityKey = Object.keys(NUMBER_TO_QUALITY_MAP).find(
-    (key) => { const bracket = key.split(',').map(Number); return numericQuality > bracket[0] && numericQuality < bracket[1]; },
+    (key) => { const bracket = key.split(',').map(Number); return accuracyWithExpected >= bracket[0] && accuracyWithExpected < bracket[1]; },
   ) ?? QUALITY_DEFAULT_KEY;
   const castingKey = qualityKey as keyof typeof NUMBER_TO_QUALITY_MAP;
   return NUMBER_TO_QUALITY_MAP[castingKey];
@@ -212,7 +207,7 @@ export function getBetaGraph(
   dControlGraph.forEach(({x: controlDx, y: controlDy}) => {
     // find a random change in y based on the quality of the product + control's dy
     rand = Math.random() * maxChange - (maxChange / 2);
-    tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 1) + rand;
+    tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 2.5) + rand;
     tempDyWithControl = tempDy + controlDy;
 
     const temp = clamp(0, lastY + tempDyWithControl, 100);
@@ -309,6 +304,7 @@ export function numFinalStars(
   finalX: number,
   finalBetaX: number,
 ): number {
-  const numStars = Math.floor((finalBetaX - finalX) / 20 + 2.5) ;
-  return clamp(1, numStars, 5).num;
+  const num = Math.floor((finalBetaX - finalX) / 20 + 2.5) ;
+  const numStars = clamp(1, num, 5).num;
+  return (finalBetaX > 95) ? 5 : numStars;
 }
