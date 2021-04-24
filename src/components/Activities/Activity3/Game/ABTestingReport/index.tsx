@@ -42,11 +42,13 @@ function ABTestingReport(): JSX.Element {
           <Review key={i} stars={stars}/>)}
       </div>
       <div className='half'>
-        <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/>
+        {timeAllocation.abTest != 0 ?
+          <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/> :
+          'There is no graph available as you didnt allot any time for A/B testing!'}
       </div>
     </div>
     <div>
-      <button className="playnet-button playnet-btn-blue" onClick={() => setState(A3_GAME_STATE.PriorityChoices)}>Go back to variables</button>
+      <button className="playnet-button playnet-btn-blue" disabled={daysLeft === 0} onClick={() => setState(A3_GAME_STATE.PriorityChoices)}>Go back to variables</button>
       <button className="playnet-button" onClick={() => setPopup(true)}>Submit final product</button>
     </div>
   </>;

@@ -179,9 +179,9 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityWeighing]:
       <FeatureSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocationExplanation]:
-      <TimeAllocation initialTimes={timeAllocation} isTutorial={true}/>,
+      <TimeAllocation initialTimes={DEFAULT_TIME_ALLOCATION} isTutorial={true}/>,
     [A3_GAME_STATE.TimeAllocation]:
-      <TimeAllocation initialTimes={timeAllocation} isTutorial={false}/>,
+      <TimeAllocation initialTimes={DEFAULT_TIME_ALLOCATION} isTutorial={false}/>,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults/>,
     [A3_GAME_STATE.ABTestingExplanation]: <ABTestDesc />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport/>,

@@ -129,7 +129,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
       Days left: {daysLeft ? (daysLeft - sumDaysUsed()) : 0}
     </div>
     {!isTutorial && getDisplayWarning()}
-    <button className='playnet-button' disabled={sumDaysUsed() === 0} style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
+    <button className='playnet-button' disabled={sumDaysUsed() === 0 && daysLeft != 0} style={{ width: '50%' }} onClick={handleGoNext}>Continue</button>
   </div>;
 }
 export default TimeAllocation;
