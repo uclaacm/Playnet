@@ -7893,11 +7893,6 @@ trough@^1.0.0:
   resolved "https://registry.yarnpkg.com/trough/-/trough-1.0.5.tgz"
   integrity sha512-rvuRbTarPXmMb79SmzEp8aqXNKcK+y0XaB298IXueQ8I2PsrATcPBCSPyK/dDNa2iWOhKlfNnOjdAOTBU/nkFA==
 
-ts-gaussian@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/ts-gaussian/-/ts-gaussian-2.0.2.tgz#c612163f3c068542b2678c9385a5bb56559b6380"
-  integrity sha512-DdMwQc1bgzRwbKQ3VoiV3aK2isz7CJhOmtO2oA+mp9soGpbN/p2pkBaIrZnJBW3jB293CUARLFmNktcTSHjypQ==
-
 ts-loader@^7.0.5:
   version "7.0.5"
   resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-7.0.5.tgz"

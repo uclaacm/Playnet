@@ -1,4 +1,3 @@
-import { Gaussian } from 'ts-gaussian';
 import { clamp, random } from '../../../../utils';
 import {
   DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
@@ -38,7 +37,7 @@ export function accuracyOfWeights(
 ): number {
   // value between 1-5 about how accurate the recommendation was
   const raw = 5 - (expectedWeights.reduce((prev, weight, i) => prev +
-    Math.abs(featureWeights[i] - weight), 0) / 100 * WEIGHT_CONSTANT) + 1;
+    Math.abs(featureWeights[i] - weight), 0) / WEIGHT_CONSTANT) + 1;
   return  clamp(1, raw, 5).num;
 }
 
@@ -306,6 +305,6 @@ export function numFinalStars(
   finalBetaX: number,
 ): number {
   const num = Math.floor((finalBetaX - finalX) / 20 + 2.5) ;
-  let numStars = clamp(1, num, 5).num;
+  const numStars = clamp(1, num, 5).num;
   return (finalBetaX > 95) ? 5 : numStars;
 }
