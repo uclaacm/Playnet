@@ -1,4 +1,4 @@
-import React, { forwardRef, useRef } from 'react';
+import React from 'react';
 import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
@@ -15,10 +15,6 @@ import Game from './Game';
 import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
 
 function Activity3(): JSX.Element {
-  const LectureReference = forwardRef((props, ref) => <Lecture ref={ref} {...props}/>);
-  LectureReference.displayName = 'LectureReference';
-  const lectureRef = useRef(null);
-
   const content: CarouselItemComponents[] = [
     {
       child: <ManyEmployees />,
@@ -88,19 +84,19 @@ function Activity3(): JSX.Element {
       animationTime: 6,
     },
     {
-      child: <LectureReference ref={lectureRef}/>,
+      child: <Lecture phase={0} />,
       bottomText: 'First, a team discusses ideas.',
       animationTime: 2,
     },
     {
-      child: <LectureReference ref={lectureRef}/>,
+      child: <Lecture phase={1} />,
       bottomText: 'Even though there are a lot of good ideas, we have a limited amount of time and money. ',
       animationTime: 2,
     },
     {
-      child: <LectureReference ref={lectureRef}/>,
+      child: <Lecture phase={2} />,
       bottomText: 'So, we have to decide which ideas we care the most about. These are the ideas we bring to real life.',
-      animationTime: 2,
+      animationTime: 3,
     },
     {
       child: <ABTestSlide1/>,
