@@ -42,8 +42,9 @@ function ABTestingReport(): JSX.Element {
           <Review key={i} stars={stars}/>)}
       </div>
       <div className='half'>
-        {timeAllocation['abTest'] != 0 ? <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/> : 
-        'There is no graph available as you didnt allot any time for A/B testing!'}
+        {timeAllocation.abTest != 0 ?
+          <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10}/> :
+          'There is no graph available as you didnt allot any time for A/B testing!'}
       </div>
     </div>
     <div>
