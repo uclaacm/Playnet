@@ -1,5 +1,5 @@
 // External Constants
-export const FEEDBACK_FORM_URL  =
+export const FEEDBACK_FORM_URL =
   'https://docs.google.com/forms/d/e/1FAIpQLSfpCmyRZ7Ilrg263iYYiXLaM8UWX7iK9aSuVl0_u8mguvxgiA/viewform?usp=sf_link';
 
 export const DEFAULT_CONFIGS = {
@@ -7,14 +7,33 @@ export const DEFAULT_CONFIGS = {
   GAME_SOUNDS_MUTED: false,
   AUTOPLAY: false,
 };
-
-// Internal Constants
 export enum HeaderSections {
   INTRO = 'intro',
   ACTIVITIES = 'activities',
   FEEDBACK = 'feedback',
+  DAY_OF_CODE = 'day_of_code',
 }
 
+export const TAB_INFO: { [key in HeaderSections]: { link: string, text: string } } = {
+  [HeaderSections.INTRO]: {
+    link: '/',
+    text: 'Intro',
+  },
+  [HeaderSections.ACTIVITIES]: {
+    link: '/activities',
+    text: 'Activities',
+  },
+  [HeaderSections.FEEDBACK]: {
+    link: '/feedback',
+    text: 'Feedback',
+  },
+  [HeaderSections.DAY_OF_CODE]: {
+    link: '/day-of-code',
+    text: 'Day of Code',
+  },
+};
+
+// Internal Constants
 export enum TextBubbleStyles {
   EXTRA_LARGE = 'x-large',
   LARGE = 'large',
@@ -28,6 +47,7 @@ export enum PlaynetColors {
   BLACK = 'black',
   HOVER_GREEN = '#1CC64B',
   INCORRECT_RED = '#FF0000',
+  LIGHT_BLUE = '#0094FF',
 }
 
 export enum AnswerChoiceBoxStyles {
@@ -52,7 +72,7 @@ export enum VideoChoices {
   NONE_CHOSEN = 'none_chosen', // no video has been chosen yet
 }
 
-export const VideoInfo : Record<VideoChoices, {url: string, rocket_word: string}> = {
+export const VideoInfo: Record<VideoChoices, { url: string, rocket_word: string }> = {
   [VideoChoices.CHILL_GIRL]: {
     url: 'https://www.youtube.com/embed/-FlxM_0S2lA',
     rocket_word: 'Lofi',
