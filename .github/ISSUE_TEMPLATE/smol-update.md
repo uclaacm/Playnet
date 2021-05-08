@@ -2,7 +2,7 @@
 name: "\U0001F43E Request for Smol Update"
 about: Make a small change
 title: "🐾 Smol Update: "
-labels: smol-update, effort/tiny, needs-triage
+labels: smol-update, effort/tiny
 ---
 
 <!-- short description of the feature -->
@@ -18,7 +18,7 @@ labels: smol-update, effort/tiny, needs-triage
 <!-- Please include prototype/sketch/reference implementation: -->
 
 
-* [ ] :wave: I may be able to implement this feature request
+* [ ] :wave: I may be able to implement this update request
 
 ---
 
