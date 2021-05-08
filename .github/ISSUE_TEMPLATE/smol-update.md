@@ -1,5 +1,5 @@
 ---
-name: "\U0001F43E Requst for Smol Update"
+name: "\U0001F43E Request for Smol Update"
 about: Make a small change
 title: "🐾 Smol Update: "
 labels: smol-update, effort/tiny, needs-triage
