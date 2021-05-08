@@ -63,7 +63,7 @@ function Debugging(props: DebuggingProps): JSX.Element {
   }, []);
 
   useEffect(() => {
-    if (phase === 0) { //As there is no animation for slide 1
+    if (phase === 0) { // As there is no animation for slide 1
       timeline.current?.pause();
     } else {
       timeline.current?.seek((phase - 1) * 3000);
@@ -74,33 +74,35 @@ function Debugging(props: DebuggingProps): JSX.Element {
     }
   }, [reloadTime, phase]);
 
-  return <ScalingSlide widthPx={1102} heightPx={386}>
-    <>
-      <div id={'debug-computer'}>
-        <div id={'debug-slide1'}>
-          &lt;div id=”#search-bar”&gt;&lt;/div&gt;
-          <br/>
-          &lt;img src=”/my-photos”&gt;&lt;/img&gt;
+  return (
+    <ScalingSlide widthPx={1102} heightPx={386}>
+      <>
+        <div id="debug-computer">
+          <div id="debug-slide1">
+            &lt;div id=”#search-bar”&gt;&lt;/div&gt;
+            <br />
+            &lt;img src=”/my-photos”&gt;&lt;/img&gt;
+          </div>
+          <div id="debug-slide2">
+            <div id="search-bar" />
+            <div id="debug-slide2-text"> Error! Image link broken! </div>
+          </div>
+          <div id="debug-slide3">
+            &lt;div id=”#search-bar”&gt;&lt;/div&gt;
+            <br />
+            &lt;img src=”/my-photos”&gt;&lt;/img&gt;
+          </div>
+          <div id="debug-slide4">
+            <div id="search-bar" />
+            <div id="yt-logo" />
+          </div>
         </div>
-        <div id={'debug-slide2'}>
-          <div id={'search-bar'}/>
-          <div id={'debug-slide2-text'}> Error! Image link broken! </div>
-        </div>
-        <div id={'debug-slide3'}>
-          &lt;div id=”#search-bar”&gt;&lt;/div&gt;
-          <br/>
-          &lt;img src=”/my-photos”&gt;&lt;/img&gt;
-        </div>
-        <div id={'debug-slide4'}>
-          <div id={'search-bar'}/>
-          <div id={'yt-logo'}/>
-        </div>
-      </div>
-      <div id={'speech-hmm'} />
-      <div id={'speech-aha'} />
-      <div id={'debug-person'} />
-    </>
-  </ScalingSlide>;
+        <div id="speech-hmm" />
+        <div id="speech-aha" />
+        <div id="debug-person" />
+      </>
+    </ScalingSlide>
+  );
 }
 
 export default Debugging;

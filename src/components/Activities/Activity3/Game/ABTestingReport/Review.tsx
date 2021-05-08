@@ -100,17 +100,22 @@ interface ReviewProps {
 
 function Review(props: ReviewProps): JSX.Element {
   const { noText, stars, variable } = props;
-  const star = Array(5).fill(undefined).map((_v, i) => i < stars ? true : false);
+  const star = Array(5).fill(undefined).map((_v, i) => (i < stars));
   return (
     <div>
-      {!noText && <p>{random(reviewer_names)}: {
-        variable ? random(substantialReviews[variable][stars]) :
-          random(reviews[stars])
-      }</p>}
-      <div className={'stars'}>
-        {Array(5).fill(false).map((_v, i) =>
-          <img key={i} src={Star} style={star[i] ? {} : { filter: 'grayscale(100%)' }} />,
-        )}
+      {!noText && (
+        <p>
+          {random(reviewer_names)}
+          :
+          {' '}
+          {
+            variable ? random(substantialReviews[variable][stars])
+              : random(reviews[stars])
+          }
+        </p>
+      )}
+      <div className="stars">
+        {Array(5).fill(false).map((_v, i) => <img key={i} src={Star} style={star[i] ? {} : { filter: 'grayscale(100%)' }} />)}
       </div>
     </div>
   );

@@ -59,15 +59,17 @@ function List(): JSX.Element {
     timeline.current?.play();
   }, [reloadTime]);
 
-  return <ScalingSlide widthPx={1060}>
-    <div id={'animated-list-box'}>
-      <div id={'animated-list'}>
-        {MAPPED_PARAMETERS}
-        {MAPPED_PARAMETERS}
-        {MAPPED_PARAMETERS}
-        {MAPPED_PARAMETERS}
+  return (
+    <ScalingSlide widthPx={1060}>
+      <div id="animated-list-box">
+        <div id="animated-list">
+          {MAPPED_PARAMETERS}
+          {MAPPED_PARAMETERS}
+          {MAPPED_PARAMETERS}
+          {MAPPED_PARAMETERS}
+        </div>
       </div>
-    </div>
-  </ScalingSlide>;
+    </ScalingSlide>
+  );
 }
 export default List;

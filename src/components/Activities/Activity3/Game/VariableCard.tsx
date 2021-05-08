@@ -9,7 +9,9 @@ interface VariableCardProps {
 }
 
 function VariableCard(props: VariableCardProps): JSX.Element {
-  const { id, select, deselect, initialSelected } = props;
+  const {
+    id, select, deselect, initialSelected,
+  } = props;
   const [selected, setSelected] = useState(false);
 
   useEffect(() => {
@@ -27,11 +29,15 @@ function VariableCard(props: VariableCardProps): JSX.Element {
     setSelected(isSelected);
   };
 
-  return <button className={`${selected ? 'selected' : 'not-selected'} variable-card`}
-    onClick={onClick}>
-    {selected && <div className='checkmark' />}
-    <div className='variable-image' id={id.toLowerCase().replace(' ', '-')} />
-    {props.id}
-  </button>;
+  return (
+    <button
+      className={`${selected ? 'selected' : 'not-selected'} variable-card`}
+      onClick={onClick}
+    >
+      {selected && <div className="checkmark" />}
+      <div className="variable-image" id={id.toLowerCase().replace(' ', '-')} />
+      {props.id}
+    </button>
+  );
 }
 export default VariableCard;

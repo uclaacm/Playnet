@@ -1,6 +1,5 @@
 // External Constants
-export const FEEDBACK_FORM_URL =
-  'https://docs.google.com/forms/d/e/1FAIpQLSfpCmyRZ7Ilrg263iYYiXLaM8UWX7iK9aSuVl0_u8mguvxgiA/viewform?usp=sf_link';
+export const FEEDBACK_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfpCmyRZ7Ilrg263iYYiXLaM8UWX7iK9aSuVl0_u8mguvxgiA/viewform?usp=sf_link';
 
 export const DEFAULT_CONFIGS = {
   VOICEOVER_MUTED: true,

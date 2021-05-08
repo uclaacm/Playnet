@@ -64,7 +64,7 @@ function Game(): JSX.Element {
     const storedTargetWeights = storage.getItem(SESSION_TARGET_WEIGHTS);
 
     // setup statesToSkip from storage
-    const tempSkipStates = storedSkipStates?.split(',').map(element => element as A3_GAME_STATE);
+    const tempSkipStates = storedSkipStates?.split(',').map((element) => element as A3_GAME_STATE);
     const curSkipStates = tempSkipStates ?? [A3_GAME_STATE.EmptyState];
     setStatesToSkip(curSkipStates, () => {
       // setup state after setting up statesToSkip
@@ -73,7 +73,7 @@ function Game(): JSX.Element {
     });
 
     // setup variableSelection from storage
-    const tempVariables = storedVariables?.split(',').map(element => element as VARIABLES);
+    const tempVariables = storedVariables?.split(',').map((element) => element as VARIABLES);
     const curVariables = tempVariables ?? [];
     setVariableSelection(curVariables);
 
@@ -83,12 +83,12 @@ function Game(): JSX.Element {
     setTimeAllocation(tempTasks);
 
     // setup featureWeights from storage
-    const weights = storedFeatureWeights?.split(',').map(element => parseInt(element));
+    const weights = storedFeatureWeights?.split(',').map((element) => parseInt(element));
     const curWeights = weights ?? [33, 33, 34];
     setFeatureWeights(curWeights);
 
     // setup targetWeights from storage
-    const tWeights = storedTargetWeights?.split(',').map(element => parseInt(element));
+    const tWeights = storedTargetWeights?.split(',').map((element) => parseInt(element));
     const curTWeights = tWeights ?? [33, 33, 34];
     setTargetWeights(curTWeights);
 
@@ -110,7 +110,7 @@ function Game(): JSX.Element {
   const goNextState = (): void => {
     // go next state + skipping states that should be skipped
     const nextPossibleStates = NEXT_STATE_MAP[state];
-    const nextState = nextPossibleStates?.find(element => !statesToSkip.includes(element));
+    const nextState = nextPossibleStates?.find((element) => !statesToSkip.includes(element));
     if (!nextState) {
       next();
       return;
@@ -178,17 +178,19 @@ function Game(): JSX.Element {
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
     [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,
     [A3_GAME_STATE.PriorityChoices]:
-      <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
+  <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
-      <FeatureSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+  <FeatureSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocationExplanation]:
-      <TimeAllocation initialTimes=
-        {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={true} />,
+  <TimeAllocation
+    initialTimes={(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
+    isTutorial
+  />,
     [A3_GAME_STATE.TimeAllocation]:
-      <TimeAllocation initialTimes=
-        {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={false} />,
+  <TimeAllocation
+    initialTimes={(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
+    isTutorial={false}
+  />,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults />,
     [A3_GAME_STATE.ABTestingExplanation]: <ABTestDescription />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport />,
@@ -196,18 +198,23 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached
   };
 
-  return <GameContext.Provider value={{
-    setState: setState, goNextState: goNextState,
-    startNewGame: startNewGame,
-    variableSelection: variableSelection,
-    featureWeights: featureWeights,
-    targetWeights: targetWeights,
-    timeAllocation: timeAllocation,
-    setTimeAllocation: setTimeAllocation,
-    daysLeft: daysLeft, setDaysLeft: setDaysLeft,
-  }}>
-    {GAME_ELEMENTS[state]}
-  </GameContext.Provider>;
+  return (
+    <GameContext.Provider value={{
+      setState,
+      goNextState,
+      startNewGame,
+      variableSelection,
+      featureWeights,
+      targetWeights,
+      timeAllocation,
+      setTimeAllocation,
+      daysLeft,
+      setDaysLeft,
+    }}
+    >
+      {GAME_ELEMENTS[state]}
+    </GameContext.Provider>
+  );
 }
 
 export default Game;

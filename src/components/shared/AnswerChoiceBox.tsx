@@ -14,7 +14,9 @@ interface AnswerChoiceBoxProps {
 }
 
 function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
-  const {setHover, imgSrc, id, text, isCorrect, roundId} = props;
+  const {
+    setHover, imgSrc, id, text, isCorrect, roundId,
+  } = props;
 
   const [border, setBorder] = useState(PlaynetColors.BLACK);
   const classStyle = (props.style === undefined ? AnswerChoiceBoxStyles.LARGE_PERCENT_BASED : props.style);
@@ -49,7 +51,7 @@ function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
       onMouseOver={() => handleHoverOver()}
       onMouseLeave={() => handleHoverOff()}
     >
-      {imgSrc && <img src={imgSrc}/>}
+      {imgSrc && <img src={imgSrc} />}
       {text && <span>{props.text}</span>}
     </div>
   );

@@ -4,8 +4,10 @@ import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './g
 import { A3_GAME_STATE } from './GameConstants';
 
 function DebuggingResults(): JSX.Element {
-  const { setState, goNextState, featureWeights, targetWeights, timeAllocation,
-    setTimeAllocation, daysLeft, setDaysLeft } = useContext(GameContext);
+  const {
+    setState, goNextState, featureWeights, targetWeights, timeAllocation,
+    setTimeAllocation, daysLeft, setDaysLeft,
+  } = useContext(GameContext);
 
   const numErrors = getDebugNumErrors(timeAllocation.build, timeAllocation.debug);
   const errors = getDebugErrors(numErrors);
@@ -16,7 +18,7 @@ function DebuggingResults(): JSX.Element {
       setDaysLeft(daysLeft - 1);
 
       // increment debug by one
-      const newAllocation = {...timeAllocation};
+      const newAllocation = { ...timeAllocation };
       newAllocation.debug++;
       setTimeAllocation(newAllocation);
     }
@@ -44,48 +46,66 @@ function DebuggingResults(): JSX.Element {
       daysMin: -10,
     },
   };
-  return <>
-    <div id='top-bar-align-right'>
-      <div className='inline'>
-        <div id='top-bar-clock' />
-        <div className='vertically-centered'>Days Left: {daysLeft}</div>
-      </div>
-    </div>
-    <div className='inline'>
-      <div className='half' style={{ height: '100%' }}>
-        <div className='debug-screen'>
-          <div className='debug-text'>
-            Debugging Report
-            <br />
-        ---
-            <br />
-            {numErrors} errors detected:
-            <br />
-            {
-              errors.map((element) => <>{element}<br /></>)
-            }
-        ---
-            <br />
-        Recommendation Quality: {debugQuality}
+  return (
+    <>
+      <div id="top-bar-align-right">
+        <div className="inline">
+          <div id="top-bar-clock" />
+          <div className="vertically-centered">
+            Days Left:
+            {daysLeft}
           </div>
         </div>
       </div>
-      <div className='half'>
-        <div className='vertical-grid'>
-          {
-            Object.entries(buttons).map(([name, { buttonText, onClick, daysMin }]) =>
-              <div className='button-group' key={name}>
-                {name}
-                <br />
-                <button className='smaller playnet-button' onClick={onClick}
-                  disabled={daysMin > daysLeft && daysMin > 0}>
-                  {buttonText}
-                </button>
-              </div>)
-          }
+      <div className="inline">
+        <div className="half" style={{ height: '100%' }}>
+          <div className="debug-screen">
+            <div className="debug-text">
+              Debugging Report
+              <br />
+              ---
+              <br />
+              {numErrors}
+              {' '}
+              errors detected:
+              <br />
+              {
+                errors.map((element) => (
+                  <>
+                    {element}
+                    <br />
+                  </>
+                ))
+              }
+              ---
+              <br />
+              Recommendation Quality:
+              {' '}
+              {debugQuality}
+            </div>
+          </div>
+        </div>
+        <div className="half">
+          <div className="vertical-grid">
+            {
+              Object.entries(buttons).map(([name, { buttonText, onClick, daysMin }]) => (
+                <div className="button-group" key={name}>
+                  {name}
+                  <br />
+                  <button
+                    className="smaller playnet-button"
+                    onClick={onClick}
+                    disabled={daysMin > daysLeft && daysMin > 0}
+                  >
+                    {buttonText}
+                  </button>
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
-    </div>
-  </>;
+    </>
+  );
 }
 export default DebuggingResults;

@@ -22,7 +22,7 @@ function hashNumber(hashString: string): number {
  */
 export function scramble(hash: number | string, input: string): string {
   // Obtain a 32 bit representation of the hash
-  const shift = typeof(hash) === 'number'
+  const shift = typeof (hash) === 'number'
     ? hash
     : hashNumber(hash);
 
@@ -31,11 +31,11 @@ export function scramble(hash: number | string, input: string): string {
     const ascii = char.charCodeAt(0);
 
     // uppercase characters
-    if (65 <= ascii && ascii <= 90) {
+    if (ascii >= 65 && ascii <= 90) {
       ret += String.fromCharCode((ascii - 65 + shift) % 26 + 65);
     }
     // lowercase characters
-    else if (97 <= ascii && ascii <= 122) {
+    else if (ascii >= 97 && ascii <= 122) {
       ret += String.fromCharCode((ascii - 97 + shift) % 26 + 97);
     }
 

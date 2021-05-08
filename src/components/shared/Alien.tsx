@@ -39,8 +39,8 @@ export interface AlienProps {
 }
 
 export default function Alien(props: AlienProps): JSX.Element {
-  const {alienState} = props;
-  const {src, alt} = ALIEN_STATES[alienState];
+  const { alienState } = props;
+  const { src, alt } = ALIEN_STATES[alienState];
 
   useEffect(() => {
     if (alienState === ALIEN_STATE.HAPPY) {
@@ -50,9 +50,9 @@ export default function Alien(props: AlienProps): JSX.Element {
 
   return (
     <>
-      <img id={'alien'} src={src} alt={alt}/>
-      <svg id={'sparks'} width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="130" cy="130" r="115" stroke="#FFBA09" strokeLinejoin="round" strokeDasharray="7 100"/>
+      <img id="alien" src={src} alt={alt} />
+      <svg id="sparks" width="260" height="260" viewBox="0 0 260 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="130" cy="130" r="115" stroke="#FFBA09" strokeLinejoin="round" strokeDasharray="7 100" />
       </svg>
     </>
   );

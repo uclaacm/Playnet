@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 
 function BouncingArrow(): JSX.Element {
   useEffect(() => {
-    anime.timeline({ autoplay: true, loop: true, duration: 1000}).add({
+    anime.timeline({ autoplay: true, loop: true, duration: 1000 }).add({
       targets: '#arrow',
       easing: 'easeOutSine',
       translateY: -10,
@@ -17,7 +17,7 @@ function BouncingArrow(): JSX.Element {
       translateY: 0,
     });
   }, []);
-  return <div id='arrow-container'><div id='arrow' /></div>;
+  return <div id="arrow-container"><div id="arrow" /></div>;
 }
 
 export default BouncingArrow;

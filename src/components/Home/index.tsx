@@ -1,4 +1,6 @@
-import React, { useState, forwardRef, RefObject, useRef, useEffect } from 'react';
+import React, {
+  useState, forwardRef, RefObject, useRef, useEffect,
+} from 'react';
 
 import Intro10Data from '../LottieAnimations/Intro10Animation';
 import Intro11Data from '../LottieAnimations/Intro11Animation';
@@ -16,11 +18,10 @@ import FinalSlide from './FinalSlide';
 import Intro, { IntroAnimeProps } from './Intro';
 import { FinalYouTube, IntroYouTube } from './Youtube';
 
-
 function Home(): JSX.Element {
   const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
   const IntroSlides = forwardRef((props: IntroAnimeProps, ref: RefObject) => (
-    <Intro ref={ref} {...props}/>
+    <Intro ref={ref} {...props} />
   ));
   IntroSlides.displayName = 'IntroSlides';
   const ref = useRef(null);
@@ -41,31 +42,31 @@ function Home(): JSX.Element {
   const rocketWord = VideoInfo[chosenVideo].rocket_word;
   const content = [
     {
-      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord} />,
       bottomText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
       soundtrack: SoundTrack.Intro_1,
     },
     {
-      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord} />,
       bottomText: 'Servers are like computers. They store information and do math.',
       animationTime: 4.5,
       soundtrack: SoundTrack.Intro_2,
     },
     {
-      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord} />,
       bottomText: 'Your request asks the server for information.',
       animationTime: 2.8,
       soundtrack: SoundTrack.Intro_3,
     },
     {
-      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord} />,
       bottomText: 'It’s like asking a librarian for a book!',
       animationTime: 3,
       soundtrack: SoundTrack.Intro_4,
     },
     {
-      child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
+      child: <IntroSlides ref={ref} rocketWord={rocketWord} />,
       bottomText: 'Servers live in buildings called data centers.',
       animationTime: 3,
       soundtrack: SoundTrack.Intro_5,
@@ -115,23 +116,22 @@ function Home(): JSX.Element {
   return (
     <div>
       <Base section={HeaderSections.INTRO}>
-        {(chosenVideo !== VideoChoices.NONE_CHOSEN) ?
-          <Carousel
-            hasSound={true}
-            onNext={() => { /* Run function along with transition on next button press */
+        {(chosenVideo !== VideoChoices.NONE_CHOSEN)
+          ? (
+            <Carousel
+              hasSound
+              onNext={() => { /* Run function along with transition on next button press */
               // console.log('next');
-            }}
-            onPrev={() => { /* Run function along with transition on previous button press */
+              }}
+              onPrev={() => { /* Run function along with transition on previous button press */
               // console.log('prev');
-            }}
-          /* can use showNext={true|false} to manually show or hide button */
-          /*         showPrev={true|false}                                 */
-          >
-            {/* Each child element of the Carousel is considered as one "slide", like so */}
-            {content}
-          </Carousel> :
-          <IntroYouTube setChosenVideo={setChosenVideo} />
-        }
+              }}
+            >
+              {/* Each child element of the Carousel is considered as one "slide", like so */}
+              {content}
+            </Carousel>
+          )
+          : <IntroYouTube setChosenVideo={setChosenVideo} />}
       </Base>
     </div>
   );

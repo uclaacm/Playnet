@@ -11,19 +11,26 @@ export interface HeaderProps {
 }
 function Header(props: HeaderProps): JSX.Element {
   return (
-    <div id={'header'}>
-      <div id={'logo'}>
-        <Link to="/"><h1><img src={PlaynetLogo} /> Playnet</h1></Link>
+    <div id="header">
+      <div id="logo">
+        <Link to="/">
+          <h1>
+            <img src={PlaynetLogo} />
+            {' '}
+            Playnet
+          </h1>
+        </Link>
       </div>
-      <nav id={'nav'}>
+      <nav id="nav">
         {
-          Object.entries(TAB_INFO).map(([section, { link, text }]) =>
-            <span key={section}
-              className={'navlink' + ((props.section === section) ? ' current' : '')}
+          Object.entries(TAB_INFO).map(([section, { link, text }]) => (
+            <span
+              key={section}
+              className={`navlink${(props.section === section) ? ' current' : ''}`}
             >
               <Link to={link}>{text}</Link>
-            </span>,
-          )
+            </span>
+          ))
         }
       </nav>
     </div>

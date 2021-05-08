@@ -1,4 +1,6 @@
-import { SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+import {
+  SetStateAction, useCallback, useEffect, useRef, useState,
+} from 'react';
 
 // stolen from https://stackoverflow.com/a/61725731
 type Callback<T> = (value?: T) => void;

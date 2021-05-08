@@ -51,39 +51,50 @@ function ManyEmployees(): JSX.Element {
         timeline.current?.pause();
       },
     });
-
   }, []);
 
   useEffect(() => {
-    if (slideIdx === 0) { //As there is no animation for slide 1
+    if (slideIdx === 0) { // As there is no animation for slide 1
       timeline.current?.pause();
-    }
-    else {
-      timeline.current?.seek((slideIdx - 1)  * 2000);
+    } else {
+      timeline.current?.seek((slideIdx - 1) * 2000);
       const timeout = setTimeout(() => {
         timeline.current?.play();
       }, 250);
       return () => clearTimeout(timeout);
     }
-
   }, [reloadTime, slideIdx]);
 
-  return <ScalingSlide widthPx={1100} heightPx={386}>
-    <>
-      <div id={'many-employees'} />
-      <div id={'grouping-teams'}>
-        <div id={'ellipse-1'} />
-        <div id={'ellipse-2'} />
-        <div id={'ellipse-3'} />
-        <div id={'ceo-text'}> <b>CEO</b> </div>
-        <div id={'sales-text'}> <b>Sales</b> </div>
-        <div id={'dev-text'}>  <b>Development</b>  </div>
-      </div>
-      <div id={'two-employees'} />
-      <div id={'bubble-1'} />
-      <div id={'bubble-2'} />
-      <div id={'bubble-3'} />
-    </>
-  </ScalingSlide>;
+  return (
+    <ScalingSlide widthPx={1100} heightPx={386}>
+      <>
+        <div id="many-employees" />
+        <div id="grouping-teams">
+          <div id="ellipse-1" />
+          <div id="ellipse-2" />
+          <div id="ellipse-3" />
+          <div id="ceo-text">
+            {' '}
+            <b>CEO</b>
+            {' '}
+          </div>
+          <div id="sales-text">
+            {' '}
+            <b>Sales</b>
+            {' '}
+          </div>
+          <div id="dev-text">
+            {' '}
+            <b>Development</b>
+            {' '}
+          </div>
+        </div>
+        <div id="two-employees" />
+        <div id="bubble-1" />
+        <div id="bubble-2" />
+        <div id="bubble-3" />
+      </>
+    </ScalingSlide>
+  );
 }
 export default ManyEmployees;

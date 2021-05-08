@@ -1,5 +1,5 @@
 import anime, { AnimeTimelineInstance } from 'animejs';
-import React, { useContext, useEffect, useRef }from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 
 import { CarouselContext } from '../../../shared/Carousel';
 
@@ -9,7 +9,7 @@ function ComputerRecs(): JSX.Element {
   const { reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
 
-  useEffect(()=> {
+  useEffect(() => {
     timeline.current = anime.timeline({
       autoplay: false,
       easing: 'easeInOutSine',
@@ -26,11 +26,12 @@ function ComputerRecs(): JSX.Element {
       targets: '#video2-red',
       opacity: [0, 1],
       duration: 1000,
-    }).add({
-      targets: '#video3-red',
-      opacity: [0, 1],
-      duration: 1000,
-    });
+    })
+      .add({
+        targets: '#video3-red',
+        opacity: [0, 1],
+        duration: 1000,
+      });
   }, []);
 
   useEffect(() => {
@@ -41,13 +42,13 @@ function ComputerRecs(): JSX.Element {
 
   return (
     <ScalingSlide widthPx={1000} heightPx={333}>
-      <div id='computer-rec-screen'>
-        <div id='video1' className='rec-video black-border-video'/>
-        <div id='video2' className='rec-video black-border-video'/>
-        <div id='video3' className='rec-video black-border-video'/>
-        <div id='video1-red' className='rec-video red-border-video'/>
-        <div id='video2-red' className='rec-video red-border-video'/>
-        <div id='video3-red' className='rec-video red-border-video'/>
+      <div id="computer-rec-screen">
+        <div id="video1" className="rec-video black-border-video" />
+        <div id="video2" className="rec-video black-border-video" />
+        <div id="video3" className="rec-video black-border-video" />
+        <div id="video1-red" className="rec-video red-border-video" />
+        <div id="video2-red" className="rec-video red-border-video" />
+        <div id="video3-red" className="rec-video red-border-video" />
       </div>
     </ScalingSlide>
   );

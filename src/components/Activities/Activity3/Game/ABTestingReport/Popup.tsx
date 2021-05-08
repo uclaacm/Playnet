@@ -9,7 +9,7 @@ interface PopUpProps {
 function PopUp(props: PopUpProps): JSX.Element {
   const { setState } = useContext(GameContext);
   return (
-    <div id={'popup'}>
+    <div id="popup">
       <h4>Are you sure?</h4>
       <p>
         Once you submit these settings, you can’t change them! We are about to see

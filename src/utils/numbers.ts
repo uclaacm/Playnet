@@ -8,9 +8,9 @@
 export function clamp(min: number, input: number, max: number) : {
   num: number,
   dNum: number,
-}{
+} {
   const value = Math.max(Math.min(input, max), min);
-  return {num: value, dNum: value - input};
+  return { num: value, dNum: value - input };
 }
 
 /**
@@ -18,6 +18,6 @@ export function clamp(min: number, input: number, max: number) : {
  * @param arr input object with string key and number value
  * @returns sum of all elements
  */
-export function objectSum(arr: {[key: string]: number}) : number{
-  return Object.values(arr).reduce((prev, curr)=>prev + curr, 0);
+export function objectSum(arr: {[key: string]: number}) : number {
+  return Object.values(arr).reduce((prev, curr) => prev + curr, 0);
 }

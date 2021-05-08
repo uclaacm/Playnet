@@ -16,9 +16,7 @@ interface CipherGameProps {
 function CipherGame(props: CipherGameProps): JSX.Element {
   const items = ['APPLE', 'CAR', 'UFO', 'LEMON'];
   const nums = ['ONE', 'TWO', 'THREE'];
-  const nums_and_apple: string[] = nums.reduce((n_acc: string[], n_v: string) => {
-    return [...n_acc, `${n_v} APPLE`];
-  }, []);
+  const nums_and_apple: string[] = nums.reduce((n_acc: string[], n_v: string) => [...n_acc, `${n_v} APPLE`], []);
   const nums_and_items: string[] = nums.reduce((n_acc: string[], n_v: string) => {
     const num_and_items = items.map((i_v) => `${n_v} ${i_v}`);
     return [...n_acc, ...num_and_items];
@@ -43,18 +41,19 @@ function CipherGame(props: CipherGameProps): JSX.Element {
   }, []);
 
   return (
-    <div id={'game-wrapper'}>
-      <div id={'fixed-star-counter'}>
+    <div id="game-wrapper">
+      <div id="fixed-star-counter">
         <button className="playnet-button playnet-btn-grey" onClick={() => jumpNumSlides(skips)}>
           Skip Game :(
         </button>
       </div>
-      <div id={'cipher-game-content'}>
+      <div id="cipher-game-content">
         <CipherGameRound
           advanceGame={next}
           round={LEVELS[numStars]}
           HASH_VAL={hash}
-          isGameSoundMuted={isGameSoundMuted} />
+          isGameSoundMuted={isGameSoundMuted}
+        />
       </div>
     </div>
   );
@@ -66,12 +65,12 @@ interface SuccessCipherGameStateProps {
 function SuccessCipherGameState(props: SuccessCipherGameStateProps): JSX.Element {
   const { next } = useContext(CarouselContext);
   return (
-    <div id={'game-wrapper'}>
-      <div id={'cipher-game-content'}>
-        <div className={'cipher-game-success'}>
+    <div id="game-wrapper">
+      <div id="cipher-game-content">
+        <div className="cipher-game-success">
           <div>You got a star! Let&apos;s keep going.</div>
-          <img src={Alien} alt='friendly alien' />
-          <div className={'star-counter'}>
+          <img src={Alien} alt="friendly alien" />
+          <div className="star-counter">
             <img src={Star} alt="star points" />
             {props.numStars}
           </div>
@@ -85,4 +84,4 @@ function SuccessCipherGameState(props: SuccessCipherGameStateProps): JSX.Element
 }
 
 export default CipherGame;
-export {SuccessCipherGameState};
+export { SuccessCipherGameState };

@@ -10,13 +10,12 @@ import { CarouselContext } from '../../shared/Carousel';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
 import Convo, { Phrase } from './Convo';
 
-
 interface ComputerConversationProps {
   timeBtwnWords: number;
 }
 
 const ComputerConversation = (props: ComputerConversationProps): JSX.Element => {
-  const {reloadTime} = useContext(CarouselContext);
+  const { reloadTime } = useContext(CarouselContext);
   const personConvo: Phrase[] = [
     {
       text: 'apple',
@@ -49,24 +48,37 @@ const ComputerConversation = (props: ComputerConversationProps): JSX.Element => 
   ];
 
   return (
-    <div id='slide-3'>
-      <div className='left-content content'>
-        <div id='cartoon-person-speech'>
-          <Convo key={`left-${reloadTime}`} phrases={personConvo} timeBtwnPhrases={props.timeBtwnWords} textBubbleStyle={TextBubbleStyles.SMALL_LEFT}
+    <div id="slide-3">
+      <div className="left-content content">
+        <div id="cartoon-person-speech">
+          <Convo
+            key={`left-${reloadTime}`}
+            phrases={personConvo}
+            timeBtwnPhrases={props.timeBtwnWords}
+            textBubbleStyle={TextBubbleStyles.SMALL_LEFT}
           />
         </div>
-        <img src={CharacterSvg} alt='Image of Cartoon Person' />
-        <img key={`confetti-${reloadTime}`} id='party-confetti' src={PartyConfettiSvg} style={{
-          animationDelay: 2 * props.timeBtwnWords / 1000 + 's',
-          animationDuration: props.timeBtwnWords / 1000 + 's',
-        }} />
+        <img src={CharacterSvg} alt="Image of Cartoon Person" />
+        <img
+          key={`confetti-${reloadTime}`}
+          id="party-confetti"
+          src={PartyConfettiSvg}
+          style={{
+            animationDelay: `${2 * props.timeBtwnWords / 1000}s`,
+            animationDuration: `${props.timeBtwnWords / 1000}s`,
+          }}
+        />
       </div>
-      <div className='right-content content'>
-        <div id='computer-speech-bubble'>
-          <Convo key={`right-${reloadTime}`} phrases={computerGuesses} timeBtwnPhrases={props.timeBtwnWords}
-            textBubbleStyle={TextBubbleStyles.SMALL_RIGHT} />
+      <div className="right-content content">
+        <div id="computer-speech-bubble">
+          <Convo
+            key={`right-${reloadTime}`}
+            phrases={computerGuesses}
+            timeBtwnPhrases={props.timeBtwnWords}
+            textBubbleStyle={TextBubbleStyles.SMALL_RIGHT}
+          />
         </div>
-        <img id='computer-slide-3' src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
+        <img id="computer-slide-3" src={ComputerSvg} width="214px" alt="Image of Youtube on Computer" />
       </div>
     </div>
   );

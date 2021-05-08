@@ -20,7 +20,7 @@ function Activity1(): JSX.Element {
 
   const content = [
     {
-      child: <img src={ComputerSvg} width='40%' alt='Image of Youtube on Computer' />,
+      child: <img src={ComputerSvg} width="40%" alt="Image of Youtube on Computer" />,
       bottomText: 'How does YouTube bring you the videos you want?',
       bottomText2: 'Let\'s dive into what happens in the search bar.',
       animationTime: 5.5,
@@ -28,12 +28,12 @@ function Activity1(): JSX.Element {
     },
     {
       child:
-        <div className='content'>
-          <div id='binary-text-bubble'>
-            <TextBubble textBubbleStyle={TextBubbleStyles.LARGE} text='1101010100' />
-          </div>
-          <img src={ComputerSvg} width='214px' alt='Image of Youtube on Computer' />
-        </div>,
+  <div className="content">
+    <div id="binary-text-bubble">
+      <TextBubble textBubbleStyle={TextBubbleStyles.LARGE} text="1101010100" />
+    </div>
+    <img src={ComputerSvg} width="214px" alt="Image of Youtube on Computer" />
+  </div>,
       bottomText: 'Computers don\'t know English...',
       bottomText2: 'So how does it know what you are saying?',
       animationTime: 4.5,
@@ -47,10 +47,10 @@ function Activity1(): JSX.Element {
     },
     {
       child:
-        <TransitionSlide buttonText={'Play Game'}>
-          <div>Imagine that you are a computer trying to learn what the alien wants.</div>
-          <div>Can you figure out what the alien wants and keep it happy?</div>
-        </TransitionSlide>,
+  <TransitionSlide buttonText="Play Game">
+    <div>Imagine that you are a computer trying to learn what the alien wants.</div>
+    <div>Can you figure out what the alien wants and keep it happy?</div>
+  </TransitionSlide>,
       showNext: false,
       animationTime: 5.3,
       soundtrack: SoundTrack.Activity1_4,
@@ -95,18 +95,18 @@ function Activity1(): JSX.Element {
     {
       bottomText: 'Good news, we just found a translator that can help us understand the alien!',
       child:
-        <div>
-          <img src={Game1EndScreen} />
-        </div>,
+  <div>
+    <img src={Game1EndScreen} />
+  </div>,
       animationTime: 4.5,
       soundtrack: SoundTrack.Activity1_G1_G2,
     },
     {
       child:
-        <TransitionSlide buttonText={'Play Game'}>
-          <div>But even if we know what the alien is saying... can you figure out what they mean?</div>
-          <div>Warning: One sentence can mean two things, so the answer might not be what you expect!</div>
-        </TransitionSlide>,
+  <TransitionSlide buttonText="Play Game">
+    <div>But even if we know what the alien is saying... can you figure out what they mean?</div>
+    <div>Warning: One sentence can mean two things, so the answer might not be what you expect!</div>
+  </TransitionSlide>,
       showNext: false,
       animationTime: 9.5,
       soundtrack: SoundTrack.Activity1_G2_Intro,
@@ -120,28 +120,28 @@ function Activity1(): JSX.Element {
     },
     {
       child:
-        <>
-          <h2 id={'body-text'}> Being a computer sure isn&apos;t easy... next time you use a search bar, </h2>
-          <h2 id={'body-text'}> now you know what it has to deal with! </h2>
-          <Computer>
-            <>
-              <p>
-                Computers in the real world use artificial intelligence (AI) to remember what they learn
-                from trial and error. They can share what they learn with other computers to
-                give us a better searching experience.
-              </p>
+  <>
+    <h2 id="body-text"> Being a computer sure isn&apos;t easy... next time you use a search bar, </h2>
+    <h2 id="body-text"> now you know what it has to deal with! </h2>
+    <Computer>
+      <>
+        <p>
+          Computers in the real world use artificial intelligence (AI) to remember what they learn
+          from trial and error. They can share what they learn with other computers to
+          give us a better searching experience.
+        </p>
 
-              When you&apos;re older, you&apos;ll get the chance to learn how to code so that you can
-              learn how AI works in more detail!
-            </>
-          </Computer>
-        </>,
+        When you&apos;re older, you&apos;ll get the chance to learn how to code so that you can
+        learn how AI works in more detail!
+      </>
+    </Computer>
+  </>,
       // animationTime: 6,
       // soundtrack: SoundTrack.Activity1_End,
     },
   ];
   return (
-    <Carousel title={'Lost in Translation'} hasSound={true}>
+    <Carousel title="Lost in Translation" hasSound>
       {content}
     </Carousel>
   );

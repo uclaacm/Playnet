@@ -31,16 +31,17 @@ interface ActivityHomeProps {
 function ActivityHome(props: ActivityHomeProps): JSX.Element {
   const { url } = props;
   return (
-    <div id={'activity-home'}>
+    <div id="activity-home">
       <h2>Activities</h2>
-      <nav id={'activity-card-container'}>
-        {Object.keys(ACTIVITIES).map((path, i) =>
+      <nav id="activity-card-container">
+        {Object.keys(ACTIVITIES).map((path, i) => (
           <Link to={`${url}/${path}`} key={`activities-card-${i}`}>
             <ActivityCard
               id={path}
-              description={ACTIVITIES[`${path}`]} />
-          </Link>,
-        )}
+              description={ACTIVITIES[`${path}`]}
+            />
+          </Link>
+        ))}
         {/* <div>
           <ActivityCard
             id={'coming-soon'}
@@ -48,7 +49,10 @@ function ActivityHome(props: ActivityHomeProps): JSX.Element {
             disableHover={true} />
         </div> */}
       </nav>
-      <h4>Done? <Link to={'/feedback'} className={'link'}>Let us know if you liked it!</Link></h4>
+      <h4>
+        Done?
+        <Link to="/feedback" className="link">Let us know if you liked it!</Link>
+      </h4>
     </div>
   );
 }

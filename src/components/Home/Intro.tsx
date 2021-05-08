@@ -1,5 +1,5 @@
-import anime, {AnimeTimelineInstance} from 'animejs';
-import React, { useContext, useEffect, useRef} from 'react';
+import anime, { AnimeTimelineInstance } from 'animejs';
+import React, { useContext, useEffect, useRef } from 'react';
 import { CarouselContext } from '../shared/Carousel';
 
 export interface IntroAnimeProps {
@@ -7,7 +7,7 @@ export interface IntroAnimeProps {
 }
 
 function Intro(props: IntroAnimeProps): JSX.Element {
-  const {slideIdx, reloadTime} = useContext(CarouselContext);
+  const { slideIdx, reloadTime } = useContext(CarouselContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const timeout = useRef<NodeJS.Timeout | null>(null);
 
@@ -114,24 +114,24 @@ function Intro(props: IntroAnimeProps): JSX.Element {
   }, [slideIdx, reloadTime]);
 
   return (
-    <div id={'intro-container'}>
-      <div id={'computer'}/>
-      <div id={'rocket-container'}>
-        <div id={'rocket-path'}/>
-        <svg id={'bg-trajectory'} width="1606" height="128" viewBox="0 0 1606 128" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path id={'path-1'} d="M4 4C4 4 81 4 339.5 4" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
-          <path id={'path-2'} d="M329 4C447 4 511 18.5 511 61.5C511 104.5 594 123.5 852.5 123.5" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
-          <path id={'path-3'} d="M843 124C843 124 1309.38 124 1602 124" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30"/>
+    <div id="intro-container">
+      <div id="computer" />
+      <div id="rocket-container">
+        <div id="rocket-path" />
+        <svg id="bg-trajectory" width="1606" height="128" viewBox="0 0 1606 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path id="path-1" d="M4 4C4 4 81 4 339.5 4" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30" />
+          <path id="path-2" d="M329 4C447 4 511 18.5 511 61.5C511 104.5 594 123.5 852.5 123.5" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30" />
+          <path id="path-3" d="M843 124C843 124 1309.38 124 1602 124" stroke="black" strokeWidth="8" strokeLinecap="round" strokeDasharray="20 30" />
         </svg>
-        <div id={'rocket'}>
+        <div id="rocket">
           {rocketWord}
         </div>
       </div>
-      <div id={'server-container'}>
-        <div id={'library'}/>
-        <div id={'server'}/>
+      <div id="server-container">
+        <div id="library" />
+        <div id="server" />
       </div>
-      <div id={'servers'}/>
+      <div id="servers" />
     </div>
   );
 }

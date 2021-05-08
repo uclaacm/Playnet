@@ -90,17 +90,19 @@ function RecommendCriteria(): JSX.Element {
     return () => clearTimeout(timeout);
   }, [reloadTime, slideIdx]);
 
-  return <ScalingSlide widthPx={1100} heightPx={386}>
-    <>
-      <div id='flu-video' className='criteria-video' />
-      <div id='shark-video' className='criteria-video' />
-      <div id='flat-video' className='criteria-video' />
-      <div id='criteria-hearts' />
-      <div id='criteria-check' />
-      <div id='criteria-cross' />
-      <div id='criteria-mirror' />
-    </>
-  </ScalingSlide>;
+  return (
+    <ScalingSlide widthPx={1100} heightPx={386}>
+      <>
+        <div id="flu-video" className="criteria-video" />
+        <div id="shark-video" className="criteria-video" />
+        <div id="flat-video" className="criteria-video" />
+        <div id="criteria-hearts" />
+        <div id="criteria-check" />
+        <div id="criteria-cross" />
+        <div id="criteria-mirror" />
+      </>
+    </ScalingSlide>
+  );
 }
 
 export default RecommendCriteria;

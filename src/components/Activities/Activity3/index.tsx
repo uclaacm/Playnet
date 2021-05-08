@@ -69,17 +69,17 @@ function Activity3(): JSX.Element {
       animationTime: 3,
     },
     {
-      child: <Debugging phase={0}/>,
+      child: <Debugging phase={0} />,
       bottomText: 'We do that by writing code.',
       animationTime: 3,
     },
     {
-      child: <Debugging phase={1}/>,
+      child: <Debugging phase={1} />,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
       animationTime: 4,
     },
     {
-      child: <Debugging phase={2}/>,
+      child: <Debugging phase={2} />,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
       animationTime: 6,
     },
@@ -99,21 +99,21 @@ function Activity3(): JSX.Element {
       animationTime: 4,
     },
     {
-      child: <ABTestSlide1/>,
+      child: <ABTestSlide1 />,
       bottomText: 'Finally, the idea is AB tested, which means that we give',
       bottomText2: 'both the new and old versions to users.',
     },
     {
-      child: <ABTestSlide2/>,
+      child: <ABTestSlide2 />,
       bottomText: 'These users give their opinions on which version is better',
     },
     {
-      child: <GameIntroSlide1/>,
+      child: <GameIntroSlide1 />,
       bottomText: 'Now it’s your turn! Imagine that a YouTube team invited you to',
       bottomText2: 'help improve video recommendations.',
     },
     {
-      child: <GameIntroSlide2/>,
+      child: <GameIntroSlide2 />,
     },
     {
       child: <Game />,
@@ -122,7 +122,7 @@ function Activity3(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Mind Reading' hasSound={false}>
+    <Carousel title="Mind Reading" hasSound={false}>
       {content}
     </Carousel>
   );

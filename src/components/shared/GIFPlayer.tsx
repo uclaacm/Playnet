@@ -17,7 +17,7 @@ function GIFPlayer(props: GIFPlayerProps): JSX.Element {
   const lastTimeout = useRef(null);
 
   useEffect(() => {
-    if (index === props.gifs.length -1) {
+    if (index === props.gifs.length - 1) {
       return;
     }
     lastTimeout.current = setTimeout(() => {
@@ -38,7 +38,7 @@ function GIFPlayer(props: GIFPlayerProps): JSX.Element {
   }, [props.id]);
 
   return (
-    <img src={props.gifs[index].path + '?'+ String(Date.now())} alt={props.alt+props.id} key={props.id}/>
+    <img src={`${props.gifs[index].path}?${String(Date.now())}`} alt={props.alt + props.id} key={props.id} />
   );
 }
 

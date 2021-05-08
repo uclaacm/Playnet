@@ -14,7 +14,7 @@ function Base(props: BaseProps): JSX.Element {
   return (
     <>
       <Header section={props.section} />
-      <div className={'body'}>
+      <div className="body">
         { props.children }
       </div>
       <Footer />

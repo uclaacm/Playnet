@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import Star from '../../../../../assets/activity1/game1/star.svg';
 
@@ -7,8 +7,8 @@ import Alien, { ALIEN_STATE } from '../../../../shared/Alien';
 import { TextBubbleStyles, Activity1Game1Values } from '../../../../shared/PlaynetConstants';
 
 import TextBubble from '../../TextBubble';
-import CipherGameSlide from './../components/CipherGameSlide';
-import ProgressBar from './../components/ProgressBar';
+import CipherGameSlide from '../components/CipherGameSlide';
+import ProgressBar from '../components/ProgressBar';
 
 export interface SlideComponents {
   correctIdx: number,
@@ -23,8 +23,12 @@ interface CipherGameRoundProps {
 }
 
 function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
-  const { MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS, THRESHOLD_TO_HELP_PER_GAME } = Activity1Game1Values;
-  const { round, advanceGame, HASH_VAL, isGameSoundMuted } = props;
+  const {
+    MAX_HAPPINESS, CORRECT_PTS, INCORRECT_PTS, THRESHOLD_TO_HELP_PER_GAME,
+  } = Activity1Game1Values;
+  const {
+    round, advanceGame, HASH_VAL, isGameSoundMuted,
+  } = props;
 
   const getShuffledCards = () => {
     let cards = [...round];
@@ -60,7 +64,7 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
   const [hoverIncorrect, setHoverIncorrect] = useState(false);
   const [roundNum, setRoundNum] = useState(0);
 
-  useEffect(()=>{
+  useEffect(() => {
     if (roundNum <= THRESHOLD_TO_HELP_PER_GAME) return;
     handleAlienState(hoverIncorrect ? ALIEN_STATE.SAD : ALIEN_STATE.BASE);
   }, [hoverIncorrect]);
@@ -96,10 +100,10 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
     return correctWord.reduce(reducer, '');
   };
 
-  useEffect(()=> {
+  useEffect(() => {
     const speech = new SpeechSynthesisUtterance(displayScrambledText().toLowerCase());
     speech.lang = 'de-DE';
-    if (!isGameSoundMuted) {speechSynthesis.speak(speech);}
+    if (!isGameSoundMuted) { speechSynthesis.speak(speech); }
   }, [slideIdx]);
 
   const advanceRound = (correct : boolean) => {
@@ -124,22 +128,27 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
       return;
     }
     setSlideIdx(slideIdx + 1);
-    setRoundNum(prev => prev + 1);
+    setRoundNum((prev) => prev + 1);
   };
 
   return (
-    <div className={'game-content'}>
-      <div className={'gamebox'}>
+    <div className="game-content">
+      <div className="gamebox">
         <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayScrambledText()} />
         <Alien alienState={alienState} />
-        <div className={'happiness-bar'}>
+        <div className="happiness-bar">
           <ProgressBar percentComplete={100 * happiness / MAX_HAPPINESS} />
           <img src={Star} alt="star points" />
         </div>
         Happiness
       </div>
-      <CipherGameSlide {...slides[slideIdx]} advanceRound={advanceRound}
-        setHoverIncorrect={setHoverIncorrect} roundNum={slideIdx} isGameSoundMuted={isGameSoundMuted}/>
+      <CipherGameSlide
+        {...slides[slideIdx]}
+        advanceRound={advanceRound}
+        setHoverIncorrect={setHoverIncorrect}
+        roundNum={slideIdx}
+        isGameSoundMuted={isGameSoundMuted}
+      />
     </div>
   );
 }

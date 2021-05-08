@@ -11,6 +11,7 @@ import * as A2Animation8 from '../../../assets/lottie_animation_data/activity2/8
 
 import LottieControl from '../../shared/LottieControl';
 import { SoundTrack } from '../../shared/soundtrack';
+
 const IntroSlides = [
   {
     child: <LottieControl animationData={A2Animation1.default} />,
@@ -38,10 +39,14 @@ const IntroSlides = [
   },
   {
     child:
-      <>
-        <LottieControl animationData={A2Animation5.default} />
-        <h2 id={'body-text'}>which we do with <b>compression</b>, or packing, before the video is sent</h2>
-      </>,
+  <>
+    <LottieControl animationData={A2Animation5.default} />
+    <h2 id="body-text">
+      which we do with
+      <b>compression</b>
+      , or packing, before the video is sent
+    </h2>
+  </>,
     animationTime: 5.89,
     soundtrack: SoundTrack.Activity2_5,
   },
@@ -53,20 +58,32 @@ const IntroSlides = [
   },
   {
     child:
-    <>
-      <LottieControl animationData={A2Animation7.default} />
-      <h2 id={'body-text'}><b>Decompressing</b> is when your computer uses these instructions to show you the video.</h2>
-    </>,
+  <>
+    <LottieControl animationData={A2Animation7.default} />
+    <h2 id="body-text">
+      <b>Decompressing</b>
+      {' '}
+      is when your computer uses these instructions to show you the video.
+    </h2>
+  </>,
     animationTime: 10.31,
     soundtrack: SoundTrack.Activity2_7,
   },
   {
     child:
-    <>
-      <LottieControl animationData={A2Animation8.default} />
-      <h2 id={'body-text'}>But don’t just take our word for it,</h2>
-      <h2 id={'body-text'}>find out whether <b>you</b> think that <b>compression</b> speeds things up!</h2>
-    </>,
+  <>
+    <LottieControl animationData={A2Animation8.default} />
+    <h2 id="body-text">But don’t just take our word for it,</h2>
+    <h2 id="body-text">
+      find out whether
+      <b>you</b>
+      {' '}
+      think that
+      <b>compression</b>
+      {' '}
+      speeds things up!
+    </h2>
+  </>,
     animationTime: 8,
     soundtrack: SoundTrack.Activity2_8,
   },

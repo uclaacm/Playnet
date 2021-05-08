@@ -8,7 +8,7 @@ export const STABILITY_OF_FINAL = 3; // how many times more stable the final is 
 
 /** RATING  CONSTANTS */
 export const WEIGHT_CONSTANT = 20; // the lower, the better the ratings
-export const CHANCE_OF_SUBSTANTIAL_REVIEW = .9; // in decimal
+export const CHANCE_OF_SUBSTANTIAL_REVIEW = 0.9; // in decimal
 
 /** Variable Allocation CONSTANTS */
 export const MIN_EXPECTED_ALLOCATION = 7;
@@ -17,8 +17,8 @@ export const MIN_EXPECTED_ALLOCATION = 7;
 export const MAX_NUM_ERRORS = 10;
 export const DAY_VALUE_FOR_BUILD = 5; // t in an e^-t function, the higher, the less bugs
 // in decimal
-export const DAY_VALUE_PERCENT_FOR_DEBUG = .20; // the effectiveness of debug scales off of build
-export const EXP_CONSTANT = .02; // the smaller, the more bugs
+export const DAY_VALUE_PERCENT_FOR_DEBUG = 0.20; // the effectiveness of debug scales off of build
+export const EXP_CONSTANT = 0.02; // the smaller, the more bugs
 export const DEBUG_ERROR_OPTIONS = [
   'Image failed to load', 'File not found', 'Unexpected any.', 'Expected linebreaks to be \'LF\' but found \'CRLF\'',
   '\',\' expected.', 'Cannot find name \'numbe\'.', '\'expectedWeights\' is declared but its value is never read.',

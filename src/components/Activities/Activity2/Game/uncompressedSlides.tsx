@@ -15,7 +15,7 @@ const uncompressedSlides = [
   {
     choices: ['frog', 'alien', 'pig'],
     correctIdx: 1,
-    gif: <GIFPlayer gifs={[alienGifTime]} alt='Gif of Alien being Drawn' id={'0-0'} />,
+    gif: <GIFPlayer gifs={[alienGifTime]} alt="Gif of Alien being Drawn" id="0-0" />,
     answerDisplayWords: ['blankspot'],
     answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
     answerSlotIndex: 0,
@@ -23,10 +23,14 @@ const uncompressedSlides = [
   {
     choices: ['shoes', 'wig', 'flower'],
     correctIdx: 2,
-    gif: <GIFPlayer gifs={[
-      alienGifTime,
-      alienFlowerGifTime,
-    ]} alt='Gif of Alien with Flower being Drawn' id={'0-1'} />,
+    gif: <GIFPlayer
+      gifs={[
+        alienGifTime,
+        alienFlowerGifTime,
+      ]}
+      alt="Gif of Alien with Flower being Drawn"
+      id="0-1"
+    />,
     answerDisplayWords: ['alien', 'with', 'blank'],
     answerDisplayStyles:
       [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
@@ -35,11 +39,15 @@ const uncompressedSlides = [
   {
     choices: ['wig', 'dress', 'shoes'],
     correctIdx: 0,
-    gif: <GIFPlayer gifs={[
-      alienGifTime,
-      alienFlowerGifTime,
-      alienWigGifTime,
-    ]} alt='Gif of Alien with Flower and Wig being Drawn' id={'0-2'} />,
+    gif: <GIFPlayer
+      gifs={[
+        alienGifTime,
+        alienFlowerGifTime,
+        alienWigGifTime,
+      ]}
+      alt="Gif of Alien with Flower and Wig being Drawn"
+      id="0-2"
+    />,
     answerDisplayWords: ['alien', 'with', 'flower', 'and', 'blank'],
     answerDisplayStyles:
       [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,

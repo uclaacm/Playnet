@@ -11,15 +11,15 @@ export const SESSION_FEATURE_WEIGHTS = 'featureWeights';
 // GAME STATES
 export enum A3_GAME_STATE {
   EmptyState = '',
-  PriorityExplanation  = 'PriorityExplanation',
-  PriorityChoices  = 'PriorityChoices',
-  PriorityWeighing  = 'PriorityWeighing',
-  TimeAllocationExplanation  = 'TimeAllocationExplanation',
-  TimeAllocation  = 'TimeAllocation',
-  DebuggingResults  = 'DebuggingResults',
-  ABTestingExplanation  = 'ABTestingExplanation',
-  ABTestingReport  = 'ABTestingReport',
-  FinalReport  = 'FinalReport',
+  PriorityExplanation = 'PriorityExplanation',
+  PriorityChoices = 'PriorityChoices',
+  PriorityWeighing = 'PriorityWeighing',
+  TimeAllocationExplanation = 'TimeAllocationExplanation',
+  TimeAllocation = 'TimeAllocation',
+  DebuggingResults = 'DebuggingResults',
+  ABTestingExplanation = 'ABTestingExplanation',
+  ABTestingReport = 'ABTestingReport',
+  FinalReport = 'FinalReport',
 }
 
 const STATE_ORDERING_LIST = [
@@ -59,9 +59,8 @@ function getNextStates(index: number): A3_GAME_STATE[] {
   return array;
 }
 
-export const NEXT_STATE_MAP = STATE_ORDERING_LIST.reduce((ret, state, index) => {
-  return {...ret, [state]: getNextStates(index)};
-}, {}) as {[key in A3_GAME_STATE]: A3_GAME_STATE[]};
+export const NEXT_STATE_MAP = STATE_ORDERING_LIST.reduce((ret, state, index) =>
+  ({ ...ret, [state]: getNextStates(index) }), {}) as {[key in A3_GAME_STATE]: A3_GAME_STATE[]};
 
 // GAME VARIABLES
 export const NUM_VARIABLES_SELECTED = 3;
@@ -76,10 +75,14 @@ export enum VARIABLES {
 
 export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
   [VARIABLES.CREDIBLE]: [
-    <>Credibility refers to whether you can trust something. To decide if something is credible,
-    ask: Do I think what they’re saying is true?</>,
-    <>Why is this important? We want to make sure that people aren’t believing false information
-    they found online. Plus, they might get angry at you for letting them get tricked!</>,
+    <>
+      Credibility refers to whether you can trust something. To decide if something is credible,
+      ask: Do I think what they’re saying is true?
+    </>,
+    <>
+      Why is this important? We want to make sure that people aren’t believing false information
+      they found online. Plus, they might get angry at you for letting them get tricked!
+    </>,
   ],
   [VARIABLES.RECENT_UPLOAD]: [
     <>Recently uploaded videos are the ones that just got posted to YouTube.</>,
@@ -91,8 +94,10 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
   ],
   [VARIABLES.POPULAR]: [
     <>Popular videos are the ones that get the most likes.</>,
-    <>If a lot of people like a certain video, we can predict that it would be a good recommendation
-      since new users would probably like it as well.</>,
+    <>
+      If a lot of people like a certain video, we can predict that it would be a good recommendation
+      since new users would probably like it as well.
+    </>,
   ],
   [VARIABLES.SAME_CREATOR]: [
     <>Videos made by the same creator usually have similar topics or styles.</>,
@@ -100,8 +105,10 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
   ],
   [VARIABLES.SUBSCRIBED]: [
     <>If you’re asking whether users would get bored seeing the same videos all the time, you might be right!</>,
-    <>Maybe users should be in control of what they get recommended.
-      Should we give users videos from people they already follow?</>,
+    <>
+      Maybe users should be in control of what they get recommended.
+      Should we give users videos from people they already follow?
+    </>,
   ],
 };
 
@@ -109,4 +116,4 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
 export const STARTING_DAYS = 56;
 export const LOW_DAY_THRESHOLD = 14;
 export const HIGH_DAY_THRESHOLD = 21;
-export const DEFAULT_TIME_ALLOCATION = {build: 0, debug: 0, abTest: 0};
+export const DEFAULT_TIME_ALLOCATION = { build: 0, debug: 0, abTest: 0 };

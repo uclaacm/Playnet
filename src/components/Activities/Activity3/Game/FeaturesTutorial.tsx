@@ -46,7 +46,7 @@ function FeaturesTutorial(): JSX.Element {
   ];
 
   const moveNext = () => {
-    if (index < descriptions.length -1) {
+    if (index < descriptions.length - 1) {
       setIndex(index + 1);
     } else {
       goNextState();
@@ -58,21 +58,26 @@ function FeaturesTutorial(): JSX.Element {
       <p>
         First, let&apos;s decide what to prioritize, or what we care about most.
       </p>
-      <div id='variables-wrapper' className='enable-blur tutorial-container'>
-        {Object.values(VARIABLES).map((variable, i) => {
-          return (
-            <div className={'variable-card' + (variable === descriptions[index].name ? ' disable-blur' : '')} key={variable}
-              style={{  //note: the order of the descipritions is different from the order of the variable cards
-                gridRow: (parseInt(i / 3) + 1),
-                gridColumn: (((i) % 3) + 1),
-              }}>
-              <div className='variable-image' id={variable.toLowerCase().replace(' ', '-')} />
-              {variable}
-            </div>
-          );
-        })}
-        <InfoCard phrases={VARIABLE_CONTENT[descriptions[index].name]} col={descriptions[index].col}
-          key={descriptions[index].name + index} goNextParentState={moveNext} />
+      <div id="variables-wrapper" className="enable-blur tutorial-container">
+        {Object.values(VARIABLES).map((variable, i) => (
+          <div
+            className={`variable-card${variable === descriptions[index].name ? ' disable-blur' : ''}`}
+            key={variable}
+            style={{ // note: the order of the descipritions is different from the order of the variable cards
+              gridRow: (parseInt(i / 3) + 1),
+              gridColumn: (((i) % 3) + 1),
+            }}
+          >
+            <div className="variable-image" id={variable.toLowerCase().replace(' ', '-')} />
+            {variable}
+          </div>
+        ))}
+        <InfoCard
+          phrases={VARIABLE_CONTENT[descriptions[index].name]}
+          col={descriptions[index].col}
+          key={descriptions[index].name + index}
+          goNextParentState={moveNext}
+        />
       </div>
     </>
   );

@@ -1,5 +1,7 @@
 import anime, { AnimeTimelineInstance } from 'animejs';
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, {
+  useContext, useEffect, useState, useRef,
+} from 'react';
 import { GameContext } from '.';
 import ScalingSlide from '../../../shared/ScalingSlide';
 
@@ -42,7 +44,6 @@ function ABTestDescription(): JSX.Element {
       targets: '#abtest-text2',
       ...fadeIn,
     });
-
   }, []);
 
   useEffect(() => {
@@ -55,34 +56,42 @@ function ABTestDescription(): JSX.Element {
       }, 250);
       return () => clearTimeout(timeout);
     }
-  },[phase]);
+  }, [phase]);
 
   const goNextPhase = () => {
     if (phase !== 0) goNextState && goNextState();
-    else setPhase(phase+1);
+    else setPhase(phase + 1);
   };
 
-  return <>
-    <ScalingSlide widthPx={1100} heightPx={540}>
-      <>
-        <div id={'abtest-toptext'}>
-          <div id={'abtest-text1'}>
-            Finally, we’re going to A/B test our new feature. A/B testing means giving out our
-            feature to a small number of real-world users and asking for their opinion.
+  return (
+    <>
+      <ScalingSlide widthPx={1100} heightPx={540}>
+        <>
+          <div id="abtest-toptext">
+            <div id="abtest-text1">
+              Finally, we’re going to A/B test our new feature. A/B testing means giving out our
+              feature to a small number of real-world users and asking for their opinion.
+            </div>
+            <div id="abtest-text2">
+              We can then make changes based on their feedback before we make the feature available to everyone!
+            </div>
           </div>
-          <div id={'abtest-text2'}>
-            We can then make changes based on their feedback before we make the feature available to everyone!
-          </div>
-        </div>
-        <div id={'love-response'} />
-        <div id={'abtest-group'} />
-        <div id={'abtest-computer1'} />
-        <div id={'abtest-computer2'} />
-        <div id={'dislike-response'} />
-        <button id={'abtest-explain-button'} className='playnet-button' onClick={goNextPhase}
-          style={{ width: '50%' }}>Continue</button>
-      </>
-    </ScalingSlide>
-  </>;
+          <div id="love-response" />
+          <div id="abtest-group" />
+          <div id="abtest-computer1" />
+          <div id="abtest-computer2" />
+          <div id="dislike-response" />
+          <button
+            id="abtest-explain-button"
+            className="playnet-button"
+            onClick={goNextPhase}
+            style={{ width: '50%' }}
+          >
+            Continue
+          </button>
+        </>
+      </ScalingSlide>
+    </>
+  );
 }
 export default ABTestDescription;

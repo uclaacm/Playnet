@@ -29,14 +29,14 @@ function Lecture(props: LectureProps): JSX.Element {
     timeline.current?.add({
       targets: ['#arm-1', '.disagree'],
       ...fadeIn,
-      changeComplete: () => { timeline.current?.pause();},
+      changeComplete: () => { timeline.current?.pause(); },
     });
 
     // Second Animation
     timeline.current?.add({
       targets: ['#arm-1', '.disagree'],
       ...fadeOut,
-      changeComplete: () => { timeline.current?.pause();},
+      changeComplete: () => { timeline.current?.pause(); },
     });
 
     // Third Animation
@@ -63,25 +63,27 @@ function Lecture(props: LectureProps): JSX.Element {
     return () => clearTimeout(timeout);
   }, [phase, reloadTime]);
 
-  return <ScalingSlide widthPx={1102} heightPx={386}>
-    <>
-      <div id={'lecture-container'}>
-        <div id={'lecturer'}/>
-        <div className={'lecture-content'}>
-          <div id={'bad-content'}/>
-          <div id={'better-content'}/>
+  return (
+    <ScalingSlide widthPx={1102} heightPx={386}>
+      <>
+        <div id="lecture-container">
+          <div id="lecturer" />
+          <div className="lecture-content">
+            <div id="bad-content" />
+            <div id="better-content" />
+          </div>
         </div>
-      </div>
-      <div className={'disagree'}/>
-      <div className={'question'}/>
-      <div id={'arm-1'} className={'arm'}/>
-      <div id={'arm-2'} className={'arm'}/>
-      <div id={'arm-3'} className={'arm'}/>
-      <div id={'arm-4'} className={'arm'}/>
-      <div id={'arm-5'} className={'arm'}/>
-      <div id={'audience'}/>
-    </>
-  </ScalingSlide>;
+        <div className="disagree" />
+        <div className="question" />
+        <div id="arm-1" className="arm" />
+        <div id="arm-2" className="arm" />
+        <div id="arm-3" className="arm" />
+        <div id="arm-4" className="arm" />
+        <div id="arm-5" className="arm" />
+        <div id="audience" />
+      </>
+    </ScalingSlide>
+  );
 }
 
 export default Lecture;

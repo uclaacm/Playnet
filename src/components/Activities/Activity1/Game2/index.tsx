@@ -15,7 +15,7 @@ import { CarouselContext } from '../../../shared/Carousel';
 import GameSlide from './components/GameSlide';
 
 function AmbiguousPhrasingGame(): JSX.Element {
-  const [ slideIdx, setSlideIdx ] = useState(0);
+  const [slideIdx, setSlideIdx] = useState(0);
   const context = useContext(CarouselContext);
 
   const slides = [
@@ -46,15 +46,15 @@ function AmbiguousPhrasingGame(): JSX.Element {
   ];
 
   const advanceGame = () => {
-    if (slideIdx === slides.length-1) {
+    if (slideIdx === slides.length - 1) {
       context.next();
       return;
     }
-    setSlideIdx(slideIdx+1);
+    setSlideIdx(slideIdx + 1);
   };
 
   return (
-    <div id={'game-wrapper'}>
+    <div id="game-wrapper">
       <GameSlide
         {...slides[slideIdx]}
         advanceGame={advanceGame}

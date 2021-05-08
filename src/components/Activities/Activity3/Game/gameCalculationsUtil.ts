@@ -36,9 +36,9 @@ export function accuracyOfWeights(
   expectedWeights: number[],
 ): number {
   // value between 1-5 about how accurate the recommendation was
-  const raw = 5 - (expectedWeights.reduce((prev, weight, i) => prev +
-    Math.abs(featureWeights[i] - weight), 0) / WEIGHT_CONSTANT) + 1;
-  return  clamp(1, raw, 5).num;
+  const raw = 5 - (expectedWeights.reduce((prev, weight, i) => prev
+    + Math.abs(featureWeights[i] - weight), 0) / WEIGHT_CONSTANT) + 1;
+  return clamp(1, raw, 5).num;
 }
 
 /**
@@ -144,7 +144,8 @@ export function getControlGraph(
   // start at some random point between [MIN_GRAPH_START, MAX_GRAPH_START]
   let lastX = 0;
   let lastY = MIN_GRAPH_START + (MAX_GRAPH_START - MIN_GRAPH_START) * Math.random();
-  let tempDy, dY;
+  let tempDy; let
+    dY;
   xyMapping.push({
     x: lastX,
     y: lastY,
@@ -191,7 +192,8 @@ export function getBetaGraph(
   // initialize and add in first control point, so that beta graph starts at same spot
   const xyMapping: Point[] = [];
   const dxyMapping: Point[] = [];
-  let rand, tempDy, tempDyWithControl, dY;
+  let rand; let tempDy; let tempDyWithControl; let
+    dY;
 
   let lastX = controlGraph[0].x;
   let lastY = controlGraph[0].y;
@@ -204,7 +206,7 @@ export function getBetaGraph(
   const quality = overallQuality(featureWeights, expectedWeights, timeAllocations);
 
   // add numABTestingDays # of points!
-  dControlGraph.forEach(({x: controlDx, y: controlDy}) => {
+  dControlGraph.forEach(({ x: controlDx, y: controlDy }) => {
     // find a random change in y based on the quality of the product + control's dy
     rand = Math.random() * maxChange - (maxChange / 2);
     tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 2.5) + rand;
@@ -269,7 +271,8 @@ export function getABTestingProductGraph(
     controlGraph,
     dControlGraph,
     timeAllocations,
-    RANDOM_BETA_TEST_CHANGE);
+    RANDOM_BETA_TEST_CHANGE,
+  );
 }
 
 /**
@@ -292,7 +295,8 @@ export function getFinalProductGraph(
     controlGraph,
     dControlGraph,
     timeAllocations,
-    RANDOM_BETA_TEST_CHANGE / STABILITY_OF_FINAL);
+    RANDOM_BETA_TEST_CHANGE / STABILITY_OF_FINAL,
+  );
 }
 
 /**
@@ -304,7 +308,7 @@ export function numFinalStars(
   finalX: number,
   finalBetaX: number,
 ): number {
-  const num = Math.floor((finalBetaX - finalX) / 20 + 2.5) ;
+  const num = Math.floor((finalBetaX - finalX) / 20 + 2.5);
   const numStars = clamp(1, num, 5).num;
   return (finalBetaX > 95) ? 5 : numStars;
 }

@@ -4,7 +4,7 @@ import useSound from 'use-sound';
 import CorrectSFX from '../../../../assets/activity1/game2/correct.mp3';
 import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
 import SceneSvg from '../../../../assets/activity2/game/scene.svg';
-import {replace} from '../../../../utils';
+import { replace } from '../../../../utils';
 
 import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';
 import { AnswerChoiceBoxStyles, AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
@@ -21,12 +21,16 @@ interface FillInBlankGamePageProps {
 }
 
 function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
-  const {pageInfo, slideNum, addTimeElapsed, advanceGame, isGameSoundMuted} = props;
-  const {choices, correctIdx, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords} = pageInfo;
+  const {
+    pageInfo, slideNum, addTimeElapsed, advanceGame, isGameSoundMuted,
+  } = props;
+  const {
+    choices, correctIdx, gif, answerSlotIndex, answerDisplayStyles, answerDisplayWords,
+  } = pageInfo;
 
   const volume = isGameSoundMuted ? 0 : 0.5;
-  const [playCorrect] = useSound(CorrectSFX, { volume: volume });
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: volume });
+  const [playCorrect] = useSound(CorrectSFX, { volume });
+  const [playIncorrect] = useSound(IncorrectSFX, { volume });
 
   const [incorrectChoices, setIncorrectChoices] = useState<boolean[]>([]);
   const startTime = useRef(Date.now());
@@ -68,41 +72,45 @@ function FillInBlankGamePage(props: FillInBlankGamePageProps): JSX.Element {
   }, [answerDisplayWords, answerDisplayStyles]);
 
   return (
-    <div className='game-page'>
-      <div className='main-content'>
-        <div className='gif'>
+    <div className="game-page">
+      <div className="main-content">
+        <div className="gif">
           {gif}
         </div>
-        <div className='right-side'>
-          <div className='answer-display'>
-            <div className='flex-row'>
-              {words.map((word, index) =>
+        <div className="right-side">
+          <div className="answer-display">
+            <div className="flex-row">
+              {words.map((word, index) => (
                 <div
                   className={`individual-answer-display ${styles[index]}`}
-                  key={`${slideNum}-${index}`}>
+                  key={`${slideNum}-${index}`}
+                >
                   {word}
-                </div>,
-              )}
+                </div>
+              ))}
             </div>
           </div>
-          <div className='answer-choices'>
-            {choices.map((answerChoice, index) =>
+          <div className="answer-choices">
+            {choices.map((answerChoice, index) => (
               <AnsweChoiceBox
-                key={slideNum + '-' + index}
+                key={`${slideNum}-${index}`}
                 handleClick={() => handleClick(index)}
-                text={answerChoice} style={AnswerChoiceBoxStyles.SMALL_PX_BASED}
+                text={answerChoice}
+                style={AnswerChoiceBoxStyles.SMALL_PX_BASED}
                 isCorrect={index === correctIdx}
-              />,
-            )}
+              />
+            ))}
           </div>
         </div>
       </div>
-      <div className='scene-info'>
-        <div className='icon'>
+      <div className="scene-info">
+        <div className="icon">
           <img src={SceneSvg} />
         </div>
-        <span className='details'>
-          Scene {slideNum + 1}
+        <span className="details">
+          Scene
+          {' '}
+          {slideNum + 1}
         </span>
       </div>
     </div>

@@ -9,9 +9,9 @@ interface CompressionGameIntroProps {
 export default function Intro(props: CompressionGameIntroProps): JSX.Element {
   const context = useContext(CarouselContext);
   return (
-    <div className='game-intro-content'>
-      <div className='center-text'>{props.text}</div>
-      <button className='playnet-button' onClick={context.next}>{props.buttonText}</button>
+    <div className="game-intro-content">
+      <div className="center-text">{props.text}</div>
+      <button className="playnet-button" onClick={context.next}>{props.buttonText}</button>
     </div>
   );
 }

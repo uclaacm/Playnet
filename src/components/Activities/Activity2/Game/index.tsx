@@ -21,12 +21,12 @@ interface CompressionGameProps {
 }
 
 function CompressionGame(props: CompressionGameProps): JSX.Element {
-  const {slides, tag} = props;
-  const sessionStorage = window.sessionStorage;
+  const { slides, tag } = props;
+  const { sessionStorage } = window;
   const context = useContext(CarouselContext);
   const [time, setTime] = useState(0);
   const [slide, setSlide] = useState(0);
-  const addTimeElapsed = (t: number) => setTime(prev => prev + t);
+  const addTimeElapsed = (t: number) => setTime((prev) => prev + t);
 
   useEffect(() => {
     if (!time) return;

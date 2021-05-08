@@ -15,12 +15,14 @@ interface CipherGameSlideProps {
 }
 
 function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
-  const {correctIdx, advanceRound, setHoverIncorrect, roundNum, isGameSoundMuted} = props;
+  const {
+    correctIdx, advanceRound, setHoverIncorrect, roundNum, isGameSoundMuted,
+  } = props;
   const [card0, card1] = props.cards;
 
   const volume = isGameSoundMuted ? 0 : 0.5;
-  const [playCorrect] = useSound(CorrectSFX, { volume: volume});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: volume});
+  const [playCorrect] = useSound(CorrectSFX, { volume });
+  const [playIncorrect] = useSound(IncorrectSFX, { volume });
 
   const handleClick = (option : number) => {
     if (option === correctIdx) {
@@ -33,11 +35,23 @@ function CipherGameSlide(props: CipherGameSlideProps): JSX.Element {
   };
 
   return (
-    <div className={'cipher-game-cards'}>
-      <AnswerChoiceBox handleClick={()=>handleClick(0)} imgSrc={''} id={card0.split(' ').join('-')} isCorrect={correctIdx === 0}
-        roundId={roundNum} setHover={correctIdx !== 0 ? setHoverIncorrect : undefined}/>
-      <AnswerChoiceBox handleClick={()=>handleClick(1)} imgSrc={''} id={card1.split(' ').join('-')} isCorrect={correctIdx === 1}
-        roundId={roundNum}  setHover={correctIdx !== 1 ? setHoverIncorrect : undefined}/>
+    <div className="cipher-game-cards">
+      <AnswerChoiceBox
+        handleClick={() => handleClick(0)}
+        imgSrc=""
+        id={card0.split(' ').join('-')}
+        isCorrect={correctIdx === 0}
+        roundId={roundNum}
+        setHover={correctIdx !== 0 ? setHoverIncorrect : undefined}
+      />
+      <AnswerChoiceBox
+        handleClick={() => handleClick(1)}
+        imgSrc=""
+        id={card1.split(' ').join('-')}
+        isCorrect={correctIdx === 1}
+        roundId={roundNum}
+        setHover={correctIdx !== 1 ? setHoverIncorrect : undefined}
+      />
     </div>
   );
 }

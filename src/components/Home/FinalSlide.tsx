@@ -68,18 +68,20 @@ function FinalSlide(props: FinalSlideProps): JSX.Element {
     return () => clearTimeout(timeout);
   }, [reloadTime]);
 
-  return <ScalingSlide>
-    <>
-      <div id={'final-intro-background'} />
-      <div id={'server'} />
-      <div id={'computer'} />
-      <div id={'final-rocket'}>
-        <div id={'rocket-text'}>{VideoInfo[chosenVideo].rocket_word}</div>
-        <div id={'rocket-image'} />
-        <div id={'video-pulley'} />
-      </div>
-      <div id={'video'} className={chosenVideo.replace('_', '-')} />
-    </>
-  </ScalingSlide>;
+  return (
+    <ScalingSlide>
+      <>
+        <div id="final-intro-background" />
+        <div id="server" />
+        <div id="computer" />
+        <div id="final-rocket">
+          <div id="rocket-text">{VideoInfo[chosenVideo].rocket_word}</div>
+          <div id="rocket-image" />
+          <div id="video-pulley" />
+        </div>
+        <div id="video" className={chosenVideo.replace('_', '-')} />
+      </>
+    </ScalingSlide>
+  );
 }
 export default FinalSlide;

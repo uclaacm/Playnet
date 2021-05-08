@@ -35,16 +35,18 @@ function PlantSprout(): JSX.Element {
     return () => clearTimeout(timeout);
   }, [reloadTime]);
 
-  return <ScalingSlide widthPx={1102} heightPx={386}>
-    <>
-      <div id={'sprout-container'}>
-        <div id={'plant-sprout'} />
-        <div id={'left-leaf'} />
-        <div id={'right-leaf'} />
-      </div>
-      <div id={'bottom-soil'} />
-    </>
-  </ScalingSlide>;
+  return (
+    <ScalingSlide widthPx={1102} heightPx={386}>
+      <>
+        <div id="sprout-container">
+          <div id="plant-sprout" />
+          <div id="left-leaf" />
+          <div id="right-leaf" />
+        </div>
+        <div id="bottom-soil" />
+      </>
+    </ScalingSlide>
+  );
 }
 
 export default PlantSprout;

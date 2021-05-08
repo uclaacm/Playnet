@@ -1,4 +1,6 @@
-import React, { CSSProperties, useEffect, useState, useRef } from 'react';
+import React, {
+  CSSProperties, useEffect, useState, useRef,
+} from 'react';
 
 import '../styles/Carousel.scss';
 import useSound from 'use-sound';
@@ -60,15 +62,15 @@ function Carousel(props: CarouselProps): JSX.Element {
     const gameSoundMuted = storage.getItem('isGameSoundMuted');
     const autoAdvancing = storage.getItem('isAutoAdvance');
 
-    if (voiceMuted) setIsVoiceMuted(true); //set voice over to muted
-    if (gameSoundMuted) setIsGameSoundMuted(true);  //set game sounds to muted
+    if (voiceMuted) setIsVoiceMuted(true); // set voice over to muted
+    if (gameSoundMuted) setIsGameSoundMuted(true); // set game sounds to muted
 
-    if (autoAdvancing) { //set autoAdvance
+    if (autoAdvancing) { // set autoAdvance
       setIsAutoAdvance(true);
       if (child.animationTime) { autoAdvance(child.animationTime); }
     }
 
-    if (state) { //set slideIdx
+    if (state) { // set slideIdx
       setSlideIdx(+state);
     }
     return () => storage.removeItem('slideIdx');
@@ -94,21 +96,18 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   useEffect(() => {
     stop();
-    if (!isVoiceMuted)
-      play && play();
+    if (!isVoiceMuted) play && play();
   }, [play, reloadTime]);
 
-  useEffect(() => {
-    return () => sound?.unload();
-  }, [sound]);
+  useEffect(() => () => sound?.unload(), [sound]);
 
   function goNext(): void {
-    setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
+    setSlideIdx((old) => Math.min(old + 1, props.children.length - 1));
     props.onNext && props.onNext();
   }
 
   function goPrev(): void {
-    setSlideIdx(old => Math.max(old - 1, 0));
+    setSlideIdx((old) => Math.max(old - 1, 0));
     props.onPrev && props.onPrev();
   }
 
@@ -170,67 +169,96 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   return (
     <CarouselContext.Provider value={{
-      next: goNext, prev: goPrev, slideIdx, reloadTime,
-      isVoiceMuted, isGameSoundMuted,
-      jumpNumSlides: jumpNumSlides,
-    }}>
-      <div id={'carousel-wrapper'}>
-        {props.title && <h1 id={'title'}>{props.title}</h1>}
-        {props.subtitle && <h2 id={'subtitle'}>{props.subtitle}</h2>}
-        <div id={'carousel'}>
+      next: goNext,
+      prev: goPrev,
+      slideIdx,
+      reloadTime,
+      isVoiceMuted,
+      isGameSoundMuted,
+      jumpNumSlides,
+    }}
+    >
+      <div id="carousel-wrapper">
+        {props.title && <h1 id="title">{props.title}</h1>}
+        {props.subtitle && <h2 id="subtitle">{props.subtitle}</h2>}
+        <div id="carousel">
           <button
-            className={'carousel-btn prev'}
+            className="carousel-btn prev"
             style={{
               visibility: (child?.showPrev === false || slideIdx === 0) ? 'hidden' : 'visible',
             }}
-            onClick={() => { goPrev(); disableAutoAdvance(); }}>
+            onClick={() => { goPrev(); disableAutoAdvance(); }}
+          >
             <img src={PrevSvg} />
           </button>
-          <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
-            {child.animationTime &&
-              <span className='time-bar-container'>
-                <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
-                  <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
-                </div>
-              </span>
-            }
-            {child &&
-              <>
-                <div className='util-button-container'>
-                  {child.animationTime &&
-                    <div className='util-left-btn-container'>
-                      <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
-                        <button className={'util-button ' + (isAutoAdvance ? 'stop-' : '') + 'autoplay-button'} onClick={handleAutoplayButtonClick} />
-                      </Tooltip>
-                      <Tooltip text='Replay'>
-                        <button className='util-button replay-button' onClick={handleReplayButtonClick} />
-                      </Tooltip>
-                    </div>
-                  }
-                  {
-                    props.hasSound && <div className='util-right-btn-container'>
-                      <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
-                        <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
-                      </Tooltip>
-                      <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
-                        <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
-                      </Tooltip>
-                    </div>
-                  }
-                </div>
+          <div id="carousel-content" style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
+            {child.animationTime
+              && (
+                <span className="time-bar-container">
+                  <div key={`${reloadTime}-${slideIdx}`} className="timebar">
+                    <div className="time" style={{ '--time': `${child.animationTime}s` } as CSSProperties} />
+                  </div>
+                </span>
+              )}
+            {child
+              && (
+                <>
+                  <div className="util-button-container">
+                    {child.animationTime
+                    && (
+                      <div className="util-left-btn-container">
+                        <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
+                          <button className={`util-button ${isAutoAdvance ? 'stop-' : ''}autoplay-button`} onClick={handleAutoplayButtonClick} />
+                        </Tooltip>
+                        <Tooltip text="Replay">
+                          <button className="util-button replay-button" onClick={handleReplayButtonClick} />
+                        </Tooltip>
+                      </div>
+                    )}
+                    {
+                      props.hasSound && (
+                        <div className="util-right-btn-container">
+                          <Tooltip text={`${isVoiceMuted ? 'Unmute' : 'Mute'} Voiceover`}>
+                            <button className={`util-button voiceover-${isVoiceMuted ? 'unmute' : 'mute'}-button`} onClick={handleMuteVoiceoverBtnClick} />
+                          </Tooltip>
+                          <Tooltip text={`${isGameSoundMuted ? 'Unmute' : 'Mute'} Game`}>
+                            <button className={`util-button game-${isGameSoundMuted ? 'unmute' : 'mute'}-button`} onClick={handleMuteGameSoundsBtnClick} />
+                          </Tooltip>
+                        </div>
+                      )
+                    }
+                  </div>
 
-                {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
-                {child.child}
-                {(child.bottomText || child.bottomText2) && <h2 id={'body-text'}> {child.bottomText} </h2>}
-                {child.bottomText2 && <h2 id={'body-text'}> {child.bottomText2} </h2>}
-              </>
-            }
+                  {child.topText && (
+                    <h2 id="body-text">
+                      {' '}
+                      {child.topText}
+                      {' '}
+                    </h2>
+                  )}
+                  {child.child}
+                  {(child.bottomText || child.bottomText2) && (
+                    <h2 id="body-text">
+                      {' '}
+                      {child.bottomText}
+                      {' '}
+                    </h2>
+                  )}
+                  {child.bottomText2 && (
+                    <h2 id="body-text">
+                      {' '}
+                      {child.bottomText2}
+                      {' '}
+                    </h2>
+                  )}
+                </>
+              )}
           </div>
           <button
-            className={'carousel-btn next'}
+            className="carousel-btn next"
             style={{
-              visibility: (child?.showNext === false ||
-                (!props.finalButtonHandleClick && slideIdx === props.children.length - 1))
+              visibility: (child?.showNext === false
+                || (!props.finalButtonHandleClick && slideIdx === props.children.length - 1))
                 ? 'hidden' : 'visible',
             }}
             onClick={(slideIdx === props.children.length - 1 && props.finalButtonHandleClick)

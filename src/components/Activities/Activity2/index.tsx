@@ -18,30 +18,31 @@ function Activity2(): JSX.Element {
   const content = [
     ...IntroSlides,
     {
-      child: <Intro text={'If you were a computer, how long would it take you to understand the instructions without compression?'} buttonText={'Play Game'} />,
+      child: <Intro text="If you were a computer, how long would it take you to understand the instructions without compression?" buttonText="Play Game" />,
       showNext: false,
       animationTime: 5,
       soundtrack: SoundTrack.Activity2_9,
     },
     {
-      child: <CompressionGame slides={uncompressedSlides} tag={'uncompressed'}/>,
+      child: <CompressionGame slides={uncompressedSlides} tag="uncompressed" />,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
     },
     {
-      child: <Intro text={'Now let\'s see what it\'s like when we compress the instructions!'} buttonText={'Play Game'} />,
+      child: <Intro text={'Now let\'s see what it\'s like when we compress the instructions!'} buttonText="Play Game" />,
       showNext: false,
       animationTime: 3.5,
       soundtrack: SoundTrack.Activity2_10,
     },
     {
-      child: <CompressionGame slides={compressedSlides} tag={'compressed'}/>,
+      child: <CompressionGame slides={compressedSlides} tag="compressed" />,
       showNext: false,
       hasSound: true,
       hasGameSound: true,
     },
-    { child: <GameResults />,
+    {
+      child: <GameResults />,
       animationTime: 8.5,
       soundtrack: SoundTrack.Activity2_Game_End,
     },
@@ -49,7 +50,7 @@ function Activity2(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Sending Videos' hasSound={true}>
+    <Carousel title="Sending Videos" hasSound>
       {content}
     </Carousel>
   );

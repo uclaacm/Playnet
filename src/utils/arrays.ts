@@ -9,8 +9,8 @@
  * @returns If index is valid, returns new mutated array, else returns old array
  */
 export const replace = <T> (arr: T[], index: number, value: T): T[] => {
-  if (index < 0 || index >= arr.length ) return arr;
-  return [...arr.slice(0, index), value, ...arr.slice(index+1)];
+  if (index < 0 || index >= arr.length) return arr;
+  return [...arr.slice(0, index), value, ...arr.slice(index + 1)];
 };
 
 /**
@@ -19,6 +19,4 @@ export const replace = <T> (arr: T[], index: number, value: T): T[] => {
  * @param arr array to get random element from
  * @returns a random element in an array
  */
-export const random = <T> (arr: T[]): T => {
-  return arr[Math.floor(Math.random() * arr.length)];
-};
+export const random = <T> (arr: T[]): T => arr[Math.floor(Math.random() * arr.length)];

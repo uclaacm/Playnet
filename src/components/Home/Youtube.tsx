@@ -32,18 +32,18 @@ function IntroYouTube(props: IntroYouTubeProps): JSX.Element {
   };
 
   return (
-    <div id={'intro-wrapper'}>
-      <h1 id={'intro-title'}>Want to learn how YouTube works?</h1>
-      <p id={'intro-subtitle'}>Choose a video below and we will show you!</p>
-      <div id={'youtube-computer'}>
-        <div id={'youtube-wrapper'}>
+    <div id="intro-wrapper">
+      <h1 id="intro-title">Want to learn how YouTube works?</h1>
+      <p id="intro-subtitle">Choose a video below and we will show you!</p>
+      <div id="youtube-computer">
+        <div id="youtube-wrapper">
           {
-            Object.entries(VIDEOS).map(([key, value], i) =>
-              <button onClick={() => props.setChosenVideo(key as VideoChoices)} className={'youtube-video'} key={i}>
-                <img className={'youtube-thumbnail'} src={value.src} alt={value.alt} />
+            Object.entries(VIDEOS).map(([key, value], i) => (
+              <button onClick={() => props.setChosenVideo(key as VideoChoices)} className="youtube-video" key={i}>
+                <img className="youtube-thumbnail" src={value.src} alt={value.alt} />
                 <p>{value.text}</p>
-              </button>,
-            )
+              </button>
+            ))
           }
         </div>
       </div>
@@ -56,13 +56,13 @@ interface FinalYouTubeProps {
 }
 function FinalYouTube(props: FinalYouTubeProps): JSX.Element {
   return (
-    <div id={'intro-wrapper'}>
-      <h1 id={'intro-title'} style={{ marginTop: 0 }}>Yay! Your video is ready to be watched!</h1>
-      <button className={'playnet-button'}>
+    <div id="intro-wrapper">
+      <h1 id="intro-title" style={{ marginTop: 0 }}>Yay! Your video is ready to be watched!</h1>
+      <button className="playnet-button">
         <Link to="/activities">Now find out what&apos;s going on behind the scenes!</Link>
       </button>
-      <div id={'youtube-computer'}>
-        <iframe id={'youtube-final-video'} src={`${VideoInfo[props.chosenVideo].url}?autoplay=1&mute=1`} />
+      <div id="youtube-computer">
+        <iframe id="youtube-final-video" src={`${VideoInfo[props.chosenVideo].url}?autoplay=1&mute=1`} />
       </div>
     </div>
   );

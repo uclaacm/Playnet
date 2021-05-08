@@ -9,9 +9,9 @@ export interface TooltipProps {
 
 function Tooltip(props: TooltipProps): JSX.Element {
   return (
-    <div className='tooltip'>
+    <div className="tooltip">
       {props.children}
-      <span className='tooltiptext'>{props.text}</span>
+      <span className="tooltiptext">{props.text}</span>
     </div>
   );
 }

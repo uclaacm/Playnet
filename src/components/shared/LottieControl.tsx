@@ -1,4 +1,4 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import Lottie from 'react-lottie';
 import { CarouselContext } from './Carousel';
 import '../styles/LottieControl.scss';
@@ -8,7 +8,7 @@ export interface LottieControlProps {
 }
 
 export default function LottieControl(props: LottieControlProps): JSX.Element {
-  const {reloadTime} = useContext(CarouselContext);
+  const { reloadTime } = useContext(CarouselContext);
 
   const defaultOptions = {
     loop: false,
@@ -21,7 +21,7 @@ export default function LottieControl(props: LottieControlProps): JSX.Element {
   };
 
   return (
-    <div className='lottie-control' key={`${reloadTime}`}>
+    <div className="lottie-control" key={`${reloadTime}`}>
       <Lottie options={defaultOptions} />
     </div>
   );

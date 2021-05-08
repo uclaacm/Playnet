@@ -33,9 +33,9 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
 
   const handleScroll = (index: number) => (e: React.WheelEvent) => {
     let adjustment = 0;
-    if (e.deltaY < 0) { //scrolling down
+    if (e.deltaY < 0) { // scrolling down
       adjustment = -1;
-    } else if (e.deltaY > 0) { //scrolling up
+    } else if (e.deltaY > 0) { // scrolling up
       adjustment = 1;
     }
     switch (index) {
@@ -50,14 +50,14 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     }
   };
 
-  //adjusts weights given index 0's weight percentage
+  // adjusts weights given index 0's weight percentage
   const adjustWeight0 = (val: number) => {
     if (val < 0 || val > 100) return;
     const newWeight1 = Math.max(weights[0] + weights[1] - val, 0);
     setWeights([val, newWeight1, 100 - val - newWeight1]);
   };
 
-  const adjustWeight1 = (val: number) => {//val is percent that weight1 takes, not net position
+  const adjustWeight1 = (val: number) => { // val is percent that weight1 takes, not net position
     if (val > 100) return;
     const upperBound = val + weights[0];
     let newWeight0 = weights[0];
@@ -71,7 +71,7 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
     setWeights([newWeight0, val, 100 - newWeight0 - val]);
   };
 
-  const adjustWeight2 = (val: number) => {//val is percent that weight2 takes, not net position
+  const adjustWeight2 = (val: number) => { // val is percent that weight2 takes, not net position
     if (val < 0 || val > 100) return;
     let newWeight1 = 100 - val - weights[0];
     let newWeight0 = weights[0];
@@ -90,39 +90,56 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
       <p>
         Adjust the slider so that the most important variables take up the most space.
       </p>
-      <div className='slider-text-input-container'>
-        {variableSelection.map((variable, index) => {
-          return (
-            <div className='input-option' key={variable + '-' + index}>
-              <div className='input-text-display-container'>
-                <div className='variable-image' id={variable.toLowerCase().replace(' ', '-')} />
-                <div className='feature-text'>{variable}</div>
-              </div>
-              <input className='slider-input'
-                type='text'
-                value={weights[index] + '%'}
-                onWheel={handleScroll(index)}
-                onChange={handleInputWeight(index)}
-              />
-            </div>);
-        })
-        }
+      <div className="slider-text-input-container">
+        {variableSelection.map((variable, index) => (
+          <div className="input-option" key={`${variable}-${index}`}>
+            <div className="input-text-display-container">
+              <div className="variable-image" id={variable.toLowerCase().replace(' ', '-')} />
+              <div className="feature-text">{variable}</div>
+            </div>
+            <input
+              className="slider-input"
+              type="text"
+              value={`${weights[index]}%`}
+              onWheel={handleScroll(index)}
+              onChange={handleInputWeight(index)}
+            />
+          </div>
+        ))}
       </div>
 
-      <div className='input-slider-container'>
-        <div className='slider-background-color'
+      <div className="input-slider-container">
+        <div
+          className="slider-background-color"
           style={{
-            '--sec1-percent': weights[0] + '%',
-            '--sec2-percent': weights[0] + weights[1] + '%',
+            '--sec1-percent': `${weights[0]}%`,
+            '--sec2-percent': `${weights[0] + weights[1]}%`,
           }}
         />
-        <input type="range" className="input-slidebar" min="0" max="100" value={weights[0]}
-          onChange={(e) => adjustWeight0(parseInt(e.currentTarget.value))} />
-        <input type="range" className="input-slidebar" min="0" max="100" value={weights[0] + weights[1]}
-          onChange={(e) => adjustWeight1(parseInt(e.currentTarget.value) - weights[0])} />
+        <input
+          type="range"
+          className="input-slidebar"
+          min="0"
+          max="100"
+          value={weights[0]}
+          onChange={(e) => adjustWeight0(parseInt(e.currentTarget.value))}
+        />
+        <input
+          type="range"
+          className="input-slidebar"
+          min="0"
+          max="100"
+          value={weights[0] + weights[1]}
+          onChange={(e) => adjustWeight1(parseInt(e.currentTarget.value) - weights[0])}
+        />
       </div>
-      <button className='playnet-button' onClick={goNextState}
-        style={{ width: '40%' }} >Continue</button>
+      <button
+        className="playnet-button"
+        onClick={goNextState}
+        style={{ width: '40%' }}
+      >
+        Continue
+      </button>
     </>
   );
 }

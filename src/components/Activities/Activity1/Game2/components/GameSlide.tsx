@@ -23,17 +23,19 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const [incorrect, setIncorrect] = useState(false);
   const [alienState, setAlienState] = useState(ALIEN_STATE.BASE);
   const alienTimeout = useRef<NodeJS.Timeout | undefined>(undefined);
-  const {correctIdx, advanceGame, textDefault, textIncorrect, imgs, isGameSoundMuted} = props;
+  const {
+    correctIdx, advanceGame, textDefault, textIncorrect, imgs, isGameSoundMuted,
+  } = props;
 
   const volume = isGameSoundMuted ? 0 : 0.5;
-  const [playCorrect] = useSound(CorrectSFX, { volume: volume});
-  const [playIncorrect] = useSound(IncorrectSFX, { volume: volume});
+  const [playCorrect] = useSound(CorrectSFX, { volume });
+  const [playIncorrect] = useSound(IncorrectSFX, { volume });
 
   const [img0, img1] = imgs;
 
   const displayText: () => string = () => {
-    if (incorrect) return textIncorrect ? textIncorrect : '';
-    return textDefault ? textDefault : '';
+    if (incorrect) return textIncorrect || '';
+    return textDefault || '';
   };
 
   const handleAlienState = (state: ALIEN_STATE, cb?: () => void) => {
@@ -49,7 +51,7 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   const handleClick = (pos : number) => {
     if (pos === correctIdx) {
       playCorrect();
-      handleAlienState(ALIEN_STATE.HAPPY, ()=>{setIncorrect(false); advanceGame();});
+      handleAlienState(ALIEN_STATE.HAPPY, () => { setIncorrect(false); advanceGame(); });
     } else if (!incorrect) {
       playIncorrect();
       setIncorrect(true);
@@ -60,21 +62,21 @@ function GameSlide(props: GameSlideProps): JSX.Element {
   useEffect(() => {
     const speech = new SpeechSynthesisUtterance(incorrect ? textIncorrect : textDefault);
     speech.lang = 'en-US';
-    if (!isGameSoundMuted) {speechSynthesis.speak(speech);}
+    if (!isGameSoundMuted) { speechSynthesis.speak(speech); }
 
     return () => speechSynthesis.cancel();
   }, [imgs, incorrect]);
 
   return (
-    <div className={'game-content'}>
-      <div className={'gamebox'}>
+    <div className="game-content">
+      <div className="gamebox">
         <TextBubble textBubbleStyle={TextBubbleStyles.EXTRA_LARGE} text={displayText()} />
         <Alien alienState={alienState} />
-        <img id={'translator'} src={TranslatorSvg} alt="a translator device" />
+        <img id="translator" src={TranslatorSvg} alt="a translator device" />
       </div>
-      <div className={'gamebox'}>
-        <AnswerChoiceBox handleClick={()=>handleClick(0)} imgSrc={img0} isCorrect={correctIdx === 0}/>
-        <AnswerChoiceBox handleClick={()=>handleClick(1)} imgSrc={img1} isCorrect={correctIdx === 1}/>
+      <div className="gamebox">
+        <AnswerChoiceBox handleClick={() => handleClick(0)} imgSrc={img0} isCorrect={correctIdx === 0} />
+        <AnswerChoiceBox handleClick={() => handleClick(1)} imgSrc={img1} isCorrect={correctIdx === 1} />
       </div>
     </div>
   );

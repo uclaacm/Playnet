@@ -15,7 +15,7 @@ const compressedSlides = [
   {
     choices: ['elephant', 'cow', 'sheep'],
     correctIdx: 0,
-    gif: <GIFPlayer gifs={[elephantGifTime]} alt='Gif of Elephant being Drawn' id={'1-0'} />,
+    gif: <GIFPlayer gifs={[elephantGifTime]} alt="Gif of Elephant being Drawn" id="1-0" />,
     answerDisplayWords: ['blankspot'],
     answerDisplayStyles: [AnswerDisplayStyles.ANSWER_SPOT],
     answerSlotIndex: 0,
@@ -23,7 +23,7 @@ const compressedSlides = [
   {
     choices: ['hat', 'wig', 'bow'],
     correctIdx: 0,
-    gif: <GIFPlayer gifs={[elephantHatGifTime]} alt='Gif of Elephant wearing Hat being Drawn' id={'1-0'} />,
+    gif: <GIFPlayer gifs={[elephantHatGifTime]} alt="Gif of Elephant wearing Hat being Drawn" id="1-0" />,
     answerDisplayWords: ['elephant', 'wearing', 'blank'],
     answerDisplayStyles:
       [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.ANSWER_SPOT],
@@ -32,7 +32,7 @@ const compressedSlides = [
   {
     choices: ['wig', 'bow', 'shoes'],
     correctIdx: 2,
-    gif: <GIFPlayer gifs={[elephantShoeGifTime]} alt='Gif of Elephant wearing hat and shoes being Drawn' id={'1-0'} />,
+    gif: <GIFPlayer gifs={[elephantShoeGifTime]} alt="Gif of Elephant wearing hat and shoes being Drawn" id="1-0" />,
     answerDisplayWords: ['elephant', 'wearing', 'hat', 'and', 'blank'],
     answerDisplayStyles:
       [AnswerDisplayStyles.WHITE_BACKGROUND, AnswerDisplayStyles.NO_BACKGROUND, AnswerDisplayStyles.WHITE_BACKGROUND,
