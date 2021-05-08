@@ -4,6 +4,7 @@
     "start": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "lint": "npx eslint \"**/*.tsx\" \"**/*.ts\" && npx stylelint \"**/*.css\" \"**/*.scss\"",
+    "lint-fix": "npx eslint \"**/*.tsx\" \"**/*.ts\" --fix && npx stylelint \"**/*.css\" \"**/*.scss\" --fix",
     "no-lock": "scripts/noPackageLock.sh"
   },
   "dependencies": {
@@ -13,6 +14,7 @@
     "eslint": "^7.6.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-react": "^7.20.5",
+    "eslint-config-prettier": "^7.2.0",
     "react": "^16.13.1",
     "react-anime": "^3.0.3",
     "react-dom": "^16.13.1",
