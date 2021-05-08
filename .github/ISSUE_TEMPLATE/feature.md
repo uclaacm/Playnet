@@ -2,7 +2,7 @@
 name: "\U0001F680 Feature Request"
 about: Requesting a new feature
 title: "🚀 Feature: "
-labels: feature, needs-triage
+labels: feature
 ---
 
 <!-- short description of the feature -->
