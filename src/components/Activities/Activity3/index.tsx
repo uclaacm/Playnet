@@ -3,7 +3,7 @@ import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
-import { ABTestSlide1, ABTestSlide2 } from './ABTestExample';
+import { ABTestSlide1, ABTestSlide2 } from './Animations/IntroABTestExplanations';
 import ComputerRecs from './Animations/ComputerRecs';
 import Debugging from './Animations/Debugging';
 import Lecture from './Animations/Lecture';
