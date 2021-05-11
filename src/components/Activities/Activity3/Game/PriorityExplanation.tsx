@@ -3,7 +3,7 @@ import { GameContext } from '.';
 import { VARIABLE_CONTENT, VARIABLES } from './GameConstants';
 import InfoCard from './InfoCard';
 
-function FeaturesTutorial(): JSX.Element {
+function PriorityExplanation(): JSX.Element {
   const { goNextState } = useContext(GameContext);
   const [index, setIndex] = useState(0);
   const descriptions = [
@@ -77,4 +77,4 @@ function FeaturesTutorial(): JSX.Element {
     </>
   );
 }
-export default FeaturesTutorial;
+export default PriorityExplanation;

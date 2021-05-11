@@ -7,7 +7,7 @@ import Review from './ABTestingReport/Review';
 import { getABTestingControlGraph, getABTestingProductGraph, getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gameCalculationsUtil';
 import { DISPLAY_OPTIONS } from './TimeAllocation';
 
-function ABFinalReport(): JSX.Element {
+function FinalReport(): JSX.Element {
   const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation } = useContext(GameContext);
 
   const {xyMap: xyMap , dxyMap: dxyMap} = getABTestingControlGraph(timeAllocation.abTest);
@@ -103,4 +103,4 @@ function ABFinalReport(): JSX.Element {
     </>
   );
 }
-export default ABFinalReport;
+export default FinalReport;
