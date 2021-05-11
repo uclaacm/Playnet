@@ -4,20 +4,20 @@ import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import ABTestingExplanation from './ABTestingExplanation';
 import ABTestingReport from './ABTestingReport';
-import FinalReport from './FinalReport';
 import DebuggingResults from './DebuggingResults';
+import FinalReport from './FinalReport';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import {
   A3_GAME_STATE, STATE_ORDERING_LIST, NEXT_STATE_MAP, ONE_TIME_STATES,
-  SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, GAME_START_POINT,
+  SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, SESSION_TIMES, VARIABLES,
+  STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, GAME_START_POINT,
 } from './GameConstants';
+import { GameIntroSlide2 } from './GameIntroSlides';
 import PriorityChoices from './PriorityChoices';
 import PriorityExplanation from './PriorityExplanation';
 import PriorityWeighing from './PriorityWeighing';
 import TimeAllocation from './TimeAllocation';
 import { TimeAllocations } from './typings';
-import { GameIntroSlide2 } from './GameIntroSlides';
 
 interface IGameContext {
   setState: (state: A3_GAME_STATE) => void,
@@ -113,7 +113,7 @@ function Game(): JSX.Element {
     }
     setState(nextState);
   };
-  
+
   const goIntroSlide = () => {
     setState(STATE_ORDERING_LIST[1]);
   };

@@ -136,7 +136,7 @@ function Activity1(): JSX.Element {
             </>
           </Computer>
         </>,
-        hasSound: false,
+      hasSound: false,
       // animationTime: 6,
       // soundtrack: SoundTrack.Activity1_End,
     },

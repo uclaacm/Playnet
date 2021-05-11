@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { GameContext } from '.';
+import React from 'react';
 import CatVideos from '../../../../assets/activity3/game/CatVideos.svg';
 import WelcomeToTeam from '../../../../assets/activity3/game/WelcomeToTeam.svg';
 import BouncingArrow from '../Animations/BouncingArrow';
@@ -39,7 +38,7 @@ export function GameIntroSlide2(props: GameIntroSlide2Props): JSX.Element {
             }}
           >
             Replay Tutorial
-      </button>
+          </button>
         }
       </div>
     </>
