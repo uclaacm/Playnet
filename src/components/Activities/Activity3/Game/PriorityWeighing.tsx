@@ -2,12 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import '../../../styles/Activity3Game.scss';
 import { GameContext } from '.';
 
-interface FeatureSlidebarProps {
+interface PriorityWeighingProps {
   initialFeatureWeights: number[],
   setFeatureWeights: (featureWeights: number[]) => void,
 }
 
-function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
+function PriorityWeighing(props: PriorityWeighingProps): JSX.Element {
   const { goNextState, variableSelection } = useContext(GameContext);
   const { initialFeatureWeights, setFeatureWeights } = props;
   const [weights, setWeights] = useState(initialFeatureWeights);
@@ -127,4 +127,4 @@ function FeatureSlidebar(props: FeatureSlidebarProps): JSX.Element {
   );
 }
 
-export default FeatureSlidebar;
+export default PriorityWeighing;
