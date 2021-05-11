@@ -50,6 +50,7 @@ function Carousel(props: CarouselProps): JSX.Element {
   const [isVoiceMuted, setIsVoiceMuted] = useState(DEFAULT_CONFIGS.VOICEOVER_MUTED);
   const [isGameSoundMuted, setIsGameSoundMuted] = useState(DEFAULT_CONFIGS.GAME_SOUNDS_MUTED);
   const [soundtrack, setSoundtrack] = useState((child.soundtrack !== undefined) ? child.soundtrack : SoundTrack.NONE);
+  const [hasSound, setHasSound] = useState(props.hasSound);
   const [play, { stop, sound }] = useSound(SoundTrackMapping[soundtrack], { volume: 0.4, interrupt: true });
   const lastTimeout = useRef(null);
   const storage = window.sessionStorage;
@@ -81,6 +82,11 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   useEffect(() => {
     if (isAutoAdvance && child.animationTime) { autoAdvance(child.animationTime); }
+    if (child.hasSound !== undefined) {
+      setHasSound(child.hasSound);
+    } else {
+      setHasSound(props.hasSound);
+    }
   }, [child]);
 
   useEffect(() => {
@@ -208,7 +214,7 @@ function Carousel(props: CarouselProps): JSX.Element {
                     </div>
                   }
                   {
-                    props.hasSound && <div className='util-right-btn-container'>
+                    hasSound && <div className='util-right-btn-container'>
                       <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
                         <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
                       </Tooltip>
