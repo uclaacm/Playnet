@@ -77,13 +77,15 @@ b {
 .util-left-btn-container {
   display: flex;
   justify-content: flex-start;
+  padding-left: 25px;
   width: 50%;
 }
 
 .util-right-btn-container {
   display: flex;
   justify-content: flex-end;
-  width: 100%;
+  padding-right: 25px;
+  width: 50%;
 }
 
 .util-button {
