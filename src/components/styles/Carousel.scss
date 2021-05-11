@@ -78,12 +78,14 @@ b {
   display: flex;
   justify-content: flex-start;
   width: 50%;
+  padding-left: 25px;
 }
 
 .util-right-btn-container {
   display: flex;
   justify-content: flex-end;
   width: 50%;
+  padding-right: 25px;
 }
 
 .util-button {
