@@ -17,7 +17,6 @@ interface TimeAllocationProps {
 
 export const DISPLAY_OPTIONS = [
   { src: Hammer, text: 'Build' },
-  { src: Debug, text: 'Debug' },
   { src: Graph, text: 'A/B Test' },
 ];
 

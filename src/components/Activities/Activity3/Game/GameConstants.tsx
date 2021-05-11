@@ -109,4 +109,4 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
 export const STARTING_DAYS = 56;
 export const LOW_DAY_THRESHOLD = 14;
 export const HIGH_DAY_THRESHOLD = 21;
-export const DEFAULT_TIME_ALLOCATION = {build: 0, debug: 0, abTest: 0};
+export const DEFAULT_TIME_ALLOCATION = {build: 0, abTest: 0};

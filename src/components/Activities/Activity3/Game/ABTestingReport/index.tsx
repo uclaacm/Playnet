@@ -15,7 +15,7 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
   const convertToStars = (): { numStars: number, variable: VARIABLES } => {
     const randomIndex = Math.floor(Math.random() * 3);
     const raw = Math.abs(featureWeights[randomIndex] - targetWeights[randomIndex]) / WEIGHT_CONSTANT * 3 *
-      (1 - debugQuality(timeAllocation.build, timeAllocation.debug));
+      (1 - debugQuality(timeAllocation.build));
 
     const variable = variableSelection[randomIndex];
 

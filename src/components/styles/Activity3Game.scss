@@ -347,7 +347,7 @@ $card-height: calc(#{$card-min-width} - 20px);
 
 #options-grid {
   display: grid;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: auto auto;
   width: 80%;
 }
 

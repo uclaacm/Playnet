@@ -49,9 +49,8 @@ export function accuracyOfWeights(
  */
 export function debugQuality(
   daysBuilding: number,
-  daysDebugging: number,
 ): number {
-  const t = daysBuilding * DAY_VALUE_FOR_BUILD * (1 + daysDebugging * DAY_VALUE_PERCENT_FOR_DEBUG);
+  const t = daysBuilding * DAY_VALUE_FOR_BUILD;
   // Use negative exponential to see how many bugs they have. [0, 1] * MAX_NUM_ERRORS
   // e^-x has been chosen because it ranges from [1 - 0]
   return Math.exp(-1 * EXP_CONSTANT * t);
@@ -72,7 +71,7 @@ export function overallQuality(
   const weightAccuracy = accuracyOfWeights(featureWeights, expectedWeights);
   // debug's accuracy is such that 0 is highest quality, and ranges from 0 - 1
   // as such, we get 1 - debugQuality so that 1 can be the highest quality!
-  const debugAccuracy = 1 - debugQuality(timeAllocations.build, timeAllocations.debug);
+  const debugAccuracy = 1 - debugQuality(timeAllocations.build);
   return weightAccuracy * debugAccuracy;
 }
 
@@ -82,9 +81,8 @@ export function overallQuality(
  */
 export function getDebugNumErrors(
   daysBuilding: number,
-  daysDebugging: number,
 ): number {
-  const t = debugQuality(daysBuilding, daysDebugging);
+  const t = debugQuality(daysBuilding);
   const numErrors = Math.floor(MAX_NUM_ERRORS * t);
   return numErrors;
 }
