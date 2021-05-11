@@ -2,6 +2,7 @@
 
 #footer {
   align-items: center;
+  align-items: center;
   background-color: $bg-footer;
   bottom: 0;
   display: flex;
@@ -11,6 +12,10 @@
   position: fixed;
   width: 100%;
   z-index: 99;
+}
+
+#footer h3 {
+  margin-top: 0;
 }
 
 #cl-logo {

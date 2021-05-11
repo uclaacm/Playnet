@@ -14,16 +14,16 @@ function PlantSprout(): JSX.Element {
     }).add({
       targets: '#plant-sprout',
       translateY: [0, -190],
-      duration: 1000,
+      duration: 2000,
     }).add({
       targets: '#left-leaf',
       opacity: [0, 1],
-      duration: 500,
+      duration: 1000,
     }, '-=500').add({
       targets: '#right-leaf',
       opacity: [0, 1],
-      duration: 500,
-    }, '-=200');
+      duration: 1000,
+    }, '-=500');
   }, []);
 
   useEffect(() => {

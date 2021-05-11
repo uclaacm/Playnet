@@ -3,9 +3,9 @@ import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
-import { ABTestSlide1, ABTestSlide2 } from './ABTestExample';
 import ComputerRecs from './Animations/ComputerRecs';
 import Debugging from './Animations/Debugging';
+import { ABTestSlide1, ABTestSlide2 } from './Animations/IntroABTestExplanations';
 import Lecture from './Animations/Lecture';
 import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
@@ -66,7 +66,7 @@ function Activity3(): JSX.Element {
     {
       child: <PlantSprout />,
       bottomText: 'With so many possibilities, how does an idea get brought to life and end up on your screen?',
-      animationTime: 3,
+      animationTime: 5,
     },
     {
       child: <Debugging phase={0}/>,
@@ -76,12 +76,7 @@ function Activity3(): JSX.Element {
     {
       child: <Debugging phase={1}/>,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
-      animationTime: 4,
-    },
-    {
-      child: <Debugging phase={2}/>,
-      bottomText: 'We also have to debug the code, meaning that we fix errors.',
-      animationTime: 6,
+      animationTime: 10,
     },
     {
       child: <Lecture phase={0} />,
