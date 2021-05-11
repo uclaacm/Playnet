@@ -12,9 +12,7 @@ function DayOfCode(): JSX.Element {
         <p>
           The code for this event is:
           <h1><i>C O D I N G</i></h1>
-          <button className='playnet-button'>
-            <a href={link_to_checklist} target='_blank' rel='noreferrer'>Add it to your passport!</a>
-          </button>
+            <a href={link_to_checklist} className='playnet-button' id='feedback-link'  target='_blank' rel='noreferrer'>Add it to your passport!</a>
           <br />
           <br />
           <a href={link_to_checklist} style={{textDecoration: 'underline'}} target='_blank' rel='noreferrer'>{link_to_checklist}</a>!
