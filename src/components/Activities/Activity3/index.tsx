@@ -76,12 +76,7 @@ function Activity3(): JSX.Element {
     {
       child: <Debugging phase={1}/>,
       bottomText: 'We also have to debug the code, meaning that we fix errors.',
-      animationTime: 4,
-    },
-    {
-      child: <Debugging phase={2}/>,
-      bottomText: 'We also have to debug the code, meaning that we fix errors.',
-      animationTime: 6,
+      animationTime: 10,
     },
     {
       child: <Lecture phase={0} />,
