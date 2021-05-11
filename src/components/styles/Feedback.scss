@@ -10,3 +10,18 @@
     margin-top: 50px;
   }
 }
+
+#feedback-link {
+  border-style: none;
+  cursor: pointer;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.7));
+  outline: none;
+
+  &:hover {
+    filter: brightness(90%);
+  }
+
+  &:active {
+    transform: scale(0.9, 0.9);
+  }
+}
