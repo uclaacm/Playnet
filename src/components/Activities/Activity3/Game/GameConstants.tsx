@@ -9,6 +9,8 @@ export const SESSION_TARGET_WEIGHTS = 'weights';
 export const SESSION_FEATURE_WEIGHTS = 'featureWeights';
 
 // GAME STATES
+export const GAME_START_POINT = 2;
+
 export enum A3_GAME_STATE {
   EmptyState = '',
   GameIntroSlide2 = 'GameIntroSlide2',

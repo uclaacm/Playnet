@@ -14,9 +14,7 @@ interface GameIntroSlide2Props {
 }
 
 export function GameIntroSlide2(props: GameIntroSlide2Props): JSX.Element {
-  const { goNextState } = useContext(GameContext);
   const storage = window.sessionStorage;
-  console.log("session storage: " + storage.getItem(SESSION_SKIP_STATES));
   return (
     <>
       <div className='grid'>
@@ -35,7 +33,6 @@ export function GameIntroSlide2(props: GameIntroSlide2Props): JSX.Element {
         <button className='playnet-button' onClick={props.startNewGame}>Play Game</button>
         {storage.getItem(SESSION_SKIP_STATES) &&
           <button className='playnet-button playnet-btn-blue'
-          //  id='dark-blue'
             onClick={() => {
               storage.removeItem(SESSION_SKIP_STATES);
               props.startNewGame();
