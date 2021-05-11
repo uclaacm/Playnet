@@ -93,7 +93,7 @@ export const VideoInfo: Record<VideoChoices, { url: string, rocket_word: string 
 
 // ACTIVITY1
 export const Activity1Game1Values = {
-  MAX_HAPPINESS: 100,
+  MAX_HAPPINESS: 80,
   CORRECT_PTS: 20,
   INCORRECT_PTS: -10,
   THRESHOLD_TO_HELP_PER_GAME: 8,
