@@ -86,7 +86,7 @@ function Activity3(): JSX.Element {
     {
       child: <Lecture phase={0} />,
       bottomText: 'First, a team discusses ideas.',
-      animationTime: 2,
+      animationTime: 3.5,
     },
     {
       child: <Lecture phase={1} />,
