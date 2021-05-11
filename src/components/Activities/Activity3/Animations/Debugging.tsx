@@ -36,12 +36,7 @@ function Debugging(props: DebuggingProps): JSX.Element {
     }).add({
       targets: '#speech-hmm',
       ...fadeIn,
-      changeComplete: () => {
-        timeline.current?.pause();
-      },
-    });
-
-    timeline.current?.add({
+    }).add({
       targets: '#debug-slide2',
       ...fadeOut,
     }).add({
