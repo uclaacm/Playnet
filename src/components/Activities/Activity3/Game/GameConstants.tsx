@@ -11,6 +11,7 @@ export const SESSION_FEATURE_WEIGHTS = 'featureWeights';
 // GAME STATES
 export enum A3_GAME_STATE {
   EmptyState = '',
+  GameIntroSlide2 = 'GameIntroSlide2',
   PriorityExplanation  = 'PriorityExplanation',
   PriorityChoices  = 'PriorityChoices',
   PriorityWeighing  = 'PriorityWeighing',
@@ -22,8 +23,9 @@ export enum A3_GAME_STATE {
   FinalReport  = 'FinalReport',
 }
 
-const STATE_ORDERING_LIST = [
+export const STATE_ORDERING_LIST = [
   A3_GAME_STATE.EmptyState,
+  A3_GAME_STATE.GameIntroSlide2,
   A3_GAME_STATE.PriorityExplanation,
   A3_GAME_STATE.PriorityChoices,
   A3_GAME_STATE.PriorityWeighing,

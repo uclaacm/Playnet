@@ -7,8 +7,12 @@ import Review from './ABTestingReport/Review';
 import { getABTestingControlGraph, getABTestingProductGraph, getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gameCalculationsUtil';
 import { DISPLAY_OPTIONS } from './TimeAllocation';
 
-function FinalReport(): JSX.Element {
-  const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation } = useContext(GameContext);
+interface FinalReportProps {
+  goIntroSlide: () => void;
+}
+
+function FinalReport(props: FinalReportProps): JSX.Element {
+  const { variableSelection, featureWeights, targetWeights, timeAllocation } = useContext(GameContext);
 
   const {xyMap: xyMap , dxyMap: dxyMap} = getABTestingControlGraph(timeAllocation.abTest);
   const {xyMap: beta_xyMap} = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
@@ -98,7 +102,7 @@ function FinalReport(): JSX.Element {
       </div>
       <div>
         <Link to="/activities"><button className='playnet-button playnet-btn-blue'>Play another activity</button></Link>
-        <button className="playnet-button" onClick={startNewGame}>Replay</button>
+        <button className="playnet-button" onClick={props.goIntroSlide}>Replay</button>
       </div>
     </>
   );

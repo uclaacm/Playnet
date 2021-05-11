@@ -108,9 +108,6 @@ function Activity3(): JSX.Element {
       bottomText2: 'help improve video recommendations.',
     },
     {
-      child: <GameIntroSlide2/>,
-    },
-    {
       child: <Game />,
       showPrev: false,
     },
