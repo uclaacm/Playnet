@@ -2,12 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { objectSum } from '../../../../utils';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
-import FinalReport from './FinalReport';
 import ABTestingExplanation from './ABTestingExplanation';
 import ABTestingReport from './ABTestingReport';
+import FinalReport from './FinalReport';
 import DebuggingResults from './DebuggingResults';
-import PriorityWeighing from './PriorityWeighing';
-import PriorityExplanation from './PriorityExplanation';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import {
   A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
@@ -15,6 +13,8 @@ import {
   SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
 } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
+import PriorityExplanation from './PriorityExplanation';
+import PriorityWeighing from './PriorityWeighing';
 import TimeAllocation from './TimeAllocation';
 import { TimeAllocations } from './typings';
 
