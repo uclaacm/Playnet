@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
@@ -14,7 +14,11 @@ import RecommendCriteria from './Animations/RecommendCriteria';
 import Game from './Game';
 import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
 
+import Preloader from '../../../components/shared/Preloader';
+
 function Activity3(): JSX.Element {
+  const [isLoading, setIsLoading] = useState(true);
+
   const content: CarouselItemComponents[] = [
     {
       child: <ManyEmployees />,
@@ -122,9 +126,11 @@ function Activity3(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Mind Reading' hasSound={false}>
-      {content}
-    </Carousel>
+    isLoading ? <Preloader setIsLoading={setIsLoading}/>
+      :
+      <Carousel title='Mind Reading' hasSound={false}>
+        {content}
+      </Carousel>
   );
 }
 
