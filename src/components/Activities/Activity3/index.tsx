@@ -3,9 +3,9 @@ import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
-import { ABTestSlide1, ABTestSlide2 } from './Animations/IntroABTestExplanations';
 import ComputerRecs from './Animations/ComputerRecs';
 import Debugging from './Animations/Debugging';
+import { ABTestSlide1, ABTestSlide2 } from './Animations/IntroABTestExplanations';
 import Lecture from './Animations/Lecture';
 import List from './Animations/List';
 import ManyEmployees from './Animations/ManyEmployees';
