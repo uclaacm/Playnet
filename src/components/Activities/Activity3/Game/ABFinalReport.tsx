@@ -4,14 +4,11 @@ import ReactToolTip from 'react-tooltip';
 import { GameContext } from '.';
 import Graph from './ABTestingReport/Graph';
 import Review from './ABTestingReport/Review';
-import { getABTestingControlGraph, getABTestingProductGraph, getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gameCalculationsUtil';
+import { getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gameCalculationsUtil';
 import { DISPLAY_OPTIONS } from './TimeAllocation';
 
 function ABFinalReport(): JSX.Element {
-  const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation } = useContext(GameContext);
-
-  const {xyMap: xyMap , dxyMap: dxyMap} = getABTestingControlGraph(timeAllocation.abTest);
-  const {xyMap: beta_xyMap} = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
+  const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation, ABTestingGraph } = useContext(GameContext);
 
   const {xyMap: final_xyMap , dxyMap: final_dxyMap} = getFinalControlGraph(timeAllocation.abTest);
   const {xyMap: final_beta_xyMap} = getFinalProductGraph(
@@ -87,7 +84,7 @@ function ABFinalReport(): JSX.Element {
           </div>
           <div className='result'>
             <h4>A/B Test</h4>
-            <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={200} height={150} offset={5}/>
+            {ABTestingGraph}
           </div>
         </div>
         <div className='half final-result'>

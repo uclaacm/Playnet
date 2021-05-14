@@ -5,14 +5,17 @@ import { useStateCallback } from '../../../shared/hooks';
 import ABFinalReport from './ABFinalReport';
 import ABTestDescription from './ABTestDescription';
 import ABTestingReport from './ABTestingReport';
+import Graph from './ABTestingReport/Graph';
 import DebuggingResults from './DebuggingResults';
 import FeatureSlidebar from './FeatureSlidebar';
 import FeaturesTutorial from './FeaturesTutorial';
-import { generateVariableTargetWeights } from './gameCalculationsUtil';
+import { generateVariableTargetWeights, getABTestingControlGraph, getABTestingProductGraph } from './gameCalculationsUtil';
 import {
   A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
+  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, 
+  SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, 
+  DEFAULT_AB_TEST_GRAPH,
 } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 import TimeAllocation from './TimeAllocation';
@@ -29,6 +32,7 @@ interface IGameContext {
   setTimeAllocation: (allocations: TimeAllocations) => void,
   daysLeft: number,
   setDaysLeft: (state: number) => void,
+  getABTestingGraph: () => JSX.Element, 
 }
 export const GameContext = React.createContext<IGameContext>({
   setState: (_state: A3_GAME_STATE) => undefined,
@@ -41,6 +45,7 @@ export const GameContext = React.createContext<IGameContext>({
   setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
+  getABTestingGraph: () => <></>,
 });
 
 function Game(): JSX.Element {
@@ -52,6 +57,8 @@ function Game(): JSX.Element {
   const [targetWeights, setTargetWeights] = useState<number[]>([33, 33, 34]);
   const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>(DEFAULT_TIME_ALLOCATION);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
+  const [ABTestingGraph, setABTestingGraph] = useState<JSX.Element|undefined>(undefined);
+
   const storage = window.sessionStorage;
 
   useEffect(() => {
@@ -173,7 +180,19 @@ function Game(): JSX.Element {
     setVariableSelection([]);
     setFeatureWeights([33, 33, 34]);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
+    setABTestingGraph(undefined);
   };
+
+  const getABTestingGraph = () => {
+    let graph = ABTestingGraph;
+    if (!graph) {
+      const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
+      const { xyMap: beta_xyMap } = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
+      graph = <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10} />;
+      setABTestingGraph(graph)
+    }
+    return graph;
+  }
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
     [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,
@@ -197,14 +216,13 @@ function Game(): JSX.Element {
   };
 
   return <GameContext.Provider value={{
-    setState: setState, goNextState: goNextState,
-    startNewGame: startNewGame,
-    variableSelection: variableSelection,
-    featureWeights: featureWeights,
-    targetWeights: targetWeights,
-    timeAllocation: timeAllocation,
-    setTimeAllocation: setTimeAllocation,
-    daysLeft: daysLeft, setDaysLeft: setDaysLeft,
+    setState, goNextState, startNewGame,
+    variableSelection,
+    featureWeights,
+    targetWeights,
+    timeAllocation, setTimeAllocation,
+    daysLeft, setDaysLeft,
+    getABTestingGraph,
   }}>
     {GAME_ELEMENTS[state]}
   </GameContext.Provider>;

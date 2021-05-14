@@ -110,3 +110,5 @@ export const STARTING_DAYS = 56;
 export const LOW_DAY_THRESHOLD = 14;
 export const HIGH_DAY_THRESHOLD = 21;
 export const DEFAULT_TIME_ALLOCATION = {build: 0, debug: 0, abTest: 0};
+
+export const DEFAULT_AB_TEST_GRAPH = <>There is no graph available as you didn\'t allot any time for A/B testing!</>
