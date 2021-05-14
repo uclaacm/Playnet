@@ -8,11 +8,12 @@ import { getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gam
 import { DISPLAY_OPTIONS } from './TimeAllocation';
 
 function ABFinalReport(): JSX.Element {
-  const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation,
-    getABTestingGraph } = useContext(GameContext);
+  const {
+    startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation, getABTestingGraph
+  } = useContext(GameContext);
 
-  const {xyMap: final_xyMap , dxyMap: final_dxyMap} = getFinalControlGraph(timeAllocation.abTest);
-  const {xyMap: final_beta_xyMap} = getFinalProductGraph(
+  const { xyMap: final_xyMap, dxyMap: final_dxyMap } = getFinalControlGraph();
+  const { xyMap: final_beta_xyMap } = getFinalProductGraph(
     targetWeights, featureWeights, final_xyMap, final_dxyMap, timeAllocation);
 
   const finalY = final_xyMap[final_xyMap.length - 1].y;
@@ -32,8 +33,8 @@ function ABFinalReport(): JSX.Element {
     const t1 = first;
     const t2 = second + t1;
     return 'linear-gradient(to right, #FFBA09 0%, #FFBA09 ' +
-           `${t1}%, #A1D900 ${t1}%, #A1D900 ${t2}%,` +
-           `#04C439 ${t2}%, #04C439 100%)`;
+      `${t1}%, #A1D900 ${t1}%, #A1D900 ${t2}%,` +
+      `#04C439 ${t2}%, #04C439 100%)`;
   };
 
   return (
@@ -55,7 +56,7 @@ function ABFinalReport(): JSX.Element {
               <div className='bar' style={{ background: getGradient(featureWeights) }}>
                 {featureWeights.map((t, i) =>
                   <>
-                    <div data-tip data-for={`variable-${i}`} key={i} style={{ width: `${t}%`, height: '30px'}}></div>
+                    <div data-tip data-for={`variable-${i}`} key={i} style={{ width: `${t}%`, height: '30px' }}></div>
                     <ReactToolTip id={`variable-${i}`}>{t}%</ReactToolTip>
                   </>,
                 )}
@@ -66,9 +67,9 @@ function ABFinalReport(): JSX.Element {
             <h4>Timeline</h4>
             <div>
               <div id='timeline-summary'>
-                {DISPLAY_OPTIONS.map(({src, text}) =>
+                {DISPLAY_OPTIONS.map(({ src, text }) =>
                   <div key={text} className={'centered-box'}>
-                    <img src={src}/>
+                    <img src={src} />
                     {text}
                   </div>,
                 )}
@@ -76,7 +77,7 @@ function ABFinalReport(): JSX.Element {
               <div className='bar' style={{ background: getGradient(timePercentages) }}>
                 {Object.values(timeAllocation).map((t, i) =>
                   <>
-                    <div data-tip data-for={`time-${i}`} key={i} style={{ width: `${timePercentages[i]}%`, height: '30px'}}></div>
+                    <div data-tip data-for={`time-${i}`} key={i} style={{ width: `${timePercentages[i]}%`, height: '30px' }}></div>
                     <ReactToolTip id={`time-${i}`}>{t} days</ReactToolTip>
                   </>,
                 )}
@@ -93,7 +94,7 @@ function ABFinalReport(): JSX.Element {
         <div className='half final-result'>
           <h3>Final Result</h3>
           <Graph xyMap={final_xyMap} beta_xyMap={final_beta_xyMap} />
-          <Review stars={stars} noText={true}/>
+          <Review stars={stars} noText={true} />
         </div>
       </div>
       <div>

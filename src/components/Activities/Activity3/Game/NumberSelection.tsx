@@ -23,13 +23,13 @@ function NumberSelection(props: SelectProps): JSX.Element {
     setNewAllocation(newInput);
   };
 
-  const handleChange = (e : any) => {
+  const handleChange = (e: any) => {
     const value = e.target.value !== '' ? parseInt(e.target.value) : 0;
     const newInput = Math.max(Math.min(value, daysLeft), 0);
     setNewAllocation(newInput);
   };
 
-  const setNewAllocation = (newInput : number) => {
+  const setNewAllocation = (newInput: number) => {
     const newAllocation = {...daysAllocation};
     newAllocation[itemType] = newInput;
     setDaysAllocation(newAllocation);
