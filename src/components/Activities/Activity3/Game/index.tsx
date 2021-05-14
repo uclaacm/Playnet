@@ -13,8 +13,8 @@ import { generateVariableTargetWeights, getABTestingControlGraph, getABTestingPr
 import {
   A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, 
-  SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, 
+  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS,
+  SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
   DEFAULT_AB_TEST_GRAPH,
 } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
@@ -32,7 +32,7 @@ interface IGameContext {
   setTimeAllocation: (allocations: TimeAllocations) => void,
   daysLeft: number,
   setDaysLeft: (state: number) => void,
-  getABTestingGraph: () => JSX.Element, 
+  getABTestingGraph: () => JSX.Element,
 }
 export const GameContext = React.createContext<IGameContext>({
   setState: (_state: A3_GAME_STATE) => undefined,
@@ -189,10 +189,10 @@ function Game(): JSX.Element {
       const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
       const { xyMap: beta_xyMap } = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
       graph = <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10} />;
-      setABTestingGraph(graph)
+      setABTestingGraph(graph);
     }
     return graph;
-  }
+  };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
     [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,

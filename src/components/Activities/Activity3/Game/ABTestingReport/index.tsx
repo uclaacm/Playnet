@@ -24,7 +24,7 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
 };
 
 function ABTestingReport(): JSX.Element {
-  const { setState, variableSelection, featureWeights, targetWeights, timeAllocation, daysLeft, 
+  const { setState, variableSelection, featureWeights, targetWeights, timeAllocation, daysLeft,
     ABTestingGraph, makeABTestGraph } =
     useContext(GameContext);
   const [popup, setPopup] = useState(false);
@@ -50,7 +50,7 @@ function ABTestingReport(): JSX.Element {
             <Review key={i} stars={numStars} variable={variable} />)}
       </div>
       <div className='half'>
-          {ABTestingGraph}
+        {ABTestingGraph}
       </div>
     </div>
     <div>
