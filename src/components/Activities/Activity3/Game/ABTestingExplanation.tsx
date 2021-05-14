@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState, useRef } from 'react';
 import { GameContext } from '.';
 import ScalingSlide from '../../../shared/ScalingSlide';
 
-function ABTestDescription(): JSX.Element {
+function ABTestingExplanation(): JSX.Element {
   const { goNextState } = useContext(GameContext);
   const timeline = useRef<AnimeTimelineInstance | null>(null);
   const [phase, setPhase] = useState(0);
@@ -85,4 +85,4 @@ function ABTestDescription(): JSX.Element {
     </ScalingSlide>
   </>;
 }
-export default ABTestDescription;
+export default ABTestingExplanation;

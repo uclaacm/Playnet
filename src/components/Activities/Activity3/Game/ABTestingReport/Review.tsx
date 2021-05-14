@@ -13,40 +13,6 @@ const reviewer_names = [
   'captainawesome123',
 ];
 
-const reviews: { [key: number]: string[] } = {
-  1: [
-    'I hate this feature! It crashes all the time!',
-    'It takes too long to load :(',
-    '😡😡',
-    'Sad face',
-  ],
-  2: [
-    'mlegh ew!',
-    'honestly, i could do a better job at this',
-    'marginally better than nyan cat',
-    'boooooring',
-  ],
-  3: [
-    'meh',
-    'honestly, pretty meh',
-    'meh meh meh',
-    'average amount of meh',
-  ],
-  4: [
-    'this is pretty cool!',
-    'wow ur so talented!',
-    'adopt me',
-    'this makes me so happy 😌😌',
-    'oof this makes me soft',
-  ],
-  5: [
-    'Best video ever!',
-    '🤩🤩🤩',
-    'I wish I could do this',
-    'Love this content 😍😍',
-  ],
-};
-
 const substantialReviews: { [key in VARIABLES]: { [key: number]: string[] } } = {
   [VARIABLES.CREDIBLE]: {
     1: ['omg this is so fake, im never coming back to this site'],
@@ -103,9 +69,8 @@ function Review(props: ReviewProps): JSX.Element {
   const star = Array(5).fill(undefined).map((_v, i) => i < stars ? true : false);
   return (
     <div>
-      {!noText && <p>{random(reviewer_names)}: {
-        variable ? random(substantialReviews[variable][stars]) :
-          random(reviews[stars])
+      {variable && !noText && <p>{random(reviewer_names)}: {
+        random(substantialReviews[variable][stars])
       }</p>}
       <div className={'stars'}>
         {Array(5).fill(false).map((_v, i) =>

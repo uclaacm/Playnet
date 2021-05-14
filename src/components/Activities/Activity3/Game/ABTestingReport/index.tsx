@@ -3,7 +3,7 @@ import { GameContext } from '..';
 import { clamp } from '../../../../../utils';
 import { debugQuality } from '../gameCalculationsUtil';
 import { A3_GAME_STATE, VARIABLES } from '../GameConstants';
-import { CHANCE_OF_SUBSTANTIAL_REVIEW, WEIGHT_CONSTANT } from '../GameConstantsToMessWith';
+import { WEIGHT_CONSTANT } from '../GameConstantsToMessWith';
 import { TimeAllocations } from '../typings';
 
 import PopUp from './Popup';
@@ -11,12 +11,12 @@ import Review from './Review';
 
 export const generateReviews = (featureWeights: number[], targetWeights: number[], timeAllocation: TimeAllocations,
   variableSelection: VARIABLES[], num: number): { numStars: number, variable?: VARIABLES }[] => {
-  const convertToStars = (): { numStars: number, variable?: VARIABLES } => {
+  const convertToStars = (): { numStars: number, variable: VARIABLES } => {
     const randomIndex = Math.floor(Math.random() * 3);
     const raw = Math.abs(featureWeights[randomIndex] - targetWeights[randomIndex]) / WEIGHT_CONSTANT * 3 *
       (1 - debugQuality(timeAllocation.build, timeAllocation.debug));
 
-    const variable = (Math.random() < CHANCE_OF_SUBSTANTIAL_REVIEW) ? variableSelection[randomIndex] : undefined;
+    const variable = variableSelection[randomIndex];
 
     return { numStars: clamp(1, Math.floor(raw), 5).num, variable: variable };
   };

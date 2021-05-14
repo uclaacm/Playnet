@@ -2,22 +2,21 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { objectSum } from '../../../../utils';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
-import ABFinalReport from './ABFinalReport';
-import ABTestDescription from './ABTestDescription';
+import ABTestingExplanation from './ABTestingExplanation';
 import ABTestingReport from './ABTestingReport';
 import Graph from './ABTestingReport/Graph';
 import DebuggingResults from './DebuggingResults';
-import FeatureSlidebar from './FeatureSlidebar';
-import FeaturesTutorial from './FeaturesTutorial';
+import FinalReport from './FinalReport';
 import { generateVariableTargetWeights, getABTestingControlGraph, getABTestingProductGraph } from './gameCalculationsUtil';
 import {
-  A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
-  SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS,
-  SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
-  DEFAULT_AB_TEST_GRAPH,
+  A3_GAME_STATE, STATE_ORDERING_LIST, NEXT_STATE_MAP, ONE_TIME_STATES,
+  SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, SESSION_TIMES, VARIABLES,
+  STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, GAME_START_POINT, DEFAULT_AB_TEST_GRAPH,
 } from './GameConstants';
+import { GameIntroSlide2 } from './GameIntroSlides';
 import PriorityChoices from './PriorityChoices';
+import PriorityExplanation from './PriorityExplanation';
+import PriorityWeighing from './PriorityWeighing';
 import TimeAllocation from './TimeAllocation';
 import { TimeAllocations } from './typings';
 
@@ -45,7 +44,7 @@ export const GameContext = React.createContext<IGameContext>({
   setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
-  getABTestingGraph: function getABTestingGraph() {return <></>;},
+  getABTestingGraph: function getABTestingGraph() { return <></>; },
 });
 
 function Game(): JSX.Element {
@@ -57,7 +56,7 @@ function Game(): JSX.Element {
   const [targetWeights, setTargetWeights] = useState<number[]>([33, 33, 34]);
   const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>(DEFAULT_TIME_ALLOCATION);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
-  const ABTestingGraph = useRef<JSX.Element|undefined>(undefined);
+  const ABTestingGraph = useRef<JSX.Element | undefined>(undefined);
 
   const storage = window.sessionStorage;
 
@@ -75,7 +74,7 @@ function Game(): JSX.Element {
     const curSkipStates = tempSkipStates ?? [A3_GAME_STATE.EmptyState];
     setStatesToSkip(curSkipStates, () => {
       // setup state after setting up statesToSkip
-      const curState = (storedState) ? (storedState as A3_GAME_STATE) : A3_GAME_STATE.PriorityExplanation;
+      const curState = (storedState) ? (storedState as A3_GAME_STATE) : STATE_ORDERING_LIST[1];
       setState(curState);
     });
 
@@ -99,11 +98,6 @@ function Game(): JSX.Element {
     const curTWeights = tWeights ?? [33, 33, 34];
     setTargetWeights(curTWeights);
 
-    // if target weights aren't stored, start a new game
-    if (!storedTargetWeights) {
-      startNewGame();
-    }
-
     return () => {
       // storage.removeItem(SESSION_SKIP_STATES);
       storage.removeItem(SESSION_CURRENT_STATE);
@@ -123,6 +117,10 @@ function Game(): JSX.Element {
       return;
     }
     setState(nextState);
+  };
+
+  const goIntroSlide = () => {
+    setState(STATE_ORDERING_LIST[1]);
   };
 
   useEffect(() => {
@@ -176,11 +174,20 @@ function Game(): JSX.Element {
 
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
-    setState(A3_GAME_STATE.EmptyState);
     setVariableSelection([]);
     setFeatureWeights([33, 33, 34]);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
     ABTestingGraph.current = undefined;
+
+    //reset skip states in case user wants to replay tutorial
+    const storedSkipStates = storage.getItem(SESSION_SKIP_STATES);
+    const tempSkipStates = storedSkipStates?.split(',').map(element => element as A3_GAME_STATE);
+    const curSkipStates = tempSkipStates ?? [A3_GAME_STATE.EmptyState];
+    setStatesToSkip(curSkipStates, () => {
+      // setup state after setting up statesToSkip
+      const curState = STATE_ORDERING_LIST[GAME_START_POINT];
+      setState(curState);
+    });
   };
 
   const getABTestingGraph = () => {
@@ -198,23 +205,24 @@ function Game(): JSX.Element {
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
-    [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,
+    [A3_GAME_STATE.GameIntroSlide2]: <GameIntroSlide2 startNewGame={startNewGame} />,
+    [A3_GAME_STATE.PriorityExplanation]: <PriorityExplanation />,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
-      <FeatureSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+      <PriorityWeighing initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocationExplanation]:
       <TimeAllocation initialTimes=
         {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={true} />,
+        isTutorial={true} />,
     [A3_GAME_STATE.TimeAllocation]:
       <TimeAllocation initialTimes=
         {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={false} />,
+        isTutorial={false} />,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults />,
-    [A3_GAME_STATE.ABTestingExplanation]: <ABTestDescription />,
+    [A3_GAME_STATE.ABTestingExplanation]: <ABTestingExplanation />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport />,
-    [A3_GAME_STATE.FinalReport]: <ABFinalReport />,
+    [A3_GAME_STATE.FinalReport]: <FinalReport goIntroSlide={goIntroSlide} />,
     [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached
   };
 

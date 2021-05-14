@@ -7,9 +7,13 @@ import Review from './ABTestingReport/Review';
 import { getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gameCalculationsUtil';
 import { DISPLAY_OPTIONS } from './TimeAllocation';
 
-function ABFinalReport(): JSX.Element {
+interface FinalReportProps {
+  goIntroSlide: () => void;
+}
+
+function FinalReport(props: FinalReportProps): JSX.Element {
   const {
-    startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation, getABTestingGraph
+    variableSelection, featureWeights, targetWeights, timeAllocation, getABTestingGraph
   } = useContext(GameContext);
 
   const { xyMap: final_xyMap, dxyMap: final_dxyMap } = getFinalControlGraph();
@@ -99,9 +103,9 @@ function ABFinalReport(): JSX.Element {
       </div>
       <div>
         <Link to="/activities"><button className='playnet-button playnet-btn-blue'>Play another activity</button></Link>
-        <button className="playnet-button" onClick={startNewGame}>Replay</button>
+        <button className="playnet-button" onClick={props.goIntroSlide}>Replay</button>
       </div>
     </>
   );
 }
-export default ABFinalReport;
+export default FinalReport;

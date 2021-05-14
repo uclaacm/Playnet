@@ -9,7 +9,6 @@ export const FINAL_NUM_POINTS = 20;
 
 /** RATING  CONSTANTS */
 export const WEIGHT_CONSTANT = 20; // the lower, the better the ratings
-export const CHANCE_OF_SUBSTANTIAL_REVIEW = .9; // in decimal
 
 /** Variable Allocation CONSTANTS */
 export const MIN_EXPECTED_ALLOCATION = 7;
