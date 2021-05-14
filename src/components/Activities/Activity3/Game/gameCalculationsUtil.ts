@@ -1,7 +1,7 @@
 import { clamp, random } from '../../../../utils';
 import {
   DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
-  EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
+  EXP_CONSTANT, FINAL_NUM_POINTS, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
   QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
   STABILITY_OF_FINAL,
@@ -243,10 +243,8 @@ export function getABTestingControlGraph(
  * Given the number of points to plot, return a list of points to graph for the control group!
  * @returns num points between x: [0, 100], y: [0, 100] to graph
  */
-export function getFinalControlGraph(
-  numPoints: number,
-): { xyMap: Point[]; dxyMap: Point[]; } {
-  return getControlGraph(numPoints, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
+export function getFinalControlGraph(): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getControlGraph(FINAL_NUM_POINTS, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
 }
 
 /**

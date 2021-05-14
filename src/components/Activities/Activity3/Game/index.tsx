@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { objectSum } from '../../../../utils';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
@@ -45,7 +45,7 @@ export const GameContext = React.createContext<IGameContext>({
   setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
-  getABTestingGraph: () => <></>,
+  getABTestingGraph: function getABTestingGraph() {return <></>;},
 });
 
 function Game(): JSX.Element {
@@ -57,7 +57,7 @@ function Game(): JSX.Element {
   const [targetWeights, setTargetWeights] = useState<number[]>([33, 33, 34]);
   const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>(DEFAULT_TIME_ALLOCATION);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
-  const [ABTestingGraph, setABTestingGraph] = useState<JSX.Element|undefined>(undefined);
+  const ABTestingGraph = useRef<JSX.Element|undefined>(undefined);
 
   const storage = window.sessionStorage;
 
@@ -180,18 +180,21 @@ function Game(): JSX.Element {
     setVariableSelection([]);
     setFeatureWeights([33, 33, 34]);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
-    setABTestingGraph(undefined);
+    ABTestingGraph.current = undefined;
   };
 
   const getABTestingGraph = () => {
-    let graph = ABTestingGraph;
+    let graph = timeAllocation.abTest !== 0 ? ABTestingGraph.current : undefined;
     if (!graph) {
       const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
-      const { xyMap: beta_xyMap } = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
-      graph = <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10} />;
-      setABTestingGraph(graph);
+      const { xyMap: beta_xyMap } = getABTestingProductGraph(
+        targetWeights, featureWeights,
+        xyMap, dxyMap, timeAllocation,
+      );
+      graph = <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} />;
     }
-    return graph;
+    ABTestingGraph.current = graph;
+    return graph ?? DEFAULT_AB_TEST_GRAPH;
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {

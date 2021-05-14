@@ -8,7 +8,8 @@ import { getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gam
 import { DISPLAY_OPTIONS } from './TimeAllocation';
 
 function ABFinalReport(): JSX.Element {
-  const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation, ABTestingGraph } = useContext(GameContext);
+  const { startNewGame, variableSelection, featureWeights, targetWeights, timeAllocation,
+    getABTestingGraph } = useContext(GameContext);
 
   const {xyMap: final_xyMap , dxyMap: final_dxyMap} = getFinalControlGraph(timeAllocation.abTest);
   const {xyMap: final_beta_xyMap} = getFinalProductGraph(
@@ -84,12 +85,14 @@ function ABFinalReport(): JSX.Element {
           </div>
           <div className='result'>
             <h4>A/B Test</h4>
-            {ABTestingGraph}
+            <div>
+              {getABTestingGraph()}
+            </div>
           </div>
         </div>
         <div className='half final-result'>
           <h3>Final Result</h3>
-          <Graph xyMap={final_xyMap} beta_xyMap={final_beta_xyMap} width={300} height={225} offset={8}/>
+          <Graph xyMap={final_xyMap} beta_xyMap={final_beta_xyMap} />
           <Review stars={stars} noText={true}/>
         </div>
       </div>

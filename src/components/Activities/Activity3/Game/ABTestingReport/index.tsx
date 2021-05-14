@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
 import { clamp } from '../../../../../utils';
 import { debugQuality } from '../gameCalculationsUtil';
@@ -25,13 +25,9 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
 
 function ABTestingReport(): JSX.Element {
   const { setState, variableSelection, featureWeights, targetWeights, timeAllocation, daysLeft,
-    ABTestingGraph, makeABTestGraph } =
+    getABTestingGraph } =
     useContext(GameContext);
   const [popup, setPopup] = useState(false);
-
-  useEffect(() => {
-    makeABTestGraph();
-  }, []);
 
   return <>
     {popup && <PopUp close={() => setPopup(false)} />}
@@ -50,7 +46,7 @@ function ABTestingReport(): JSX.Element {
             <Review key={i} stars={numStars} variable={variable} />)}
       </div>
       <div className='half'>
-        {ABTestingGraph}
+        {getABTestingGraph()}
       </div>
     </div>
     <div>

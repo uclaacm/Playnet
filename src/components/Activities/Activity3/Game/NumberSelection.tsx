@@ -41,7 +41,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
       value={daysAllocation[itemType]}
       onChange={handleChange}
       onWheel={handleScroll}
-      onClick={(e : any)=>e.target.select()}
+      onClick={(e: any)=>e.target.select()}
       className={`time-input ${showWarning && 'time-input-warning'}`}
     />
   );
