@@ -2,12 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { objectSum } from '../../../../utils';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
-import ABFinalReport from './ABFinalReport';
-import ABTestDescription from './ABTestDescription';
+import ABTestingExplanation from './ABTestingExplanation';
 import ABTestingReport from './ABTestingReport';
+import FinalReport from './FinalReport';
 import DebuggingResults from './DebuggingResults';
-import FeatureSlidebar from './FeatureSlidebar';
-import FeaturesTutorial from './FeaturesTutorial';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import {
   A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
@@ -15,6 +13,8 @@ import {
   SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
 } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
+import PriorityExplanation from './PriorityExplanation';
+import PriorityWeighing from './PriorityWeighing';
 import TimeAllocation from './TimeAllocation';
 import { TimeAllocations } from './typings';
 
@@ -176,11 +176,11 @@ function Game(): JSX.Element {
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
-    [A3_GAME_STATE.PriorityExplanation]: <FeaturesTutorial />,
+    [A3_GAME_STATE.PriorityExplanation]: <PriorityExplanation />,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
     [A3_GAME_STATE.PriorityWeighing]:
-      <FeatureSlidebar initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
+      <PriorityWeighing initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocationExplanation]:
       <TimeAllocation initialTimes=
         {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
@@ -190,9 +190,9 @@ function Game(): JSX.Element {
         {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
       isTutorial={false} />,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults />,
-    [A3_GAME_STATE.ABTestingExplanation]: <ABTestDescription />,
+    [A3_GAME_STATE.ABTestingExplanation]: <ABTestingExplanation />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport />,
-    [A3_GAME_STATE.FinalReport]: <ABFinalReport />,
+    [A3_GAME_STATE.FinalReport]: <FinalReport />,
     [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached
   };
 

@@ -81,17 +81,17 @@ function Activity3(): JSX.Element {
     {
       child: <Lecture phase={0} />,
       bottomText: 'First, a team discusses ideas.',
-      animationTime: 2,
+      animationTime: 3.5,
     },
     {
       child: <Lecture phase={1} />,
       bottomText: 'Even though there are a lot of good ideas, we have a limited amount of time and money. ',
-      animationTime: 2,
+      animationTime: 4,
     },
     {
       child: <Lecture phase={2} />,
       bottomText: 'So, we have to decide which ideas we care the most about. These are the ideas we bring to real life.',
-      animationTime: 4,
+      animationTime: 5,
     },
     {
       child: <ABTestSlide1/>,
