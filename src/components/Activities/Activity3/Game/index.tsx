@@ -4,14 +4,15 @@ import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import ABTestingExplanation from './ABTestingExplanation';
 import ABTestingReport from './ABTestingReport';
-import FinalReport from './FinalReport';
 import DebuggingResults from './DebuggingResults';
+import FinalReport from './FinalReport';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import {
-  A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
-  SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
-  SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
+  A3_GAME_STATE, STATE_ORDERING_LIST, NEXT_STATE_MAP, ONE_TIME_STATES,
+  SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, SESSION_TIMES, VARIABLES,
+  STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, GAME_START_POINT,
 } from './GameConstants';
+import { GameIntroSlide2 } from './GameIntroSlides';
 import PriorityChoices from './PriorityChoices';
 import PriorityExplanation from './PriorityExplanation';
 import PriorityWeighing from './PriorityWeighing';
@@ -68,7 +69,7 @@ function Game(): JSX.Element {
     const curSkipStates = tempSkipStates ?? [A3_GAME_STATE.EmptyState];
     setStatesToSkip(curSkipStates, () => {
       // setup state after setting up statesToSkip
-      const curState = (storedState) ? (storedState as A3_GAME_STATE) : A3_GAME_STATE.PriorityExplanation;
+      const curState = (storedState) ? (storedState as A3_GAME_STATE) : STATE_ORDERING_LIST[1];
       setState(curState);
     });
 
@@ -92,11 +93,6 @@ function Game(): JSX.Element {
     const curTWeights = tWeights ?? [33, 33, 34];
     setTargetWeights(curTWeights);
 
-    // if target weights aren't stored, start a new game
-    if (!storedTargetWeights) {
-      startNewGame();
-    }
-
     return () => {
       // storage.removeItem(SESSION_SKIP_STATES);
       storage.removeItem(SESSION_CURRENT_STATE);
@@ -116,6 +112,10 @@ function Game(): JSX.Element {
       return;
     }
     setState(nextState);
+  };
+
+  const goIntroSlide = () => {
+    setState(STATE_ORDERING_LIST[1]);
   };
 
   useEffect(() => {
@@ -169,13 +169,23 @@ function Game(): JSX.Element {
 
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
-    setState(A3_GAME_STATE.EmptyState);
     setVariableSelection([]);
     setFeatureWeights([33, 33, 34]);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
+
+    //reset skip states in case user wants to replay tutorial
+    const storedSkipStates = storage.getItem(SESSION_SKIP_STATES);
+    const tempSkipStates = storedSkipStates?.split(',').map(element => element as A3_GAME_STATE);
+    const curSkipStates = tempSkipStates ?? [A3_GAME_STATE.EmptyState];
+    setStatesToSkip(curSkipStates, () => {
+      // setup state after setting up statesToSkip
+      const curState = STATE_ORDERING_LIST[GAME_START_POINT];
+      setState(curState);
+    });
   };
 
   const GAME_ELEMENTS: { [key in A3_GAME_STATE]: JSX.Element } = {
+    [A3_GAME_STATE.GameIntroSlide2]: <GameIntroSlide2 startNewGame={startNewGame}/>,
     [A3_GAME_STATE.PriorityExplanation]: <PriorityExplanation />,
     [A3_GAME_STATE.PriorityChoices]:
       <PriorityChoices setVariableSelection={setVariableSelection} initialVariables={variableSelection} />,
@@ -192,7 +202,7 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults />,
     [A3_GAME_STATE.ABTestingExplanation]: <ABTestingExplanation />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport />,
-    [A3_GAME_STATE.FinalReport]: <FinalReport />,
+    [A3_GAME_STATE.FinalReport]: <FinalReport goIntroSlide={goIntroSlide}/>,
     [A3_GAME_STATE.EmptyState]: <></>, // this should never be reached
   };
 

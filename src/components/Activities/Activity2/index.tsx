@@ -45,7 +45,10 @@ function Activity2(): JSX.Element {
       animationTime: 8.5,
       soundtrack: SoundTrack.Activity2_Game_End,
     },
-    { child: <Outro /> },
+    {
+      child: <Outro />,
+      hasSound: false,
+    },
   ];
 
   return (
