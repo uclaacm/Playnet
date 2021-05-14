@@ -12,7 +12,7 @@ import ManyEmployees from './Animations/ManyEmployees';
 import PlantSprout from './Animations/PlantSprout';
 import RecommendCriteria from './Animations/RecommendCriteria';
 import Game from './Game';
-import { GameIntroSlide1, GameIntroSlide2 } from './Game/GameIntroSlides';
+import { GameIntroSlide1 } from './Game/GameIntroSlides';
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
@@ -106,9 +106,6 @@ function Activity3(): JSX.Element {
       child: <GameIntroSlide1/>,
       bottomText: 'Now it’s your turn! Imagine that a YouTube team invited you to',
       bottomText2: 'help improve video recommendations.',
-    },
-    {
-      child: <GameIntroSlide2/>,
     },
     {
       child: <Game />,

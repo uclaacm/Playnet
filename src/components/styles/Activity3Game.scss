@@ -30,6 +30,16 @@
   width: calc(#{$carousel-content-width} / 20);
 }
 
+.intro-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#dark-blue {
+  background-color: #304967;
+}
+
 // Selecting variables
 #variables-wrapper {
   display: grid;
