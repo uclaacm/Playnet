@@ -13,7 +13,7 @@ interface FinalReportProps {
 
 function FinalReport(props: FinalReportProps): JSX.Element {
   const {
-    variableSelection, featureWeights, targetWeights, timeAllocation, getABTestingGraph
+    variableSelection, featureWeights, targetWeights, timeAllocation, getABTestingGraph,
   } = useContext(GameContext);
 
   const { xyMap: final_xyMap, dxyMap: final_dxyMap } = getFinalControlGraph();

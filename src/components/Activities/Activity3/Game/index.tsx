@@ -11,7 +11,8 @@ import { generateVariableTargetWeights, getABTestingControlGraph, getABTestingPr
 import {
   A3_GAME_STATE, STATE_ORDERING_LIST, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, SESSION_TIMES, VARIABLES,
-  STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, GAME_START_POINT, DEFAULT_AB_TEST_GRAPH,
+  STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
+  GAME_START_POINT, DEFAULT_AB_TEST_GRAPH,
 } from './GameConstants';
 import { GameIntroSlide2 } from './GameIntroSlides';
 import PriorityChoices from './PriorityChoices';
@@ -214,11 +215,11 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.TimeAllocationExplanation]:
       <TimeAllocation initialTimes=
         {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-        isTutorial={true} />,
+      isTutorial={true} />,
     [A3_GAME_STATE.TimeAllocation]:
       <TimeAllocation initialTimes=
         {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-        isTutorial={false} />,
+      isTutorial={false} />,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults />,
     [A3_GAME_STATE.ABTestingExplanation]: <ABTestingExplanation />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport />,
