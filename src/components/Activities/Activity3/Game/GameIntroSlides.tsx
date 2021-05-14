@@ -25,21 +25,20 @@ export function GameIntroSlide2(props: GameIntroSlide2Props): JSX.Element {
           <p>When a user finishes watching a video, YouTube recommends videos to watch next.</p>
           <p>Your project is: Can we make better recommendations and make users happier?</p>
           <p>You have 8 weeks to make the improvement. If it’s good, we’ll send your ideas to the public!</p>
+          <div className='intro-btn-container'>
+            <button className='playnet-button' onClick={props.startNewGame}>Play Game</button>
+            {storage.getItem(SESSION_SKIP_STATES) &&
+              <button className='playnet-button playnet-btn-blue'
+                onClick={() => {
+                  storage.removeItem(SESSION_SKIP_STATES);
+                  props.startNewGame();
+                }}
+              >
+                Replay Tutorial
+              </button>
+            }
+          </div>
         </section>
-      </div>
-
-      <div className='intro-btn-container'>
-        <button className='playnet-button' onClick={props.startNewGame}>Play Game</button>
-        {storage.getItem(SESSION_SKIP_STATES) &&
-          <button className='playnet-button playnet-btn-blue'
-            onClick={() => {
-              storage.removeItem(SESSION_SKIP_STATES);
-              props.startNewGame();
-            }}
-          >
-            Replay Tutorial
-          </button>
-        }
       </div>
     </>
   );
