@@ -3,6 +3,14 @@ import ReactTooltip from 'react-tooltip';
 import { PlaynetColors } from '../../../../shared/PlaynetConstants';
 import { Point } from '../typings';
 
+const scaleDimensions = (xyMap: Point[], width: number, height: number): Point[] =>
+  xyMap.map(({x, y}) => {
+    return {
+      x: x*width / 100,
+      y: y*height / 100,
+    };
+  });
+
 /**
  * A reduction function that takes an array of coordinates and returns a svg path.
  *
@@ -18,14 +26,6 @@ const writePath = (xyMap: Point[], height: number, offset: number): string =>
   xyMap.slice(1).reduce((acc: string, {x, y}: Point): string => {
     return `${acc} L ${x + offset}, ${height - y + 2 * offset}`;
   }, `M ${xyMap[0].x + offset},${height - xyMap[0].y + 2 * offset}`);
-
-  const scaleDimensions = (xyMap: Point[], width: number, height: number): Point[] =>
-  xyMap.map(({x, y}) => {
-    return {
-      x: x*width / 100,
-      y: y*height / 100,
-    };
-  });
 
 export interface GraphProps {
   xyMap: Point[];

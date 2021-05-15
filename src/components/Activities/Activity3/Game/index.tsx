@@ -201,7 +201,6 @@ function Game(): JSX.Element {
         targetWeights, featureWeights,
         xyMap, dxyMap, timeAllocation,
       );
-      console.log(xyMap)
       graph = <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} />;
     }
     ABTestingGraph.current = graph;
