@@ -49,8 +49,8 @@ function Game(): JSX.Element {
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
-  const [featureWeights, setFeatureWeights] = useState([...DEFAULT_WEIGHTS]);
-  const [targetWeights, setTargetWeights] = useState<number[]>([...DEFAULT_WEIGHTS]);
+  const [featureWeights, setFeatureWeights] = useState(DEFAULT_WEIGHTS);
+  const [targetWeights, setTargetWeights] = useState<number[]>(DEFAULT_WEIGHTS);
   const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>(DEFAULT_TIME_ALLOCATION);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const storage = window.sessionStorage;
