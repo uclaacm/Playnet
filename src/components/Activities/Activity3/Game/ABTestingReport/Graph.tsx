@@ -26,9 +26,9 @@ export interface GraphProps {
 
 function Graph(props: GraphProps): JSX.Element {
   const {xyMap, beta_xyMap} = props;
-  const width=100;
-  const height=75;
-  const offset=3;
+  const width = 100;
+  const height = 75;
+  const offset = 3;
   const aPath = writePath(xyMap, height, offset);
   const bPath = writePath(beta_xyMap, height, offset);
 
