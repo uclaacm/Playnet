@@ -4,8 +4,8 @@ import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import ABTestingExplanation from './ABTestingExplanation';
 import ABTestingReport from './ABTestingReport';
-import FinalReport from './FinalReport';
 import DebuggingResults from './DebuggingResults';
+import FinalReport from './FinalReport';
 import { generateVariableTargetWeights } from './gameCalculationsUtil';
 import {
   A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
@@ -25,7 +25,7 @@ interface IGameContext {
   variableSelection: VARIABLES[],
   featureWeights: number[],
   targetWeights: number[],
-  timeAllocation: TimeAllocations, // BUILD, DEBUG, ABTEST
+  timeAllocation: TimeAllocations, // BUILD, ABTEST
   setTimeAllocation: (allocations: TimeAllocations) => void,
   daysLeft: number,
   setDaysLeft: (state: number) => void,
@@ -45,11 +45,12 @@ export const GameContext = React.createContext<IGameContext>({
 
 function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);
+  const DEFAULT_WEIGHTS = [33, 33, 34];
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
-  const [featureWeights, setFeatureWeights] = useState([33, 33, 34]);
-  const [targetWeights, setTargetWeights] = useState<number[]>([33, 33, 34]);
+  const [featureWeights, setFeatureWeights] = useState([...DEFAULT_WEIGHTS]);
+  const [targetWeights, setTargetWeights] = useState<number[]>([...DEFAULT_WEIGHTS]);
   const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>(DEFAULT_TIME_ALLOCATION);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const storage = window.sessionStorage;
@@ -84,12 +85,12 @@ function Game(): JSX.Element {
 
     // setup featureWeights from storage
     const weights = storedFeatureWeights?.split(',').map(element => parseInt(element));
-    const curWeights = weights ?? [33, 33, 34];
+    const curWeights = weights ?? [...DEFAULT_WEIGHTS];
     setFeatureWeights(curWeights);
 
     // setup targetWeights from storage
     const tWeights = storedTargetWeights?.split(',').map(element => parseInt(element));
-    const curTWeights = tWeights ?? [33, 33, 34];
+    const curTWeights = tWeights ?? [...DEFAULT_WEIGHTS];
     setTargetWeights(curTWeights);
 
     // if target weights aren't stored, start a new game
@@ -171,7 +172,7 @@ function Game(): JSX.Element {
     setDaysLeft(STARTING_DAYS);
     setState(A3_GAME_STATE.EmptyState);
     setVariableSelection([]);
-    setFeatureWeights([33, 33, 34]);
+    setFeatureWeights([...DEFAULT_WEIGHTS]);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
   };
 

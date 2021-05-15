@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect} from 'react';
 import { GameContext } from '.';
 
 import Clock from '../../../../assets/activity3/game/Clock-big.svg';
-import Debug from '../../../../assets/activity3/game/Debug.svg';
 import Graph from '../../../../assets/activity3/game/Graph.svg';
 import Hammer from '../../../../assets/activity3/game/Hammer.svg';
 

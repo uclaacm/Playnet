@@ -1,6 +1,6 @@
 import { clamp, random } from '../../../../utils';
 import {
-  DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
+  DAY_VALUE_FOR_BUILD, DEBUG_ERROR_OPTIONS,
   EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
   QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
@@ -77,7 +77,7 @@ export function overallQuality(
 
 // SPECIFICS
 /**
- * Given number of building days and number of debugging days, return the number of errors
+ * Given number of building days, return the number of errors
  */
 export function getDebugNumErrors(
   daysBuilding: number,

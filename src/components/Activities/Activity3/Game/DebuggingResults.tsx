@@ -15,8 +15,8 @@ function DebuggingResults(): JSX.Element {
     if (daysLeft > 0) {
       setDaysLeft(daysLeft - 1);
 
-      // increment debug by one
-      const newAllocation = {...timeAllocation};
+      // increment build days by one
+      const newAllocation = {...timeAllocation, build: timeAllocation.build+1};
       setTimeAllocation(newAllocation);
     }
   };
