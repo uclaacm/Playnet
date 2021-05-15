@@ -35,7 +35,7 @@ function DebuggingResults(): JSX.Element {
     'Go back and improve recommendations': {
       buttonText: 'Change Priorities',
       onClick: improveRecs,
-      daysMin: 3,
+      daysMin: -10,
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',
