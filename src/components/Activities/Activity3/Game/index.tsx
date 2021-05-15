@@ -192,13 +192,16 @@ function Game(): JSX.Element {
   };
 
   const getABTestingGraph = () => {
-    let graph = timeAllocation.abTest !== 0 ? ABTestingGraph.current : undefined;
-    if (!graph) {
+    let graph = ABTestingGraph.current;
+    if (timeAllocation.abTest === 0){
+      graph = undefined;
+    } else if (!graph) {
       const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
       const { xyMap: beta_xyMap } = getABTestingProductGraph(
         targetWeights, featureWeights,
         xyMap, dxyMap, timeAllocation,
       );
+      console.log(xyMap)
       graph = <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} />;
     }
     ABTestingGraph.current = graph;
