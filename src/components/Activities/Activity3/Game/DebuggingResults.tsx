@@ -23,7 +23,7 @@ function DebuggingResults(): JSX.Element {
 
   const improveRecs = () => {
     setDaysLeft(daysLeft + timeAllocation.abTest);
-    setTimeAllocation({...timeAllocation, build: 0});
+    setTimeAllocation({...timeAllocation, build: 7});
     setState(A3_GAME_STATE.PriorityWeighing);
   };
 
@@ -34,9 +34,9 @@ function DebuggingResults(): JSX.Element {
       daysMin: 1,
     },
     'Go back and improve recommendations': {
-      buttonText: 'Change Priorities (lose build days)',
+      buttonText: 'Rebuild (lose current build days)',
       onClick: improveRecs,
-      daysMin: 1,
+      daysMin: 7,
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',
