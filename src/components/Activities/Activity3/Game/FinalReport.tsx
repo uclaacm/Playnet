@@ -98,7 +98,7 @@ function FinalReport(props: FinalReportProps): JSX.Element {
         <div className='half final-result'>
           <h3>Final Result</h3>
           <Graph xyMap={final_xyMap} beta_xyMap={final_beta_xyMap} />
-          <Review stars={stars} noText={true} />
+          <Review stars={stars} />
         </div>
       </div>
       <div>

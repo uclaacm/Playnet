@@ -22,6 +22,20 @@ export function generateVariableTargetWeights(): [number, number, number] {
 
 // EQUATIONS TO POSSIBLY MODIFY
 /**
+ * Given an input weight and an expected weight, return some number between [1 - 5] representing how
+ * accurate the input weight is.
+ * 5 is highest quality, and 1 is lowest
+ * @param actual 
+ * @param expected 
+ * @returns 
+ */
+export function accuracyOfSingleWeight(actual: number, expected: number) : number {
+  const difference = actual - expected;
+  const absResult = 4 - clamp(0, (Math.abs(difference) / WEIGHT_CONSTANT), 4).num + 1;
+  return (difference > 0) ? absResult : -1 * absResult;
+}
+
+/**
  * Given the input weights and expected weights, return some number between [1 - 5] representing how
  * accurate the input weights are.
  * 5 is highest quality, and 1 is lowest
@@ -36,8 +50,8 @@ export function accuracyOfWeights(
   expectedWeights: number[],
 ): number {
   // value between 1-5 about how accurate the recommendation was
-  const raw = 5 - (expectedWeights.reduce((prev, weight, i) => prev +
-    Math.abs(featureWeights[i] - weight), 0) / WEIGHT_CONSTANT) + 1;
+  const raw = (expectedWeights.reduce((prev, weight, i) => prev +
+  Math.abs(accuracyOfSingleWeight(featureWeights[i], weight)), 0)) /expectedWeights.length;
   return  clamp(1, raw, 5).num;
 }
 

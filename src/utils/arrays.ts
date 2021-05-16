@@ -19,6 +19,6 @@ export const replace = <T> (arr: T[], index: number, value: T): T[] => {
  * @param arr array to get random element from
  * @returns a random element in an array
  */
-export const random = <T> (arr: T[]): T => {
-  return arr[Math.floor(Math.random() * arr.length)];
+export const random = <T> (arr: T[]): T|undefined => {
+  return (arr.length > 0) ? arr[Math.floor(Math.random() * arr.length)] : undefined;
 };
