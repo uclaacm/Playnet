@@ -25,21 +25,24 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {isTutorial, initialTimes } = props;
   const [daysAllocation, setDaysAllocation] = useState<TimeAllocations>(initialTimes);
   const [tutorialStage, setTutorialStage] = useState(0);
-  const tutorialStyles = ['time-tutorial-right', 'time-tutorial-right', 'time-tutorial-left'];
-
-
-  const TUTORIAL_TEXT = [
+  const TUTORIAL_STEPS = [
     {
-      first: 'We first have to build the feature by writing code.',
-      second: 'If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).',
+      topText: 'We first have to build the feature by writing code.',
+      bottomText: 'If we don’t spend enough time writing code, the feature won’t work and may have a lot of bugs (errors).',
+      textPos: 'time-tutorial-right',
+      focusId: 0,
     },
     {
-      first: 'Then, we make sure that our code doesn’t make weird things happen, or have bugs.',
-      second: 'It may take a bit more time to make sure that everything works as it should!',
+      topText: 'Then, we make sure that our code doesn’t make weird things happen, or have bugs.',
+      bottomText: 'It may take a bit more time to make sure that everything works as it should!',
+      textPos: 'time-tutorial-right',
+      focusId: 0,
     },
     {
-      first: 'Finally, we AB test to see how effective our changes were! We test some users on our new feature, and see how the users react to it compared with the other users!',
-      second: 'This could be a bit random, and what the beta testers like may not represent what most people actually like!',
+      topText: 'Finally, we AB test to see how effective our changes were! We test some users on our new feature, and see how the users react to it compared with the other users!',
+      bottomText: 'This could be a bit random, and what the beta testers like may not represent what most people actually like!',
+      textPos: 'time-tutorial-left',
+      focusId: 1,
     },
   ];
 
@@ -86,13 +89,13 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
 
   return <div id={'time-container'} className={isTutorial ? 'enable-blur' : ''}>
     {
-      isTutorial && <div id={'time-tutorial-overlay'} className={`${tutorialStyles[tutorialStage]} disable-blur`}>
+      isTutorial && <div id={'time-tutorial-overlay'} className={`${TUTORIAL_STEPS[tutorialStage].textPos} disable-blur`}>
         <div id={'time-tutorial-bubble'}
           className={'disable-blur'}>
           <p>
-            {TUTORIAL_TEXT[tutorialStage].first}
+            {TUTORIAL_STEPS[tutorialStage].topText}
             <br/> <br/>
-            {TUTORIAL_TEXT[tutorialStage].second}
+            {TUTORIAL_STEPS[tutorialStage].bottomText}
           </p>
           <button className='playnet-button' style={{zIndex: 50}} onClick={advanceTutorial}>Continue</button>
         </div>
@@ -109,8 +112,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         return (
           <div key={key}
             className={`option-container 
-            ${isTutorial && (tutorialStage-1 === index || (tutorialStage === 0 && index === 0)
-            ? 'disable-blur highlight-border' : 'enable-blur')}`}>
+            ${isTutorial && (TUTORIAL_STEPS[tutorialStage].focusId === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
             <div key={DISPLAY_OPTIONS[index].text}
               className={'centered-box'}>
               <img src={DISPLAY_OPTIONS[index].src} />

@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
-import { clamp } from '../../../../../utils';
+import { clamp, objectSum } from '../../../../../utils';
 import { accuracyOfSingleWeight } from '../gameCalculationsUtil';
-import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION, LOW_DAY_THRESHOLD, VARIABLES } from '../GameConstants';
+import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION, VARIABLES } from '../GameConstants';
 
 import PopUp from './Popup';
 import Review, { VariableReview, weightDifference } from './Review';
@@ -61,7 +61,7 @@ function ABTestingReport(): JSX.Element {
       </div>
     </div>
     <div>
-      <button className="playnet-button playnet-btn-blue" disabled={daysLeft < LOW_DAY_THRESHOLD} onClick={retry}>
+      <button className="playnet-button playnet-btn-blue" disabled={daysLeft < objectSum(DEFAULT_TIME_ALLOCATION)} onClick={retry}>
         Go back to variables (14 days needed)
       </button>
       <button className="playnet-button" onClick={() => setPopup(true)}>Submit final product</button>
