@@ -11,6 +11,7 @@ import {
   A3_GAME_STATE, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES,
   SESSION_TIMES, VARIABLES, STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
+  DEFAULT_WEIGHTS,
 } from './GameConstants';
 import PriorityChoices from './PriorityChoices';
 import PriorityExplanation from './PriorityExplanation';
@@ -45,7 +46,6 @@ export const GameContext = React.createContext<IGameContext>({
 
 function Game(): JSX.Element {
   const { next } = useContext(CarouselContext);
-  const DEFAULT_WEIGHTS = [33, 33, 34];
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
@@ -85,12 +85,12 @@ function Game(): JSX.Element {
 
     // setup featureWeights from storage
     const weights = storedFeatureWeights?.split(',').map(element => parseInt(element));
-    const curWeights = weights ?? [...DEFAULT_WEIGHTS];
+    const curWeights = weights ?? DEFAULT_WEIGHTS;
     setFeatureWeights(curWeights);
 
     // setup targetWeights from storage
     const tWeights = storedTargetWeights?.split(',').map(element => parseInt(element));
-    const curTWeights = tWeights ?? [...DEFAULT_WEIGHTS];
+    const curTWeights = tWeights ?? DEFAULT_WEIGHTS;
     setTargetWeights(curTWeights);
 
     // if target weights aren't stored, start a new game
@@ -172,7 +172,7 @@ function Game(): JSX.Element {
     setDaysLeft(STARTING_DAYS);
     setState(A3_GAME_STATE.EmptyState);
     setVariableSelection([]);
-    setFeatureWeights([...DEFAULT_WEIGHTS]);
+    setFeatureWeights(DEFAULT_WEIGHTS);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
   };
 
@@ -183,13 +183,9 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityWeighing]:
       <PriorityWeighing initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocationExplanation]:
-      <TimeAllocation initialTimes=
-        {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={true} />,
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={true} />,
     [A3_GAME_STATE.TimeAllocation]:
-      <TimeAllocation initialTimes=
-        {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={false} />,
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={false} />,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults />,
     [A3_GAME_STATE.ABTestingExplanation]: <ABTestingExplanation />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport />,

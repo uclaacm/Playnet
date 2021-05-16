@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { GameContext } from '.';
+import { objectSum } from '../../../../utils';
 import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './gameCalculationsUtil';
 import { A3_GAME_STATE } from './GameConstants';
 
@@ -22,7 +23,7 @@ function DebuggingResults(): JSX.Element {
   };
 
   const improveRecs = () => {
-    setDaysLeft(daysLeft + timeAllocation.abTest);
+    setDaysLeft(daysLeft + objectSum(timeAllocation));
     setState(A3_GAME_STATE.PriorityWeighing);
   };
 

@@ -110,3 +110,5 @@ export const STARTING_DAYS = 56;
 export const LOW_DAY_THRESHOLD = 14;
 export const HIGH_DAY_THRESHOLD = 21;
 export const DEFAULT_TIME_ALLOCATION = {build: 7, abTest: 7};
+
+export const DEFAULT_WEIGHTS = [33, 33, 34];
