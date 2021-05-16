@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { GameContext } from '.';
 import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './gameCalculationsUtil';
-import { A3_GAME_STATE } from './GameConstants';
+import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION } from './GameConstants';
 
 function DebuggingResults(): JSX.Element {
   const { setState, goNextState, featureWeights, targetWeights, timeAllocation,
@@ -23,7 +23,7 @@ function DebuggingResults(): JSX.Element {
 
   const improveRecs = () => {
     setDaysLeft(daysLeft + timeAllocation.abTest);
-    setTimeAllocation({...timeAllocation, build: 7});
+    setTimeAllocation({...timeAllocation, build: DEFAULT_TIME_ALLOCATION.build});
     setState(A3_GAME_STATE.PriorityWeighing);
   };
 
@@ -36,7 +36,7 @@ function DebuggingResults(): JSX.Element {
     'Go back and improve recommendations': {
       buttonText: 'Rebuild (lose current build days)',
       onClick: improveRecs,
-      daysMin: 7,
+      daysMin: DEFAULT_TIME_ALLOCATION.build,
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',
