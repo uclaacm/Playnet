@@ -3,7 +3,7 @@ import Star from '../../../../../assets/activity1/game1/star.svg';
 import { random } from '../../../../../utils';
 import { VARIABLES } from '../GameConstants';
 
-// All the main face emojis (and some others) to make it easier if you want to change something! 
+// All the main face emojis (and some others) to make it easier if you want to change something!
 // 😀😃😄😁😆😅😂🤣🥲☺️😊😇🙂🙃😉😌😍🥰😘😋😛😝😜🤪🤨🧐🤓😎🥸🤩🥳😏
 // 😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😱😨😰😥😓🤗🤔🤭🤫🤥
 // 😶😐😑😬🙄😯😦😧😮😲🥱😴🤤😪😵🤐🥴🤢🤮🤧😷🤒🤕🤑🤠😈👿🤡💩👻🤖
@@ -27,11 +27,11 @@ export enum weightDifference {
 }
 
 type singleRatingReview = { [key in weightDifference]: string[]}
-let defaultRatingReview = {
+const defaultRatingReview = {
   [weightDifference.low]: [],
   [weightDifference.high]: [],
   [weightDifference.good]: [],
-}
+};
 
 const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingReview} } = {
   [VARIABLES.CREDIBLE]: {
@@ -58,13 +58,13 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ["why would i watch this if nobody else likes it 😑😑"],
+      [weightDifference.low]: ['why would i watch this if nobody else likes it 😑😑'],
       [weightDifference.high]: ['ok i guess the video is meh, seems like something wannabe popular peeps would like 🥴'],
     },
     3: {
       ...defaultRatingReview,
-      [weightDifference.good]: ['wow ok, goat, no wonder ppl like this', 
-      "omg i love this, now i know why it's so popular 🤩🤩"],
+      [weightDifference.good]: ['wow ok, goat, no wonder ppl like this',
+        "omg i love this, now i know why it's so popular 🤩🤩"],
     },
   },
   [VARIABLES.RECENT_UPLOAD]: {
@@ -96,8 +96,8 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     },
     3: {
       ...defaultRatingReview,
-      [weightDifference.good]: ['WOW youtube literally knows exactly when i want to try new things or watch past things', 
-      'nice balance of new and old content everytime uwu 😎😎'],
+      [weightDifference.good]: ['WOW youtube literally knows exactly when i want to try new things or watch past things',
+        'nice balance of new and old content everytime uwu 😎😎'],
     },
   },
   [VARIABLES.SAME_CREATOR]: {
@@ -113,8 +113,8 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     },
     3: {
       ...defaultRatingReview,
-      [weightDifference.good]: ['daYuM i am a DISCOVERER of great creators 😍😍😍', 
-      'ok i see you youtube, givin me those fresh creators'],
+      [weightDifference.good]: ['daYuM i am a DISCOVERER of great creators 😍😍😍',
+        'ok i see you youtube, givin me those fresh creators'],
     },
   },
   [VARIABLES.SUBSCRIBED]: {
@@ -130,8 +130,8 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     },
     3: {
       ...defaultRatingReview,
-      [weightDifference.good]: ['LOVE this, this is why i subscribe 🌟', 
-      'okay this is why i use youtube, it knows my subscriptions 😎'],
+      [weightDifference.good]: ['LOVE this, this is why i subscribe 🌟',
+        'okay this is why i use youtube, it knows my subscriptions 😎'],
     },
   },
 };
@@ -153,15 +153,15 @@ function Review(props: ReviewProps): JSX.Element {
 
   const getAReview = (review: VariableReview) : string => {
     const {variable, rating, weightDifference: diff} = review;
-    const value = random(substantialReviews[variable][rating][diff]) ?? 
+    const value = random(substantialReviews[variable][rating][diff]) ??
       random(substantialReviews[variable][rating][weightDifference.good]);
     return value!;
-  }
+  };
 
   return (
     <div>
       {variableReview && <p>{random(reviewer_names)}: {
-       getAReview(variableReview)
+        getAReview(variableReview)
       }</p>}
       <div className={'stars'}>
         {Array(5).fill(false).map((_v, i) =>

@@ -7,22 +7,21 @@ import { A3_GAME_STATE, VARIABLES } from '../GameConstants';
 import PopUp from './Popup';
 import Review, { VariableReview, weightDifference } from './Review';
 
-export const generateReviews = (featureWeights: number[], targetWeights: number[], 
+export const generateReviews = (featureWeights: number[], targetWeights: number[],
   variableSelection: VARIABLES[], num: number): { numStars: number, variableReview: VariableReview }[] => {
   const convertToStars = (): { numStars: number, variableReview: VariableReview } => {
     const randomIndex = Math.floor(Math.random() * 3);
-    const raw = accuracyOfSingleWeight(featureWeights[randomIndex], targetWeights[randomIndex]) 
+    const raw = accuracyOfSingleWeight(featureWeights[randomIndex], targetWeights[randomIndex])
       + Math.random() - .5;
-    
+
     // since ratings are out of 3
     const variableScore = raw * 3 / 5;
-    console.log(variableSelection[randomIndex])
 
     const variableReview : VariableReview = {
       variable: variableSelection[randomIndex],
-      rating:  clamp(1, Math.floor(Math.abs(variableScore)), 3).num,
+      rating: clamp(1, Math.floor(Math.abs(variableScore)), 3).num,
       weightDifference: (variableScore > 0) ? weightDifference.high : weightDifference.low,
-    }
+    };
 
     return { numStars: clamp(1, Math.floor(Math.abs(raw)), 5).num, variableReview: variableReview };
   };

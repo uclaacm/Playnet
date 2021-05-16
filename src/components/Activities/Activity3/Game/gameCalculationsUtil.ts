@@ -25,9 +25,9 @@ export function generateVariableTargetWeights(): [number, number, number] {
  * Given an input weight and an expected weight, return some number between [1 - 5] representing how
  * accurate the input weight is.
  * 5 is highest quality, and 1 is lowest
- * @param actual 
- * @param expected 
- * @returns 
+ * @param actual
+ * @param expected
+ * @returns
  */
 export function accuracyOfSingleWeight(actual: number, expected: number) : number {
   const difference = actual - expected;
