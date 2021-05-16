@@ -25,7 +25,7 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
   const {isTutorial, initialTimes } = props;
   const [daysAllocation, setDaysAllocation] = useState<TimeAllocations>(initialTimes);
   const [tutorialStage, setTutorialStage] = useState(0);
-  const tutorialStyles = ['time-tutorial-center', 'time-tutorial-right', 'time-tutorial-center'];
+  const tutorialStyles = ['time-tutorial-right', 'time-tutorial-right', 'time-tutorial-left'];
 
 
   const TUTORIAL_TEXT = [
@@ -108,7 +108,9 @@ function TimeAllocation(props: TimeAllocationProps): JSX.Element {
         const usableDays = daysLeft ? (daysLeft - sumDaysUsed() + curAlloc) : 0;
         return (
           <div key={key}
-            className={`option-container ${isTutorial && (tutorialStage === index ? 'disable-blur highlight-border' : 'enable-blur')}`}>
+            className={`option-container 
+            ${isTutorial && (tutorialStage-1 === index || (tutorialStage === 0 && index === 0)
+            ? 'disable-blur highlight-border' : 'enable-blur')}`}>
             <div key={DISPLAY_OPTIONS[index].text}
               className={'centered-box'}>
               <img src={DISPLAY_OPTIONS[index].src} />

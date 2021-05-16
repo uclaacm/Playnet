@@ -411,8 +411,8 @@ $card-height: calc(#{$card-min-width} - 20px);
   z-index: 50;
 }
 
-.time-tutorial-center {
-  align-items: center;
+.time-tutorial-left {
+  align-items: flex-start;
 }
 
 .time-tutorial-right {

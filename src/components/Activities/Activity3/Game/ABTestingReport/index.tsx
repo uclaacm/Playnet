@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
 import { clamp } from '../../../../../utils';
 import { debugQuality, getABTestingControlGraph, getABTestingProductGraph } from '../gameCalculationsUtil';
-import { A3_GAME_STATE, VARIABLES } from '../GameConstants';
+import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION, LOW_DAY_THRESHOLD, VARIABLES } from '../GameConstants';
 import { WEIGHT_CONSTANT } from '../GameConstantsToMessWith';
 import { TimeAllocations } from '../typings';
 
@@ -25,12 +25,17 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
 };
 
 function ABTestingReport(): JSX.Element {
-  const { setState, variableSelection, featureWeights, targetWeights, timeAllocation, daysLeft } =
+  const { setState, variableSelection, featureWeights, targetWeights, timeAllocation, setTimeAllocation, daysLeft } =
     useContext(GameContext);
   const [popup, setPopup] = useState(false);
 
   const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
   const { xyMap: beta_xyMap } = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
+
+  const retry = () => {
+    setTimeAllocation(DEFAULT_TIME_ALLOCATION);
+    setState(A3_GAME_STATE.PriorityWeighing);
+  };
 
   return <>
     {popup && <PopUp close={() => setPopup(false)} />}
@@ -55,7 +60,9 @@ function ABTestingReport(): JSX.Element {
       </div>
     </div>
     <div>
-      <button className="playnet-button playnet-btn-blue" disabled={daysLeft <= 0} onClick={() => setState(A3_GAME_STATE.PriorityWeighing)}>Go back to variables</button>
+      <button className="playnet-button playnet-btn-blue" disabled={daysLeft < LOW_DAY_THRESHOLD} onClick={retry}>
+        Go back to variables (14 days needed)
+      </button>
       <button className="playnet-button" onClick={() => setPopup(true)}>Submit final product</button>
     </div>
   </>;
