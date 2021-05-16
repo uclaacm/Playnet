@@ -25,7 +25,7 @@ function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
 
   const handleHoverOver = () => {
     if (border === PlaynetColors.INCORRECT_RED) return;
-    setBorder(PlaynetColors.HOVER_GREEN);
+    setBorder(PlaynetColors.HOVER);
     setHover && setHover(true);
   };
 
@@ -36,7 +36,7 @@ function AnswerChoiceBox(props: AnswerChoiceBoxProps): JSX.Element {
   };
 
   const handleClick = () => {
-    isCorrect ? setBorder(PlaynetColors.HOVER_GREEN) : setBorder(PlaynetColors.INCORRECT_RED);
+    isCorrect ? setBorder(PlaynetColors.CORRECT_GREEN) : setBorder(PlaynetColors.INCORRECT_RED);
     props.handleClick();
   };
 

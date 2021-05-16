@@ -1,7 +1,7 @@
 import { clamp, random } from '../../../../utils';
 import {
   DAY_VALUE_FOR_BUILD, DEBUG_ERROR_OPTIONS,
-  EXP_CONSTANT, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
+  EXP_CONSTANT, FINAL_NUM_POINTS, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
   QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
   STABILITY_OF_FINAL,
@@ -22,6 +22,22 @@ export function generateVariableTargetWeights(): [number, number, number] {
 
 // EQUATIONS TO POSSIBLY MODIFY
 /**
+ * Given an input weight and an expected weight, return some number between +/-[1 - 5] representing how
+ * accurate the input weight is.
+ *    5 is highest quality, and 1 is lowest
+ *    + means actual is greater than expected, and vice versa
+ *
+ * @param actual
+ * @param expected
+ * @returns
+ */
+export function accuracyOfSingleWeight(actual: number, expected: number) : number {
+  const difference = actual - expected;
+  const absResult = 4 - clamp(0, (Math.abs(difference) / WEIGHT_CONSTANT), 4).num + 1;
+  return (difference > 0) ? absResult : -1 * absResult;
+}
+
+/**
  * Given the input weights and expected weights, return some number between [1 - 5] representing how
  * accurate the input weights are.
  * 5 is highest quality, and 1 is lowest
@@ -36,8 +52,8 @@ export function accuracyOfWeights(
   expectedWeights: number[],
 ): number {
   // value between 1-5 about how accurate the recommendation was
-  const raw = 5 - (expectedWeights.reduce((prev, weight, i) => prev +
-    Math.abs(featureWeights[i] - weight), 0) / WEIGHT_CONSTANT) + 1;
+  const raw = (expectedWeights.reduce((prev, weight, i) => prev +
+  Math.abs(accuracyOfSingleWeight(featureWeights[i], weight)), 0)) /expectedWeights.length;
   return  clamp(1, raw, 5).num;
 }
 
@@ -241,10 +257,8 @@ export function getABTestingControlGraph(
  * Given the number of points to plot, return a list of points to graph for the control group!
  * @returns num points between x: [0, 100], y: [0, 100] to graph
  */
-export function getFinalControlGraph(
-  numPoints: number,
-): { xyMap: Point[]; dxyMap: Point[]; } {
-  return getControlGraph(numPoints, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
+export function getFinalControlGraph(): { xyMap: Point[]; dxyMap: Point[]; } {
+  return getControlGraph(FINAL_NUM_POINTS, SINGLE_CONTROL_CHANGE_MAX / STABILITY_OF_FINAL);
 }
 
 /**

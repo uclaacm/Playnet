@@ -110,6 +110,7 @@ function Home(): JSX.Element {
       child: <FinalYouTube chosenVideo={chosenVideo} />,
       showBackground: false,
       soundtrack: SoundTrack.Intro_12,
+      hasSound: false,
     },
   ];
   return (

@@ -1,36 +1,39 @@
 import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
 import { clamp } from '../../../../../utils';
-import { debugQuality, getABTestingControlGraph, getABTestingProductGraph } from '../gameCalculationsUtil';
+import { accuracyOfSingleWeight } from '../gameCalculationsUtil';
 import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION, LOW_DAY_THRESHOLD, VARIABLES } from '../GameConstants';
-import { WEIGHT_CONSTANT } from '../GameConstantsToMessWith';
-import { TimeAllocations } from '../typings';
 
-import Graph from './Graph';
 import PopUp from './Popup';
-import Review from './Review';
+import Review, { VariableReview, weightDifference } from './Review';
 
-export const generateReviews = (featureWeights: number[], targetWeights: number[], timeAllocation: TimeAllocations,
-  variableSelection: VARIABLES[], num: number): { numStars: number, variable?: VARIABLES }[] => {
-  const convertToStars = (): { numStars: number, variable: VARIABLES } => {
+export const generateReviews = (featureWeights: number[], targetWeights: number[],
+  variableSelection: VARIABLES[], num: number): { numStars: number, variableReview: VariableReview }[] => {
+  const convertToStars = (): { numStars: number, variableReview: VariableReview } => {
     const randomIndex = Math.floor(Math.random() * 3);
-    const raw = Math.abs(featureWeights[randomIndex] - targetWeights[randomIndex]) / WEIGHT_CONSTANT * 3 *
-      (1 - debugQuality(timeAllocation.build));
+    const raw = accuracyOfSingleWeight(featureWeights[randomIndex], targetWeights[randomIndex])
+      + Math.random() - .5;
 
-    const variable = variableSelection[randomIndex];
+    // since ratings are out of 3
+    const variableScore = raw * 3 / 5;
 
-    return { numStars: clamp(1, Math.floor(raw), 5).num, variable: variable };
+    const variableReview : VariableReview = {
+      variable: variableSelection[randomIndex],
+      rating: clamp(1, Math.floor(Math.abs(variableScore)), 3).num,
+      weightDifference: (variableScore > 0) ? weightDifference.high : weightDifference.low,
+    };
+
+    return { numStars: clamp(1, Math.floor(Math.abs(raw)), 5).num, variableReview: variableReview };
   };
   return Array(num).fill(0).map(() => convertToStars());
 };
 
 function ABTestingReport(): JSX.Element {
-  const { setState, variableSelection, featureWeights, targetWeights, timeAllocation, setTimeAllocation, daysLeft } =
-    useContext(GameContext);
+  const {
+    setState, variableSelection, featureWeights, targetWeights, daysLeft, getABTestingGraph,
+    setTimeAllocation,
+  } = useContext(GameContext);
   const [popup, setPopup] = useState(false);
-
-  const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
-  const { xyMap: beta_xyMap } = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
 
   const retry = () => {
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
@@ -49,14 +52,12 @@ function ABTestingReport(): JSX.Element {
     <div className='inline'>
       <div className='half'>
         Reviews
-        {generateReviews(featureWeights, targetWeights, timeAllocation, variableSelection, 2)
-          .map(({ numStars, variable }, i) =>
-            <Review key={i} stars={numStars} variable={variable} />)}
+        {generateReviews(featureWeights, targetWeights, variableSelection, 2)
+          .map(({ numStars, variableReview }, i) =>
+            <Review key={i} stars={numStars} variableReview={variableReview} />)}
       </div>
       <div className='half'>
-        {timeAllocation.abTest != 0 ?
-          <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10} /> :
-          'There is no graph available as you didn\'t allot any time for A/B testing!'}
+        {getABTestingGraph()}
       </div>
     </div>
     <div>
