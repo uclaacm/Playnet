@@ -22,9 +22,11 @@ export function generateVariableTargetWeights(): [number, number, number] {
 
 // EQUATIONS TO POSSIBLY MODIFY
 /**
- * Given an input weight and an expected weight, return some number between [1 - 5] representing how
+ * Given an input weight and an expected weight, return some number between +/-[1 - 5] representing how
  * accurate the input weight is.
- * 5 is highest quality, and 1 is lowest
+ *    5 is highest quality, and 1 is lowest
+ *    + means actual is greater than expected, and vice versa
+ * 
  * @param actual
  * @param expected
  * @returns
