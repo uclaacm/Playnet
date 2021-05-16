@@ -5,6 +5,7 @@ export const SINGLE_CONTROL_CHANGE_MAX = 20;
 export const RANDOM_BETA_TEST_CHANGE = 20;
 export const MULTIPLE_FOR_CHANGE_OF_AB_GRAPH = 2;
 export const STABILITY_OF_FINAL = 3; // how many times more stable the final is than the control
+export const FINAL_NUM_POINTS = 20;
 
 /** RATING  CONSTANTS */
 export const WEIGHT_CONSTANT = 20; // the lower, the better the ratings

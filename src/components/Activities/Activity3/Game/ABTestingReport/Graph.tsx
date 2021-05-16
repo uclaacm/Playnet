@@ -30,19 +30,19 @@ const writePath = (xyMap: Point[], height: number, offset: number): string =>
 export interface GraphProps {
   xyMap: Point[];
   beta_xyMap: Point[];
-  width: number;
-  height: number;
-  offset: number
 }
 
 function Graph(props: GraphProps): JSX.Element {
-  const {xyMap, beta_xyMap, width, height, offset} = props;
+  const {xyMap, beta_xyMap} = props;
+  const width = 133;
+  const height = 100;
+  const offset = 3;
   const aPath = writePath(scaleDimensions(xyMap, width, height), height, offset);
   const bPath = writePath(scaleDimensions(beta_xyMap, width, height), height , offset);
 
   return (
     <div>
-      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`}>
+      <svg width="60%" height="60%" viewBox={`0 0 ${width} ${height}`}>
         <path d={`M ${width-offset}, ${height-offset} L ${offset}, ${height-offset} L ${offset}, ${offset}`} stroke={'#000'} strokeWidth={offset/1.5} fill={'none'}/>
         <path data-tip
           data-for={'A'}

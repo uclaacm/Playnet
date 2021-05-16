@@ -1,12 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
 import { clamp } from '../../../../../utils';
-import { debugQuality, getABTestingControlGraph, getABTestingProductGraph } from '../gameCalculationsUtil';
+import { debugQuality } from '../gameCalculationsUtil';
 import { A3_GAME_STATE, VARIABLES } from '../GameConstants';
 import { WEIGHT_CONSTANT } from '../GameConstantsToMessWith';
 import { TimeAllocations } from '../typings';
 
-import Graph from './Graph';
 import PopUp from './Popup';
 import Review from './Review';
 
@@ -25,12 +24,10 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
 };
 
 function ABTestingReport(): JSX.Element {
-  const { setState, variableSelection, featureWeights, targetWeights, timeAllocation, daysLeft } =
-    useContext(GameContext);
+  const {
+    setState, variableSelection, featureWeights, targetWeights, timeAllocation, daysLeft, getABTestingGraph,
+  } = useContext(GameContext);
   const [popup, setPopup] = useState(false);
-
-  const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
-  const { xyMap: beta_xyMap } = getABTestingProductGraph(targetWeights, featureWeights, xyMap, dxyMap, timeAllocation);
 
   return <>
     {popup && <PopUp close={() => setPopup(false)} />}
@@ -49,9 +46,7 @@ function ABTestingReport(): JSX.Element {
             <Review key={i} stars={numStars} variable={variable} />)}
       </div>
       <div className='half'>
-        {timeAllocation.abTest != 0 ?
-          <Graph xyMap={xyMap} beta_xyMap={beta_xyMap} width={400} height={300} offset={10} /> :
-          'There is no graph available as you didn\'t allot any time for A/B testing!'}
+        {getABTestingGraph()}
       </div>
     </div>
     <div>

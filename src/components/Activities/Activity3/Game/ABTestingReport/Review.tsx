@@ -61,7 +61,7 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: string[] } } = 
 interface ReviewProps {
   stars: number;
   noText?: boolean;
-  variable: VARIABLES;
+  variable?: VARIABLES;
 }
 
 function Review(props: ReviewProps): JSX.Element {
@@ -69,7 +69,7 @@ function Review(props: ReviewProps): JSX.Element {
   const star = Array(5).fill(undefined).map((_v, i) => i < stars ? true : false);
   return (
     <div>
-      {!noText && <p>{random(reviewer_names)}: {
+      {variable && !noText && <p>{random(reviewer_names)}: {
         random(substantialReviews[variable][stars])
       }</p>}
       <div className={'stars'}>

@@ -23,13 +23,13 @@ function NumberSelection(props: SelectProps): JSX.Element {
     setNewAllocation(newInput);
   };
 
-  const handleChange = (e : any) => {
+  const handleChange = (e: any) => {
     const value = e.target.value !== '' ? parseInt(e.target.value) : 0;
     const newInput = Math.max(Math.min(value, daysLeft), 0);
     setNewAllocation(newInput);
   };
 
-  const setNewAllocation = (newInput : number) => {
+  const setNewAllocation = (newInput: number) => {
     const newAllocation = {...daysAllocation};
     newAllocation[itemType] = newInput;
     setDaysAllocation(newAllocation);
@@ -41,7 +41,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
       value={daysAllocation[itemType]}
       onChange={handleChange}
       onWheel={handleScroll}
-      onClick={(e : any)=>e.target.select()}
+      onClick={(e: any)=>e.target.select()}
       className={`time-input ${showWarning && 'time-input-warning'}`}
     />
   );
