@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { GameContext } from '.';
-import { objectSum } from '../../../../utils';
 import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './gameCalculationsUtil';
 import { A3_GAME_STATE } from './GameConstants';
 
@@ -23,7 +22,8 @@ function DebuggingResults(): JSX.Element {
   };
 
   const improveRecs = () => {
-    setDaysLeft(daysLeft + objectSum(timeAllocation));
+    setDaysLeft(daysLeft + timeAllocation.abTest);
+    setTimeAllocation({...timeAllocation, build: 0});
     setState(A3_GAME_STATE.PriorityWeighing);
   };
 
@@ -34,7 +34,7 @@ function DebuggingResults(): JSX.Element {
       daysMin: 1,
     },
     'Go back and improve recommendations': {
-      buttonText: 'Change Priorities',
+      buttonText: 'Change Priorities (lose build days)',
       onClick: improveRecs,
       daysMin: 1,
     },
