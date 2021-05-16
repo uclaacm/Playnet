@@ -8,7 +8,7 @@ export const STABILITY_OF_FINAL = 3; // how many times more stable the final is 
 export const FINAL_NUM_POINTS = 20;
 
 /** RATING  CONSTANTS */
-export const WEIGHT_CONSTANT = 20; // the lower, the better the ratings
+export const WEIGHT_CONSTANT = 10; // the higher, the better the ratings
 
 /** Variable Allocation CONSTANTS */
 export const MIN_EXPECTED_ALLOCATION = 7;
