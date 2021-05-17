@@ -61,7 +61,7 @@ function FinalReport(props: FinalReportProps): JSX.Element {
               <div className='bar' style={{ background: getGradient(featureWeights) }}>
                 {featureWeights.map((t, i) =>
                   <>
-                    {t > PERCENT_THRESHOLD.VARIABLES ? //percentage where the text no longer fits inside the corresponding section, note this is not a pixel value, and rather a percentage based on my laptop screen
+                    {t > PERCENT_THRESHOLD.VARIABLES ?
                       <div key={i} style={{ width: `${t}%` }}>{t}%</div> :
                       <>
                         <div data-tip data-for={`variable-${i}`} key={i} style={{ width: `${t}%`, height: '30px' }}></div>
