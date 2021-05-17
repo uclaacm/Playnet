@@ -38,4 +38,4 @@ export const QUALITY_DEFAULT_KEY = '1,2';
 export const PERCENT_THRESHOLD = {
   VARIABLES: 10,
   DAYS: 16,
-}
+};
