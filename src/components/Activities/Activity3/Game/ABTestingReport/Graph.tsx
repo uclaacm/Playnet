@@ -4,10 +4,10 @@ import { PlaynetColors } from '../../../../shared/PlaynetConstants';
 import { Point } from '../typings';
 
 const scaleDimensions = (xyMap: Point[], width: number, height: number): Point[] =>
-  xyMap.map(({x, y}) => {
+  xyMap.map(({ x, y }) => {
     return {
-      x: x*width / 100,
-      y: y*height / 100,
+      x: x * width / 100,
+      y: y * height / 100,
     };
   });
 
@@ -23,7 +23,7 @@ const scaleDimensions = (xyMap: Point[], width: number, height: number): Point[]
  * @returns svg path to draw
  */
 const writePath = (xyMap: Point[], height: number, offset: number): string =>
-  xyMap.slice(1).reduce((acc: string, {x, y}: Point): string => {
+  xyMap.slice(1).reduce((acc: string, { x, y }: Point): string => {
     return `${acc} L ${x + offset}, ${height - y + 2 * offset}`;
   }, `M ${xyMap[0].x + offset},${height - xyMap[0].y + 2 * offset}`);
 
@@ -33,23 +33,23 @@ export interface GraphProps {
 }
 
 function Graph(props: GraphProps): JSX.Element {
-  const {xyMap, beta_xyMap} = props;
+  const { xyMap, beta_xyMap } = props;
   const width = 133;
   const height = 100;
   const offset = 3;
   const aPath = writePath(scaleDimensions(xyMap, width, height), height, offset);
-  const bPath = writePath(scaleDimensions(beta_xyMap, width, height), height , offset);
+  const bPath = writePath(scaleDimensions(beta_xyMap, width, height), height, offset);
 
   return (
     <div>
       <svg width="60%" height="60%" viewBox={`0 0 ${width} ${height}`}>
-        <path d={`M ${width-offset}, ${height-offset} L ${offset}, ${height-offset} L ${offset}, ${offset}`} stroke={'#000'} strokeWidth={offset/1.5} fill={'none'}/>
+        <path d={`M ${width - offset}, ${height - offset} L ${offset}, ${height - offset} L ${offset}, ${offset}`} stroke={'#000'} strokeWidth={offset / 1.5} fill={'none'} />
         <path data-tip
           data-for={'A'}
-          d={aPath} stroke={PlaynetColors.INCORRECT_RED} strokeWidth={offset/1.5} fill={'none'}/>
+          d={aPath} stroke={PlaynetColors.INCORRECT_RED} strokeWidth={offset / 1.5} fill={'none'} strokeLinecap={'round'} strokeLinejoin={'round'} />
         <path data-tip
           data-for={'B'}
-          d={bPath} stroke={PlaynetColors.LIGHT_BLUE} strokeWidth={offset/1.5} fill={'none'}/>
+          d={bPath} stroke={PlaynetColors.LIGHT_BLUE} strokeWidth={offset / 1.5} fill={'none'} strokeLinecap={'round'} strokeLinejoin={'round'} strokeDasharray={'5 8'} />
       </svg>
       <ReactTooltip id={'A'}>Version A (old version)</ReactTooltip>
       <ReactTooltip id={'B'}>Version B (your version)</ReactTooltip>
