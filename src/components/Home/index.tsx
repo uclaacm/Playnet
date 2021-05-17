@@ -14,6 +14,7 @@ import { SoundTrack } from '../shared/soundtrack';
 import '../styles/Home.scss';
 import FinalSlide from './FinalSlide';
 import Intro, { IntroAnimeProps } from './Intro';
+import LoadingTesting from './LoadingTesting';
 import { FinalYouTube, IntroYouTube } from './Youtube';
 
 
@@ -105,6 +106,10 @@ function Home(): JSX.Element {
       bottomText: 'and all the way back to your computer!',
       animationTime: 7,
       soundtrack: SoundTrack.Intro_11,
+    },
+    {
+      child: <LoadingTesting />,
+      bottomText: 'Communicating with alien species...',
     },
     {
       child: <FinalYouTube chosenVideo={chosenVideo} />,

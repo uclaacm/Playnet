@@ -184,3 +184,24 @@
 #video.nether-portal {
   background-image: url('../../assets/nether_portal.jpg');
 }
+
+#loading-anim-rocket {
+  background-image: url('../../assets/loading-rocket.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 8.5vw;
+  width: auto;
+  justify-self: center;
+  margin-left: 50%;
+  animation: spin 2s infinite linear;
+}
+
+#loading-anim-planet{
+  background-image: url('../../assets/loading-planet.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  height: 8.5vw;
+  width: auto;
+  margin-left: 50%;
+  animation: rotation 2s infinite linear;
+}
