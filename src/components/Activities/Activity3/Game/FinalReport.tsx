@@ -5,6 +5,7 @@ import { GameContext } from '.';
 import Graph from './ABTestingReport/Graph';
 import Review from './ABTestingReport/Review';
 import { getFinalControlGraph, getFinalProductGraph, numFinalStars } from './gameCalculationsUtil';
+import { PERCENT_THRESHOLD } from './GameConstantsToMessWith';
 import { DISPLAY_OPTIONS } from './TimeAllocation';
 
 interface FinalReportProps {
@@ -60,8 +61,13 @@ function FinalReport(props: FinalReportProps): JSX.Element {
               <div className='bar' style={{ background: getGradient(featureWeights) }}>
                 {featureWeights.map((t, i) =>
                   <>
-                    <div data-tip data-for={`variable-${i}`} key={i} style={{ width: `${t}%`, height: '30px' }}></div>
-                    <ReactToolTip id={`variable-${i}`}>{t}%</ReactToolTip>
+                    {t > PERCENT_THRESHOLD.VARIABLES ? //percentage where the text no longer fits inside the corresponding section, note this is not a pixel value, and rather a percentage based on my laptop screen
+                      <div key={i} style={{ width: `${t}%` }}>{t}%</div> :
+                      <>
+                        <div data-tip data-for={`variable-${i}`} key={i} style={{ width: `${t}%`, height: '30px' }}></div>
+                        <ReactToolTip id={`variable-${i}`}>{t}%</ReactToolTip>
+                      </>
+                    }
                   </>,
                 )}
               </div>
@@ -81,8 +87,13 @@ function FinalReport(props: FinalReportProps): JSX.Element {
               <div className='bar' style={{ background: getGradient(timePercentages) }}>
                 {Object.values(timeAllocation).map((t, i) =>
                   <>
-                    <div data-tip data-for={`time-${i}`} key={i} style={{ width: `${timePercentages[i]}%`, height: '30px' }}></div>
-                    <ReactToolTip id={`time-${i}`}>{t} days</ReactToolTip>
+                    {timePercentages[i] > PERCENT_THRESHOLD.DAYS ?  //percentage where the text no longer fits inside the corresponding section, note this is not a pixel value, and rather a percentage based on my laptop screen
+                      <div key={i} style={{ width: `${timePercentages[i]}%` }}>{t} days</div> :
+                      <>
+                        <div data-tip data-for={`time-${i}`} key={i} style={{ width: `${timePercentages[i]}%`, height: '30px' }}></div>
+                        <ReactToolTip id={`time-${i}`}>{t} days</ReactToolTip>
+                      </>
+                    }
                   </>,
                 )}
               </div>

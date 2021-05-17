@@ -33,3 +33,9 @@ export const NUMBER_TO_QUALITY_MAP = {
   '1,2': 'poor', // keep a zero value, everything else can be modified
 };
 export const QUALITY_DEFAULT_KEY = '1,2';
+
+//Percent when text no longer fits inside final report bar. Note, this is not a pixel value and may not work well for different sized screens
+export const PERCENT_THRESHOLD = {
+  VARIABLES: 10,
+  DAYS: 16,
+}
