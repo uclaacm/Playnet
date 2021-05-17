@@ -1,6 +1,6 @@
 import { clamp, random } from '../../../../utils';
 import {
-  DAY_VALUE_FOR_BUILD, DAY_VALUE_PERCENT_FOR_DEBUG, DEBUG_ERROR_OPTIONS,
+  DAY_VALUE_FOR_BUILD, DEBUG_ERROR_OPTIONS,
   EXP_CONSTANT, FINAL_NUM_POINTS, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
   QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
@@ -65,9 +65,8 @@ export function accuracyOfWeights(
  */
 export function debugQuality(
   daysBuilding: number,
-  daysDebugging: number,
 ): number {
-  const t = daysBuilding * DAY_VALUE_FOR_BUILD * (1 + daysDebugging * DAY_VALUE_PERCENT_FOR_DEBUG);
+  const t = daysBuilding * DAY_VALUE_FOR_BUILD;
   // Use negative exponential to see how many bugs they have. [0, 1] * MAX_NUM_ERRORS
   // e^-x has been chosen because it ranges from [1 - 0]
   return Math.exp(-1 * EXP_CONSTANT * t);
@@ -88,19 +87,18 @@ export function overallQuality(
   const weightAccuracy = accuracyOfWeights(featureWeights, expectedWeights);
   // debug's accuracy is such that 0 is highest quality, and ranges from 0 - 1
   // as such, we get 1 - debugQuality so that 1 can be the highest quality!
-  const debugAccuracy = 1 - debugQuality(timeAllocations.build, timeAllocations.debug);
+  const debugAccuracy = 1 - debugQuality(timeAllocations.build);
   return weightAccuracy * debugAccuracy;
 }
 
 // SPECIFICS
 /**
- * Given number of building days and number of debugging days, return the number of errors
+ * Given number of building days, return the number of errors
  */
 export function getDebugNumErrors(
   daysBuilding: number,
-  daysDebugging: number,
 ): number {
-  const t = debugQuality(daysBuilding, daysDebugging);
+  const t = debugQuality(daysBuilding);
   const numErrors = Math.floor(MAX_NUM_ERRORS * t);
   return numErrors;
 }

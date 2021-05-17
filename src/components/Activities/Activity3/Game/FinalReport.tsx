@@ -25,8 +25,8 @@ function FinalReport(props: FinalReportProps): JSX.Element {
   const stars = numFinalStars(finalY, finalBetaY);
 
   const getTimePercentages = () => {
-    const [first, second, third] = Object.values(timeAllocation);
-    const total = first + second + third;
+    const [first, second] = Object.values(timeAllocation);
+    const total = first + second;
     return Object.values(timeAllocation).map(v => v * 100 / total);
   };
 
