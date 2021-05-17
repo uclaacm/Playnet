@@ -53,6 +53,14 @@ function Graph(props: GraphProps): JSX.Element {
       </svg>
       <ReactTooltip id={'A'}>Version A (old version)</ReactTooltip>
       <ReactTooltip id={'B'}>Version B (your version)</ReactTooltip>
+      <div className={'abtest-graph-key'}>
+      Key: <svg width="24" height="6" viewBox="0 0 24 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="3" y1="3" x2="21" y2="3" stroke="#FF0000" strokeWidth="5" strokeLinecap="round" />
+        </svg> Version A (original) {' '}
+        <svg width="24" height="7" viewBox="0 0 24 7" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="3" y1="3.5" x2="21" y2="3.5" stroke="#0094FF" strokeWidth="5" strokeLinecap="round" strokeDasharray="5 8" />
+        </svg> Version B (yours)
+      </div>
     </div>
   );
 }
