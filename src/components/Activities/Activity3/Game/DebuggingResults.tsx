@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import { GameContext } from '.';
 import { getDebugErrors, getDebugNumErrors, getRecommendationQuality } from './gameCalculationsUtil';
-import { A3_GAME_STATE } from './GameConstants';
+import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION } from './GameConstants';
 
 function DebuggingResults(): JSX.Element {
   const { setState, goNextState, featureWeights, targetWeights, timeAllocation,
     setTimeAllocation, daysLeft, setDaysLeft } = useContext(GameContext);
 
-  const numErrors = getDebugNumErrors(timeAllocation.build, timeAllocation.debug);
+  const numErrors = getDebugNumErrors(timeAllocation.build);
   const errors = getDebugErrors(numErrors);
   const debugQuality = getRecommendationQuality(featureWeights, targetWeights);
 
@@ -15,15 +15,15 @@ function DebuggingResults(): JSX.Element {
     if (daysLeft > 0) {
       setDaysLeft(daysLeft - 1);
 
-      // increment debug by one
-      const newAllocation = {...timeAllocation};
-      newAllocation.debug++;
+      // increment build days by one
+      const newAllocation = {...timeAllocation, build: timeAllocation.build+1};
       setTimeAllocation(newAllocation);
     }
   };
 
   const improveRecs = () => {
     setDaysLeft(daysLeft + timeAllocation.abTest);
+    setTimeAllocation({...timeAllocation, build: DEFAULT_TIME_ALLOCATION.build});
     setState(A3_GAME_STATE.PriorityWeighing);
   };
 
@@ -34,9 +34,9 @@ function DebuggingResults(): JSX.Element {
       daysMin: 1,
     },
     'Go back and improve recommendations': {
-      buttonText: 'Change Priorities',
+      buttonText: 'Rebuild (lose current build days)',
       onClick: improveRecs,
-      daysMin: 3,
+      daysMin: DEFAULT_TIME_ALLOCATION.build,
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',

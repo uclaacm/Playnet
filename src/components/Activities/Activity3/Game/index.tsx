@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { objectSum } from '../../../../utils';
 import { CarouselContext } from '../../../shared/Carousel';
 import { useStateCallback } from '../../../shared/hooks';
 import ABTestingExplanation from './ABTestingExplanation';
@@ -11,7 +10,7 @@ import { generateVariableTargetWeights, getABTestingControlGraph, getABTestingPr
 import {
   A3_GAME_STATE, STATE_ORDERING_LIST, NEXT_STATE_MAP, ONE_TIME_STATES,
   SESSION_CURRENT_STATE, SESSION_SKIP_STATES, SESSION_VARIABLES, SESSION_TIMES, VARIABLES,
-  STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION,
+  STARTING_DAYS, SESSION_TARGET_WEIGHTS, SESSION_FEATURE_WEIGHTS, DEFAULT_TIME_ALLOCATION, DEFAULT_WEIGHTS,
   GAME_START_POINT, DEFAULT_AB_TEST_GRAPH,
 } from './GameConstants';
 import { GameIntroSlide2 } from './GameIntroSlides';
@@ -28,7 +27,7 @@ interface IGameContext {
   variableSelection: VARIABLES[],
   featureWeights: number[],
   targetWeights: number[],
-  timeAllocation: TimeAllocations, // BUILD, DEBUG, ABTEST
+  timeAllocation: TimeAllocations, // BUILD, ABTEST
   setTimeAllocation: (allocations: TimeAllocations) => void,
   daysLeft: number,
   setDaysLeft: (state: number) => void,
@@ -53,8 +52,8 @@ function Game(): JSX.Element {
   const [state, setState] = useState<A3_GAME_STATE>(A3_GAME_STATE.EmptyState);
   const [statesToSkip, setStatesToSkip] = useStateCallback<A3_GAME_STATE[]>([]);
   const [variableSelection, setVariableSelection] = useState<VARIABLES[]>([]);
-  const [featureWeights, setFeatureWeights] = useState([33, 33, 34]);
-  const [targetWeights, setTargetWeights] = useState<number[]>([33, 33, 34]);
+  const [featureWeights, setFeatureWeights] = useState(DEFAULT_WEIGHTS);
+  const [targetWeights, setTargetWeights] = useState<number[]>(DEFAULT_WEIGHTS);
   const [timeAllocation, setTimeAllocation] = useState<TimeAllocations>(DEFAULT_TIME_ALLOCATION);
   const [daysLeft, setDaysLeft] = useState<number>(STARTING_DAYS);
   const ABTestingGraph = useRef<JSX.Element | undefined>(undefined);
@@ -91,12 +90,12 @@ function Game(): JSX.Element {
 
     // setup featureWeights from storage
     const weights = storedFeatureWeights?.split(',').map(element => parseInt(element));
-    const curWeights = weights ?? [33, 33, 34];
+    const curWeights = weights ?? DEFAULT_WEIGHTS;
     setFeatureWeights(curWeights);
 
     // setup targetWeights from storage
     const tWeights = storedTargetWeights?.split(',').map(element => parseInt(element));
-    const curTWeights = tWeights ?? [33, 33, 34];
+    const curTWeights = tWeights ?? DEFAULT_WEIGHTS;
     setTargetWeights(curTWeights);
 
     return () => {
@@ -176,7 +175,7 @@ function Game(): JSX.Element {
     // reset daysLeft to maximum
     setDaysLeft(STARTING_DAYS);
     setVariableSelection([]);
-    setFeatureWeights([33, 33, 34]);
+    setFeatureWeights(DEFAULT_WEIGHTS);
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
     ABTestingGraph.current = undefined;
 
@@ -215,13 +214,9 @@ function Game(): JSX.Element {
     [A3_GAME_STATE.PriorityWeighing]:
       <PriorityWeighing initialFeatureWeights={featureWeights} setFeatureWeights={setFeatureWeights} />,
     [A3_GAME_STATE.TimeAllocationExplanation]:
-      <TimeAllocation initialTimes=
-        {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={true} />,
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={true} />,
     [A3_GAME_STATE.TimeAllocation]:
-      <TimeAllocation initialTimes=
-        {(objectSum(timeAllocation) > daysLeft) ? timeAllocation : DEFAULT_TIME_ALLOCATION}
-      isTutorial={false} />,
+      <TimeAllocation initialTimes={timeAllocation} isTutorial={false} />,
     [A3_GAME_STATE.DebuggingResults]: <DebuggingResults />,
     [A3_GAME_STATE.ABTestingExplanation]: <ABTestingExplanation />,
     [A3_GAME_STATE.ABTestingReport]: <ABTestingReport />,

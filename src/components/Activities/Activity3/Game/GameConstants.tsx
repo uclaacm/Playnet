@@ -113,7 +113,9 @@ export const VARIABLE_CONTENT: Record<VARIABLES, JSX.Element[]> = {
 export const STARTING_DAYS = 56;
 export const LOW_DAY_THRESHOLD = 14;
 export const HIGH_DAY_THRESHOLD = 21;
-export const DEFAULT_TIME_ALLOCATION = {build: 0, debug: 0, abTest: 0};
+export const DEFAULT_TIME_ALLOCATION = {build: 7, abTest: 7};
+
+export const DEFAULT_WEIGHTS = [33, 33, 34];
 
 export const DEFAULT_AB_TEST_GRAPH =
   <>There is no graph available as you didn&apos;t allot any time for A/B testing!</>;

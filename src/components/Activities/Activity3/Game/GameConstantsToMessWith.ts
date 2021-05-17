@@ -17,7 +17,6 @@ export const MIN_EXPECTED_ALLOCATION = 7;
 export const MAX_NUM_ERRORS = 10;
 export const DAY_VALUE_FOR_BUILD = 5; // t in an e^-t function, the higher, the less bugs
 // in decimal
-export const DAY_VALUE_PERCENT_FOR_DEBUG = .20; // the effectiveness of debug scales off of build
 export const EXP_CONSTANT = .02; // the smaller, the more bugs
 export const DEBUG_ERROR_OPTIONS = [
   'Image failed to load', 'File not found', 'Unexpected any.', 'Expected linebreaks to be \'LF\' but found \'CRLF\'',
