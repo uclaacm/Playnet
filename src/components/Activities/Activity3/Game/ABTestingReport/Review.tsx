@@ -137,7 +137,7 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     2: {
       ...defaultRatingReview,
       [weightDifference.low]: ['ok this is not that unfresh 🙃🙃', 
-      'woah this looks kinda cool n new'],
+      'ig this looks kinda cool n new'],
       [weightDifference.high]: ['gimme some oldies pls 🥺', 
       'kinda missing the old days rn'],
     },
@@ -152,12 +152,17 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
   [VARIABLES.SAME_CONTENT]: {
     1: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['does yt even care about giving me the same content that i like?? 😕😕'],
-      [weightDifference.high]: ['OMG NO MORE BABY DOO DOO SHARK AH STOP 🤬'],
+      [weightDifference.low]: ['does yt even care about giving me the same content that i like?? 😕😕',
+        'bruh do you even keep history lol',
+        'why does yt steal all my data and literally still have 🗑️🗑️🗑️TRASH recs'],
+      [weightDifference.high]: ['OMG NO MORE BABY DOO DOO SHARK AH STOP 🤬', 
+      'i meannnn i like fortnite but like TOO MUCH FORTNITE',
+      'ummmmm did i like switch on autorepeat or something????? 😩😩'],
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['hi youtube can you consider what i like more :( notice me pls senpai'],
+      [weightDifference.low]: ['hi youtube can you consider what i like more', 
+        ':( notice me pls senpai'],
       [weightDifference.high]: ['wow freaking youtube just giving me the same things over and over 😫', 
       'stuffs starting to feel a bit samey'],
     },
@@ -172,7 +177,8 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
   [VARIABLES.SAME_CREATOR]: {
     1: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['OMG why dont i see the new dude perfect videos?? i\'ve watched every other one! 🧐🤨'],
+      [weightDifference.low]: ['OMG why dont i see the new dude perfect videos?? i\'ve watched every other one! 🧐🤨',
+        'bro wheres my slice and rice.... yt i can literally do a better job than u'],
       [weightDifference.high]: ['ahhhh no more freaking pewdiepie BLEB MMF 🥴'],
     },
     2: {
@@ -190,7 +196,9 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
   [VARIABLES.SUBSCRIBED]: {
     1: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['haaaa youtube doesn\'t even know what im subscribed to or something 🤢🤢'],
+      [weightDifference.low]: ['haaaa youtube doesn\'t even know what im subscribed to or something 🤢🤢',
+        'yo do u even like why do i even subscribe if like yt literally just ignores it',
+        'holy what are these random channels?? boosted af holy 😡'],
       [weightDifference.high]: ['bruh this is trash, i know im subscribed but like gimme something new.. 🤔🤔'],
     },
     2: {
