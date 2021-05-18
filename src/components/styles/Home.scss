@@ -185,15 +185,25 @@
   background-image: url('../../assets/nether_portal.jpg');
 }
 
+.loading-screen {
+  display: grid;
+  width: 206px;
+  height: 216px;
+  margin-left: calc(50% - 103px);
+  margin-bottom: 3%;
+}
+
 #loading-anim-rocket {
   background-image: url('../../assets/loading-rocket.svg');
   background-repeat: no-repeat;
   background-size: auto;
-  height: 8.5vw;
-  width: auto;
+  width: 206px;
+  height: 216px;
   justify-self: center;
-  margin-left: 50%;
-  animation: spin 2s infinite linear;
+  transform-origin: 50% 50%;
+  animation: spin 2.5s infinite linear;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
 }
 
 #loading-anim-planet{
@@ -201,7 +211,18 @@
   background-repeat: no-repeat;
   background-size: auto;
   height: 8.5vw;
-  width: auto;
-  margin-left: 50%;
-  animation: rotation 2s infinite linear;
+  width: 88px;
+  height: 88px;
+  margin: auto;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

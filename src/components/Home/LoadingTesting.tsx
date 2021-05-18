@@ -5,25 +5,13 @@ import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 import ScalingSlide from '../shared/ScalingSlide';
 
 function FinalSlide(): JSX.Element {
-    const { reloadTime } = useContext(CarouselContext);
-    const timeline = useRef<AnimeTimelineInstance | null>(null);
-
-
-    useEffect(() => {
-        timeline.current = anime.timeline({
-            autoplay: false,
-            easing: 'easeInOutSine',
-          });
-
-        timeline.current?.add({
-
-        })
-    }, []);
 
     return (
         <>
-            <div id = {'loading-anim-rocket'}/>
-            <div id = {'loading-anim-planet'}/>
+            <div className='loading-screen'>
+                <div id={'loading-anim-rocket'} />
+                <div id={'loading-anim-planet'} />
+            </div>
         </>
     );
 
