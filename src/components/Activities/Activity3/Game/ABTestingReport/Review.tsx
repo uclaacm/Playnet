@@ -104,25 +104,31 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
         'only 5 views but 1337 dislikes 0_0'],
       [weightDifference.high]: ['man this is so basic and mainstream... im out 😩',
         'i am in pain :(((((((( i would go to tik tok if i want something this basic',
-        
+        'BAISC AF'
         ],
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['why would i watch this if nobody else likes it 😑😑', 'i used to like this stuff but now its kinda lame'],
+      [weightDifference.low]: ['why would i watch this if nobody else likes it 😑😑', 
+      'i used to like this stuff but now its kinda lame',
+      '7 views??? boosted af'],
       [weightDifference.high]: ['ok i guess the video is meh, seems like something wannabe popular peeps would like 🥴',
-        'meh maybe kool kids would like, but im not a kool kid :\')'],
+        'meh maybe kool kids would like, but im not a kool kid :\')',
+        '🎵 you think youre cooler than me 🎵'
+      ],
     },
     3: {
       ...defaultRatingReview,
       [weightDifference.good]: ['wow ok, goat, no wonder ppl like this',
-        "omg i love this, now i know why it's so popular 🤩🤩", 'these vids be hype af'],
+        "omg i love this, now i know why it's so popular 🤩🤩", 
+        'these vids be hype af'],
     },
   },
   [VARIABLES.RECENT_UPLOAD]: {
     1: {
       ...defaultRatingReview,
-      [weightDifference.low]: ["These videos were literally uploaded during my grandparent's time.....😴", 'lmao where r all these 10 yr old vids coming from'],
+      [weightDifference.low]: ["These videos were literally uploaded during my grandparent's time.....😴", 
+      'lmao where r all these 10 yr old vids coming from'],
       [weightDifference.high]: ['Wow I feel like these recs are only giving me the new stupid stuff 😥😥'],
     },
     2: {
