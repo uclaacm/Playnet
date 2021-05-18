@@ -97,6 +97,14 @@ $card-height: calc(#{$card-min-width} - 20px);
 }
 
 //Selecting variables Tutorial
+.enable-blur > * {
+  filter: blur(1.5px) grayscale(0.6) brightness(85%);
+}
+
+.disable-blur {
+  filter: blur(0);
+}
+
 .tutorial-container .variable-card {
   height: 100%;
 }
@@ -521,14 +529,6 @@ $card-height: calc(#{$card-min-width} - 20px);
   position: absolute;
 }
 
-.enable-blur>* {
-  filter: blur(1.5px) grayscale(0.6) brightness(85%);
-}
-
-.disable-blur {
-  filter: blur(0);
-}
-
 .stars {
   img {
     height: 33px;
@@ -601,7 +601,18 @@ h3 {
   border-radius: 30px;
   display: flex;
   font-size: 16px;
+  font-weight: bold;
   height: 30px;
   margin: 0 2.5%;
   width: 95%;
+}
+
+.abtest-graph-key {
+  background-color: #f2f2f2;
+  border-radius: 25px;
+  font-size: 16px;
+  font-weight: 650;
+  margin: auto;
+  padding: 0 10px;
+  width: fit-content;
 }
