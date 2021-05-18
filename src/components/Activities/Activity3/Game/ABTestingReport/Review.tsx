@@ -80,7 +80,7 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ["hm kinda sus if it's true but its ok i guess 🧐🧐", 'daily mail is 😩'],
+      [weightDifference.low]: ["hm kinda sus if it's true but its ok i guess 🧐🧐", 'daily mail is 😩', 'free 100000 vbucks hmm seems pretty sketch'],
       [weightDifference.high]: ['this is too credible and boring, I want to see something more interesting and controverial 😖',
         'meh meh meh 😴 entertain me pls', 'eh these r alright but kinda basic'],
     },
@@ -99,7 +99,7 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['why would i watch this if nobody else likes it 😑😑'],
+      [weightDifference.low]: ['why would i watch this if nobody else likes it 😑😑', 'i used to like this stuff but now its kinda lame'],
       [weightDifference.high]: ['ok i guess the video is meh, seems like something wannabe popular peeps would like 🥴',
         'meh maybe kool kids would like, but im not a kool kid :\')'],
     },
@@ -122,7 +122,7 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     },
     3: {
       ...defaultRatingReview,
-      [weightDifference.good]: ['fressshhhhhh', 'omg this is CLEAN and FRESH 😌', 'first comment hehe'],
+      [weightDifference.good]: ['fressshhhhhh', 'omg this is CLEAN and FRESH 😌',  'first comment hehe', 'here from yt recommended 😎'],
     },
   },
   [VARIABLES.SAME_CONTENT]: {
@@ -173,7 +173,7 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     3: {
       ...defaultRatingReview,
       [weightDifference.good]: ['LOVE this, this is why i subscribe 🌟',
-        'okay this is why i use youtube, it knows my subscriptions 😎', 'hey yt recs have gotten p good :0'],
+        'okay this is why i use youtube, it knows my subscriptions 😎'],
     },
   },
 };
