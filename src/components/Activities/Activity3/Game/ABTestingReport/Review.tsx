@@ -20,19 +20,6 @@ const reviewer_names = [
   'captainawesome123',
 ];
 
-export enum weightDifference {
-  low,
-  high,
-  good,
-}
-
-type singleRatingReview = { [key in weightDifference]: string[]}
-const defaultRatingReview = {
-  [weightDifference.low]: [],
-  [weightDifference.high]: [],
-  [weightDifference.good]: [],
-};
-
 const bugReviews: {[key: number]: string[]} = {
   1: [
     'I hate this feature! It crashes all the time!',
@@ -68,34 +55,57 @@ const bugReviews: {[key: number]: string[]} = {
   ],
 };
 
+export enum weightDifference {
+  low,
+  high,
+  good,
+}
+
+type singleRatingReview = { [key in weightDifference]: [string, string, string]} 
+  // change to string[] before pushing main
+const defaultRatingReview : singleRatingReview = {
+  [weightDifference.low]: [],
+  [weightDifference.high]: [],
+  [weightDifference.good]: [],
+};
 
 const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingReview} } = {
   [VARIABLES.CREDIBLE]: {
     1: {
       ...defaultRatingReview,
       [weightDifference.low]: ['omg this is so fake, im never coming back to this site 😬',
-        'ALKSJDLKJFLKEJKLFJLKEEFS 5 minute videos FAKE', 'lmao santa isnt real checkmate youtube'],
+        'ALKSJDLKJFLKEJKLFJLKEEFS 5 minute videos FAKE', 
+        'lmao santa isnt real checkmate youtube'],
       [weightDifference.high]: ['these are all boring documentaries, they care too much about credibility 😤😤',
-        'BORING AH PLS CYAAAAAA'],
+        'BORING AH PLS CYAAAAAA',
+        'pls gimme something spicy 🌶️🌶️ sigh this sucks'],
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ["hm kinda sus if it's true but its ok i guess 🧐🧐", 'daily mail is 😩', 'free 100000 vbucks hmm seems pretty sketch'],
+      [weightDifference.low]: ["hm kinda sus if it's true but its ok i guess 🧐🧐", 
+      'daily mail is 😩', 
+      'free 100000 vbucks hmm seems pretty sketch'],
       [weightDifference.high]: ['this is too credible and boring, I want to see something more interesting and controverial 😖',
-        'meh meh meh 😴 entertain me pls', 'eh these r alright but kinda basic'],
+        'meh meh meh 😴 entertain me pls', 
+        'eh these r alright but kinda basic'],
     },
     3: {
       ...defaultRatingReview,
       [weightDifference.good]: ['Everything is so credible its amazing, i feel like MLA or something',
-        'wow ok believable :0', 'wowwww i feel enlightened'],
+        'wow ok believable :0', 
+        'wowwww i feel enlightened'],
     },
   },
   [VARIABLES.POPULAR]: {
     1: {
       ...defaultRatingReview,
       [weightDifference.low]: ["whats this stupid video 😡... I don't think ANYONE would like it",
-        'I AM BORE MLEM', 'only 5 views but 1337 dislikes 0_0'],
-      [weightDifference.high]: ['man this is so basic and mainstream... im out 😩'],
+        'I AM BORE MLEM', 
+        'only 5 views but 1337 dislikes 0_0'],
+      [weightDifference.high]: ['man this is so basic and mainstream... im out 😩',
+        'i am in pain :(((((((( i would go to tik tok if i want something this basic',
+        
+        ],
     },
     2: {
       ...defaultRatingReview,
