@@ -61,7 +61,7 @@ export enum weightDifference {
   good,
 }
 
-type singleRatingReview = { [key in weightDifference]: [string, string, string]} 
+type singleRatingReview = { [key in weightDifference]: [string, string, string, ...]} 
   // change to string[] before pushing main
 const defaultRatingReview : singleRatingReview = {
   [weightDifference.low]: [],
@@ -128,17 +128,25 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     1: {
       ...defaultRatingReview,
       [weightDifference.low]: ["These videos were literally uploaded during my grandparent's time.....😴", 
-      'lmao where r all these 10 yr old vids coming from'],
-      [weightDifference.high]: ['Wow I feel like these recs are only giving me the new stupid stuff 😥😥'],
+      'lmao where r all these 10 yr old vids coming from',
+      'dude yt ????? 👿👿👿 1990??? i didnt even know yt was a thing back then'],
+      [weightDifference.high]: ['Wow I feel like these recs are only giving me the new stupid stuff 😥😥',
+      'holy why u givin me only uploaded 2 min ago......................',
+      'wtf are my recs holy literally sort by upload or something 🙁'],
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['ok this is not that unfresh 🙃🙃', 'woah this looks kinda cool n new'],
-      [weightDifference.high]: ['gimme some oldies pls 🥺', 'kinda missing the old days rn'],
+      [weightDifference.low]: ['ok this is not that unfresh 🙃🙃', 
+      'woah this looks kinda cool n new'],
+      [weightDifference.high]: ['gimme some oldies pls 🥺', 
+      'kinda missing the old days rn'],
     },
     3: {
       ...defaultRatingReview,
-      [weightDifference.good]: ['fressshhhhhh', 'omg this is CLEAN and FRESH 😌',  'first comment hehe', 'here from yt recommended 😎'],
+      [weightDifference.good]: ['fressshhhhhh', 
+      'omg this is CLEAN and FRESH 😌',  
+      'first comment hehe', 
+      'here from yt recommended 😎'],
     },
   },
   [VARIABLES.SAME_CONTENT]: {
@@ -150,12 +158,15 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     2: {
       ...defaultRatingReview,
       [weightDifference.low]: ['hi youtube can you consider what i like more :( notice me pls senpai'],
-      [weightDifference.high]: ['wow freaking youtube just giving me the same things over and over 😫', 'stuffs starting to feel a bit samey'],
+      [weightDifference.high]: ['wow freaking youtube just giving me the same things over and over 😫', 
+      'stuffs starting to feel a bit samey'],
     },
     3: {
       ...defaultRatingReview,
       [weightDifference.good]: ['WOW youtube literally knows exactly when i want to try new things or watch past things',
-        'nice balance of new and old content everytime uwu 😎😎'],
+        'GODLY balance of new and old content everytime 😎😎',
+        'ahhh recs are literally like omg no one except you knows me this well',
+        'high key youtube is bae 🥺'],
     },
   },
   [VARIABLES.SAME_CREATOR]: {
@@ -172,7 +183,8 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     3: {
       ...defaultRatingReview,
       [weightDifference.good]: ['daYuM i am a DISCOVERER of great creators 😍😍😍',
-        'ok i see you youtube, givin me those fresh creators'],
+        'ok i see you youtube, givin me those fresh creators',
+        'omg whoever made this--marry me pls 🥺'],
     },
   },
   [VARIABLES.SUBSCRIBED]: {
@@ -189,7 +201,8 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     3: {
       ...defaultRatingReview,
       [weightDifference.good]: ['LOVE this, this is why i subscribe 🌟',
-        'okay this is why i use youtube, it knows my subscriptions 😎'],
+        'okay this is why i use youtube, it knows my subscriptions 😎',
+        'uwu yt knows me so well 🥺'],
     },
   },
 };
