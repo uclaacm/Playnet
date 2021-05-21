@@ -61,9 +61,9 @@ export enum weightDifference {
   good,
 }
 
-// type singleRatingReview = { [key in weightDifference]: [string, string, string, ...]} 
-type singleRatingReview = { [key in weightDifference]: string[]} 
-  // change to string[] before pushing main
+type singleRatingReview = { [key in weightDifference]: [string, string, string, ...]} 
+// type singleRatingReview = { [key in weightDifference]: string[]} 
+  // change to second line before pushing to main
 const defaultRatingReview : singleRatingReview = {
   [weightDifference.low]: [],
   [weightDifference.high]: [],
@@ -138,9 +138,13 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     2: {
       ...defaultRatingReview,
       [weightDifference.low]: ['ok this is not that unfresh 🙃🙃', 
-      'ig this looks kinda cool n new'],
+      'ig this looks kinda cool n new',
+      'wow dying is la is like 3 yrs old now 🤓 omg im old'
+    ],
       [weightDifference.high]: ['gimme some oldies pls 🥺', 
-      'kinda missing the old days rn'],
+      'kinda missing the old days rn',
+      'erm id go to like tiktok if like i wanted to see daily content😪😪'
+    ],
     },
     3: {
       ...defaultRatingReview,
@@ -163,9 +167,12 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     2: {
       ...defaultRatingReview,
       [weightDifference.low]: ['hi youtube can you consider what i like more', 
-        ':( notice me pls senpai'],
+        ':( notice me pls senpai',
+      ],
       [weightDifference.high]: ['wow freaking youtube just giving me the same things over and over 😫', 
-      'stuffs starting to feel a bit samey'],
+      'stuffs starting to feel a bit samey',
+      'ah i literally watched this vid like 2 weeks ago'
+    ],
     },
     3: {
       ...defaultRatingReview,
@@ -179,12 +186,20 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
     1: {
       ...defaultRatingReview,
       [weightDifference.low]: ['OMG why dont i see the new dude perfect videos?? i\'ve watched every other one! 🧐🤨',
-        'bro wheres my slice and rice.... yt i can literally do a better job than u'],
-      [weightDifference.high]: ['ahhhh no more freaking pewdiepie BLEB MMF 🥴'],
+        'bro wheres my slice and rice.... yt i can literally do a better job than u',
+        'holy what are these random creators?? boosted af holy 😡'
+      ],
+      [weightDifference.high]: ['ahhhh no more freaking pewdiepie BLEB MMF 🥴',
+        'OMG so aggro i literally lke watch this guy once and now my recs are FLOODED AF 😡',
+        'YT PLS TAKE IT AWAY FROM MY RECS LIKE I WATCHED ONE WIRED VID AND NOW IT WONT LEAVE 😭😭😭 painnnn'
+    ],
     },
     2: {
       ...defaultRatingReview,
-      [weightDifference.low]: ['meh content, i wanna see bae masterchef 🥺🥺'],
+      [weightDifference.low]: ['why is yt giving me art vids, i wanna see bae masterchef 🥺🥺', 
+        'i literally only watch aimer music vids but like it be giving me 5 minute physics?? like hello???',
+        'tectone only... wtf is like buzzfeed?? how/why do you think id liek that??'
+    ],
       [weightDifference.high]: ['haaaa youtube thinks i only like marshmello or smthg 🤦🏽‍♀️'],
     },
     3: {
@@ -199,8 +214,12 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
       ...defaultRatingReview,
       [weightDifference.low]: ['haaaa youtube doesn\'t even know what im subscribed to or something 🤢🤢',
         'yo do u even like why do i even subscribe if like yt literally just ignores it',
-        'holy what are these random channels?? boosted af holy 😡'],
-      [weightDifference.high]: ['bruh this is trash, i know im subscribed but like gimme something new.. 🤔🤔'],
+        'yoooooooo im literally only subbed to anna akana and like who are these randos... yt you are canceled 🤦🏻🤦🏼🤦🏽'
+      ],
+      [weightDifference.high]: ['bruh this is trash, i know im subscribed but like gimme something new.. 🤔🤔',
+        'when you only subbed to one channel so now literally you cant find anything else... this is why i use tiktok',
+        'HI YT do you think u can entertain me with just that one channel im subbed???? ive literally seen this vid liek 7x at this point'
+    ],
     },
     2: {
       ...defaultRatingReview,
