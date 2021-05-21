@@ -3,8 +3,7 @@ import { GameContext } from '..';
 import { clamp, objectSum } from '../../../../../utils';
 import { accuracyOfSingleWeight, debugQuality } from '../gameCalculationsUtil';
 import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION, VARIABLES } from '../GameConstants';
-import { CHANCE_OF_BUG_REVIEW, STAR_RANDOM_AMT, STAR_RANDOM_VARIANCE } from '../GameConstantsToMessWith';
-import TimeAllocation from '../TimeAllocation';
+import { CHANCE_OF_BUG_REVIEW, STAR_RANDOM_VARIANCE } from '../GameConstantsToMessWith';
 import { TimeAllocations } from '../typings';
 
 import PopUp from './Popup';
@@ -33,9 +32,10 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
     let qualityOfDebug = (1 - debugQuality(timeAllocation.build)) * 5;
     qualityOfDebug += STAR_RANDOM_VARIANCE * (Math.random() - .5);
     return { stars: clamp(1, Math.round(qualityOfDebug), 5).num, isBugReview: true };
-  }
+  };
 
-  return Array(num).fill(0).map(() => Math.random() > CHANCE_OF_BUG_REVIEW ? generateVariableReview() : generateBugReview());
+  return Array(num).fill(0).map(() =>
+    Math.random() > CHANCE_OF_BUG_REVIEW ? generateVariableReview() : generateBugReview());
 };
 
 function ABTestingReport(): JSX.Element {
