@@ -33,6 +33,10 @@ export const NUMBER_TO_QUALITY_MAP = {
 };
 export const QUALITY_DEFAULT_KEY = '1,2';
 
+/** Review Constants */
+export const CHANCE_OF_BUG_REVIEW = .4;
+export const STAR_RANDOM_VARIANCE = 1;
+
 /**
  * Percent when text no longer fits inside final report bar. Note, this is not a pixel value and may not work well for different sized screens
  */

@@ -61,7 +61,8 @@ export enum weightDifference {
   good,
 }
 
-type singleRatingReview = { [key in weightDifference]: [string, string, string, ...]} 
+// type singleRatingReview = { [key in weightDifference]: [string, string, string, ...]} 
+type singleRatingReview = { [key in weightDifference]: string[]} 
   // change to string[] before pushing main
 const defaultRatingReview : singleRatingReview = {
   [weightDifference.low]: [],
@@ -215,9 +216,10 @@ const substantialReviews: { [key in VARIABLES]: { [key: number]: singleRatingRev
   },
 };
 
-interface ReviewProps {
+export interface ReviewProps {
   stars: number;
   variableReview?: VariableReview;
+  isBugReview?: boolean;
 }
 
 export interface VariableReview {
@@ -227,10 +229,10 @@ export interface VariableReview {
 }
 
 function Review(props: ReviewProps): JSX.Element {
-  const { stars, variableReview } = props;
+  const { stars, variableReview, isBugReview } = props;
   const star = Array(5).fill(undefined).map((_v, i) => i < stars ? true : false);
 
-  const getAReview = (review: VariableReview) : string => {
+  const getAVariableReview = (review: VariableReview) : string => {
     const {variable, rating, weightDifference: diff} = review;
     const value = random(substantialReviews[variable][rating][diff]) ??
       random(substantialReviews[variable][rating][weightDifference.good]);
@@ -240,8 +242,13 @@ function Review(props: ReviewProps): JSX.Element {
   return (
     <div>
       {variableReview && <p>{random(reviewer_names)}: {
-        getAReview(variableReview)
-      }</p>}
+        getAVariableReview(variableReview)
+      }
+      </p>}
+      {isBugReview && <p>{random(reviewer_names)}: {
+        random(bugReviews[stars])
+      }
+      </p>}
       <div className={'stars'}>
         {Array(5).fill(false).map((_v, i) =>
           <img key={i} src={Star} style={star[i] ? {} : { filter: 'grayscale(100%)' }} />,
