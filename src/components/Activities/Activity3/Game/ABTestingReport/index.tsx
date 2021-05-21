@@ -1,36 +1,46 @@
 import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
 import { clamp, objectSum } from '../../../../../utils';
-import { accuracyOfSingleWeight } from '../gameCalculationsUtil';
+import { accuracyOfSingleWeight, debugQuality } from '../gameCalculationsUtil';
 import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION, VARIABLES } from '../GameConstants';
+import { CHANCE_OF_BUG_REVIEW, STAR_RANDOM_VARIANCE } from '../GameConstantsToMessWith';
+import { TimeAllocations } from '../typings';
 
 import PopUp from './Popup';
-import Review, { VariableReview, weightDifference } from './Review';
+import Review, { ReviewProps, VariableReview, weightDifference } from './Review';
 
 export const generateReviews = (featureWeights: number[], targetWeights: number[],
-  variableSelection: VARIABLES[], num: number): { numStars: number, variableReview: VariableReview }[] => {
-  const convertToStars = (): { numStars: number, variableReview: VariableReview } => {
+  variableSelection: VARIABLES[], timeAllocation: TimeAllocations, num: number): ReviewProps[] => {
+  const generateVariableReview = (): { stars: number, variableReview: VariableReview } => {
     const randomIndex = Math.floor(Math.random() * 3);
     const raw = accuracyOfSingleWeight(featureWeights[randomIndex], targetWeights[randomIndex])
-      + Math.random() - .5;
+      + STAR_RANDOM_VARIANCE * (Math.random() - .5);
 
     // since ratings are out of 3
     const variableScore = raw * 3 / 5;
 
-    const variableReview : VariableReview = {
+    const variableReview: VariableReview = {
       variable: variableSelection[randomIndex],
       rating: clamp(1, Math.floor(Math.abs(variableScore)), 3).num,
       weightDifference: (variableScore > 0) ? weightDifference.high : weightDifference.low,
     };
 
-    return { numStars: clamp(1, Math.floor(Math.abs(raw)), 5).num, variableReview: variableReview };
+    return { stars: clamp(1, Math.round(Math.abs(raw)), 5).num, variableReview: variableReview };
   };
-  return Array(num).fill(0).map(() => convertToStars());
+
+  const generateBugReview = (): { stars: number, isBugReview: boolean } => {
+    let qualityOfDebug = (1 - debugQuality(timeAllocation.build)) * 5;
+    qualityOfDebug += STAR_RANDOM_VARIANCE * (Math.random() - .5);
+    return { stars: clamp(1, Math.round(qualityOfDebug), 5).num, isBugReview: true };
+  };
+
+  return Array(num).fill(0).map(() =>
+    Math.random() > CHANCE_OF_BUG_REVIEW ? generateVariableReview() : generateBugReview());
 };
 
 function ABTestingReport(): JSX.Element {
   const {
-    setState, variableSelection, featureWeights, targetWeights, daysLeft, getABTestingGraph,
+    setState, variableSelection, timeAllocation, featureWeights, targetWeights, daysLeft, getABTestingGraph,
     setTimeAllocation,
   } = useContext(GameContext);
   const [popup, setPopup] = useState(false);
@@ -52,9 +62,9 @@ function ABTestingReport(): JSX.Element {
     <div className='inline'>
       <div className='half'>
         Reviews
-        {generateReviews(featureWeights, targetWeights, variableSelection, 2)
-          .map(({ numStars, variableReview }, i) =>
-            <Review key={i} stars={numStars} variableReview={variableReview} />)}
+        {generateReviews(featureWeights, targetWeights, variableSelection, timeAllocation, 2)
+          .map((props, i) =>
+            <Review key={i} {...props} />)}
       </div>
       <div className='half'>
         {getABTestingGraph()}
