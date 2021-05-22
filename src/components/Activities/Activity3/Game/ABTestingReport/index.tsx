@@ -62,25 +62,29 @@ function ABTestingReport(): JSX.Element {
     <h3>A/B Testing: Report</h3>
     <div className='inline'>
       <div className='half'>
-        <h4 style={{ margin: "4px" }}>Reviews</h4>
-        <div style={{ overflowY: "scroll", maxHeight: "40vh" }}>
-          {generateReviews(featureWeights, targetWeights, variableSelection, timeAllocation,
-            Math.ceil(timeAllocation.abTest / NUM_ABTEST_DAYS_PER_REVIEW))
-            .map((props, i) =>
-              <Review key={i} {...props} />)}
-        </div>
+        <h4 style={{ margin: '4px' }}>Reviews</h4>
+        {timeAllocation.abTest != 0 ?
+          <div style={{ overflowY: 'scroll', maxHeight: '40vh' }}>
+            {generateReviews(featureWeights, targetWeights, variableSelection, timeAllocation,
+              Math.ceil(timeAllocation.abTest / NUM_ABTEST_DAYS_PER_REVIEW))
+              .map((props, i) =>
+                <Review key={i} {...props} />)
+            }
+          </div>
+          : <>You didn&apos;t allocate any days for AB Testing, so you have no reviews.</>}
       </div>
       <div className='half'>
+      <h4 style={{ margin: '4px' }}>Graph</h4>
         {getABTestingGraph()}
       </div>
     </div>
     <div>
-      <button className={goBackButtonEnabled ? "playnet-button playnet-btn-blue" : "playnet-button"}
+      <button className={goBackButtonEnabled ? 'playnet-button playnet-btn-blue' : 'playnet-button'}
         onClick={() => setPopup(true)}>
         Submit final product
       </button>
       {
-        goBackButtonEnabled && 
+        goBackButtonEnabled &&
         <button className="playnet-button" onClick={retry}>
           Go back to variables (14 days needed)
         </button>

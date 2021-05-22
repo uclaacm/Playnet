@@ -42,7 +42,7 @@ function DebuggingResults(): JSX.Element {
       buttonText: 'Continue to A/B Testing',
       onClick: goNextState,
       daysMin: -10,
-      className: "playnet-btn-blue",
+      className: 'playnet-btn-blue',
     },
   };
   return <>
