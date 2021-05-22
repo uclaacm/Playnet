@@ -8,13 +8,13 @@ import ComputerSvg from '../../../assets/activity1/search-highlighted-computer.s
 import Carousel from '../../shared/Carousel';
 import Computer from '../../shared/Computer';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
+import Preload from '../../shared/Preload';
 import { SoundTrack } from '../../shared/soundtrack';
 import TransitionSlide from '../../shared/TransitionSlide';
 import ComputerConversation from './ComputerConversation';
 import CipherGame, { SuccessCipherGameState } from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
-import Preload from '../../shared/Preload';
 
 const reqSvgs = require.context( '../../../assets/', true, /\.(svg|jpg|png)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
 const paths = reqSvgs.keys();
@@ -33,7 +33,7 @@ function Activity1(): JSX.Element {
   const content = [
     {
       child:
-        <Preload images = {imgArray} />
+        <Preload images = {imgArray} />,
     },
     {
       child: <img src={ComputerSvg} width='40%' alt='Image of Youtube on Computer' />,
