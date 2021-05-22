@@ -16,13 +16,19 @@ import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 import Preload from '../../shared/Preload';
 
+const reqSvgs = require.context( '../../../assets/', true, /\.(svg|jpg|png)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
+const paths = reqSvgs.keys();
+
+const svgs = paths.map( path => reqSvgs ( path ) );
+
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
 
-  const imgArray = [
-    '../../../assets/activity1/game1-endscreen.svg',
-    '../../../assets/activity1/search-highlighted-computer.svg',
-  ]
+  const imgArray = svgs;  //is an array of strings
+  // [
+  //   '../../../assets/activity1/game1-endscreen.svg',
+  //   '../../../assets/activity1/search-highlighted-computer.svg',
+  // ]
 
   const content = [
     {
