@@ -1,7 +1,7 @@
-import { clamp, random } from '../../../../utils';
+import { clamp, random, randomVariance } from '../../../../utils';
 import {
-  DAY_VALUE_FOR_BUILD, DEBUG_ERROR_OPTIONS,
-  EXP_CONSTANT, FINAL_NUM_POINTS, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
+  DEBUG_DAY_VARIANCE, DEBUG_ERROR_OPTIONS,
+  DEBUG_EXP_CONSTANT, FINAL_NUM_POINTS, MAX_GRAPH_START, MAX_NUM_ERRORS, MIN_EXPECTED_ALLOCATION,
   MIN_GRAPH_START, MULTIPLE_FOR_CHANGE_OF_AB_GRAPH, NUMBER_TO_QUALITY_MAP,
   QUALITY_DEFAULT_KEY, RANDOM_BETA_TEST_CHANGE, SINGLE_CONTROL_CHANGE_MAX,
   STABILITY_OF_FINAL,
@@ -66,10 +66,10 @@ export function accuracyOfWeights(
 export function debugQuality(
   daysBuilding: number,
 ): number {
-  const t = daysBuilding * DAY_VALUE_FOR_BUILD;
+  const t = daysBuilding;
   // Use negative exponential to see how many bugs they have. [0, 1] * MAX_NUM_ERRORS
   // e^-x has been chosen because it ranges from [1 - 0]
-  return Math.exp(-1 * EXP_CONSTANT * t);
+  return Math.exp(-1 * DEBUG_EXP_CONSTANT * t);
 }
 
 /**
@@ -98,7 +98,7 @@ export function overallQuality(
 export function getDebugNumErrors(
   daysBuilding: number,
 ): number {
-  const t = debugQuality(daysBuilding);
+  const t = debugQuality(daysBuilding + randomVariance(DEBUG_DAY_VARIANCE));
   const numErrors = Math.floor(MAX_NUM_ERRORS * t);
   return numErrors;
 }
@@ -113,7 +113,7 @@ export function getDebugErrors(
 ): string[] {
   const errors = [];
   for (let i = 0; i < numErrors; i++) {
-    errors.push(random(DEBUG_ERROR_OPTIONS));
+    errors.push(random(DEBUG_ERROR_OPTIONS)!);
   }
   return errors;
 }
@@ -220,7 +220,7 @@ export function getBetaGraph(
   // add numABTestingDays # of points!
   dControlGraph.forEach(({x: controlDx, y: controlDy}) => {
     // find a random change in y based on the quality of the product + control's dy
-    rand = Math.random() * maxChange - (maxChange / 2);
+    rand = randomVariance(maxChange);
     tempDy = MULTIPLE_FOR_CHANGE_OF_AB_GRAPH * (quality - 2.5) + rand;
     tempDyWithControl = tempDy + controlDy;
 

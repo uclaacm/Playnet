@@ -27,7 +27,7 @@ function DebuggingResults(): JSX.Element {
     setState(A3_GAME_STATE.PriorityWeighing);
   };
 
-  const buttons: { [key: string]: { buttonText: string, onClick: () => void, daysMin: number } } = {
+  const buttons: { [key: string]: { buttonText: string, onClick: () => void, daysMin: number, className?: string } } = {
     'Reduce errors': {
       buttonText: 'Debug (-1 day)',
       onClick: debugADay,
@@ -42,6 +42,7 @@ function DebuggingResults(): JSX.Element {
       buttonText: 'Continue to A/B Testing',
       onClick: goNextState,
       daysMin: -10,
+      className: "playnet-btn-blue",
     },
   };
   return <>
@@ -73,11 +74,11 @@ function DebuggingResults(): JSX.Element {
       <div className='half'>
         <div className='vertical-grid'>
           {
-            Object.entries(buttons).map(([name, { buttonText, onClick, daysMin }]) =>
+            Object.entries(buttons).map(([name, { buttonText, onClick, daysMin, className }]) =>
               <div className='button-group' key={name}>
                 {name}
                 <br />
-                <button className='smaller playnet-button' onClick={onClick}
+                <button className={'smaller playnet-button ' + (className ?? '') } onClick={onClick}
                   disabled={daysMin > daysLeft && daysMin > 0}>
                   {buttonText}
                 </button>

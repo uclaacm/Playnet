@@ -21,3 +21,12 @@ export function clamp(min: number, input: number, max: number) : {
 export function objectSum(arr: {[key: string]: number}) : number{
   return Object.values(arr).reduce((prev, curr)=>prev + curr, 0);
 }
+
+/**
+ * Given a number, find a random number between [-num, num], not inclusive
+ * @param num input variance
+ * @returns random number (-num, num)
+ */
+export function randomVariance(num: number) {
+  return 2 * num * (Math.random() - .5);
+}

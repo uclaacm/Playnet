@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { GameContext } from '..';
-import { clamp, objectSum } from '../../../../../utils';
+import { clamp, objectSum, randomVariance } from '../../../../../utils';
 import { accuracyOfSingleWeight, debugQuality } from '../gameCalculationsUtil';
 import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION, VARIABLES } from '../GameConstants';
-import { CHANCE_OF_BUG_REVIEW, STAR_RANDOM_VARIANCE } from '../GameConstantsToMessWith';
+import { CHANCE_OF_BUG_REVIEW, NUM_ABTEST_DAYS_PER_REVIEW, STAR_RANDOM_VARIANCE } from '../GameConstantsToMessWith';
 import { TimeAllocations } from '../typings';
 
 import PopUp from './Popup';
@@ -14,7 +14,7 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
   const generateVariableReview = (): { stars: number, variableReview: VariableReview } => {
     const randomIndex = Math.floor(Math.random() * 3);
     const raw = accuracyOfSingleWeight(featureWeights[randomIndex], targetWeights[randomIndex])
-      + STAR_RANDOM_VARIANCE * (Math.random() - .5);
+      + randomVariance(STAR_RANDOM_VARIANCE);
 
     // since ratings are out of 3
     const variableScore = raw * 3 / 5;
@@ -30,7 +30,7 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
 
   const generateBugReview = (): { stars: number, isBugReview: boolean } => {
     let qualityOfDebug = (1 - debugQuality(timeAllocation.build)) * 5;
-    qualityOfDebug += STAR_RANDOM_VARIANCE * (Math.random() - .5);
+    qualityOfDebug += randomVariance(STAR_RANDOM_VARIANCE);
     return { stars: clamp(1, Math.round(qualityOfDebug), 5).num, isBugReview: true };
   };
 
@@ -44,6 +44,7 @@ function ABTestingReport(): JSX.Element {
     setTimeAllocation,
   } = useContext(GameContext);
   const [popup, setPopup] = useState(false);
+  const goBackButtonEnabled = daysLeft >= objectSum(DEFAULT_TIME_ALLOCATION);
 
   const retry = () => {
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
@@ -61,20 +62,29 @@ function ABTestingReport(): JSX.Element {
     <h3>A/B Testing: Report</h3>
     <div className='inline'>
       <div className='half'>
-        Reviews
-        {generateReviews(featureWeights, targetWeights, variableSelection, timeAllocation, 2)
-          .map((props, i) =>
-            <Review key={i} {...props} />)}
+        <h4 style={{ margin: "4px" }}>Reviews</h4>
+        <div style={{ overflowY: "scroll", maxHeight: "40vh" }}>
+          {generateReviews(featureWeights, targetWeights, variableSelection, timeAllocation,
+            Math.ceil(timeAllocation.abTest / NUM_ABTEST_DAYS_PER_REVIEW))
+            .map((props, i) =>
+              <Review key={i} {...props} />)}
+        </div>
       </div>
       <div className='half'>
         {getABTestingGraph()}
       </div>
     </div>
     <div>
-      <button className="playnet-button playnet-btn-blue" disabled={daysLeft < objectSum(DEFAULT_TIME_ALLOCATION)} onClick={retry}>
-        Go back to variables (14 days needed)
+      <button className={goBackButtonEnabled ? "playnet-button playnet-btn-blue" : "playnet-button"}
+        onClick={() => setPopup(true)}>
+        Submit final product
       </button>
-      <button className="playnet-button" onClick={() => setPopup(true)}>Submit final product</button>
+      {
+        goBackButtonEnabled && 
+        <button className="playnet-button" onClick={retry}>
+          Go back to variables (14 days needed)
+        </button>
+      }
     </div>
   </>;
 }
