@@ -74,7 +74,7 @@ function ABTestingReport(): JSX.Element {
           : <>You didn&apos;t allocate any days for AB Testing, so you have no reviews.</>}
       </div>
       <div className='half'>
-      <h4 style={{ margin: '4px' }}>Graph</h4>
+        <h4 style={{ margin: '4px' }}>Graph</h4>
         {getABTestingGraph()}
       </div>
     </div>

@@ -27,6 +27,6 @@ export function objectSum(arr: {[key: string]: number}) : number{
  * @param num input variance
  * @returns random number (-num, num)
  */
-export function randomVariance(num: number) {
+export function randomVariance(num: number): number {
   return 2 * num * (Math.random() - .5);
 }
