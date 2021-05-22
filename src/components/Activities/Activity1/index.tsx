@@ -14,11 +14,21 @@ import ComputerConversation from './ComputerConversation';
 import CipherGame, { SuccessCipherGameState } from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
+import Preload from '../../shared/Preload';
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
 
+  const imgArray = [
+    '../../../assets/activity1/search-highlighted-computer.svg',
+    '../../../assets/activity1/game1-endscreen.svg',
+  ]
+
   const content = [
+    {
+      child:
+        <Preload images = {imgArray} />
+    },
     {
       child: <img src={ComputerSvg} width='40%' alt='Image of Youtube on Computer' />,
       bottomText: 'How does YouTube bring you the videos you want?',
