@@ -63,7 +63,7 @@ function ABTestingReport(): JSX.Element {
     <div className='inline'>
       <div className='half'>
         <h4 style={{ margin: '4px' }}>Reviews</h4>
-        {timeAllocation.abTest != 0 ?
+        {timeAllocation.abTest > 0 ?
           <div style={{ overflowY: 'scroll', maxHeight: '40vh' }}>
             {generateReviews(featureWeights, targetWeights, variableSelection, timeAllocation,
               Math.ceil(timeAllocation.abTest / NUM_ABTEST_DAYS_PER_REVIEW))
