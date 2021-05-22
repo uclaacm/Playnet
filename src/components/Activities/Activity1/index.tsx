@@ -20,8 +20,8 @@ function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
 
   const imgArray = [
-    '../../../assets/activity1/search-highlighted-computer.svg',
     '../../../assets/activity1/game1-endscreen.svg',
+    '../../../assets/activity1/search-highlighted-computer.svg',
   ]
 
   const content = [
