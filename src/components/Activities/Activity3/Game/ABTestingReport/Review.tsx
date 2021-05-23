@@ -18,6 +18,12 @@ const reviewer_names = [
   'therealpewdiepie',
   'wdgwth2',
   'captainawesome123',
+  'LegendxForever',
+  'cauliflowerCorn',
+  'xceedz2021',
+  'derpderpderp',
+  'oceanOfTea',
+  'bentoBox24',
 ];
 
 const bugReviews: {[key: number]: string[]} = {
@@ -26,18 +32,21 @@ const bugReviews: {[key: number]: string[]} = {
     'big buggy :(((((((((((((((((((((((',
     '😡😡',
     'Sad face',
+    'what is this list of \'Video could not be found\'......',
   ],
   2: [
     'mmf why it crash',
     'honestly, i could do a better job at this',
     'marginally better than nyan cat',
     'pain 😖',
+    'carash boom',
   ],
   3: [
     'meh',
     'honestly, pretty meh',
-    'meh meh meh',
     'average amount of meh',
+    'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
+    'its >ALKMMADSFD][  Q;LKLAmkddddddddddddf aww my cat came to find me 🥰',
   ],
   4: [
     'this is pretty cool!',
@@ -268,11 +277,11 @@ function Review(props: ReviewProps): JSX.Element {
 
   return (
     <div>
-      {variableReview && <p>{random(reviewer_names)}: {
+      {variableReview && <p><b>{random(reviewer_names)}:</b> {
         getAVariableReview(variableReview)
       }
       </p>}
-      {isBugReview && <p>{random(reviewer_names)}: {
+      {isBugReview && <p><b>{random(reviewer_names)}:</b> {
         random(bugReviews[stars])
       }
       </p>}
