@@ -19,21 +19,32 @@ import TextBubble from './TextBubble';
 const reqSvgs = require.context( '../../../assets/', true, /\.(svg|jpg|png)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
 const paths = reqSvgs.keys();
 
-const svgs = paths.map( path => reqSvgs ( path ) );
+const fullPaths = paths.map( (path) => '../../assets' + path.substring(1) )
+
+// const svgs = paths.map( path => reqSvgs ( path ) );
+
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
 
-  const imgArray = svgs;  //is an array of strings
-  // [
-  //   '../../../assets/activity1/game1-endscreen.svg',
-  //   '../../../assets/activity1/search-highlighted-computer.svg',
+  // const imgArray = svgs;  //is an array of strings
+  // console.log(imgArray);
+  // const testImgArray = [
+  //   'https://upload.wikimedia.org/wikipedia/en/2/2f/DragonVale_App_Icon.png',
+  //   './assets/activity1/character3.svg',
+  //   './src/assets/activity1/translator.svg',
+  //   '../../assets/nether_portal.jpg',
+  //   '../../assets/sending-videos.svg',
+  //   '../../assets/activity1/game1/threeapples.svg',
+  //   '../../../../assets/activity1/game1-endscreen.svg',
+  //   '../../assets/activity1/search-highlighted-computer.svg',
+  //   '/home/getty5/Documents/teachLA/Playnet/src/components/Activities/Activity1/lemon.svg',
   // ]
 
   const content = [
     {
       child:
-        <Preload images = {imgArray} />,
+        <Preload images = {fullPaths} />,
     },
     {
       child: <img src={ComputerSvg} width='40%' alt='Image of Youtube on Computer' />,
