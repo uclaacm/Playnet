@@ -19,7 +19,7 @@ import TextBubble from './TextBubble';
 const reqSvgs = require.context( '../../../assets/', true, /\.(svg|jpg|png)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
 const paths = reqSvgs.keys();
 
-const svgs = paths.map( path => reqSvgs ( path ) );
+const svgs = paths.map( path => reqSvgs(path).default );
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
