@@ -1,6 +1,6 @@
 # Playnet
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/0640723c-755e-4561-8161-c581c67dafdc/deploy-status)](https://app.netlify.com/sites/youthful-engelbart-1ad9d2/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0640723c-755e-4561-8161-c581c67dafdc/deploy-status)](https://app.netlify.com/sites/play-net/deploys)
 [![Mergify Status][mergify-status]][mergify]
 
 [mergify]: https://mergify.io
