@@ -2,6 +2,8 @@ import React from 'react';
 
 import AlienFlowerGif from '../../../../assets/activity2/game/alien-flower.gif';
 import AlienWigGif from '../../../../assets/activity2/game/alien-wig.gif';
+import AlienFlowerUnCompressedGif from '../../../../assets/activity2/game/alien-flower-uncompressed.gif';
+import AlienWigUncompressedGif from '../../../../assets/activity2/game/alien-wig-uncompressed.gif';
 import AlienGif from '../../../../assets/activity2/game/alien.gif';
 
 import GIFPlayer from '../../../shared/GIFPlayer';
