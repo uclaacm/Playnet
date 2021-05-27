@@ -1,8 +1,8 @@
 import React from 'react';
 
-import AlienFlowerGif from '../../../../assets/activity2/game/alien-flower.gif';
-import AlienWigGif from '../../../../assets/activity2/game/alien-wig.gif';
-import AlienFlowerUnCompressedGif from '../../../../assets/activity2/game/alien-flower-uncompressed.gif';
+// import AlienFlowerGif from '../../../../assets/activity2/game/alien-flower.gif';
+// import AlienWigGif from '../../../../assets/activity2/game/alien-wig.gif';
+import AlienFlowerUncompressedGif from '../../../../assets/activity2/game/alien-flower-uncompressed.gif';
 import AlienWigUncompressedGif from '../../../../assets/activity2/game/alien-wig-uncompressed.gif';
 import AlienGif from '../../../../assets/activity2/game/alien.gif';
 
@@ -10,8 +10,8 @@ import GIFPlayer from '../../../shared/GIFPlayer';
 import { AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 
 const alienGifTime = { path: AlienGif, duration: 8200 };
-const alienFlowerGifTime = { path: AlienFlowerGif, duration: 4000 };
-const alienWigGifTime = { path: AlienWigGif, duration: 3500 };
+const alienFlowerGifTime = { path: AlienFlowerUncompressedGif, duration: 4000 };
+const alienWigGifTime = { path: AlienWigUncompressedGif, duration: 3500 };
 
 const uncompressedSlides = [
   {
@@ -26,7 +26,7 @@ const uncompressedSlides = [
     choices: ['shoes', 'wig', 'flower'],
     correctIdx: 2,
     gif: <GIFPlayer gifs={[
-      alienGifTime,
+      // alienGifTime,
       alienFlowerGifTime,
     ]} alt='Gif of Alien with Flower being Drawn' id={'0-1'} />,
     answerDisplayWords: ['alien', 'with', 'blank'],
@@ -38,8 +38,8 @@ const uncompressedSlides = [
     choices: ['wig', 'dress', 'shoes'],
     correctIdx: 0,
     gif: <GIFPlayer gifs={[
-      alienGifTime,
-      alienFlowerGifTime,
+      // alienGifTime,
+      // alienFlowerGifTime,
       alienWigGifTime,
     ]} alt='Gif of Alien with Flower and Wig being Drawn' id={'0-2'} />,
     answerDisplayWords: ['alien', 'with', 'flower', 'and', 'blank'],
