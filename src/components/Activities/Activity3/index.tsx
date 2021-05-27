@@ -19,6 +19,12 @@ const reqSvgs = require.context( '../../../assets/activity3/', true, /\.(svg|jpg
 const paths = reqSvgs.keys();
 const svgs = paths.map( path => reqSvgs(path).default );
 
+import ClockSVG from '../../../assets/clock.svg';
+import StarSVG from '../../../assets/activity1/game1/star.svg';
+svgs.push(ClockSVG);
+svgs.push(StarSVG);
+
+
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
     {

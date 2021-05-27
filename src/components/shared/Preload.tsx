@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import 'regenerator-runtime/runtime';
+import { CarouselContext } from '../shared/Carousel';
+
 
 interface PreloadProps {
   images: Array<string>,
 }
 
 function Preload(props: PreloadProps): JSX.Element {
-  const [isLoading, setIsLoading] = useState(true);
-
+  // const [isLoading, setIsLoading] = useState(true);
+  const carouselContext = useContext(CarouselContext);
   const srcArray: Array<string> = props.images;
 
   useEffect(() => {
@@ -25,21 +27,23 @@ function Preload(props: PreloadProps): JSX.Element {
     });
 
     await Promise.all(promises);
-
-    setIsLoading(false);
+    carouselContext.next();
+    // setIsLoading(false);
   };
 
   return (
-    <>{isLoading ? (
+    <>
+    {/* {isLoading ? ( */}
       <div className='loading-screen'>
         <div id={'loading-anim-rocket'} />
         <div id={'loading-anim-planet'} />
                 Contacting Alien Species...
-      </div>) :
+      </div>
+      {/* ) :
       <div className='loading-complete'>
         <button id = 'loading-continue button' />
                 Done loading
-      </div>}
+      </div>} */}
     </>
   );
 

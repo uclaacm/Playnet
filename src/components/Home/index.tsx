@@ -9,6 +9,7 @@ import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections, VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
+import Preload from '../shared/Preload';
 import { SoundTrack } from '../shared/soundtrack';
 
 import '../styles/Home.scss';
@@ -16,6 +17,9 @@ import FinalSlide from './FinalSlide';
 import Intro, { IntroAnimeProps } from './Intro';
 import { FinalYouTube, IntroYouTube } from './Youtube';
 
+const reqSvgs = require.context( '../../assets/', true, /\.(svg|jpg|png|gif)$/ );
+const paths = reqSvgs.keys();
+const svgs = paths.map( path => reqSvgs(path).default );
 
 function Home(): JSX.Element {
   const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
@@ -40,6 +44,9 @@ function Home(): JSX.Element {
 
   const rocketWord = VideoInfo[chosenVideo].rocket_word;
   const content = [
+    {
+      child: <Preload images={svgs} />,
+    },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'First, your request gets sent to a server.',

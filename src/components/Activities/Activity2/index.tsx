@@ -15,9 +15,14 @@ import Outro from './Game/Outro';
 import uncompressedSlides from './Game/uncompressedSlides';
 import IntroSlides from './IntroSlides';
 
-const reqSvgs = require.context( '../../../assets/activity2/game/', true, /\.(svg|jpg|png|gif)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
+import BlankComputerSVG from '../../../assets/blank-computer.svg';
+import ClockSVG from '../../../assets/clock.svg';
+
+const reqSvgs = require.context( '../../../assets/activity2/game/', true, /\.(svg|jpg|png|gif)$/ );
 const paths = reqSvgs.keys();
 const svgs = paths.map( path => reqSvgs(path).default );
+svgs.push(BlankComputerSVG);
+svgs.push(ClockSVG);
 
 function Activity2(): JSX.Element {
   const content = [
