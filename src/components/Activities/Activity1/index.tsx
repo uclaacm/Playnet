@@ -3,8 +3,8 @@ import React from 'react';
 import '../../styles/Activity1.scss';
 
 import Game1EndScreen from '../../../assets/activity1/game1-endscreen.svg';
-import BlankComputerSVG from '../../../assets/blank-computer.svg';
 import ComputerSvg from '../../../assets/activity1/search-highlighted-computer.svg';
+import BlankComputerSVG from '../../../assets/blank-computer.svg';
 
 import Carousel from '../../shared/Carousel';
 import Computer from '../../shared/Computer';

@@ -1,5 +1,8 @@
 import React from 'react';
 
+import BlankComputerSVG from '../../../assets/blank-computer.svg';
+import ClockSVG from '../../../assets/clock.svg';
+
 import Carousel from '../../shared/Carousel';
 import Preload from '../../shared/Preload';
 import { SoundTrack } from '../../shared/soundtrack';
@@ -15,8 +18,6 @@ import Outro from './Game/Outro';
 import uncompressedSlides from './Game/uncompressedSlides';
 import IntroSlides from './IntroSlides';
 
-import BlankComputerSVG from '../../../assets/blank-computer.svg';
-import ClockSVG from '../../../assets/clock.svg';
 
 const reqSvgs = require.context( '../../../assets/activity2/game/', true, /\.(svg|jpg|png|gif)$/ );
 const paths = reqSvgs.keys();

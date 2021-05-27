@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import 'regenerator-runtime/runtime';
 import { CarouselContext } from '../shared/Carousel';
 
@@ -8,12 +8,11 @@ interface PreloadProps {
 }
 
 function Preload(props: PreloadProps): JSX.Element {
-  // const [isLoading, setIsLoading] = useState(true);
   const carouselContext = useContext(CarouselContext);
-  const srcArray: Array<string> = props.images;
+  const srcPaths: Array<string> = props.images;
 
   useEffect(() => {
-    cacheImages(srcArray);
+    void cacheImages(srcPaths); //the void doesn't affect the function call, it just says nothing is being done with the response from cacheImages function call
   }, []);
 
   const cacheImages = async (srcArray: Array<string>) => {
@@ -28,22 +27,15 @@ function Preload(props: PreloadProps): JSX.Element {
 
     await Promise.all(promises);
     carouselContext.next();
-    // setIsLoading(false);
   };
 
   return (
     <>
-    {/* {isLoading ? ( */}
       <div className='loading-screen'>
         <div id={'loading-anim-rocket'} />
         <div id={'loading-anim-planet'} />
                 Contacting Alien Species...
       </div>
-      {/* ) :
-      <div className='loading-complete'>
-        <button id = 'loading-continue button' />
-                Done loading
-      </div>} */}
     </>
   );
 

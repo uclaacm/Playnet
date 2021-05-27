@@ -187,41 +187,41 @@
 
 .loading-screen {
   display: grid;
-  width: 206px;
   height: 216px;
-  margin-left: calc(50% - 103px);
   margin-bottom: 3%;
+  margin-left: calc(50% - 103px);
+  width: 206px;
 }
 
 #loading-anim-rocket {
+  animation: spin 2.5s infinite linear;
   background-image: url('../../assets/loading-rocket.svg');
   background-repeat: no-repeat;
   background-size: auto;
-  width: 206px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   height: 216px;
   justify-self: center;
   transform-origin: 50% 50%;
-  animation: spin 2.5s infinite linear;
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
+  width: 206px;
 }
 
-#loading-anim-planet{
+#loading-anim-planet {
   background-image: url('../../assets/loading-planet.svg');
   background-repeat: no-repeat;
   background-size: auto;
-  height: 8.5vw;
-  width: 88px;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
   height: 88px;
   margin: auto;
-  grid-row: 1 / 2;
-  grid-column: 1 / 2;
+  width: 88px;
 }
 
 @keyframes spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(359deg);
   }

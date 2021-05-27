@@ -20,6 +20,7 @@
     "react-lottie": "^1.2.3",
     "react-router-dom": "^5.2.0",
     "react-tooltip": "^4.2.17",
+    "regenerator-runtime": "^0.13.7",
     "stylelint-config-sass-guidelines": "^8.0.0",
     "use-sound": "^2.0.1"
   },

@@ -2,7 +2,11 @@ import React from 'react';
 import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
+import ClockSVG from '../../../assets/clock.svg';
+import StarSVG from '../../../assets/activity1/game1/star.svg';
+
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
+import Preload from '../../shared/Preload';
 import ComputerRecs from './Animations/ComputerRecs';
 import Debugging from './Animations/Debugging';
 import { ABTestSlide1, ABTestSlide2 } from './Animations/IntroABTestExplanations';
@@ -13,14 +17,11 @@ import PlantSprout from './Animations/PlantSprout';
 import RecommendCriteria from './Animations/RecommendCriteria';
 import Game from './Game';
 import { GameIntroSlide1 } from './Game/GameIntroSlides';
-import Preload from '../../shared/Preload';
 
 const reqSvgs = require.context( '../../../assets/activity3/', true, /\.(svg|jpg|png|gif)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
 const paths = reqSvgs.keys();
 const svgs = paths.map( path => reqSvgs(path).default );
 
-import ClockSVG from '../../../assets/clock.svg';
-import StarSVG from '../../../assets/activity1/game1/star.svg';
 svgs.push(ClockSVG);
 svgs.push(StarSVG);
 
