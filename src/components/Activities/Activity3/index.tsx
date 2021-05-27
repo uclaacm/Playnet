@@ -13,9 +13,18 @@ import PlantSprout from './Animations/PlantSprout';
 import RecommendCriteria from './Animations/RecommendCriteria';
 import Game from './Game';
 import { GameIntroSlide1 } from './Game/GameIntroSlides';
+import Preload from '../../shared/Preload';
+
+const reqSvgs = require.context( '../../../assets/activity3/', true, /\.(svg|jpg|png|gif)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
+const paths = reqSvgs.keys();
+const svgs = paths.map( path => reqSvgs(path).default );
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
+    {
+      child:
+        <Preload images = {svgs} />,
+    },
     {
       child: <ManyEmployees />,
       bottomText: 'Youtube has around 10,000 employees',

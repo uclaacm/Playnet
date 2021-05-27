@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Carousel from '../../shared/Carousel';
+import Preload from '../../shared/Preload';
 import { SoundTrack } from '../../shared/soundtrack';
 import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
@@ -14,8 +15,16 @@ import Outro from './Game/Outro';
 import uncompressedSlides from './Game/uncompressedSlides';
 import IntroSlides from './IntroSlides';
 
+const reqSvgs = require.context( '../../../assets/activity2/game/', true, /\.(svg|jpg|png|gif)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
+const paths = reqSvgs.keys();
+const svgs = paths.map( path => reqSvgs(path).default );
+
 function Activity2(): JSX.Element {
   const content = [
+    {
+      child:
+        <Preload images = {svgs} />,
+    },
     ...IntroSlides,
     {
       child: <Intro text={'If you were a computer, how long would it take you to understand the instructions without compression?'} buttonText={'Play Game'} />,
