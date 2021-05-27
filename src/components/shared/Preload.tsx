@@ -19,8 +19,8 @@ function Preload(props: PreloadProps): JSX.Element {
       return new Promise<string>(function (resolve, reject): void {
         const img = new Image();
         img.src = src;
-        img.onload = resolve();
-        img.onerror = reject();
+        img.onload = () => resolve(src);
+        img.onerror = () => reject(src);
       });
     });
 
