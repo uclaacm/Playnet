@@ -46,12 +46,14 @@ function Home(): JSX.Element {
   const content = [
     {
       child: <Preload images={svgs} />,
+      showNext: false,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
       soundtrack: SoundTrack.Intro_1,
+      showPrev: false,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,

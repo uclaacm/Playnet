@@ -33,11 +33,13 @@ function Activity1(): JSX.Element {
     {
       child:
         <Preload images={svgs} />,
+      showNext: false,
     },
     {
       child: <img src={ComputerSvg} width='40%' alt='Image of Youtube on Computer' />,
       bottomText: 'How does YouTube bring you the videos you want?',
       bottomText2: 'Let\'s dive into what happens in the search bar.',
+      showPrev: false,
       animationTime: 5.5,
       soundtrack: SoundTrack.Activity1_1,
     },

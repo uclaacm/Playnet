@@ -31,12 +31,14 @@ function Activity3(): JSX.Element {
     {
       child:
         <Preload images = {svgs} />,
+      showNext: false,
     },
     {
       child: <ManyEmployees />,
       bottomText: 'Youtube has around 10,000 employees',
       bottomText2: 'That\'s a lot of people--what are they all doing?',
       animationTime: 2,
+      showPrev: false,
     },
     {
       child: <ManyEmployees />,

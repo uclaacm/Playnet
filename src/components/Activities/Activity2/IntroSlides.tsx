@@ -15,6 +15,7 @@ const IntroSlides = [
   {
     child: <LottieControl animationData={A2Animation1.default} />,
     bottomText: 'Videos contain a lot of information!',
+    showPrev: false,
     animationTime: 3.5,
     soundtrack: SoundTrack.Activity2_1,
   },

@@ -30,6 +30,7 @@ function Activity2(): JSX.Element {
     {
       child:
         <Preload images = {svgs} />,
+      showNext: false,
     },
     ...IntroSlides,
     {
