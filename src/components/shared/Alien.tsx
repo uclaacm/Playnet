@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 
-import AngerAlienSvg from '../../assets/alien/alien-anger.svg';
-import HappyAlienSvg from '../../assets/alien/alien-happy.svg';
-import SadAlienSvg from '../../assets/alien/alien-sad.svg';
-import AlienSvg from '../../assets/alien/alien.svg';
+import AngerAlienSvg from '../../assets/shared/activities/alien-anger.svg';
+import HappyAlienSvg from '../../assets/shared/activities/alien-happy.svg';
+import SadAlienSvg from '../../assets/shared/activities/alien-sad.svg';
+import AlienSvg from '../../assets/shared/activities/alien.svg';
 import { animate_happy_alien } from '../../utils/animations/alien';
 
 import '../styles/Alien.scss';

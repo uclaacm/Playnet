@@ -60,19 +60,19 @@
 }
 
 #lost-in-translation {
-  background-image: url('../../assets/lost-in-translation.svg');
+  background-image: url('../../assets/shared/lost-in-translation.svg');
 }
 
 #sending-videos {
-  background-image: url('../../assets/sending-videos.svg');
+  background-image: url('../../assets/shared/sending-videos.svg');
 }
 
 #mind-reading {
-  background-image: url('../../assets/mind-reading.svg');
+  background-image: url('../../assets/shared/mind-reading.svg');
 }
 
 #coming-soon {
-  background-image: url('../../assets/coming-soon.svg');
+  background-image: url('../../assets/shared/coming-soon.svg');
   background-position: center;
 }
 
@@ -85,7 +85,7 @@
 }
 
 .activity-card:hover .activity-splash::after {
-  background-image: url('../../assets/play-icon.svg');
+  background-image: url('../../assets/shared/play-icon.svg');
   background-position: center;
   background-repeat: no-repeat;
   content: '';

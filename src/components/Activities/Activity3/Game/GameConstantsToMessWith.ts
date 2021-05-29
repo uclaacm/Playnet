@@ -38,7 +38,8 @@ export const STAR_RANDOM_VARIANCE = 1;
 export const NUM_ABTEST_DAYS_PER_REVIEW = 3;
 
 /**
- * Percent when text no longer fits inside final report bar. Note, this is not a pixel value and may not work well for different sized screens
+ * Percent when text no longer fits inside final report bar. Note, this is not a pixel value and
+ * may not work well for different sized screens
  */
 export const PERCENT_THRESHOLD = {
   VARIABLES: 10,

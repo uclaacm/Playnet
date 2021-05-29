@@ -16,6 +16,14 @@ import FinalSlide from './FinalSlide';
 import Intro, { IntroAnimeProps } from './Intro';
 import { FinalYouTube, IntroYouTube } from './Youtube';
 
+// gets all files that end in .jpg .svg or .png from given folder
+const introImages = require.context('../../assets/intro/', true, /\.(svg|jpg|png)$/);
+const paths = introImages.keys();
+const requiredImages = paths.map(path => introImages(path).default);
+
+const sharedImages = require.context('../../assets/shared/', true, /\.(svg|jpg|png)$/);
+const sharedImagesPaths = sharedImages.keys();
+requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).default)));
 
 function Home(): JSX.Element {
   const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
@@ -117,18 +125,7 @@ function Home(): JSX.Element {
     <div>
       <Base section={HeaderSections.INTRO}>
         {(chosenVideo !== VideoChoices.NONE_CHOSEN) ?
-          <Carousel
-            hasSound={true}
-            onNext={() => { /* Run function along with transition on next button press */
-              // console.log('next');
-            }}
-            onPrev={() => { /* Run function along with transition on previous button press */
-              // console.log('prev');
-            }}
-          /* can use showNext={true|false} to manually show or hide button */
-          /*         showPrev={true|false}                                 */
-          >
-            {/* Each child element of the Carousel is considered as one "slide", like so */}
+          <Carousel hasSound={true} imagesToPreload={requiredImages}>
             {content}
           </Carousel> :
           <IntroYouTube setChosenVideo={setChosenVideo} />

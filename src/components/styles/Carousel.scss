@@ -85,7 +85,7 @@ b {
   display: flex;
   justify-content: flex-end;
   padding-right: 25px;
-  width: 50%;
+  width: 100%;
 }
 
 .util-button {
@@ -100,31 +100,31 @@ b {
 }
 
 .replay-button {
-  background-image: url('../../assets/replay_btn.svg');
+  background-image: url('../../assets/shared/carousel/replay_btn.svg');
 }
 
 .autoplay-button {
-  background-image: url('../../assets/autoplay_btn.svg');
+  background-image: url('../../assets/shared/carousel/autoplay_btn.svg');
 }
 
 .stop-autoplay-button {
-  background-image: url('../../assets/stop_autoplay_btn.svg');
+  background-image: url('../../assets/shared/carousel/stop_autoplay_btn.svg');
 }
 
 .game-mute-button {
-  background-image: url('../../assets/game-mute-btn.svg');
+  background-image: url('../../assets/shared/carousel/game-mute-btn.svg');
 }
 
 .game-unmute-button {
-  background-image: url('../../assets/game-unmute-btn.svg');
+  background-image: url('../../assets/shared/carousel/game-unmute-btn.svg');
 }
 
 .voiceover-mute-button {
-  background-image: url('../../assets/voiceover-mute-btn.svg');
+  background-image: url('../../assets/shared/carousel/voiceover-mute-btn.svg');
 }
 
 .voiceover-unmute-button {
-  background-image: url('../../assets/voiceover-unmute-btn.svg');
+  background-image: url('../../assets/shared/carousel/voiceover-unmute-btn.svg');
 }
 
 // Shared

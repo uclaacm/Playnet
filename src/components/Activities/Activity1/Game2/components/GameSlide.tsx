@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useSound from 'use-sound';
 
-import CorrectSFX from '../../../../../assets/activity1/game2/correct.mp3';
-import IncorrectSFX from '../../../../../assets/activity1/game2/oh_no_1.mp3';
 import TranslatorSvg from '../../../../../assets/activity1/translator.svg';
+import CorrectSFX from '../../../../../assets/sounds/correct.mp3';
+import IncorrectSFX from '../../../../../assets/sounds/oh_no_1.mp3';
 
 import Alien, { ALIEN_STATE } from '../../../../shared/Alien';
 import AnswerChoiceBox from '../../../../shared/AnswerChoiceBox';

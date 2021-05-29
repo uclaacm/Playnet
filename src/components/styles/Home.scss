@@ -10,7 +10,7 @@
 }
 
 #computer {
-  background-image: url('../../assets/computer.svg');
+  background-image: url('../../assets/shared/computer.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 418px;
@@ -19,7 +19,7 @@
 }
 
 #rocket-path {
-  background-image: url('../../assets/rocket-path.svg');
+  background-image: url('../../assets/intro/rocket-path.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 128px;
@@ -29,7 +29,7 @@
 }
 
 #rocket {
-  background-image: url('../../assets/rocket.svg');
+  background-image: url('../../assets/intro/rocket.svg');
   background-repeat: no-repeat;
   background-size: cover;
   display: grid;
@@ -45,7 +45,7 @@
 }
 
 #server {
-  background-image: url('../../assets/server.svg');
+  background-image: url('../../assets/intro/server.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 234px;
@@ -63,7 +63,7 @@
 }
 
 #library {
-  background-image: url('../../assets/library.svg');
+  background-image: url('../../assets/intro/library.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 372px;
@@ -74,7 +74,7 @@
 }
 
 #servers {
-  background-image: url('../../assets/servers.svg');
+  background-image: url('../../assets/intro/servers.svg');
   background-repeat: no-repeat;
   background-size: contain;
   height: 600px;
@@ -87,7 +87,7 @@
 
 // FINAL SLIDE
 #scaling-container #final-intro-background {
-  background-image: url('../../assets/Intro12.png');
+  background-image: url('../../assets/intro/Intro12.png');
   background-repeat: no-repeat;
   background-size: cover;
   height: 390px;
@@ -99,7 +99,7 @@
 }
 
 #scaling-container #server {
-  background-image: url('../../assets/server.svg');
+  background-image: url('../../assets/intro/server.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 74px;
@@ -118,7 +118,7 @@
 }
 
 #rocket-image {
-  background-image: url('../../assets/rocket.svg');
+  background-image: url('../../assets/intro/rocket.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
@@ -139,7 +139,7 @@
 }
 
 #scaling-container #computer {
-  background-image: url('../../assets/computer.svg');
+  background-image: url('../../assets/shared/computer.svg');
   background-repeat: no-repeat;
   background-size: cover;
   height: 107px;
@@ -151,7 +151,7 @@
 }
 
 #scaling-container #video-pulley {
-  background-image: url('../../assets/video-pulley.svg');
+  background-image: url('../../assets/intro/video-pulley.svg');
   background-repeat: no-repeat;
   background-size: contain;
   height: 5px;
@@ -174,13 +174,56 @@
 
 #video.none-chosen,
 #video.chill-girl {
-  background-image: url('../../assets/chill_girl.jpg');
+  background-image: url('../../assets/intro/chill_girl.jpg');
 }
 
 #video.baby-shark {
-  background-image: url('../../assets/baby_shark.jpg');
+  background-image: url('../../assets/intro/baby_shark.jpg');
 }
 
 #video.nether-portal {
-  background-image: url('../../assets/nether_portal.jpg');
+  background-image: url('../../assets/intro/nether_portal.jpg');
+}
+
+.loading-screen {
+  display: grid;
+  height: 216px;
+  margin-bottom: 3%;
+  margin-left: calc(50% - 103px);
+  margin-top: 5%;
+  width: 206px;
+}
+
+#loading-anim-rocket {
+  animation: spin 2.5s infinite linear;
+  background-image: url('../../assets/shared/carousel/loading-rocket.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  height: 216px;
+  justify-self: center;
+  transform-origin: 50% 50%;
+  width: 206px;
+}
+
+#loading-anim-planet {
+  background-image: url('../../assets/shared/carousel/loading-planet.svg');
+  background-repeat: no-repeat;
+  background-size: auto;
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  height: 88px;
+  margin: auto;
+  width: 88px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
 }

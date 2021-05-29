@@ -15,6 +15,15 @@ import CipherGame, { SuccessCipherGameState } from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
+// gets all files that end in .jpg .svg or .png from given folder
+const activity1Images = require.context('../../../assets/activity1/', true, /\.(svg|jpg|png)$/);
+const paths = activity1Images.keys();
+const requiredImages = paths.map(path => activity1Images(path).default);
+
+const sharedImages = require.context('../../../assets/shared/', true, /\.(svg|jpg|png)$/);
+const sharedImagesPaths = sharedImages.keys();
+requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).default)));
+
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
 
@@ -142,7 +151,7 @@ function Activity1(): JSX.Element {
     },
   ];
   return (
-    <Carousel title={'Lost in Translation'} hasSound={true}>
+    <Carousel title={'Lost in Translation'} hasSound={true} imagesToPreload={requiredImages}>
       {content}
     </Carousel>
   );

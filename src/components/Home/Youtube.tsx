@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 import '../styles/YouTube.scss';
 
-import baby_shark from '../../assets/baby_shark.jpg';
-import chill_girl from '../../assets/chill_girl.jpg';
-import nether_portal from '../../assets/nether_portal.jpg';
+import baby_shark from '../../assets/intro/baby_shark.jpg';
+import chill_girl from '../../assets/intro/chill_girl.jpg';
+import nether_portal from '../../assets/intro/nether_portal.jpg';
 import { VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
 
 interface IntroYouTubeProps {

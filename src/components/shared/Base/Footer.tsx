@@ -2,8 +2,8 @@ import React from 'react';
 
 import '../../styles/Footer.scss';
 
-import CLLogo from '../../../assets/logos/creative_labs.svg';
-import TLALogo from '../../../assets/logos/teach_la.svg';
+import CLLogo from '../../../assets/shared/logos/creative_labs.svg';
+import TLALogo from '../../../assets/shared/logos/teach_la.svg';
 
 function Footer(): JSX.Element {
   return (

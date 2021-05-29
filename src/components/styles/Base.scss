@@ -1,7 +1,7 @@
 @import 'variables';
 
 .body {
-  background: center/cover url('../../assets/background.svg');
+  background: center/cover url('../../assets/shared/background.svg');
   height: fit-content;
   margin-top: $head-foot-height;
   min-height: calc(100vh - #{$head-foot-height} - #{$foot-height});

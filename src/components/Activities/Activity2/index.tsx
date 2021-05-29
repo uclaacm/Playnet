@@ -14,6 +14,15 @@ import Outro from './Game/Outro';
 import uncompressedSlides from './Game/uncompressedSlides';
 import IntroSlides from './IntroSlides';
 
+// gets all files that end in .jpg .svg or .png from given folder
+const activity2Images = require.context('../../../assets/activity2/', true, /\.(svg|jpg|png)$/);
+const paths = activity2Images.keys();
+const requiredImages = paths.map(path => activity2Images(path).default);
+
+const sharedImages = require.context('../../../assets/shared/', true, /\.(svg|jpg|png)$/);
+const sharedImagesPaths = sharedImages.keys();
+requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).default)));
+
 function Activity2(): JSX.Element {
   const content = [
     ...IntroSlides,
@@ -52,7 +61,7 @@ function Activity2(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Sending Videos' hasSound={true}>
+    <Carousel title='Sending Videos' hasSound={true} imagesToPreload={requiredImages}>
       {content}
     </Carousel>
   );

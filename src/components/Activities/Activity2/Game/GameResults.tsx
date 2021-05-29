@@ -1,5 +1,5 @@
 import React from 'react';
-import Clock from '../../../../assets/clock.svg';
+import Clock from '../../../../assets/shared/activities/clock.svg';
 
 interface ResultsProps {
   header: string,
