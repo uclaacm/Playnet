@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Carousel from '../../shared/Carousel';
-import Preload from '../../shared/Preload';
 import { SoundTrack } from '../../shared/soundtrack';
 import '../../styles/Activity1.scss';
 import '../../styles/Activity2.scss';
@@ -26,11 +25,6 @@ requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).defaul
 
 function Activity2(): JSX.Element {
   const content = [
-    {
-      child:
-        <Preload images={requiredImages} />,
-      showNext: false,
-    },
     ...IntroSlides,
     {
       child: <Intro text={'If you were a computer, how long would it take you to understand the instructions without compression?'} buttonText={'Play Game'} />,
@@ -67,7 +61,7 @@ function Activity2(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Sending Videos' hasSound={true}>
+    <Carousel title='Sending Videos' hasSound={true} imagesToPreload={requiredImages}>
       {content}
     </Carousel>
   );

@@ -3,7 +3,6 @@ import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
-import Preload from '../../shared/Preload';
 import ComputerRecs from './Animations/ComputerRecs';
 import Debugging from './Animations/Debugging';
 import { ABTestSlide1, ABTestSlide2 } from './Animations/IntroABTestExplanations';
@@ -27,16 +26,10 @@ requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).defaul
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
     {
-      child:
-        <Preload images={requiredImages} />,
-      showNext: false,
-    },
-    {
       child: <ManyEmployees />,
       bottomText: 'Youtube has around 10,000 employees',
       bottomText2: 'That\'s a lot of people--what are they all doing?',
       animationTime: 2,
-      showPrev: false,
     },
     {
       child: <ManyEmployees />,
@@ -130,7 +123,7 @@ function Activity3(): JSX.Element {
   ];
 
   return (
-    <Carousel title='Mind Reading' hasSound={false}>
+    <Carousel title='Mind Reading' hasSound={false} imagesToPreload={requiredImages}>
       {content}
     </Carousel>
   );

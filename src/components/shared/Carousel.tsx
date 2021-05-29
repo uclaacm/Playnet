@@ -7,6 +7,8 @@ import PrevSvg from '../../assets/shared/carousel/prev_btn.svg';
 import { DEFAULT_CONFIGS } from './PlaynetConstants';
 import { SoundTrack, SoundTrackMapping } from './soundtrack';
 import Tooltip from './Tooltip';
+import { clamp } from '../../utils';
+import Preload from './Preload';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
@@ -33,18 +35,17 @@ export interface CarouselItemComponents {
 }
 
 interface CarouselProps {
-  finalButtonHandleClick?: () => void;
   children: CarouselItemComponents[];
   title?: string;
   subtitle?: string;
-  onNext?: () => void;
-  onPrev?: () => void;
   hasSound: boolean;
+  imagesToPreload?: string[],
 }
 
 function Carousel(props: CarouselProps): JSX.Element {
   const [slideIdx, setSlideIdx] = useState(0);
   const [child, setChild] = useState(props.children[slideIdx]);
+  const [isPreloading, setIsPreloading] = useState(props.imagesToPreload !== undefined);
   const [reloadTime, setReloadTime] = useState(Date.now());
   const [isAutoAdvance, setIsAutoAdvance] = useState(DEFAULT_CONFIGS.AUTOPLAY);
   const [isVoiceMuted, setIsVoiceMuted] = useState(DEFAULT_CONFIGS.VOICEOVER_MUTED);
@@ -61,15 +62,15 @@ function Carousel(props: CarouselProps): JSX.Element {
     const gameSoundMuted = storage.getItem('isGameSoundMuted');
     const autoAdvancing = storage.getItem('isAutoAdvance');
 
-    if (voiceMuted) setIsVoiceMuted(true); //set voice over to muted
-    if (gameSoundMuted) setIsGameSoundMuted(true);  //set game sounds to muted
+    if (voiceMuted) setIsVoiceMuted(true); // set voice over to muted
+    if (gameSoundMuted) setIsGameSoundMuted(true);  // set game sounds to muted
 
-    if (autoAdvancing) { //set autoAdvance
+    if (autoAdvancing) { // set autoAdvance
       setIsAutoAdvance(true);
       if (child.animationTime) { autoAdvance(child.animationTime); }
     }
 
-    if (state) { //set slideIdx
+    if (state) { // set slideIdx
       setSlideIdx(+state);
     }
     return () => storage.removeItem('slideIdx');
@@ -110,16 +111,14 @@ function Carousel(props: CarouselProps): JSX.Element {
 
   function goNext(): void {
     setSlideIdx(old => Math.min(old + 1, props.children.length - 1));
-    props.onNext && props.onNext();
   }
 
   function goPrev(): void {
     setSlideIdx(old => Math.max(old - 1, 0));
-    props.onPrev && props.onPrev();
   }
 
   function jumpNumSlides(number: number) {
-    const newSlide = Math.max(Math.min(slideIdx + number, props.children.length - 1), 0);
+    const newSlide = clamp(0, slideIdx + number, props.children.length - 1).num;
     setSlideIdx(newSlide);
   }
 
@@ -141,7 +140,7 @@ function Carousel(props: CarouselProps): JSX.Element {
     storage.removeItem('isAutoAdvance');
   }
 
-  function handleMuteVoiceoverBtnClick(): void {
+  function handleMuteVoiceoverClick(): void {
     if (isVoiceMuted) {
       setIsVoiceMuted(false);
       storage.removeItem('isVoiceMuted');
@@ -151,7 +150,7 @@ function Carousel(props: CarouselProps): JSX.Element {
     }
   }
 
-  function handleMuteGameSoundsBtnClick(): void {
+  function handleMuteGameSoundsClick(): void {
     if (isGameSoundMuted) {
       setIsGameSoundMuted(false);
       storage.removeItem('isGameSoundMuted');
@@ -161,7 +160,7 @@ function Carousel(props: CarouselProps): JSX.Element {
     }
   }
 
-  function handleAutoplayButtonClick(): void {
+  function handleAutoplayClick(): void {
     if (isAutoAdvance) {
       disableAutoAdvance();
     } else {
@@ -169,7 +168,7 @@ function Carousel(props: CarouselProps): JSX.Element {
     }
   }
 
-  function handleReplayButtonClick(): void {
+  function handleReplayClick(): void {
     setReloadTime(Date.now());
     disableAutoAdvance();
   }
@@ -202,33 +201,41 @@ function Carousel(props: CarouselProps): JSX.Element {
             }
             {child &&
               <>
-                <div className='util-button-container'>
-                  {child.animationTime &&
-                    <div className='util-left-btn-container'>
-                      <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
-                        <button className={'util-button ' + (isAutoAdvance ? 'stop-' : '') + 'autoplay-button'} onClick={handleAutoplayButtonClick} />
-                      </Tooltip>
-                      <Tooltip text='Replay'>
-                        <button className='util-button replay-button' onClick={handleReplayButtonClick} />
-                      </Tooltip>
-                    </div>
-                  }
-                  {
-                    hasSound && <div className='util-right-btn-container'>
-                      <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
-                        <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverBtnClick} />
-                      </Tooltip>
-                      <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
-                        <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsBtnClick} />
-                      </Tooltip>
-                    </div>
-                  }
-                </div>
-
-                {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
-                {child.child}
-                {(child.bottomText || child.bottomText2) && <h2 id={'body-text'}> {child.bottomText} </h2>}
-                {child.bottomText2 && <h2 id={'body-text'}> {child.bottomText2} </h2>}
+                {
+                  !isPreloading && // whether to show buttons container
+                  <div className='util-button-container'>
+                    {child.animationTime &&
+                      <div className='util-left-btn-container'>
+                        <Tooltip text={isAutoAdvance ? 'Stop Autoplay' : 'Autoplay'}>
+                          <button className={'util-button ' + (isAutoAdvance ? 'stop-' : '') + 'autoplay-button'} onClick={handleAutoplayClick} />
+                        </Tooltip>
+                        <Tooltip text='Replay'>
+                          <button className='util-button replay-button' onClick={handleReplayClick} />
+                        </Tooltip>
+                      </div>
+                    }
+                    {
+                      hasSound && <div className='util-right-btn-container'>
+                        <Tooltip text={(isVoiceMuted ? 'Unmute' : 'Mute') + ' Voiceover'}>
+                          <button className={'util-button voiceover-' + (isVoiceMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteVoiceoverClick} />
+                        </Tooltip>
+                        <Tooltip text={(isGameSoundMuted ? 'Unmute' : 'Mute') + ' Game'}>
+                          <button className={'util-button game-' + (isGameSoundMuted ? 'unmute' : 'mute') + '-button'} onClick={handleMuteGameSoundsClick} />
+                        </Tooltip>
+                      </div>
+                    }
+                  </div>
+                }
+                {
+                  isPreloading ? <Preload images={props.imagesToPreload!} onPreloaded={() => setIsPreloading(false)} />
+                    : // show child info
+                    <>
+                      {child.topText && <h2 id={'body-text'}> {child.topText} </h2>}
+                      {child.child}
+                      {(child.bottomText || child.bottomText2) && <h2 id={'body-text'}> {child.bottomText} </h2>}
+                      {child.bottomText2 && <h2 id={'body-text'}> {child.bottomText2} </h2>}
+                    </>
+                }
               </>
             }
           </div>
@@ -236,11 +243,10 @@ function Carousel(props: CarouselProps): JSX.Element {
             className={'carousel-btn next'}
             style={{
               visibility: (child?.showNext === false ||
-                (!props.finalButtonHandleClick && slideIdx === props.children.length - 1))
+                (slideIdx === props.children.length - 1) || isPreloading)
                 ? 'hidden' : 'visible',
             }}
-            onClick={(slideIdx === props.children.length - 1 && props.finalButtonHandleClick)
-              ? props.finalButtonHandleClick : () => { goNext(); disableAutoAdvance(); }}
+            onClick={() => { goNext(); disableAutoAdvance(); }}
           >
             <img src={NextSvg} />
           </button>

@@ -9,7 +9,6 @@ import Base from '../shared/Base';
 import Carousel from '../shared/Carousel';
 import LottieControl from '../shared/LottieControl';
 import { HeaderSections, VideoChoices, VideoInfo } from '../shared/PlaynetConstants';
-import Preload from '../shared/Preload';
 import { SoundTrack } from '../shared/soundtrack';
 
 import '../styles/Home.scss';
@@ -50,15 +49,10 @@ function Home(): JSX.Element {
   const rocketWord = VideoInfo[chosenVideo].rocket_word;
   const content = [
     {
-      child: <Preload images={requiredImages} />,
-      showNext: false,
-    },
-    {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
       bottomText: 'First, your request gets sent to a server.',
       animationTime: 2.5,
       soundtrack: SoundTrack.Intro_1,
-      showPrev: false,
     },
     {
       child: <IntroSlides ref={ref} rocketWord={rocketWord}/>,
@@ -131,18 +125,7 @@ function Home(): JSX.Element {
     <div>
       <Base section={HeaderSections.INTRO}>
         {(chosenVideo !== VideoChoices.NONE_CHOSEN) ?
-          <Carousel
-            hasSound={true}
-            onNext={() => { /* Run function along with transition on next button press */
-              // console.log('next');
-            }}
-            onPrev={() => { /* Run function along with transition on previous button press */
-              // console.log('prev');
-            }}
-          /* can use showNext={true|false} to manually show or hide button */
-          /*         showPrev={true|false}                                 */
-          >
-            {/* Each child element of the Carousel is considered as one "slide", like so */}
+          <Carousel hasSound={true} imagesToPreload={requiredImages}>
             {content}
           </Carousel> :
           <IntroYouTube setChosenVideo={setChosenVideo} />

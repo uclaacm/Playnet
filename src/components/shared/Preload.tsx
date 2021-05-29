@@ -1,13 +1,12 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import 'regenerator-runtime/runtime';
-import { CarouselContext } from '../shared/Carousel';
 
 interface PreloadProps {
   images: string[],
+  onPreloaded: () => void,
 }
 
 function Preload(props: PreloadProps): JSX.Element {
-  const carouselContext = useContext(CarouselContext);
   const srcPaths: Array<string> = props.images;
 
   useEffect(() => {
@@ -25,9 +24,11 @@ function Preload(props: PreloadProps): JSX.Element {
         img.onerror = () => reject(src);
       });
     });
+    console.log("hi")
 
     await Promise.all(promises);
-    carouselContext.next();
+    console.log("hi")
+    props.onPreloaded();
   };
 
   return (

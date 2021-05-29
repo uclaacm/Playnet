@@ -8,7 +8,6 @@ import ComputerSvg from '../../../assets/activity1/search-highlighted-computer.s
 import Carousel from '../../shared/Carousel';
 import Computer from '../../shared/Computer';
 import { TextBubbleStyles } from '../../shared/PlaynetConstants';
-import Preload from '../../shared/Preload';
 import { SoundTrack } from '../../shared/soundtrack';
 import TransitionSlide from '../../shared/TransitionSlide';
 import ComputerConversation from './ComputerConversation';
@@ -30,15 +29,9 @@ function Activity1(): JSX.Element {
 
   const content = [
     {
-      child:
-        <Preload images={requiredImages} />,
-      showNext: false,
-    },
-    {
       child: <img src={ComputerSvg} width='40%' alt='Image of Youtube on Computer' />,
       bottomText: 'How does YouTube bring you the videos you want?',
       bottomText2: 'Let\'s dive into what happens in the search bar.',
-      showPrev: false,
       animationTime: 5.5,
       soundtrack: SoundTrack.Activity1_1,
     },
@@ -158,7 +151,7 @@ function Activity1(): JSX.Element {
     },
   ];
   return (
-    <Carousel title={'Lost in Translation'} hasSound={true}>
+    <Carousel title={'Lost in Translation'} hasSound={true} imagesToPreload={requiredImages}>
       {content}
     </Carousel>
   );
