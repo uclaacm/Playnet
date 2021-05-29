@@ -277,11 +277,11 @@ function Review(props: ReviewProps): JSX.Element {
 
   return (
     <div>
-      {variableReview && <p><b>{random(reviewer_names)}:</b> {
+      {variableReview && <p><b className={'smaller-text'}>{random(reviewer_names)}:</b> {
         getAVariableReview(variableReview)
       }
       </p>}
-      {isBugReview && <p><b>{random(reviewer_names)}:</b> {
+      {isBugReview && <p><b className={'smaller-text'}>{random(reviewer_names)}:</b> {
         random(bugReviews[stars])
       }
       </p>}

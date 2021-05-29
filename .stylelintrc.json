@@ -1,5 +1,5 @@
 {
-  "extends": "stylelint-config-sass-guidelines",
+  "extends": ["stylelint-config-recommended", "stylelint-config-sass-guidelines"],
   "ignoreFiles": [
     "**/*.ts",
     "**/*.tsx",
@@ -8,6 +8,7 @@
   ],
   "rules": {
     "selector-max-id": null,
-    "color-named": null
+    "color-named": null,
+    "selector-no-qualifying-type": null
   }
 }

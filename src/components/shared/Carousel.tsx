@@ -4,11 +4,11 @@ import '../styles/Carousel.scss';
 import useSound from 'use-sound';
 import NextSvg from '../../assets/shared/carousel/next_btn.svg';
 import PrevSvg from '../../assets/shared/carousel/prev_btn.svg';
+import { clamp } from '../../utils';
 import { DEFAULT_CONFIGS } from './PlaynetConstants';
+import Preload from './Preload';
 import { SoundTrack, SoundTrackMapping } from './soundtrack';
 import Tooltip from './Tooltip';
-import { clamp } from '../../utils';
-import Preload from './Preload';
 
 export const CarouselContext = React.createContext({
   next: (): void => undefined,
