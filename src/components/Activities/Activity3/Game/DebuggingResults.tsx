@@ -5,7 +5,7 @@ import { A3_GAME_STATE, DEFAULT_TIME_ALLOCATION } from './GameConstants';
 
 function DebuggingResults(): JSX.Element {
   const { setState, goNextState, featureWeights, targetWeights, timeAllocation,
-    setTimeAllocation, daysLeft, setDaysLeft } = useContext(GameContext);
+    setTimeAllocation, daysLeft, setDaysLeft, getABTestingGraph } = useContext(GameContext);
 
   const numErrors = getDebugNumErrors(timeAllocation.build);
   const errors = getDebugErrors(numErrors);
@@ -40,7 +40,7 @@ function DebuggingResults(): JSX.Element {
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',
-      onClick: goNextState,
+      onClick: () => {getABTestingGraph(true) && goNextState();},
       daysMin: -10,
       className: 'playnet-btn-blue',
     },
