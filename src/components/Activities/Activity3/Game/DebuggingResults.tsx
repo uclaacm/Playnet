@@ -40,7 +40,7 @@ function DebuggingResults(): JSX.Element {
     },
     'No change': {
       buttonText: 'Continue to A/B Testing',
-      onClick: () => {getABTestingGraph(true) && goNextState()},
+      onClick: () => {getABTestingGraph(true) && goNextState();},
       daysMin: -10,
       className: 'playnet-btn-blue',
     },

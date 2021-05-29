@@ -44,7 +44,7 @@ export const GameContext = React.createContext<IGameContext>({
   setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
-  getABTestingGraph: function getABTestingGraph(isNew?: boolean) { return <></>; },
+  getABTestingGraph: function getABTestingGraph(_isNew?: boolean) { return <></>; },
 });
 
 function Game(): JSX.Element {
