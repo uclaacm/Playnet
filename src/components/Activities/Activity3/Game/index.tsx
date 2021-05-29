@@ -44,7 +44,7 @@ export const GameContext = React.createContext<IGameContext>({
   setTimeAllocation: (_allocations: TimeAllocations) => undefined,
   daysLeft: 0,
   setDaysLeft: (_state: number) => undefined,
-  getABTestingGraph: function getABTestingGraph() { return <></>; },
+  getABTestingGraph: function getABTestingGraph(isNew?: boolean) { return <></>; },
 });
 
 function Game(): JSX.Element {
@@ -190,11 +190,11 @@ function Game(): JSX.Element {
     });
   };
 
-  const getABTestingGraph = () => {
+  const getABTestingGraph = (isNew?: boolean) => {
     let graph = ABTestingGraph.current;
     if (timeAllocation.abTest === 0){
       graph = undefined;
-    } else if (!graph) {
+    } else if (!graph || isNew) {
       const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);
       const { xyMap: beta_xyMap } = getABTestingProductGraph(
         targetWeights, featureWeights,
