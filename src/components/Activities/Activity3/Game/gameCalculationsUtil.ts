@@ -87,7 +87,7 @@ export function overallQuality(
   const weightAccuracy = accuracyOfWeights(featureWeights, expectedWeights);
   // debug's accuracy is such that 0 is highest quality, and ranges from 0 - 1
   // as such, we get 1 - debugQuality so that 1 can be the highest quality!
-  const debugAccuracy = 1 - debugQuality(timeAllocations.build);
+  const debugAccuracy = 1 - 2 * debugQuality(timeAllocations.build);
   return weightAccuracy * debugAccuracy;
 }
 
@@ -316,7 +316,8 @@ export function numFinalStars(
   finalX: number,
   finalBetaX: number,
 ): number {
-  const num = Math.floor((finalBetaX - finalX) / 20 + 2.5) ;
+  const maxDifference = Math.min(100 - finalX, 50);
+  const num = Math.round((finalBetaX - finalX) / (maxDifference / 5) + 2.5) ;
   const numStars = clamp(1, num, 5).num;
-  return (finalBetaX > 95) ? 5 : numStars;
+  return numStars;
 }

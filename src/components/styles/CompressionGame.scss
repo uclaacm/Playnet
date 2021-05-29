@@ -23,7 +23,6 @@
   height: calc(90% - 66px);
   justify-content: flex-end;
 
-
   @media (max-width: $mobile-width) {
     flex-direction: column;
     height: 75%;

@@ -17,7 +17,7 @@ export const generateReviews = (featureWeights: number[], targetWeights: number[
       + randomVariance(STAR_RANDOM_VARIANCE);
 
     // since ratings are out of 3
-    const variableScore = raw * 3 / 5;
+    const variableScore = Math.round(raw) * 3 / 5;
 
     const variableReview: VariableReview = {
       variable: variableSelection[randomIndex],
@@ -44,7 +44,8 @@ function ABTestingReport(): JSX.Element {
     setTimeAllocation,
   } = useContext(GameContext);
   const [popup, setPopup] = useState(false);
-  const goBackButtonEnabled = daysLeft >= objectSum(DEFAULT_TIME_ALLOCATION);
+  const minDaysToRetry = objectSum(DEFAULT_TIME_ALLOCATION);
+  const goBackButtonEnabled = daysLeft >= minDaysToRetry;
 
   const retry = () => {
     setTimeAllocation(DEFAULT_TIME_ALLOCATION);
@@ -86,7 +87,7 @@ function ABTestingReport(): JSX.Element {
       {
         goBackButtonEnabled &&
         <button className="playnet-button" onClick={retry}>
-          Go back to variables (14 days needed)
+          Go back to variables ({minDaysToRetry} days needed)
         </button>
       }
     </div>

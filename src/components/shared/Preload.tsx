@@ -24,10 +24,8 @@ function Preload(props: PreloadProps): JSX.Element {
         img.onerror = () => reject(src);
       });
     });
-    console.log("hi")
 
     await Promise.all(promises);
-    console.log("hi")
     props.onPreloaded();
   };
 
