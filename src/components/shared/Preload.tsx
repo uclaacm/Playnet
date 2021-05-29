@@ -7,12 +7,11 @@ interface PreloadProps {
 }
 
 function Preload(props: PreloadProps): JSX.Element {
-  const srcPaths: Array<string> = props.images;
-
+  const { images } = props;
   useEffect(() => {
-    // the void doesn't affect the function call, it just says
-    // nothing is being done with the response from the function call
-    void cacheImages(srcPaths);
+    // void means the promise's result is being ignored.
+    // we do this to avoid an eslint rule: @typescript-eslint/no-floating-promises
+    void cacheImages(images);
   }, []);
 
   const cacheImages = async (srcArray: Array<string>) => {
@@ -24,7 +23,6 @@ function Preload(props: PreloadProps): JSX.Element {
         img.onerror = () => reject(src);
       });
     });
-
     await Promise.all(promises);
     props.onPreloaded();
   };
@@ -38,7 +36,5 @@ function Preload(props: PreloadProps): JSX.Element {
       </div>
     </>
   );
-
-
 }
 export default Preload;
