@@ -10,27 +10,27 @@ interface SelectProps {
 }
 
 function NumberSelection(props: SelectProps): JSX.Element {
-  const {daysLeft, itemType, daysAllocation, setDaysAllocation, showWarning} = props;
+  const { daysLeft, itemType, daysAllocation, setDaysAllocation, showWarning } = props;
 
   const handleScroll = (e: React.WheelEvent) => {
     let adjustment = 0;
     if (e.deltaY < 0) {
       adjustment = -1;
-    } else if (e.deltaY > 0 ) {
+    } else if (e.deltaY > 0) {
       adjustment = 1;
     }
     const newInput = Math.max(Math.min(daysAllocation[itemType] + adjustment, daysLeft), 0);
     setNewAllocation(newInput);
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: { target: HTMLInputElement }) => {
     const value = e.target.value !== '' ? parseInt(e.target.value) : 0;
     const newInput = Math.max(Math.min(value, daysLeft), 0);
     setNewAllocation(newInput);
   };
 
   const setNewAllocation = (newInput: number) => {
-    const newAllocation = {...daysAllocation};
+    const newAllocation = { ...daysAllocation };
     newAllocation[itemType] = newInput;
     setDaysAllocation(newAllocation);
   };
@@ -41,7 +41,7 @@ function NumberSelection(props: SelectProps): JSX.Element {
       value={daysAllocation[itemType]}
       onChange={handleChange}
       onWheel={handleScroll}
-      onClick={(e: any)=>e.target.select()}
+      onClick={(e) => (e.target as HTMLInputElement).select()}
       className={`time-input ${showWarning && 'time-input-warning'}`}
     />
   );

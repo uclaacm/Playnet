@@ -6,7 +6,7 @@ import TextBubble from './TextBubble';
 
 interface Phrase {
   text?: string,
-  image?: any,
+  image?: string,
   textBubbleStyle?: TextBubbleStyles,
   isText: boolean,
   timeOnScreen?: number,

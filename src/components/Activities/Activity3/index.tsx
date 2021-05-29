@@ -2,9 +2,6 @@ import React from 'react';
 import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
-import StarSVG from '../../../assets/activity1/game1/star.svg';
-import ClockSVG from '../../../assets/shared/activities/clock.svg';
-
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import Preload from '../../shared/Preload';
 import ComputerRecs from './Animations/ComputerRecs';
