@@ -2,8 +2,8 @@ import React, { CSSProperties, useEffect, useState, useRef } from 'react';
 
 import '../styles/Carousel.scss';
 import useSound from 'use-sound';
-import NextSvg from '../../assets/next_btn.svg';
-import PrevSvg from '../../assets/prev_btn.svg';
+import NextSvg from '../../assets/shared/carousel/next_btn.svg';
+import PrevSvg from '../../assets/shared/carousel/prev_btn.svg';
 import { DEFAULT_CONFIGS } from './PlaynetConstants';
 import { SoundTrack, SoundTrackMapping } from './soundtrack';
 import Tooltip from './Tooltip';

@@ -1,8 +1,5 @@
 import React from 'react';
 
-import BlankComputerSVG from '../../../assets/blank-computer.svg';
-import ClockSVG from '../../../assets/clock.svg';
-
 import Carousel from '../../shared/Carousel';
 import Preload from '../../shared/Preload';
 import { SoundTrack } from '../../shared/soundtrack';
@@ -18,18 +15,20 @@ import Outro from './Game/Outro';
 import uncompressedSlides from './Game/uncompressedSlides';
 import IntroSlides from './IntroSlides';
 
+// gets all files that end in .jpg .svg or .png from given folder
+const activity2Images = require.context('../../../assets/activity2/', true, /\.(svg|jpg|png)$/);
+const paths = activity2Images.keys();
+const requiredImages = paths.map(path => activity2Images(path).default);
 
-const reqSvgs = require.context( '../../../assets/activity2/game/', true, /\.(svg|jpg|png|gif)$/ );
-const paths = reqSvgs.keys();
-const svgs = paths.map( path => reqSvgs(path).default );
-svgs.push(BlankComputerSVG);
-svgs.push(ClockSVG);
+const sharedImages = require.context('../../../assets/shared/', true, /\.(svg|jpg|png)$/);
+const sharedImagesPaths = sharedImages.keys();
+requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).default)));
 
 function Activity2(): JSX.Element {
   const content = [
     {
       child:
-        <Preload images = {svgs} />,
+        <Preload images={requiredImages} />,
       showNext: false,
     },
     ...IntroSlides,

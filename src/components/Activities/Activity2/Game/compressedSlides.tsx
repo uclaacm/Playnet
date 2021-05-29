@@ -1,8 +1,8 @@
 import React from 'react';
 
-import ElephantHatGIF from '../../../../assets/activity2/game/elephant-hat.gif';
-import ElephantShoesGIF from '../../../../assets/activity2/game/elephant-shoes.gif';
-import ElephantGIF from '../../../../assets/activity2/game/elephant.gif';
+import ElephantHatGIF from '../../../../assets/activity2/elephant-hat.gif';
+import ElephantShoesGIF from '../../../../assets/activity2/elephant-shoes.gif';
+import ElephantGIF from '../../../../assets/activity2/elephant.gif';
 
 import { AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 

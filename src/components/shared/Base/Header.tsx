@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Link } from 'react-router-dom';
-import PlaynetLogo from '../../../assets/logos/playnet.svg';
+import PlaynetLogo from '../../../assets/shared/logos/playnet.svg';
 import { HeaderSections, TAB_INFO } from '../PlaynetConstants';
 
 import '../../styles/Header.scss';

@@ -1,10 +1,8 @@
 import React from 'react';
 
-// import AlienFlowerGif from '../../../../assets/activity2/game/alien-flower.gif';
-// import AlienWigGif from '../../../../assets/activity2/game/alien-wig.gif';
-import AlienFlowerUncompressedGif from '../../../../assets/activity2/game/alien-flower-uncompressed.gif';
-import AlienWigUncompressedGif from '../../../../assets/activity2/game/alien-wig-uncompressed.gif';
-import AlienGif from '../../../../assets/activity2/game/alien.gif';
+import AlienFlowerUncompressedGif from '../../../../assets/activity2/alien-flower-uncompressed.gif';
+import AlienWigUncompressedGif from '../../../../assets/activity2/alien-wig-uncompressed.gif';
+import AlienGif from '../../../../assets/activity2/alien.gif';
 
 import { AnswerDisplayStyles } from '../../../shared/PlaynetConstants';
 

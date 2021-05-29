@@ -107,7 +107,8 @@ function CipherGameRound(props: CipherGameRoundProps): JSX.Element {
     setClickDisabled(true); // block repeated clicks during alien animation
     if (correct) {
       const newHappiness = Math.min(happiness + CORRECT_PTS, 100); // no overflow
-      const handler = newHappiness === MAX_HAPPINESS ? advanceGame : nextSlide; // prevent no-op by finishing animation before scene change
+      // prevent no-op by finishing animation before scene change
+      const handler = newHappiness === MAX_HAPPINESS ? advanceGame : nextSlide;
       setHappiness(newHappiness);
       handleAlienState(ALIEN_STATE.HAPPY, handler);
     } else {

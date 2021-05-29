@@ -17,9 +17,14 @@ import FinalSlide from './FinalSlide';
 import Intro, { IntroAnimeProps } from './Intro';
 import { FinalYouTube, IntroYouTube } from './Youtube';
 
-const reqSvgs = require.context( '../../assets/', true, /\.(svg|jpg|png|gif)$/ );
-const paths = reqSvgs.keys();
-const svgs = paths.map( path => reqSvgs(path).default );
+// gets all files that end in .jpg .svg or .png from given folder
+const introImages = require.context('../../assets/intro/', true, /\.(svg|jpg|png)$/);
+const paths = introImages.keys();
+const requiredImages = paths.map(path => introImages(path).default);
+
+const sharedImages = require.context('../../assets/shared/', true, /\.(svg|jpg|png)$/);
+const sharedImagesPaths = sharedImages.keys();
+requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).default)));
 
 function Home(): JSX.Element {
   const [chosenVideo, setChosenVideo] = useState(VideoChoices.NONE_CHOSEN);
@@ -45,7 +50,7 @@ function Home(): JSX.Element {
   const rocketWord = VideoInfo[chosenVideo].rocket_word;
   const content = [
     {
-      child: <Preload images={svgs} />,
+      child: <Preload images={requiredImages} />,
       showNext: false,
     },
     {

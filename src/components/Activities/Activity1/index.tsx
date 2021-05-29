@@ -4,7 +4,6 @@ import '../../styles/Activity1.scss';
 
 import Game1EndScreen from '../../../assets/activity1/game1-endscreen.svg';
 import ComputerSvg from '../../../assets/activity1/search-highlighted-computer.svg';
-import BlankComputerSVG from '../../../assets/blank-computer.svg';
 
 import Carousel from '../../shared/Carousel';
 import Computer from '../../shared/Computer';
@@ -17,14 +16,14 @@ import CipherGame, { SuccessCipherGameState } from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
-const reqSvgs = require.context('../../../assets/activity1/', true, /\.(svg|jpg|png)$/);    // should get all the files in assets/activity1/ and its subdirectories that end ins .jpg .svg or .png
-const paths = reqSvgs.keys();
-const svgs = paths.map(path => reqSvgs(path).default);
+// gets all files that end in .jpg .svg or .png from given folder
+const activity1Images = require.context('../../../assets/activity1/', true, /\.(svg|jpg|png)$/);
+const paths = activity1Images.keys();
+const requiredImages = paths.map(path => activity1Images(path).default);
 
-const alienSvgs = require.context('../../../assets/alien/', true, /\.(svg|jpg|png)$/);  // get all files in assets/alien
-const alienPaths = alienSvgs.keys();
-svgs.push(... (alienPaths.map(path => alienSvgs(path).default)));
-svgs.push(BlankComputerSVG);
+const sharedImages = require.context('../../../assets/shared/', true, /\.(svg|jpg|png)$/);
+const sharedImagesPaths = sharedImages.keys();
+requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).default)));
 
 function Activity1(): JSX.Element {
   const timeBtwnWords = 3000;
@@ -32,7 +31,7 @@ function Activity1(): JSX.Element {
   const content = [
     {
       child:
-        <Preload images={svgs} />,
+        <Preload images={requiredImages} />,
       showNext: false,
     },
     {

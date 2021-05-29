@@ -3,7 +3,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import '../../../styles/Game.scss';
 
 import Star from '../../../../assets/activity1/game1/star.svg';
-import Alien from '../../../../assets/alien/alien.svg';
+import Alien from '../../../../assets/shared/activities/alien.svg';
 
 import { CarouselContext } from '../../../shared/Carousel';
 import CipherGameRound from './components/CipherGameRound';

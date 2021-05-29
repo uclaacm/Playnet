@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import useSound from 'use-sound';
 
-import CorrectSFX from '../../../../assets/activity1/game2/correct.mp3';
-import IncorrectSFX from '../../../../assets/activity1/game2/oh_no_1.mp3';
-import SceneSvg from '../../../../assets/activity2/game/scene.svg';
+import SceneSvg from '../../../../assets/activity2/scene.svg';
+import CorrectSFX from '../../../../assets/sounds/correct.mp3';
+import IncorrectSFX from '../../../../assets/sounds/oh_no_1.mp3';
 import {replace} from '../../../../utils';
 
 import AnsweChoiceBox from '../../../shared/AnswerChoiceBox';

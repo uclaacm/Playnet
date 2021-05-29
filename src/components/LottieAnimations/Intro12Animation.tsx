@@ -1,10 +1,10 @@
 /* eslint-disable */
-import img_7 from '../../assets/lottie_animation_data/img_7.svg'; 
-import img_8 from '../../assets/lottie_animation_data/img_8.svg';
-import img_9 from '../../assets/lottie_animation_data/img_9.svg';
-import img_10 from '../../assets/lottie_animation_data/img_10.svg'; 
-import img_11 from '../../assets/lottie_animation_data/img_11.svg'; 
-import img_12 from '../../assets/lottie_animation_data/img_12.svg'; 
+import img_7 from '../../assets/intro/img_7.svg'; 
+import img_8 from '../../assets/intro/img_8.svg';
+import img_9 from '../../assets/intro/img_9.svg';
+import img_10 from '../../assets/intro/img_10.svg'; 
+import img_11 from '../../assets/intro/img_11.svg'; 
+import img_12 from '../../assets/intro/img_12.svg'; 
 
 // Statement with images because otherwise react doesn't import
 img_7;

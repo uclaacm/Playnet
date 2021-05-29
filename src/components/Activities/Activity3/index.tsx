@@ -2,8 +2,8 @@ import React from 'react';
 import '../../styles/Activity3.scss';
 import '../../styles/Activity3Game.scss';
 
-import ClockSVG from '../../../assets/clock.svg';
 import StarSVG from '../../../assets/activity1/game1/star.svg';
+import ClockSVG from '../../../assets/shared/activities/clock.svg';
 
 import Carousel, { CarouselItemComponents } from '../../shared/Carousel';
 import Preload from '../../shared/Preload';
@@ -18,19 +18,20 @@ import RecommendCriteria from './Animations/RecommendCriteria';
 import Game from './Game';
 import { GameIntroSlide1 } from './Game/GameIntroSlides';
 
-const reqSvgs = require.context( '../../../assets/activity3/', true, /\.(svg|jpg|png|gif)$/ );    //should get all the files in assets/ and its subdirectories that end ins .jpg .svg or .png
-const paths = reqSvgs.keys();
-const svgs = paths.map( path => reqSvgs(path).default );
+// gets all files that end in .jpg .svg or .png from given folder
+const activity3Images = require.context('../../../assets/activity3/', true, /\.(svg|jpg|png)$/);
+const paths = activity3Images.keys();
+const requiredImages = paths.map(path => activity3Images(path).default);
 
-svgs.push(ClockSVG);
-svgs.push(StarSVG);
-
+const sharedImages = require.context('../../../assets/shared/', true, /\.(svg|jpg|png)$/);
+const sharedImagesPaths = sharedImages.keys();
+requiredImages.push(... (sharedImagesPaths.map(path => sharedImages(path).default)));
 
 function Activity3(): JSX.Element {
   const content: CarouselItemComponents[] = [
     {
       child:
-        <Preload images = {svgs} />,
+        <Preload images={requiredImages} />,
       showNext: false,
     },
     {

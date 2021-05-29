@@ -86,7 +86,6 @@ module.exports = {
       ignoreUrls: true, // Most common reason to disable it
       ignoreStrings: true, // These are not fantastic but necessary for error messages
       ignoreTemplateLiterals: true,
-      ignoreComments: true,
       ignoreRegExpLiterals: true,
     }],
 

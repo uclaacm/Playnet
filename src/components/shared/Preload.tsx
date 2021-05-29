@@ -2,9 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import 'regenerator-runtime/runtime';
 import { CarouselContext } from '../shared/Carousel';
 
-
 interface PreloadProps {
-  images: Array<string>,
+  images: string[],
 }
 
 function Preload(props: PreloadProps): JSX.Element {
@@ -12,7 +11,9 @@ function Preload(props: PreloadProps): JSX.Element {
   const srcPaths: Array<string> = props.images;
 
   useEffect(() => {
-    void cacheImages(srcPaths); //the void doesn't affect the function call, it just says nothing is being done with the response from cacheImages function call
+    // the void doesn't affect the function call, it just says
+    // nothing is being done with the response from the function call
+    void cacheImages(srcPaths);
   }, []);
 
   const cacheImages = async (srcArray: Array<string>) => {
@@ -34,7 +35,7 @@ function Preload(props: PreloadProps): JSX.Element {
       <div className='loading-screen'>
         <div id={'loading-anim-rocket'} />
         <div id={'loading-anim-planet'} />
-                Contacting Alien Species...
+        Contacting Alien Species...
       </div>
     </>
   );

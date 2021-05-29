@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import BlankComputer from '../../assets/blank-computer.svg';
+import BlankComputer from '../../assets/shared/activities/blank-computer.svg';
 
 import '../styles/Computer.scss';
 
