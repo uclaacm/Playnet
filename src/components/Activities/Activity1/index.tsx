@@ -17,11 +17,11 @@ import CipherGame, { SuccessCipherGameState } from './Game1';
 import AmbiguousPhrasingGame from './Game2';
 import TextBubble from './TextBubble';
 
-const reqSvgs = require.context('../../../assets/activity1/', true, /\.(svg|jpg|png)$/);    //should get all the files in assets/activity1/ and its subdirectories that end ins .jpg .svg or .png
+const reqSvgs = require.context('../../../assets/activity1/', true, /\.(svg|jpg|png)$/);    // should get all the files in assets/activity1/ and its subdirectories that end ins .jpg .svg or .png
 const paths = reqSvgs.keys();
 const svgs = paths.map(path => reqSvgs(path).default);
 
-const alienSvgs = require.context('../../../assets/alien/', true, /\.(svg|jpg|png)$/);  //get all files in assets/alien
+const alienSvgs = require.context('../../../assets/alien/', true, /\.(svg|jpg|png)$/);  // get all files in assets/alien
 const alienPaths = alienSvgs.keys();
 svgs.push(... (alienPaths.map(path => alienSvgs(path).default)));
 svgs.push(BlankComputerSVG);

@@ -26,7 +26,6 @@ const uncompressedSlides = [
     choices: ['shoes', 'wig', 'flower'],
     correctIdx: 2,
     gif: <GIFPlayer gifs={[
-      // alienGifTime,
       alienFlowerGifTime,
     ]} alt='Gif of Alien with Flower being Drawn' id={'0-1'} />,
     answerDisplayWords: ['alien', 'with', 'blank'],
@@ -38,8 +37,6 @@ const uncompressedSlides = [
     choices: ['wig', 'dress', 'shoes'],
     correctIdx: 0,
     gif: <GIFPlayer gifs={[
-      // alienGifTime,
-      // alienFlowerGifTime,
       alienWigGifTime,
     ]} alt='Gif of Alien with Flower and Wig being Drawn' id={'0-2'} />,
     answerDisplayWords: ['alien', 'with', 'flower', 'and', 'blank'],
