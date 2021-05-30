@@ -96,9 +96,9 @@ $card-height: calc(#{$card-min-width} - 20px);
   width: 100%;
 }
 
-//Selecting variables Tutorial
+// Selecting variables Tutorial
 .enable-blur > * {
-  filter: blur(1.5px) grayscale(0.6) brightness(85%);
+  filter: blur(0.7px) grayscale(0.8) brightness(65%);
 }
 
 .disable-blur {

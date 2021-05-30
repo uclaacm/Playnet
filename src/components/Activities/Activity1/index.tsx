@@ -59,6 +59,7 @@ function Activity1(): JSX.Element {
         <TransitionSlide buttonText={'Play Game'}>
           <div>Imagine that you are a computer trying to learn what the alien wants.</div>
           <div>Can you figure out what the alien wants and keep it happy?</div>
+          <p>Note: we don&apos;t know what the alien is saying. We will need to guess!</p>
         </TransitionSlide>,
       showNext: false,
       animationTime: 5.3,
@@ -114,7 +115,7 @@ function Activity1(): JSX.Element {
       child:
         <TransitionSlide buttonText={'Play Game'}>
           <div>But even if we know what the alien is saying... can you figure out what they mean?</div>
-          <div>Warning: One sentence can mean two things, so the answer might not be what you expect!</div>
+          <p>Note: One sentence can mean two things, so we might need to guess!</p>
         </TransitionSlide>,
       showNext: false,
       animationTime: 9.5,

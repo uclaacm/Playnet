@@ -8,7 +8,6 @@ import {
 import './styles/App.scss';
 
 import Activities from './Activities';
-import DayOfCode from './DayOfCode';
 import Feedback from './Feedback';
 import Home from './Home';
 import { TAB_INFO } from './shared/PlaynetConstants';
@@ -21,9 +20,9 @@ function App(): JSX.Element {
           {/* A <Switch> looks through its children Routes and
           renders the first one that matches the current URL. */}
           <Switch>
-            <Route path={TAB_INFO.day_of_code.link}>
+            {/* <Route path={TAB_INFO.day_of_code.link}>
               <DayOfCode />
-            </Route>
+            </Route> */}
             <Route path={TAB_INFO.activities.link}>
               <Activities />
             </Route>
