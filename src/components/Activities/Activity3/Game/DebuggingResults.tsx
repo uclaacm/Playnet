@@ -28,7 +28,7 @@ function DebuggingResults(): JSX.Element {
   };
 
   const buttons: { [key: string]: { buttonText: string, onClick: () => void, daysMin: number, className?: string } } = {
-    'Reduce errors': {
+    'Try reducing errors': {
       buttonText: 'Debug (-1 day)',
       onClick: debugADay,
       daysMin: 1,

@@ -26,6 +26,7 @@ function ABTestingExplanation(): JSX.Element {
     timeline.current?.add({
       targets: '#abtest-text1',
       ...fadeOut,
+      duration: 500,
     }).add({
       targets: '#abtest-computer2',
       ...fadeIn,

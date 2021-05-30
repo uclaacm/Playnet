@@ -21,7 +21,7 @@ import './styles/Activities.scss';
 const ACTIVITIES: { [key: string]: string } = {
   'lost-in-translation': 'When you use the search bar, how does YouTube know what you’re looking for?',
   'sending-videos': 'Videos hold a lot of information! How can pages load quickly?',
-  'mind-reading': 'Have you ever wondered how YouTube knows what you want to watch next?',
+  'mind-reading': 'Have you ever why wondered why there are so many programmers and what they are even doing?',
 };
 
 interface ActivityHomeProps {

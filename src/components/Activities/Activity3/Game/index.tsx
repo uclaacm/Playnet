@@ -192,7 +192,7 @@ function Game(): JSX.Element {
 
   const getABTestingGraph = (isNew?: boolean) => {
     let graph = ABTestingGraph.current;
-    if (timeAllocation.abTest === 0){
+    if (timeAllocation.abTest === 0) {
       graph = undefined;
     } else if (!graph || isNew) {
       const { xyMap, dxyMap } = getABTestingControlGraph(timeAllocation.abTest);

@@ -27,10 +27,10 @@ export const TAB_INFO: { [key in HeaderSections]: { link: string, text: string }
     link: '/feedback',
     text: 'Feedback',
   },
-  [HeaderSections.DAY_OF_CODE]: {
-    link: '/day-of-code',
-    text: 'Day of Code',
-  },
+  // [HeaderSections.DAY_OF_CODE]: {
+  //   link: '/day-of-code',
+  //   text: 'Day of Code',
+  // },
 };
 
 // Internal Constants

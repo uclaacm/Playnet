@@ -192,7 +192,7 @@ function Carousel(props: CarouselProps): JSX.Element {
             <img src={PrevSvg} />
           </button>
           <div id={'carousel-content'} style={{ backgroundColor: `${(child?.showBackground === false) ? 'transparent' : 'white'}` }}>
-            {child.animationTime &&
+            {child.animationTime && !isPreloading &&
               <span className='time-bar-container'>
                 <div key={`${reloadTime}-${slideIdx}`} className='timebar'>
                   <div className='time' style={{ '--time': child.animationTime + 's' } as CSSProperties} />
