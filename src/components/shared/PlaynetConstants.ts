@@ -75,7 +75,7 @@ export enum VideoChoices {
 
 export const VideoInfo: Record<VideoChoices, { url: string, rocket_word: string }> = {
   [VideoChoices.CHILL_GIRL]: {
-    url: 'https://www.youtube.com/embed/-FlxM_0S2lA',
+    url: 'https://www.youtube.com/embed/lTRiuFIWV54',
     rocket_word: 'Lofi',
   },
   [VideoChoices.BABY_SHARK]: {
@@ -87,7 +87,7 @@ export const VideoInfo: Record<VideoChoices, { url: string, rocket_word: string 
     rocket_word: 'Minecraft',
   },
   [VideoChoices.NONE_CHOSEN]: { // default to lofi beats
-    url: 'https://www.youtube.com/embed/-FlxM_0S2lA',
+    url: 'https://www.youtube.com/embed/lTRiuFIWV54',
     rocket_word: 'Lofi',
   },
 };
